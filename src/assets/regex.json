@@ -1,0 +1,8 @@
+{
+  "name": "regex",
+  "description": "Regex patterns to use in the code",
+  "value": {
+    "upperCase": "/[A-Z]/g",
+    "lowerCase": "/[a-z]/g"
+  }
+}
