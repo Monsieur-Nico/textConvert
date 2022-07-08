@@ -11,7 +11,8 @@
     "cover": "nyc mocha -r ts-node/register 'tests/**/*.ts'",
     "make-badges": "istanbul-badges-readme",
     "make-badges-silent": "istanbul-badges-readme --silent",
-    "make-badges-custom-dir": "istanbul-badges-readme --coverageDir='./coverage'"
+    "make-badges-custom-dir": "istanbul-badges-readme --coverageDir='./coverage'",
+    "lint": "eslint . --ext .ts"
   },
   "nyc": {
     "extension": [
@@ -37,7 +38,10 @@
     "@types/chai": "^4.3.1",
     "@types/mocha": "^9.1.1",
     "@types/node": "^18.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
     "chai": "^4.3.6",
+    "eslint": "^8.19.0",
     "istanbul-badges-readme": "^1.8.2",
     "mocha": "^10.0.0",
     "nodemon": "^2.0.19",
