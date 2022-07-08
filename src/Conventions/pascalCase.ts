@@ -12,7 +12,7 @@ export function pascalCase(text: string): string {
 
   // convert the words to camelCase
   const pCaseArray: string[] = wordsArray.map((word: string) => {
-    word = word.charAt(0).toUpperCase();
+    word = word.charAt(0).toUpperCase() + word.slice(1);
     return word;
   });
 
