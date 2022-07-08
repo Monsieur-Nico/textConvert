@@ -20,4 +20,7 @@ describe("#camelCase", () => {
   it("should return helloWorld for 'Hello world'", () => {
     assert.strictEqual(camelCase("Hello world"), "helloWorld");
   });
+  it("should return 'Please provide a valid input text' for empty input", () => {
+    assert.strictEqual(camelCase(""), "Please provide a valid input text");
+  });
 });
