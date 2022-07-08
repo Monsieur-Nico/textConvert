@@ -8,5 +8,12 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
-  ]
+  ],
+  "rules": {
+    "no-duplicate-imports": 2,
+    "consistent-return": 2,
+    "no-eval": 2,
+    "no-irregular-whitespace": 1,
+    "no-trailing-spaces": 1
+  }
 }
