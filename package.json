@@ -27,7 +27,17 @@
     "type": "git",
     "url": "git+https://github.com/Monsieur-Nico/textConvert.git"
   },
-  "keywords": [],
+  "keywords": [
+    "text",
+    "convert",
+    "naming",
+    "convention",
+    "conventions",
+    "dash",
+    "underscore",
+    "camelcase",
+    "pascalcase"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
