@@ -7,7 +7,20 @@
     "start": "node dist/app.js",
     "dev": "nodemon src/app.ts",
     "build": "tsc -p .",
-    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' nyc mocha -r ts-node/register 'tests/**/*.ts'"
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' nyc mocha -r ts-node/register 'tests/**/*.ts'",
+    "cover": "nyc mocha -r ts-node/register 'tests/**/*.ts'",
+    "make-badges": "istanbul-badges-readme",
+    "make-badges-silent": "istanbul-badges-readme --silent",
+    "make-badges-custom-dir": "istanbul-badges-readme --coverageDir='./coverage'"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "reporter": [
+      "json-summary"
+    ],
+    "all": true
   },
   "repository": {
     "type": "git",
@@ -25,6 +38,7 @@
     "@types/mocha": "^9.1.1",
     "@types/node": "^18.0.3",
     "chai": "^4.3.6",
+    "istanbul-badges-readme": "^1.8.2",
     "mocha": "^10.0.0",
     "nodemon": "^2.0.19",
     "nyc": "^15.1.0",
