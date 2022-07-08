@@ -8,7 +8,7 @@ const regex = {
   values: {
     upperCase: /[A-Z]/g,
     lowerCase: /[a-z]/g,
-    spaceDash: /[-_ ]/g,
+    spaceDash: /[^A-Za-z]/g,
   },
 };
 
