@@ -1,7 +1,7 @@
 {
   "name": "textconvert",
   "version": "1.0.0",
-  "description": "Public library to convert text into many formats",
+  "description": "Public library to convert text into many conventions and formats",
   "main": "index.js",
   "scripts": {
     "start": "node dist/app.js",
@@ -38,7 +38,7 @@
     "camelcase",
     "pascalcase"
   ],
-  "author": "",
+  "author": "Nicolas Alkhoury",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Monsieur-Nico/textConvert/issues"
