@@ -3,12 +3,16 @@
  * @param text input text to convert to CamelCase
  */
 
+import { regex } from "../assets/regex";
+
+const { values } = regex;
+
 export function camelCase(text: string): string {
   // Make sure there's an input
   if (!text) return "Please provide a valid input text";
 
-  // define the regex pattern
-  const wordsArray: string[] = text.split(/[-_ ]/g);
+  // Make an array of words after splitting them
+  const wordsArray: string[] = text.split(values.spaceDash);
   // Get the first word out of the array
   let firstWord = wordsArray.shift()?.toLowerCase();
 
