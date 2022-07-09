@@ -94,7 +94,7 @@
   },
   "include": [
     "src/**/*",
-    "Tests"
+    "Tests",
   ],
   "exclude": [
     "./tests/",
