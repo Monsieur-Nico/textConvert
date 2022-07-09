@@ -39,7 +39,7 @@
     "pascalcase"
   ],
   "author": "Nicolas Alkhoury",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Monsieur-Nico/textConvert/issues"
   },
