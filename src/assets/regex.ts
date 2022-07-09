@@ -7,8 +7,10 @@ const regex = {
   description: "Regex patterns list to be used in functions",
   values: {
     upperCase: /[A-Z]/g,
+    upperCaseKeepLetter: /(?=[A-Z])/g,
     lowerCase: /[a-z]/g,
-    spaceDash: /[^A-Za-z]/g,
+    lowerUpperCase: /[A-Za-z]/g,
+    nonAlphabetic: /[^A-Za-z]/g,
   },
 };
 
