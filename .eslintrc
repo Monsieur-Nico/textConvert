@@ -13,7 +13,6 @@
     "no-duplicate-imports": 2,
     "consistent-return": 2,
     "no-eval": 2,
-    "no-irregular-whitespace": 1,
-    "no-trailing-spaces": 1
+    "no-irregular-whitespace": 1
   }
 }
