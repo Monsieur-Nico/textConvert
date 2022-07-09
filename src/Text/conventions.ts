@@ -4,7 +4,8 @@ const { values } = regex;
 
 /**
  * Convert a string from any convention to Camel Case convention.
- * @param text input text with type string.
+ *
+ * @param `text A string to be converted to Camel Case.
  */
 
 export function camelCase(text: string): string {
@@ -29,7 +30,8 @@ export function camelCase(text: string): string {
 
 /**
  * Convert a string from any convention to Pascal Case convention.
- * @param text input text with type string
+ *
+ * @param `text A string to be converted to Camel Case.
  */
 
 export function pascalCase(text: string): string {
