@@ -3,6 +3,7 @@
   "version": "1.0.2",
   "description": "Public library to convert text into many conventions and formats",
   "main": "index.ts",
+  "type": "module",
   "scripts": {
     "start": "node dist/app.js",
     "dev": "nodemon src/app.ts",
