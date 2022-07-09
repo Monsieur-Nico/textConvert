@@ -102,3 +102,16 @@ dist
 
 # TernJS port file
 .tern-port
+
+.*.swp
+._*
+.DS_Store
+.git
+.gitignore
+.hg
+.npmignore
+.npmrc
+.svn
+.wafpickle-*
+config.gypi
+CVS
