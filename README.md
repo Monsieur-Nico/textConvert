@@ -17,3 +17,37 @@
 </div>
 
 <hr />
+<br />
+
+## Installation
+
+Easily install the package using the `npm install` command:
+
+```
+$ npm install textconvert
+```
+
+## Setup
+
+```js
+import * as convert from "textconvert";
+// Or
+const convert = require("textconvert");
+```
+
+## Features
+
+This package includes two features at the moment:
+
+- #### Pacal Case
+
+  ```js
+  convert.pascalCase("hello world");
+  // Returns => "HelloWorld"
+  ```
+
+- #### Camel Case
+  ```js
+  convert.camelCase("hello world");
+  // Returns => "helloWorld"
+  ```
