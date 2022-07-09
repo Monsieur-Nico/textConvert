@@ -76,6 +76,6 @@ export function snakeCase(text: string): string {
   });
 
   // Join the words and return them
-  const result: string = sCaseArray.join("-");
+  const result: string = sCaseArray.join("_");
   return result;
 }
