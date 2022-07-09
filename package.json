@@ -2,7 +2,7 @@
   "name": "textconvert",
   "version": "1.0.1",
   "description": "Public library to convert text into many conventions and formats",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "start": "node dist/app.js",
     "dev": "nodemon src/app.ts",
