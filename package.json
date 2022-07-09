@@ -1,6 +1,6 @@
 {
   "name": "textconvert",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Public library to convert text into many conventions and formats",
   "main": "index.js",
   "scripts": {
