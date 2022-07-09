@@ -47,7 +47,16 @@ This package includes two features at the moment:
   ```
 
 - #### Camel Case
+
   ```js
   convert.camelCase("hello world");
   // Returns => "helloWorld"
+  ```
+
+- ### Snake Case
+  ```js
+  convert.snakeCase("hello world");
+  // Returns => "hello_world"
+  convert.snakeCase("hello-world");
+  // Returns => "hello_world"
   ```
