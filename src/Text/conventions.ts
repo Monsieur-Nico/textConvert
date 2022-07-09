@@ -1,4 +1,4 @@
-import { regex } from "../assets/regex";
+import {regex} from "../assets/regex";
 
 const { values } = regex;
 
@@ -24,8 +24,7 @@ export function camelCase(text: string): string {
   });
 
   // Join the words and return them
-  const result: string = firstWord + cCaseArray.join("");
-  return result;
+  return firstWord + cCaseArray.join("");
 }
 
 /**
@@ -48,8 +47,7 @@ export function pascalCase(text: string): string {
   });
 
   // Join the words and return them
-  const result: string = pCaseArray.join("");
-  return result;
+  return pCaseArray.join("");
 }
 
 /**
@@ -74,6 +72,5 @@ export function snakeCase(text: string): string {
   });
 
   // Join the words with "_" and return them
-  const result: string = sCaseArray.join("_");
-  return result;
+  return sCaseArray.join("_");
 }
