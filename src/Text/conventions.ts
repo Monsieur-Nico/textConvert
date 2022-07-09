@@ -60,22 +60,20 @@ export function pascalCase(text: string): string {
 
 export function snakeCase(text: string): string {
   // Make sure there's an input
-  if (!text) return "Please provide a valid input";
+  if (!text) return "Please provide a valid input text";
 
   // Make an array of words after splitting them depending on the input case
-  const wordsArray = !values.nonAlphabetic.test(text)
-    ? text.split(values.upperCaseKeepLetter)
-    : text.split(values.nonAlphabetic);
+  const wordsArray: string[] = values.nonAlphaTest.test(text)
+    ? text.split(values.nonAlphabetic)
+    : text.split(values.upperCaseKeepLetter);
 
-  console.log(wordsArray);
-
-  // convert the words to camelCase
+  // convert the words to lower case
   const sCaseArray: string[] = wordsArray.map((word: string) => {
     word = word.charAt(0).toLowerCase() + word.slice(1);
     return word;
   });
 
-  // Join the words and return them
+  // Join the words with "_" and return them
   const result: string = sCaseArray.join("_");
   return result;
 }

@@ -1,3 +1,3 @@
-import { camelCase, pascalCase } from "./Text/conventions";
+import { camelCase, pascalCase, snakeCase } from "./Text/conventions";
 
-export { camelCase, pascalCase };
+export { camelCase, pascalCase, snakeCase };
