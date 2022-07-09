@@ -11,6 +11,7 @@ const regex = {
     lowerCase: /[a-z]/g,
     lowerUpperCase: /[A-Za-z]/g,
     nonAlphabetic: /[^A-Za-z]/g,
+    nonAlphaTest: /[^A-Za-z]/,
   },
 };
 
