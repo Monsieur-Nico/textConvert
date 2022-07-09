@@ -39,7 +39,7 @@ const convert = require("textconvert");
 
 This package includes two features at the moment:
 
-- #### Pacal Case
+- #### Pascal Case
 
   ```js
   convert.pascalCase("hello world");
