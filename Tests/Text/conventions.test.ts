@@ -1,7 +1,8 @@
 import { assert } from "chai";
+import { it } from "mocha";
 import * as conventions from "../../src/Text/conventions";
 
-const { camelCase, pascalCase } = conventions;
+const { camelCase, pascalCase, snakeCase } = conventions;
 
 describe("#camelCase", () => {
   it("should return helloWorld for 'hello-world'", () => {
@@ -60,5 +61,41 @@ describe("#PascalCase", () => {
   });
   it("should return 'Please provide a valid input text' for empty input", () => {
     assert.strictEqual(pascalCase(""), "Please provide a valid input text");
+  });
+});
+
+describe("#SnakeCase", () => {
+  it("should return hello_world for 'hello-world'", () => {
+    assert.strictEqual(snakeCase("hello-world"), "hello_world");
+  });
+  it("should return hello_world for 'Hello-world'", () => {
+    assert.strictEqual(snakeCase("Hello-world"), "hello_world");
+  });
+  it("should return hello_world for 'hello_world'", () => {
+    assert.strictEqual(snakeCase("hello_world"), "hello_world");
+  });
+  it("should return hello_world for 'Hello_world'", () => {
+    assert.strictEqual(snakeCase("Hello_world"), "hello_world");
+  });
+  it("should return hello_world for 'hello world'", () => {
+    assert.strictEqual(snakeCase("hello world"), "hello_world");
+  });
+  it("should return hello_world for 'Hello world'", () => {
+    assert.strictEqual(snakeCase("Hello world"), "hello_world");
+  });
+  it("should return hello_world for 'Hello,world'", () => {
+    assert.strictEqual(snakeCase("Hello,world"), "hello_world");
+  });
+  it("should return hello_world for 'Hello.world'", () => {
+    assert.strictEqual(snakeCase("Hello.world"), "hello_world");
+  });
+  it("should return hello_world for 'HelloWorld'", () => {
+    assert.strictEqual(snakeCase("HelloWorld"), "hello_world");
+  });
+  it("should return hello_world for 'helloWorld'", () => {
+    assert.strictEqual(snakeCase("helloWorld"), "hello_world");
+  });
+  it("should return 'Please provide a valid input text' for empty input", () => {
+    assert.strictEqual(snakeCase(""), "Please provide a valid input text");
   });
 });
