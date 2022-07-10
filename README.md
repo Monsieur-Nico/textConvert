@@ -54,9 +54,18 @@ This package includes two features at the moment:
   ```
 
 - ### Snake Case
+
   ```js
   convert.snakeCase("hello world");
   // Returns => "hello_world"
   convert.snakeCase("hello-world");
   // Returns => "hello_world"
+  ```
+
+- ### Kebab Case
+  ```js
+  convert.kebabCase("hello world");
+  // Returns => "hello-world"
+  convert.kebabCase("helloWorld");
+  // Returns => "hello-world"
   ```
