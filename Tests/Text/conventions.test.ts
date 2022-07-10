@@ -95,6 +95,9 @@ describe("#SnakeCase", () => {
   it("should return hello_world for 'helloWorld'", () => {
     assert.strictEqual(snakeCase("helloWorld"), "hello_world");
   });
+  it("should return hello_world for 'hello .World'", () => {
+    assert.strictEqual(snakeCase("hello .World"), "hello_world");
+  });
   it("should return 'Please provide a valid input text' for empty input", () => {
     assert.strictEqual(snakeCase(""), "Please provide a valid input text");
   });

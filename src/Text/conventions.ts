@@ -1,4 +1,4 @@
-import {regex} from "../assets/regex";
+import { regex } from "../assets/regex";
 
 const { values } = regex;
 
@@ -65,11 +65,13 @@ export function snakeCase(text: string): string {
     ? text.split(values.nonAlphabetic)
     : text.split(values.upperCaseKeepLetter);
 
-  // convert the words to lower case
-  const sCaseArray: string[] = wordsArray.map((word: string) => {
-    word = word.charAt(0).toLowerCase() + word.slice(1);
-    return word;
-  });
+  // Filter the words to 1 letter minimum length and convert the words to lowerCase
+  const sCaseArray: string[] = wordsArray
+    .filter((word: string) => word.length > 0)
+    .map((word: string) => {
+      word = word.charAt(0).toLowerCase() + word.slice(1);
+      return word;
+    });
 
   // Join the words with "_" and return them
   return sCaseArray.join("_");
