@@ -93,7 +93,7 @@ export function kebabCase(text: string): string {
     : text.split(values.upperCaseKeepLetter);
 
   // Filter the words to 1 letter minimum length and convert the words to lowerCase
-  const sCaseArray: string[] = wordsArray
+  const kCaseArray: string[] = wordsArray
     .filter((word: string) => word.length > 0)
     .map((word: string) => {
       word = word.charAt(0).toLowerCase() + word.slice(1);
@@ -101,5 +101,5 @@ export function kebabCase(text: string): string {
     });
 
   // Join the words with "-" and return them
-  return sCaseArray.join("-");
+  return kCaseArray.join("-");
 }
