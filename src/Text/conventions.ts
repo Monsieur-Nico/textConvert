@@ -76,3 +76,30 @@ export function snakeCase(text: string): string {
   // Join the words with "_" and return them
   return sCaseArray.join("_");
 }
+
+/**
+ * Convert a string from any convention to Kebab Case convention.
+ *
+ * @param `text A string to be converted to Kebab Case.
+ */
+
+export function kebabCase(text: string): string {
+  // Make sure there's an input
+  if (!text) return "Please provide a valid input text";
+
+  // Make an array of words after splitting them depending on the input case
+  const wordsArray: string[] = values.nonAlphaTest.test(text)
+    ? text.split(values.nonAlphabetic)
+    : text.split(values.upperCaseKeepLetter);
+
+  // Filter the words to 1 letter minimum length and convert the words to lowerCase
+  const sCaseArray: string[] = wordsArray
+    .filter((word: string) => word.length > 0)
+    .map((word: string) => {
+      word = word.charAt(0).toLowerCase() + word.slice(1);
+      return word;
+    });
+
+  // Join the words with "-" and return them
+  return sCaseArray.join("-");
+}

@@ -2,7 +2,7 @@ import { assert } from "chai";
 import { it } from "mocha";
 import * as conventions from "../../src/Text/conventions";
 
-const { camelCase, pascalCase, snakeCase } = conventions;
+const { camelCase, pascalCase, snakeCase, kebabCase } = conventions;
 
 describe("#camelCase", () => {
   it("should return helloWorld for 'hello-world'", () => {
@@ -100,5 +100,44 @@ describe("#SnakeCase", () => {
   });
   it("should return 'Please provide a valid input text' for empty input", () => {
     assert.strictEqual(snakeCase(""), "Please provide a valid input text");
+  });
+});
+
+describe("#KebabCase", () => {
+  it("should return hello-world for 'hello-world'", () => {
+    assert.strictEqual(kebabCase("hello-world"), "hello-world");
+  });
+  it("should return hello-world for 'Hello-world'", () => {
+    assert.strictEqual(kebabCase("Hello-world"), "hello-world");
+  });
+  it("should return hello-world for 'hello_world'", () => {
+    assert.strictEqual(kebabCase("hello_world"), "hello-world");
+  });
+  it("should return hello-world for 'Hello_world'", () => {
+    assert.strictEqual(kebabCase("Hello_world"), "hello-world");
+  });
+  it("should return hello-world for 'hello world'", () => {
+    assert.strictEqual(kebabCase("hello world"), "hello-world");
+  });
+  it("should return hello-world for 'Hello world'", () => {
+    assert.strictEqual(kebabCase("Hello world"), "hello-world");
+  });
+  it("should return hello-world for 'Hello,world'", () => {
+    assert.strictEqual(kebabCase("Hello,world"), "hello-world");
+  });
+  it("should return hello-world for 'Hello.world'", () => {
+    assert.strictEqual(kebabCase("Hello.world"), "hello-world");
+  });
+  it("should return hello-world for 'HelloWorld'", () => {
+    assert.strictEqual(kebabCase("HelloWorld"), "hello-world");
+  });
+  it("should return hello-world for 'helloWorld'", () => {
+    assert.strictEqual(kebabCase("helloWorld"), "hello-world");
+  });
+  it("should return hello-world for 'hello .World'", () => {
+    assert.strictEqual(kebabCase("hello .World"), "hello-world");
+  });
+  it("should return 'Please provide a valid input text' for empty input", () => {
+    assert.strictEqual(kebabCase(""), "Please provide a valid input text");
   });
 });
