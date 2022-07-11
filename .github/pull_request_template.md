@@ -1,5 +1,7 @@
 ### Summary
 
+`#<issue-number>` _(Delete this line if it's not related to an issue)._
+
 _Provide an overview..._
 
 ### PR checklist
