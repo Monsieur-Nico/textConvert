@@ -14,6 +14,10 @@
     "make-badges-custom-dir": "istanbul-badges-readme --coverageDir='./coverage'",
     "lint": "eslint . --ext .ts"
   },
+  "engines": {
+    "node": ">=18",
+    "npm": "8>="
+  },
   "nyc": {
     "extension": [
       ".ts"
