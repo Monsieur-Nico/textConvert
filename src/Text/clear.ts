@@ -24,11 +24,11 @@ export function clear(text: string, arrayOutput = true): string | string[] {
   }
 
   // Create an array of words
-  const wordsArray: string[] = text.split(" ");
+  const wordsArray: string[] = text.split(values.punctuation);
 
   // Filter wordsArray and remove punctuations
   const clearWords = wordsArray.map((word) => {
-    word = word.trim().toLowerCase().replace(values.punctuation, " ");
+    word = word.trim().toLowerCase().replace(values.punctuation, "");
     return word;
   });
 
