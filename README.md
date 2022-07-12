@@ -37,7 +37,17 @@ const convert = require("textconvert");
 
 ## Features
 
-This package includes two features at the moment:
+This package includes the following features at the moment:
+
+- ### Clear
+
+  ```js
+  convert.clear("Hello,world");
+  // Returns => ["hello", "world"]
+
+  convert.clear("Hello, world", false);
+  // Returns => "hello world"
+  ```
 
 - #### Pascal Case
 
