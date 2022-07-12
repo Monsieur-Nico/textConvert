@@ -4,10 +4,9 @@ const { values } = regex;
 
 /**
  * Convert a string from any convention to Camel Case convention.
- *
- * @param `text A string to be converted to Camel Case.
+ * @param text A string to be converted to Camel Case.
+ * @returns A string in camelCase convention.
  */
-
 export function camelCase(text: string): string {
   // Make sure there's an input
   if (!text) return "Please provide a valid input text";
@@ -29,10 +28,9 @@ export function camelCase(text: string): string {
 
 /**
  * Convert a string from any convention to Pascal Case convention.
- *
- * @param `text A string to be converted to Camel Case.
+ * @param text A string to be converted to Camel Case.
+ * @returns A string in PascalCase convention.
  */
-
 export function pascalCase(text: string): string {
   // Make sure there's an input
   if (!text) return "Please provide a valid input text";
@@ -52,10 +50,9 @@ export function pascalCase(text: string): string {
 
 /**
  * Convert a string from any convention to Snake Case convention.
- *
- * @param `text A string to be converted to Snake Case.
+ * @param text A string to be converted to Snake Case.
+ * @returns A string in snake_case convention.
  */
-
 export function snakeCase(text: string): string {
   // Make sure there's an input
   if (!text) return "Please provide a valid input text";
@@ -79,10 +76,9 @@ export function snakeCase(text: string): string {
 
 /**
  * Convert a string from any convention to Kebab Case convention.
- *
- * @param `text A string to be converted to Kebab Case.
+ * @param text A string to be converted to Kebab Case.
+ * @returns A string in kebab-case convention.
  */
-
 export function kebabCase(text: string): string {
   // Make sure there's an input
   if (!text) return "Please provide a valid input text";
