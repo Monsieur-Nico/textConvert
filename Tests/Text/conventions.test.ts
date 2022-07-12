@@ -1,8 +1,11 @@
 import { assert } from "chai";
 import { it } from "mocha";
-import * as conventions from "../../src/textConvert";
-
-const { camelCase, pascalCase, snakeCase, kebabCase } = conventions;
+import {
+  camelCase,
+  pascalCase,
+  snakeCase,
+  kebabCase,
+} from "../../src/textConvert";
 
 describe("#camelCase", () => {
   it("should return helloWorld for 'hello-world'", () => {
