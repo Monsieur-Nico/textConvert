@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { it } from "mocha";
-import * as conventions from "../../src/Text/conventions";
+import * as conventions from "../../src/textConvert";
 
 const { camelCase, pascalCase, snakeCase, kebabCase } = conventions;
 
