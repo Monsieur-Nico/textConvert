@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { it } from "mocha";
-import { numbersToWords } from "../../src/Numbers/numbersToWords";
+import { numbersToWords } from "../../src/textConvert";
 
 describe("#numbersToWords", () => {
   it("should return 'one hundred and fifty-two' for 152", () => {
