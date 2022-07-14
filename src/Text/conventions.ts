@@ -1,13 +1,12 @@
-import {regex} from "../assets/regex";
+import { regex } from "../assets/regex";
 
 const { values } = regex;
 
 /**
  * Convert a string from any convention to Camel Case convention.
- *
- * @param `text A string to be converted to Camel Case.
+ * @param text A string to be converted to Camel Case.
+ * @returns A string in camelCase convention.
  */
-
 export function camelCase(text: string): string {
   // Make sure there's an input
   if (!text) return "Please provide a valid input text";
@@ -29,10 +28,9 @@ export function camelCase(text: string): string {
 
 /**
  * Convert a string from any convention to Pascal Case convention.
- *
- * @param `text A string to be converted to Camel Case.
+ * @param text A string to be converted to Camel Case.
+ * @returns A string in PascalCase convention.
  */
-
 export function pascalCase(text: string): string {
   // Make sure there's an input
   if (!text) return "Please provide a valid input text";
@@ -52,10 +50,9 @@ export function pascalCase(text: string): string {
 
 /**
  * Convert a string from any convention to Snake Case convention.
- *
- * @param `text A string to be converted to Snake Case.
+ * @param text A string to be converted to Snake Case.
+ * @returns A string in snake_case convention.
  */
-
 export function snakeCase(text: string): string {
   // Make sure there's an input
   if (!text) return "Please provide a valid input text";
@@ -65,12 +62,40 @@ export function snakeCase(text: string): string {
     ? text.split(values.nonAlphabetic)
     : text.split(values.upperCaseKeepLetter);
 
-  // convert the words to lower case
-  const sCaseArray: string[] = wordsArray.map((word: string) => {
-    word = word.charAt(0).toLowerCase() + word.slice(1);
-    return word;
-  });
+  // Filter the words to 1 letter minimum length and convert the words to lowerCase
+  const sCaseArray: string[] = wordsArray
+    .filter((word: string) => word.length > 0)
+    .map((word: string) => {
+      word = word.charAt(0).toLowerCase() + word.slice(1);
+      return word;
+    });
 
   // Join the words with "_" and return them
   return sCaseArray.join("_");
+}
+
+/**
+ * Convert a string from any convention to Kebab Case convention.
+ * @param text A string to be converted to Kebab Case.
+ * @returns A string in kebab-case convention.
+ */
+export function kebabCase(text: string): string {
+  // Make sure there's an input
+  if (!text) return "Please provide a valid input text";
+
+  // Make an array of words after splitting them depending on the input case
+  const wordsArray: string[] = values.nonAlphaTest.test(text)
+    ? text.split(values.nonAlphabetic)
+    : text.split(values.upperCaseKeepLetter);
+
+  // Filter the words to 1 letter minimum length and convert the words to lowerCase
+  const kCaseArray: string[] = wordsArray
+    .filter((word: string) => word.length > 0)
+    .map((word: string) => {
+      word = word.charAt(0).toLowerCase() + word.slice(1);
+      return word;
+    });
+
+  // Join the words with "-" and return them
+  return kCaseArray.join("-");
 }

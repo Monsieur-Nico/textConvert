@@ -1,6 +1,6 @@
 {
   "name": "textconvert",
-  "version": "1.1.0",
+  "version": "1.1.8",
   "description": "Public library to convert text into many conventions and formats.",
   "main": "dist/textConvert.js",
   "types": "dist/textConvert.d.ts",
@@ -9,10 +9,11 @@
     "build": "tsc -p .",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' nyc mocha -r ts-node/register 'tests/**/*.ts'",
     "cover": "nyc mocha -r ts-node/register 'tests/**/*.ts'",
-    "make-badges": "istanbul-badges-readme",
-    "make-badges-silent": "istanbul-badges-readme --silent",
-    "make-badges-custom-dir": "istanbul-badges-readme --coverageDir='./coverage'",
     "lint": "eslint . --ext .ts"
+  },
+  "engines": {
+    "node": ">=18",
+    "npm": "8>="
   },
   "nyc": {
     "extension": [
@@ -36,14 +37,16 @@
     "dash",
     "underscore",
     "camelcase",
-    "pascalcase"
+    "pascalcase",
+    "snakecase",
+    "kebabase"
   ],
   "author": "Nicolas Alkhoury",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Monsieur-Nico/textConvert/issues"
   },
-  "homepage": "https://github.com/Monsieur-Nico/textConvert#readme",
+  "homepage": "https://textconvert.tech/",
   "devDependencies": {
     "@types/chai": "^4.3.1",
     "@types/mocha": "^9.1.1",
@@ -52,7 +55,6 @@
     "@typescript-eslint/parser": "^5.30.5",
     "chai": "^4.3.6",
     "eslint": "^8.19.0",
-    "istanbul-badges-readme": "^1.8.2",
     "mocha": "^10.0.0",
     "nodemon": "^2.0.19",
     "nyc": "^15.1.0",
