@@ -33,13 +33,14 @@ export function numbersToWords(number: number): string {
       " hundred" +
       (number % 100 == 0 ? "" : " and " + numbersToWords(number % 100))
     );
-  // Otherwise repeat the function for thousands
+  // Check if the input below 1 million
   if (number < 999999)
     return (
       numbersToWords(~~(number / 1000)) +
       " thousand" +
       (number % 1000 != 0 ? " " + numbersToWords(number % 1000) : "")
     );
+  // Otherwise return words based on minimum 1 million
   return (
     numbersToWords(~~(number / 1000000)) +
     " million" +
