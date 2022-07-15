@@ -48,6 +48,12 @@ This package includes the following features at the moment:
   convert.clear("Hello, world", false);
   // Returns => "hello world"
   ```
+- ### Reverse
+
+  ```js
+  convert.reverse("Hello, world!");
+  // Returns => "!dlrow ,olleH"
+  ```
 
 - #### Pascal Case
 
