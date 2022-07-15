@@ -15,12 +15,7 @@
 <img src="https://img.shields.io/badge/functions-100%25-brightgreen.svg?'style'=flat-square"></img>
 <img src="https://img.shields.io/badge/lines-100%25-brightgreen.svg?'style'=flat-square"></img>
 </div>
-<br />
-<div class="social-icons" align="center">
-<a href="https://github.com/Monsieur-Nico/textConvert" margin="0" padding="0">
-<img src="/assets/GitHub.png" width="5%" margin="0" padding="0"/>
-</a>
-</div>
+
 <hr />
 <br />
 
@@ -44,7 +39,9 @@ const convert = require("textconvert");
 
 This package includes the following features at the moment:
 
-- ### Clear
+### Text Related
+
+- #### Clear
 
   Clear a string from punctuation and replaces it with a whitespace character or returns an array of strings.
 
@@ -60,7 +57,18 @@ This package includes the following features at the moment:
   // Returns => "hello world"
   ```
 
-- ### Camel Case
+- #### Reverse
+
+  Reverses all characters in a string.
+
+  `@param text` A string to reverse.
+
+  ```js
+  convert.reverse("Hello, world!");
+  // Returns => "!dlrow ,olleH"
+  ```
+
+- #### Camel Case
 
   Convert a string from any convention to Camel Case convention.
 
@@ -71,7 +79,7 @@ This package includes the following features at the moment:
   // Returns => "helloWorld"
   ```
 
-- ### Pascal Case
+- #### Pascal Case
 
   Convert a string from any convention to Pascal Case convention.
 
@@ -82,7 +90,7 @@ This package includes the following features at the moment:
   // Returns => "HelloWorld"
   ```
 
-- ### Snake Case
+- #### Snake Case
 
   Convert a string from any convention to Snake Case convention.
 
@@ -95,7 +103,7 @@ This package includes the following features at the moment:
   // Returns => "hello_world"
   ```
 
-- ### Kebab Case
+- #### Kebab Case
 
   Convert a string from any convention to Kebab Case convention.
 
@@ -106,4 +114,17 @@ This package includes the following features at the moment:
   // Returns => "hello-world"
   convert.kebabCase("helloWorld");
   // Returns => "hello-world"
+  ```
+
+### Numbers Related
+
+- #### Numbers to Words
+
+  Get any number below 100 million converted to words.
+
+  `@param number` Integer input to turn into text.
+
+  ```js
+  convert.numbersToWords(1245);
+  // Returns => "one thousand two hundred and forty-five"
   ```
