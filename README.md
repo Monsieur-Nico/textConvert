@@ -40,7 +40,7 @@ const convert = require("textconvert");
 This package includes the following features at the moment:
 
 <details>
-  <summary>Text Related</summary>
+  <summary><b><u>Text Related</u></b></summary>
 
 - ### Clear
 
@@ -120,7 +120,7 @@ This package includes the following features at the moment:
 </details>
 
 <details>
-  <summary>Numbers Related</summary>
+  <summary><b><u>Numbers Related</u></b></summary>
 
 - ### numbersToWords
 
