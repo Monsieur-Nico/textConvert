@@ -1,6 +1,6 @@
 {
   "name": "textconvert",
-  "version": "1.1.9",
+  "version": "1.2.0",
   "description": "Public library to convert text into many conventions and formats.",
   "main": "dist/textConvert.js",
   "types": "dist/textConvert.d.ts",
@@ -30,6 +30,8 @@
   },
   "keywords": [
     "text",
+    "clear-text",
+    "numbers-to-words",
     "convert",
     "naming",
     "convention",
