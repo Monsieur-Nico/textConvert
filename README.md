@@ -48,6 +48,7 @@ This package includes the following features at the moment:
   convert.clear("Hello, world", false);
   // Returns => "hello world"
   ```
+
 - ### Reverse
 
   ```js
@@ -55,14 +56,14 @@ This package includes the following features at the moment:
   // Returns => "!dlrow ,olleH"
   ```
 
-- #### Pascal Case
+- ### Pascal Case
 
   ```js
   convert.pascalCase("hello world");
   // Returns => "HelloWorld"
   ```
 
-- #### Camel Case
+- ### Camel Case
 
   ```js
   convert.camelCase("hello world");
