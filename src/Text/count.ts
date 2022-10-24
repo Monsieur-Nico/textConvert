@@ -10,9 +10,10 @@ import { clear } from "../textConvert";
  */
 
 export default function count(text: string, countNumbers = false): number {
+  // Check string length
+  if (!text.length) return 0;
   // Create a temp number.
   let temp = 0;
-
   // Clear the string and split the letters into an array.
   const cleared = clear(text).split("");
   // Loop through the letters array.
@@ -37,3 +38,5 @@ export default function count(text: string, countNumbers = false): number {
   // Return the number of letters.
   return temp;
 }
+
+console.log(count(""));
