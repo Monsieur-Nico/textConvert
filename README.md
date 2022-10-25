@@ -58,6 +58,22 @@ This package includes the following features at the moment:
   // Returns => "hello world"
   ```
 
+- ### Count
+
+  Return a boolean value number of the letters in a string.
+
+  `@param text` String input to get letters count from.
+
+  `@param countNumbers` Boolean value to determine if numbers should be counted as letters.
+
+  ```js
+  convert.count("Hello,world");
+  // Returns => 10
+
+  convert.clear("Hello0 world", false);
+  // Returns => 11
+  ```
+
 - ### Reverse
 
   Reverses all characters in a string.
