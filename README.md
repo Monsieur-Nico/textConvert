@@ -70,7 +70,7 @@ This package includes the following features at the moment:
   convert.count("Hello,world");
   // Returns => 10
 
-  convert.clear("Hello0 world", false);
+  convert.clear("Hello0 world", true);
   // Returns => 11
   ```
 
