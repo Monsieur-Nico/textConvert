@@ -70,7 +70,7 @@ This package includes the following features at the moment:
   convert.count("Hello,world");
   // Returns => 10
 
-  convert.clear("Hello0 world", true);
+  convert.count("Hello0 world", true);
   // Returns => 11
   ```
 
@@ -83,6 +83,21 @@ This package includes the following features at the moment:
   ```js
   convert.reverse("Hello, world!");
   // Returns => "!dlrow ,olleH"
+  ```
+
+- ### Spread
+
+  Returns an array of characters from the provided string.
+
+  `@param text` A string to spread.
+  `@param clear` Whether to clear punctuation from the text. Default is `false`.
+
+  ```js
+  convert.spread("Hello, world!");
+  // Returns => ['H', 'e', 'l', 'l', 'o', ',', 'w', 'o', 'r', 'l', 'd', '!']
+
+  convert.spread("Hello, world!", true);
+  // Returns => ['H', 'e', 'l', 'l', 'o', 'w', 'o', 'r', 'l', 'd']
   ```
 
 - ### Camel Case
