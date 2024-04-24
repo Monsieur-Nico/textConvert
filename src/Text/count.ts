@@ -38,5 +38,3 @@ export default function count(text: string, countNumbers = false): number {
   // Return the number of letters.
   return temp;
 }
-
-console.log(count(""));
