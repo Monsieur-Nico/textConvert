@@ -1,0 +1,64 @@
+{
+  "name": "textconvert",
+  "version": "1.2.0",
+  "description": "Public library to convert text into many conventions and formats.",
+  "main": "dist/textConvert.js",
+  "types": "dist/textConvert.d.ts",
+  "scripts": {
+    "dev": "nodemon ./src/textConvert.ts",
+    "build": "tsc -p .",
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' nyc mocha -r ts-node/register 'tests/**/*.ts'",
+    "cover": "nyc mocha -r ts-node/register 'tests/**/*.ts'",
+    "lint": "eslint . --ext .ts"
+  },
+  "engines": {
+    "node": ">=22",
+    "npm": ">=10"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "reporter": [
+      "json-summary"
+    ],
+    "all": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Monsieur-Nico/textConvert.git"
+  },
+  "keywords": [
+    "text",
+    "clear-text",
+    "numbers-to-words",
+    "convert",
+    "naming",
+    "convention",
+    "conventions",
+    "dash",
+    "underscore",
+    "camelcase",
+    "pascalcase",
+    "snakecase",
+    "kebabase"
+  ],
+  "author": "Nicolas Alkhoury",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Monsieur-Nico/textConvert/issues"
+  },
+  "homepage": "https://textconvert.tech/",
+  "devDependencies": {
+    "@types/jest": "^29.5.13",
+    "@types/node": "^22.7.8",
+    "@typescript-eslint/eslint-plugin": "^8.11.0",
+    "@typescript-eslint/parser": "^8.11.0",
+    "eslint": "^9.13.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.7",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
+}
