@@ -3,16 +3,25 @@ import {
   kebabCase,
   pascalCase,
   snakeCase,
-} from "./Text/conventions";
+} from './Text/conventions';
 
-import { clear } from "./Text/clear";
-import count from "./Text/count";
-import { reverse } from "./Text/reverse";
-import { spread } from "./Text/spread";
+import { clear } from './Text/clear';
+import count, { countSentences, countWords } from './Text/count';
+import { reverse } from './Text/reverse';
+import { spread } from './Text/spread';
 
-import { numbersToWords } from "./Numbers/numbersToWords";
+import { numbersToWords } from './Numbers/numbersToWords';
 
-export { camelCase, pascalCase, snakeCase, kebabCase };
-export { clear, count, spread };
-export { reverse };
-export { numbersToWords };
+export {
+  camelCase,
+  clear,
+  count,
+  countSentences,
+  countWords,
+  kebabCase,
+  numbersToWords,
+  pascalCase,
+  reverse,
+  snakeCase,
+  spread,
+};

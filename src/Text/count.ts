@@ -1,4 +1,4 @@
-import { clear } from "../textConvert";
+import { clear } from './clear';
 
 /**
  * Return a boolean value number of the letters in a string.
@@ -15,7 +15,7 @@ export default function count(text: string, countNumbers = false): number {
   // Create a temp number.
   let temp = 0;
   // Clear the string and split the letters into an array.
-  const cleared = clear(text).split("");
+  const cleared = clear(text).split('');
   // Loop through the letters array.
   cleared.forEach((letter) => {
     // Check if countNumbers is included
@@ -37,4 +37,34 @@ export default function count(text: string, countNumbers = false): number {
 
   // Return the number of letters.
   return temp;
+}
+
+/**
+ * Counts the number of words in a string.
+ * Words are defined as sequences of letters, numbers, and apostrophes separated by whitespace.
+ *
+ * @param text String input to count words from
+ * @returns Number of words in the string
+ */
+export function countWords(text: string): number {
+  if (!text?.trim()) return 0;
+  return text
+    .trim()
+    .split(/\s+/)
+    .filter((word) => word.length > 0).length;
+}
+
+/**
+ * Counts the number of sentences in a string.
+ * Sentences are defined as sequences of text ending with ., !, or ? followed by whitespace or end of string.
+ *
+ * @param text String input to count sentences from
+ * @returns Number of sentences in the string
+ */
+export function countSentences(text: string): number {
+  if (!text?.trim()) return 0;
+  return text
+    .trim()
+    .split(/[.!?]+(?=\s|$)/)
+    .filter((sentence) => sentence.trim().length > 0).length;
 }
