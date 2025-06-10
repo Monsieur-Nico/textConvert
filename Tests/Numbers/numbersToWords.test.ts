@@ -31,4 +31,27 @@ describe('#numbersToWords', () => {
       'Please enter a number under 100 million!'
     );
   });
+
+  // Adding more test cases to improve coverage
+  it("should return 'five' for 5", () => {
+    expect(numbersToWords(5)).toBe('five');
+  });
+  it("should return 'nineteen' for 19", () => {
+    expect(numbersToWords(19)).toBe('nineteen');
+  });
+  it("should return 'twenty' for 20", () => {
+    expect(numbersToWords(20)).toBe('twenty');
+  });
+  it("should return 'forty-two' for 42", () => {
+    expect(numbersToWords(42)).toBe('forty-two');
+  });
+  it("should return 'one hundred' for 100", () => {
+    expect(numbersToWords(100)).toBe('one hundred');
+  });
+  it("should return 'one thousand' for 1000", () => {
+    expect(numbersToWords(1000)).toBe('one thousand');
+  });
+  it("should return 'one million' for 1000000", () => {
+    expect(numbersToWords(1000000)).toBe('one million');
+  });
 });
