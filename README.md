@@ -10,10 +10,10 @@
 <p align="center">Public library to help a lot of developers converting text into many conventions and formats. Soon I will be adding more functions to it.</p>
 <h3 align="center" style="font-weight: bold"> Stay tuned!</h3>
 <div align="center">
-<img src="https://img.shields.io/badge/statements-100%25-brightgreen.svg?'style'=flat-square"></img>
-<img src="https://img.shields.io/badge/branches-87.5%25-yellow.svg?'style'=flat-square"></img>
-<img src="https://img.shields.io/badge/functions-100%25-brightgreen.svg?'style'=flat-square"></img>
-<img src="https://img.shields.io/badge/lines-100%25-brightgreen.svg?'style'=flat-square"></img>
+<a href="https://codecov.io/gh/Monsieur-Nico/textConvert" target="_blank">
+  <img src="https://codecov.io/gh/Monsieur-Nico/textConvert/graph/badge.svg?token=yourtoken" alt="Coverage Status" />
+</a>
+<img src="https://github.com/Monsieur-Nico/textConvert/actions/workflows/ci.yml/badge.svg" alt="CI Status" />
 </div>
 
 <hr />
@@ -24,15 +24,15 @@
 Easily install the package using the `npm install` command:
 
 ```
-$ npm install textconvert
+npm install textconvert
 ```
 
 ## Setup
 
 ```js
-import * as convert from "textconvert";
+import * as convert from 'textconvert';
 // Or
-const convert = require("textconvert");
+const convert = require('textconvert');
 ```
 
 ## Features
@@ -51,10 +51,10 @@ This package includes the following features at the moment:
   `@param arrayOutput` (Optional), boolean value to select whether to return an array of strings or a single string. Default value is true.
 
   ```js
-  convert.clear("Hello,world");
+  convert.clear('Hello,world');
   // Returns => ["hello", "world"]
 
-  convert.clear("Hello, world", false);
+  convert.clear('Hello, world', false);
   // Returns => "hello world"
   ```
 
@@ -67,10 +67,10 @@ This package includes the following features at the moment:
   `@param countNumbers` Boolean value to determine if numbers should be counted as letters.
 
   ```js
-  convert.count("Hello,world");
+  convert.count('Hello,world');
   // Returns => 10
 
-  convert.count("Hello0 world", true);
+  convert.count('Hello0 world', true);
   // Returns => 11
   ```
 
@@ -81,7 +81,7 @@ This package includes the following features at the moment:
   `@param text` A string to reverse.
 
   ```js
-  convert.reverse("Hello, world!");
+  convert.reverse('Hello, world!');
   // Returns => "!dlrow ,olleH"
   ```
 
@@ -93,10 +93,10 @@ This package includes the following features at the moment:
   `@param clear` Whether to clear punctuation from the text. Default is `false`.
 
   ```js
-  convert.spread("Hello, world!");
+  convert.spread('Hello, world!');
   // Returns => ['H', 'e', 'l', 'l', 'o', ',', 'w', 'o', 'r', 'l', 'd', '!']
 
-  convert.spread("Hello, world!", true);
+  convert.spread('Hello, world!', true);
   // Returns => ['H', 'e', 'l', 'l', 'o', 'w', 'o', 'r', 'l', 'd']
   ```
 
@@ -107,7 +107,7 @@ This package includes the following features at the moment:
   `@param text` A string to be converted to Camel Case.
 
   ```js
-  convert.camelCase("hello world");
+  convert.camelCase('hello world');
   // Returns => "helloWorld"
   ```
 
@@ -118,7 +118,7 @@ This package includes the following features at the moment:
   `@param text` A string to be converted to Pascal Case.
 
   ```js
-  convert.pascalCase("hello world");
+  convert.pascalCase('hello world');
   // Returns => "HelloWorld"
   ```
 
@@ -129,9 +129,9 @@ This package includes the following features at the moment:
   `@param text` A string to be converted to Snake Case.
 
   ```js
-  convert.snakeCase("hello world");
+  convert.snakeCase('hello world');
   // Returns => "hello_world"
-  convert.snakeCase("hello-world");
+  convert.snakeCase('hello-world');
   // Returns => "hello_world"
   ```
 
@@ -142,9 +142,9 @@ This package includes the following features at the moment:
   `@param text` A string to be converted to Kebab Case.
 
   ```js
-  convert.kebabCase("hello world");
+  convert.kebabCase('hello world');
   // Returns => "hello-world"
-  convert.kebabCase("helloWorld");
+  convert.kebabCase('helloWorld');
   // Returns => "hello-world"
   ```
 
