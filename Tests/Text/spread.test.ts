@@ -34,4 +34,18 @@ describe('#spread', () => {
       'd',
     ]);
   });
+
+  // Adding more test cases to improve coverage
+  it('should return error message for invalid input type', () => {
+    // @ts-ignore - Testing runtime behavior with incorrect types
+    expect(spread(123)).toBe('Input text should be a string!');
+  });
+
+  it('should return error message for empty string', () => {
+    expect(spread('  ')).toBe('Please provide a valid text input');
+  });
+
+  it('should capitalize the first letter when spreading', () => {
+    expect(spread('hello')).toEqual(['H', 'e', 'l', 'l', 'o']);
+  });
 });
