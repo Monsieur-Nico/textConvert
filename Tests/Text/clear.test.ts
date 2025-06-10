@@ -1,15 +1,14 @@
-import { assert } from "chai";
-import { it } from "mocha";
-import { clear } from "../../src/textConvert";
+import { describe, expect, it } from 'vitest';
+import { clear } from '../../src/textConvert';
 
-describe("#clear", () => {
+describe('#clear', () => {
   it("should return 'hello world' for 'Hello,world'", () => {
-    assert.strictEqual(clear("Hello,world"), "hello world");
+    expect(clear('Hello,world')).toBe('hello world');
   });
   it("should return 'hello world' for 'Hello world'", () => {
-    assert.strictEqual(clear("Hello world"), "hello world");
+    expect(clear('Hello world')).toBe('hello world');
   });
   it("should return 'Please provide a valid input text' for empty input", () => {
-    assert.strictEqual(clear(""), "Please provide a valid input text");
+    expect(clear('')).toBe('Please provide a valid input text');
   });
 });
