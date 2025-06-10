@@ -17,7 +17,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # Dependency lockfiles (if you're not committing them)
-package-lock.json
+# package-lock.json
 yarn.lock
 
 # Standard-version changelog backup
