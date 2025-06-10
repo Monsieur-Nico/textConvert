@@ -1,146 +1,145 @@
-import { assert } from "chai";
-import { it } from "mocha";
+import { describe, expect, it } from 'vitest';
 import {
   camelCase,
+  kebabCase,
   pascalCase,
   snakeCase,
-  kebabCase,
-} from "../../src/textConvert";
+} from '../../src/textConvert';
 
-describe("#camelCase", () => {
+describe('#camelCase', () => {
   it("should return helloWorld for 'hello-world'", () => {
-    assert.strictEqual(camelCase("hello-world"), "helloWorld");
+    expect(camelCase('hello-world')).toBe('helloWorld');
   });
   it("should return helloWorld for 'Hello-world'", () => {
-    assert.strictEqual(camelCase("Hello-world"), "helloWorld");
+    expect(camelCase('Hello-world')).toBe('helloWorld');
   });
   it("should return helloWorld for 'hello_world'", () => {
-    assert.strictEqual(camelCase("hello_world"), "helloWorld");
+    expect(camelCase('hello_world')).toBe('helloWorld');
   });
   it("should return helloWorld for 'Hello_world'", () => {
-    assert.strictEqual(camelCase("Hello_world"), "helloWorld");
+    expect(camelCase('Hello_world')).toBe('helloWorld');
   });
   it("should return helloWorld for 'hello world'", () => {
-    assert.strictEqual(camelCase("hello world"), "helloWorld");
+    expect(camelCase('hello world')).toBe('helloWorld');
   });
   it("should return helloWorld for 'Hello world'", () => {
-    assert.strictEqual(camelCase("Hello world"), "helloWorld");
+    expect(camelCase('Hello world')).toBe('helloWorld');
   });
   it("should return helloWorld for 'Hello,world'", () => {
-    assert.strictEqual(camelCase("Hello,world"), "helloWorld");
+    expect(camelCase('Hello,world')).toBe('helloWorld');
   });
   it("should return helloWorld for 'Hello.world'", () => {
-    assert.strictEqual(camelCase("Hello.world"), "helloWorld");
+    expect(camelCase('Hello.world')).toBe('helloWorld');
   });
   it("should return 'Please provide a valid input text' for empty input", () => {
-    assert.strictEqual(camelCase(""), "Please provide a valid input text");
+    expect(camelCase('')).toBe('Please provide a valid input text');
   });
 });
 
-describe("#PascalCase", () => {
+describe('#PascalCase', () => {
   it("should return HelloWorld for 'hello-world'", () => {
-    assert.strictEqual(pascalCase("hello-world"), "HelloWorld");
+    expect(pascalCase('hello-world')).toBe('HelloWorld');
   });
   it("should return HelloWorld for 'Hello-world'", () => {
-    assert.strictEqual(pascalCase("Hello-world"), "HelloWorld");
+    expect(pascalCase('Hello-world')).toBe('HelloWorld');
   });
   it("should return HelloWorld for 'hello_world'", () => {
-    assert.strictEqual(pascalCase("hello_world"), "HelloWorld");
+    expect(pascalCase('hello_world')).toBe('HelloWorld');
   });
   it("should return HelloWorld for 'Hello_world'", () => {
-    assert.strictEqual(pascalCase("Hello_world"), "HelloWorld");
+    expect(pascalCase('Hello_world')).toBe('HelloWorld');
   });
   it("should return HelloWorld for 'hello world'", () => {
-    assert.strictEqual(pascalCase("hello world"), "HelloWorld");
+    expect(pascalCase('hello world')).toBe('HelloWorld');
   });
   it("should return HelloWorld for 'Hello world'", () => {
-    assert.strictEqual(pascalCase("Hello world"), "HelloWorld");
+    expect(pascalCase('Hello world')).toBe('HelloWorld');
   });
   it("should return HelloWorld for 'Hello,world'", () => {
-    assert.strictEqual(pascalCase("Hello,world"), "HelloWorld");
+    expect(pascalCase('Hello,world')).toBe('HelloWorld');
   });
   it("should return HelloWorld for 'Hello.world'", () => {
-    assert.strictEqual(pascalCase("Hello.world"), "HelloWorld");
+    expect(pascalCase('Hello.world')).toBe('HelloWorld');
   });
   it("should return 'Please provide a valid input text' for empty input", () => {
-    assert.strictEqual(pascalCase(""), "Please provide a valid input text");
+    expect(pascalCase('')).toBe('Please provide a valid input text');
   });
 });
 
-describe("#SnakeCase", () => {
+describe('#SnakeCase', () => {
   it("should return hello_world for 'hello-world'", () => {
-    assert.strictEqual(snakeCase("hello-world"), "hello_world");
+    expect(snakeCase('hello-world')).toBe('hello_world');
   });
   it("should return hello_world for 'Hello-world'", () => {
-    assert.strictEqual(snakeCase("Hello-world"), "hello_world");
+    expect(snakeCase('Hello-world')).toBe('hello_world');
   });
   it("should return hello_world for 'hello_world'", () => {
-    assert.strictEqual(snakeCase("hello_world"), "hello_world");
+    expect(snakeCase('hello_world')).toBe('hello_world');
   });
   it("should return hello_world for 'Hello_world'", () => {
-    assert.strictEqual(snakeCase("Hello_world"), "hello_world");
+    expect(snakeCase('Hello_world')).toBe('hello_world');
   });
   it("should return hello_world for 'hello world'", () => {
-    assert.strictEqual(snakeCase("hello world"), "hello_world");
+    expect(snakeCase('hello world')).toBe('hello_world');
   });
   it("should return hello_world for 'Hello world'", () => {
-    assert.strictEqual(snakeCase("Hello world"), "hello_world");
+    expect(snakeCase('Hello world')).toBe('hello_world');
   });
   it("should return hello_world for 'Hello,world'", () => {
-    assert.strictEqual(snakeCase("Hello,world"), "hello_world");
+    expect(snakeCase('Hello,world')).toBe('hello_world');
   });
   it("should return hello_world for 'Hello.world'", () => {
-    assert.strictEqual(snakeCase("Hello.world"), "hello_world");
+    expect(snakeCase('Hello.world')).toBe('hello_world');
   });
   it("should return hello_world for 'HelloWorld'", () => {
-    assert.strictEqual(snakeCase("HelloWorld"), "hello_world");
+    expect(snakeCase('HelloWorld')).toBe('hello_world');
   });
   it("should return hello_world for 'helloWorld'", () => {
-    assert.strictEqual(snakeCase("helloWorld"), "hello_world");
+    expect(snakeCase('helloWorld')).toBe('hello_world');
   });
   it("should return hello_world for 'hello .World'", () => {
-    assert.strictEqual(snakeCase("hello .World"), "hello_world");
+    expect(snakeCase('hello .World')).toBe('hello_world');
   });
   it("should return 'Please provide a valid input text' for empty input", () => {
-    assert.strictEqual(snakeCase(""), "Please provide a valid input text");
+    expect(snakeCase('')).toBe('Please provide a valid input text');
   });
 });
 
-describe("#KebabCase", () => {
+describe('#KebabCase', () => {
   it("should return hello-world for 'hello-world'", () => {
-    assert.strictEqual(kebabCase("hello-world"), "hello-world");
+    expect(kebabCase('hello-world')).toBe('hello-world');
   });
   it("should return hello-world for 'Hello-world'", () => {
-    assert.strictEqual(kebabCase("Hello-world"), "hello-world");
+    expect(kebabCase('Hello-world')).toBe('hello-world');
   });
   it("should return hello-world for 'hello_world'", () => {
-    assert.strictEqual(kebabCase("hello_world"), "hello-world");
+    expect(kebabCase('hello_world')).toBe('hello-world');
   });
   it("should return hello-world for 'Hello_world'", () => {
-    assert.strictEqual(kebabCase("Hello_world"), "hello-world");
+    expect(kebabCase('Hello_world')).toBe('hello-world');
   });
   it("should return hello-world for 'hello world'", () => {
-    assert.strictEqual(kebabCase("hello world"), "hello-world");
+    expect(kebabCase('hello world')).toBe('hello-world');
   });
   it("should return hello-world for 'Hello world'", () => {
-    assert.strictEqual(kebabCase("Hello world"), "hello-world");
+    expect(kebabCase('Hello world')).toBe('hello-world');
   });
   it("should return hello-world for 'Hello,world'", () => {
-    assert.strictEqual(kebabCase("Hello,world"), "hello-world");
+    expect(kebabCase('Hello,world')).toBe('hello-world');
   });
   it("should return hello-world for 'Hello.world'", () => {
-    assert.strictEqual(kebabCase("Hello.world"), "hello-world");
+    expect(kebabCase('Hello.world')).toBe('hello-world');
   });
   it("should return hello-world for 'HelloWorld'", () => {
-    assert.strictEqual(kebabCase("HelloWorld"), "hello-world");
+    expect(kebabCase('HelloWorld')).toBe('hello-world');
   });
   it("should return hello-world for 'helloWorld'", () => {
-    assert.strictEqual(kebabCase("helloWorld"), "hello-world");
+    expect(kebabCase('helloWorld')).toBe('hello-world');
   });
   it("should return hello-world for 'hello .World'", () => {
-    assert.strictEqual(kebabCase("hello .World"), "hello-world");
+    expect(kebabCase('hello .World')).toBe('hello-world');
   });
   it("should return 'Please provide a valid input text' for empty input", () => {
-    assert.strictEqual(kebabCase(""), "Please provide a valid input text");
+    expect(kebabCase('')).toBe('Please provide a valid input text');
   });
 });
