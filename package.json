@@ -5,11 +5,17 @@
   "main": "dist/textConvert.js",
   "types": "dist/textConvert.d.ts",
   "scripts": {
-    "dev": "nodemon ./src/textConvert.ts",
-    "build": "tsc -p .",
-    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' nyc mocha -r ts-node/register 'tests/**/*.ts'",
-    "cover": "nyc mocha -r ts-node/register 'tests/**/*.ts'",
-    "lint": "eslint . --ext .ts"
+    "dev": "tsx watch src/index.ts",
+    "build": "npm run clean && tsc -p .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage",
+    "lint": "eslint . --ext .ts",
+    "clean": "rimraf dist",
+    "release": "standard-version",
+    "release:patch": "standard-version --release-as patch",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major"
   },
   "engines": {
     "node": ">=22",
@@ -50,15 +56,17 @@
   },
   "homepage": "https://textconvert.tech/",
   "devDependencies": {
+    "@types/jest": "^29.5.14",
     "@types/node": "^22.7.8",
     "@typescript-eslint/eslint-plugin": "^8.11.0",
     "@typescript-eslint/parser": "^8.11.0",
+    "@vitest/coverage-v8": "^3.2.3",
+    "cross-env": "^7.0.3",
     "eslint": "^9.13.0",
-    "mocha": "^10.7.3",
-    "chai": "^4.4.1",
-    "nyc": "^15.1.0",
-    "nodemon": "^3.1.7",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.6.3"
+    "rimraf": "^6.0.1",
+    "standard-version": "^9.5.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.6.3",
+    "vitest": "^3.2.3"
   }
 }
