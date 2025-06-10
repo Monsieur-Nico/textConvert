@@ -1,15 +1,14 @@
-import { assert } from "chai";
-import { it } from "mocha";
-import { count } from "../../src/textConvert";
+import { describe, expect, it } from 'vitest';
+import { count } from '../../src/textConvert';
 
-describe("#count", () => {
+describe('#count', () => {
   it("should return 10 for 'Hello,world'", () => {
-    assert.strictEqual(count("Hello,world"), 10);
+    expect(count('Hello,world')).toBe(10);
   });
   it("should return 10 for 'Hello world'", () => {
-    assert.strictEqual(count("Hello world"), 10);
+    expect(count('Hello world')).toBe(10);
   });
-  it("should return 0 for empty input", () => {
-    assert.strictEqual(count(""), 0);
+  it('should return 0 for empty input', () => {
+    expect(count('')).toBe(0);
   });
 });
