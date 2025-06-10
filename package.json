@@ -21,14 +21,22 @@
     "node": ">=22",
     "npm": ">=10"
   },
-  "nyc": {
-    "extension": [
-      ".ts"
-    ],
-    "reporter": [
-      "json-summary"
-    ],
-    "all": true
+  "vitest": {
+    "coverage": {
+      "provider": "v8",
+      "reporter": [
+        "text",
+        "json",
+        "html"
+      ],
+      "include": [
+        "src/**/*.ts"
+      ],
+      "exclude": [
+        "**/*.d.ts",
+        "**/*.test.ts"
+      ]
+    }
   },
   "repository": {
     "type": "git",
