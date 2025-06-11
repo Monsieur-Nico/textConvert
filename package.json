@@ -4,9 +4,25 @@
   "description": "Public library to convert text into many conventions and formats.",
   "main": "dist/textConvert.js",
   "types": "dist/textConvert.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/textConvert.mjs",
+      "require": "./dist/textConvert.js",
+      "types": "./dist/textConvert.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "npm run clean && tsc -p .",
+    "build": "npm run clean && tsc -p . && rollup -c",
     "test": "vitest run",
     "test:watch": "vitest",
     "coverage": "vitest run --coverage",
@@ -15,7 +31,8 @@
     "release": "standard-version",
     "release:patch": "standard-version --release-as patch",
     "release:minor": "standard-version --release-as minor",
-    "release:major": "standard-version --release-as major"
+    "release:major": "standard-version --release-as major",
+    "prepack": "npm run build"
   },
   "engines": {
     "node": ">=22",
@@ -64,6 +81,8 @@
   },
   "homepage": "https://textconvert.tech/",
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.3.1",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.7.8",
     "@typescript-eslint/eslint-plugin": "^8.11.0",
@@ -72,9 +91,15 @@
     "cross-env": "^7.0.3",
     "eslint": "^9.13.0",
     "rimraf": "^6.0.1",
+    "rollup": "^4.42.0",
     "standard-version": "^9.5.0",
+    "tslib": "^2.8.1",
     "tsx": "^4.19.4",
     "typescript": "^5.6.3",
     "vitest": "^3.2.3"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/Monsieur-Nico"
   }
 }
