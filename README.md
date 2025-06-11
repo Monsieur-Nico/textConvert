@@ -32,7 +32,7 @@
   - [Installation](#installation)
   - [Usage](#usage)
 - [✨ Features](#-features)
-  - [Advanced Examples](#advanced-examples)
+- [Advanced Examples](#advanced-examples)
 - [Why Use textConvert?](#why-use-textconvert)
 - [API Reference](#api-reference)
 - [FAQ / Troubleshooting](#faq--troubleshooting)
@@ -205,7 +205,7 @@ console.log(convert.numbersToWords(987654));
 A: Yes, it works in modern browsers and Node.js.
 
 **Q: How do I contribute a new feature?**
-A: See the [Contributing](#contributing) section below.
+A: See the [CONTRIBUTING.md](./CONTRIBUTING.md) file for detailed instructions.
 
 **Q: How accurate is language detection?**
 A: It's optimized for short and medium texts in supported languages. For critical use, always validate results.
@@ -214,15 +214,7 @@ A: It's optimized for short and medium texts in supported languages. For critica
 
 ## Contributing
 
-Contributions are welcome! To get started:
-
-1. Fork the repository and create your branch.
-2. Run `npm install` to install dependencies.
-3. Add or improve features, tests, or docs.
-4. Run tests with `npm test`.
-5. Open a pull request with a clear description.
-
-Please follow the code style and check for linting errors before submitting.
+Contributions are welcome! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines and workflow.
 
 ---
 
