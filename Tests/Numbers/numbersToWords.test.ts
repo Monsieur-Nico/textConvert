@@ -54,4 +54,9 @@ describe('#numbersToWords', () => {
   it("should return 'one million' for 1000000", () => {
     expect(numbersToWords(1000000)).toBe('one million');
   });
+  it("should return 'ninety-nine thousand nine hundred and ninety-nine' for 99999", () => {
+    expect(numbersToWords(99999)).toBe(
+      'ninety-nine thousand nine hundred and ninety-nine'
+    );
+  });
 });
