@@ -5,6 +5,11 @@ import {
   snakeCase,
 } from './Text/conventions';
 
+import {
+  detectLanguage,
+  Language,
+  LanguageDetectionResult,
+} from './Text/Analysis/language';
 import { getTextStats } from './Text/Analysis/statistics';
 import { clear } from './Text/clear';
 import { count, countSentences, countWords } from './Text/count';
@@ -19,8 +24,11 @@ export {
   count,
   countSentences,
   countWords,
+  detectLanguage,
   getTextStats,
   kebabCase,
+  Language,
+  LanguageDetectionResult,
   numbersToWords,
   pascalCase,
   reverse,

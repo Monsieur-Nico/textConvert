@@ -172,6 +172,113 @@ This package includes the following features at the moment:
   } */
   ```
 
+- ### detectLanguage
+
+  Detects the most likely language of a text.
+
+  `@param text` The text to analyze
+  `@param minLength` Minimum text length for reliable detection (default: 4)
+  `@param options` Additional options for detection:
+
+  - `maxCharsToAnalyze` Maximum number of characters to analyze (default: 500)
+  - `useCache` Whether to use caching for repeated calls (default: true)
+
+  ```js
+  // Basic usage
+  import { detectLanguage } from 'textconvert';
+
+  const result = detectLanguage('Hello world');
+  console.log(result.language); // "english"
+  console.log(result.confidence); // 0.95
+
+  // Using with Language enum (recommended for type safety)
+  import { detectLanguage, Language } from 'textconvert';
+
+  // The Language enum contains all supported languages
+  console.log(Language.English); // "english"
+  console.log(Language.Spanish); // "spanish"
+  console.log(Language.French); // "french"
+  console.log(Language.German); // "german"
+  console.log(Language.Italian); // "italian"
+  console.log(Language.Portuguese); // "portuguese"
+  console.log(Language.Dutch); // "dutch"
+  console.log(Language.Unknown); // "unknown"
+
+  // Using Language enum with detection results
+  const text = 'Hola mundo';
+  const result = detectLanguage(text);
+
+  if (result.language === Language.Spanish) {
+    console.log(`"${text}" is in Spanish with ${result.confidence} confidence`);
+  }
+
+  // Check specific language scores
+  console.log(`English score: ${result.scores[Language.English]}`);
+  console.log(`Spanish score: ${result.scores[Language.Spanish]}`);
+
+  // Creating language maps or configurations
+  const languageNames = {
+    [Language.English]: 'English language',
+    [Language.Spanish]: 'Spanish language',
+    [Language.French]: 'French language',
+    // etc.
+  };
+
+  console.log(languageNames[result.language]); // Get language name based on result
+
+  // With options
+  const longText = '...very long text...';
+  detectLanguage(longText, 4, {
+    maxCharsToAnalyze: 300,
+    useCache: true,
+  });
+  ```
+
+  The language detection can identify the following languages:
+
+  - English
+  - French
+  - Spanish
+  - German
+  - Italian
+  - Portuguese
+  - Dutch
+
+  ### Using with Language Enum (Type-Safe Approach)
+
+  ```typescript
+  // Import both the function and the Language enum
+  import { detectLanguage, Language } from 'textconvert';
+
+  // The Language enum provides all supported languages
+  console.log(Object.values(Language));
+  // ["english", "french", "spanish", "german", "italian", "portuguese", "dutch", "unknown"]
+
+  // Type-safe language operations
+  const result = detectLanguage('Bonjour le monde');
+
+  // Compare with enum values
+  if (result.language === Language.French) {
+    console.log('The text is in French');
+  }
+  ```
+
+  Features:
+
+  - Works with texts of any length (improved confidence with longer texts)
+  - Special character recognition for better accuracy
+  - Confidence scores for all analyzed languages
+  - Common phrase recognition for reliable short text detection
+  - Stopword detection to improve short text analysis
+  - Performance optimizations:
+    - Cosine similarity for more accurate language comparison
+    - Efficient caching system for repeated detection calls
+    - Optimized processing for large texts
+    - High-performance data structures (Map instead of objects)
+    - Sliding window technique for efficient character and bigram analysis
+
+  The detection algorithm uses multiple techniques including character frequency analysis, language-specific character recognition, bigram analysis, stopword detection, and common phrase recognition—all while remaining lightweight and dependency-free.
+
 </details>
 
 <details>
