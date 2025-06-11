@@ -928,32 +928,31 @@ const commonEnglishWords = new Set([
 
 // Cache for previously analyzed texts
 const resultCache = new Map<string, LanguageDetectionResult>();
-const MAX_CACHE_SIZE = 100;
 
 // Normalizes a language profile for cosine similarity
-const normalizedProfiles: Record<
-  Language,
-  Map<string, number>
-> = Object.entries(languageProfiles).reduce((acc, [lang, profile]) => {
-  if (lang !== Language.Unknown) {
-    // Calculate magnitude for normalization
-    const entries = Object.entries(profile);
-    const magnitude = Math.sqrt(
-      entries.reduce((sum, [_, value]) => sum + value * value, 0)
-    );
+const normalizedProfiles: Record<Language, Map<string, number>> = Object.entries(
+  languageProfiles,
+).reduce(
+  (acc, [lang, profile]) => {
+    if (lang !== Language.Unknown) {
+      // Calculate magnitude for normalization
+      const entries = Object.entries(profile);
+      const magnitude = Math.sqrt(entries.reduce((sum, [, value]) => sum + value * value, 0));
 
-    // Create normalized map
-    const normalizedMap = new Map<string, number>();
-    entries.forEach(([char, value]) => {
-      normalizedMap.set(char, value / magnitude);
-    });
+      // Create normalized map
+      const normalizedMap = new Map<string, number>();
+      entries.forEach(([char, value]) => {
+        normalizedMap.set(char, value / magnitude);
+      });
 
-    acc[lang as Language] = normalizedMap;
-  } else {
-    acc[Language.Unknown] = new Map<string, number>();
-  }
-  return acc;
-}, {} as Record<Language, Map<string, number>>);
+      acc[lang as Language] = normalizedMap;
+    } else {
+      acc[Language.Unknown] = new Map<string, number>();
+    }
+    return acc;
+  },
+  {} as Record<Language, Map<string, number>>,
+);
 
 // Handle very common language expressions directly
 const commonPhrases = new Map([
@@ -1027,37 +1026,10 @@ const commonPhrases = new Map([
 // Special handling for languages with unique characters
 const uniqueChars: Partial<Record<Language, string[]>> = {
   [Language.German]: ['ä', 'ö', 'ü', 'ß'],
-  [Language.French]: [
-    'é',
-    'è',
-    'ê',
-    'ë',
-    'à',
-    'â',
-    'ù',
-    'û',
-    'î',
-    'ï',
-    'ô',
-    'œ',
-    'ç',
-  ],
+  [Language.French]: ['é', 'è', 'ê', 'ë', 'à', 'â', 'ù', 'û', 'î', 'ï', 'ô', 'œ', 'ç'],
   [Language.Spanish]: ['ñ', 'á', 'é', 'í', 'ó', 'ú', 'ü', '¿', '¡'],
   [Language.Italian]: ['à', 'è', 'é', 'ì', 'í', 'î', 'ò', 'ó', 'ù', 'ú'],
-  [Language.Portuguese]: [
-    'ã',
-    'õ',
-    'á',
-    'à',
-    'â',
-    'é',
-    'ê',
-    'í',
-    'ó',
-    'ô',
-    'ú',
-    'ç',
-  ],
+  [Language.Portuguese]: ['ã', 'õ', 'á', 'à', 'â', 'é', 'ê', 'í', 'ó', 'ô', 'ú', 'ç'],
 };
 
 /**
@@ -1074,7 +1046,7 @@ export function detectLanguage(
   options: { maxCharsToAnalyze?: number; useCache?: boolean } = {
     maxCharsToAnalyze: 500,
     useCache: true,
-  }
+  },
 ): LanguageDetectionResult {
   const { maxCharsToAnalyze = 500, useCache = true } = options;
 
@@ -1089,7 +1061,7 @@ export function detectLanguage(
       language: Language.Unknown,
       confidence: 0,
       scores: Object.fromEntries(
-        Object.values(Language).map((l) => [l, l === Language.Unknown ? 1 : 0])
+        Object.values(Language).map((l) => [l, l === Language.Unknown ? 1 : 0]),
       ) as Record<Language, number>,
     };
   }
@@ -1106,7 +1078,7 @@ export function detectLanguage(
         Object.values(Language).map((l) => [
           l,
           l === detected ? 0.95 : 0.05 / (Object.values(Language).length - 1),
-        ])
+        ]),
       ) as Record<Language, number>,
     };
     if (useCache) cacheResult(text, result);
@@ -1114,10 +1086,7 @@ export function detectLanguage(
   }
 
   const isShort = text.length < minLength;
-  const analyzedText = text
-    .slice(0, maxCharsToAnalyze)
-    .toLowerCase()
-    .replace(/[0-9]/g, '');
+  const analyzedText = text.slice(0, maxCharsToAnalyze).toLowerCase().replace(/[0-9]/g, '');
 
   const charCount = new Map<string, number>();
   let totalChars = 0;
@@ -1166,10 +1135,8 @@ export function detectLanguage(
       scores: Object.fromEntries(
         Object.values(Language).map((l) => [
           l,
-          l === Language.Unknown
-            ? 0.9
-            : 0.1 / (Object.values(Language).length - 1),
-        ])
+          l === Language.Unknown ? 0.9 : 0.1 / (Object.values(Language).length - 1),
+        ]),
       ) as Record<Language, number>,
     };
   }
@@ -1177,10 +1144,7 @@ export function detectLanguage(
   for (const [lang, chars] of Object.entries(uniqueChars)) {
     for (const char of chars) {
       if (analyzedText.includes(char)) {
-        charCount.set(
-          'unique_' + lang,
-          (charCount.get('unique_' + lang) || 0) + 18
-        );
+        charCount.set('unique_' + lang, (charCount.get('unique_' + lang) || 0) + 18);
         totalChars += 3;
       }
     }
@@ -1217,26 +1181,17 @@ export function detectLanguage(
         language: Language.Unknown,
         confidence: 0,
         scores: Object.fromEntries(
-          Object.values(Language).map((l) => [
-            l,
-            l === Language.Unknown ? 1 : 0,
-          ])
+          Object.values(Language).map((l) => [l, l === Language.Unknown ? 1 : 0]),
         ) as Record<Language, number>,
       };
     }
   }
 
-  for (const lang of Object.values(Language).filter(
-    (l) => l !== Language.Unknown
-  )) {
+  for (const lang of Object.values(Language).filter((l) => l !== Language.Unknown)) {
     for (const word of words) {
       if (stopwords[lang].includes(word)) {
-        const boost =
-          lang === Language.English && commonEnglishWords.has(word) ? 36 : 28;
-        charCount.set(
-          `stopword_${lang}`,
-          (charCount.get(`stopword_${lang}`) || 0) + boost
-        );
+        const boost = lang === Language.English && commonEnglishWords.has(word) ? 36 : 28;
+        charCount.set(`stopword_${lang}`, (charCount.get(`stopword_${lang}`) || 0) + boost);
         totalChars += 3;
       }
     }
@@ -1259,10 +1214,7 @@ export function detectLanguage(
   ];
   for (const [kw, lang] of keywords) {
     if (analyzedText.includes(kw)) {
-      charCount.set(
-        `keyword_${lang}`,
-        (charCount.get(`keyword_${lang}`) || 0) + 70
-      );
+      charCount.set(`keyword_${lang}`, (charCount.get(`keyword_${lang}`) || 0) + 70);
       totalChars += 8;
     }
   }
@@ -1309,13 +1261,7 @@ export function detectLanguage(
   // For long texts, boost confidence
   if (analyzedText.length > 40) confidence = Math.min(confidence * 1.1, 1.0);
   confidence =
-    confidence > 0.7
-      ? 0.95
-      : confidence > 0.55
-      ? 0.85
-      : confidence > 0.4
-      ? 0.7
-      : confidence;
+    confidence > 0.7 ? 0.95 : confidence > 0.55 ? 0.85 : confidence > 0.4 ? 0.7 : confidence;
 
   const result: LanguageDetectionResult = {
     language: detected,
@@ -1329,9 +1275,7 @@ export function detectLanguage(
 // --- UTILS ---
 
 function normalizeVector(map: Map<string, number>): Map<string, number> {
-  const magnitude = Math.sqrt(
-    [...map.values()].reduce((sum, val) => sum + val * val, 0)
-  );
+  const magnitude = Math.sqrt([...map.values()].reduce((sum, val) => sum + val * val, 0));
   const normMap = new Map<string, number>();
   for (const [key, val] of map.entries()) {
     normMap.set(key, val / magnitude);
