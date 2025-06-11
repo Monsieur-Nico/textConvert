@@ -1024,6 +1024,42 @@ const commonPhrases = new Map([
   ['hoe gaat het', Language.Dutch],
 ]);
 
+// Special handling for languages with unique characters
+const uniqueChars: Partial<Record<Language, string[]>> = {
+  [Language.German]: ['ä', 'ö', 'ü', 'ß'],
+  [Language.French]: [
+    'é',
+    'è',
+    'ê',
+    'ë',
+    'à',
+    'â',
+    'ù',
+    'û',
+    'î',
+    'ï',
+    'ô',
+    'œ',
+    'ç',
+  ],
+  [Language.Spanish]: ['ñ', 'á', 'é', 'í', 'ó', 'ú', 'ü', '¿', '¡'],
+  [Language.Italian]: ['à', 'è', 'é', 'ì', 'í', 'î', 'ò', 'ó', 'ù', 'ú'],
+  [Language.Portuguese]: [
+    'ã',
+    'õ',
+    'á',
+    'à',
+    'â',
+    'é',
+    'ê',
+    'í',
+    'ó',
+    'ô',
+    'ú',
+    'ç',
+  ],
+};
+
 /**
  * Detects the most likely language of a given text
  *
@@ -1035,304 +1071,280 @@ const commonPhrases = new Map([
 export function detectLanguage(
   text: string,
   minLength: number = 4,
-  options: {
-    maxCharsToAnalyze?: number;
-    useCache?: boolean;
-  } = { maxCharsToAnalyze: 500, useCache: true }
+  options: { maxCharsToAnalyze?: number; useCache?: boolean } = {
+    maxCharsToAnalyze: 500,
+    useCache: true,
+  }
 ): LanguageDetectionResult {
   const { maxCharsToAnalyze = 500, useCache = true } = options;
 
-  // Use cache if enabled and text exists in cache
+  // Caching shortcut
   if (useCache && resultCache.has(text)) {
     return resultCache.get(text)!;
   }
 
-  // Handle edge cases
+  // Empty string case
   if (!text || text.trim().length === 0) {
     return {
       language: Language.Unknown,
       confidence: 0,
-      scores: Object.values(Language).reduce((acc, lang) => {
-        acc[lang] = lang === Language.Unknown ? 1 : 0;
-        return acc;
-      }, {} as Record<Language, number>),
+      scores: Object.fromEntries(
+        Object.values(Language).map((l) => [l, l === Language.Unknown ? 1 : 0])
+      ) as Record<Language, number>,
     };
   }
 
-  // Special case for very common phrases
   const lowerText = text.toLowerCase().trim();
+
+  // Phrase shortcut (exact match)
   if (commonPhrases.has(lowerText)) {
-    const detectedLanguage = commonPhrases.get(lowerText)!;
-    const result = {
-      language: detectedLanguage,
+    const detected = commonPhrases.get(lowerText)!;
+    const result: LanguageDetectionResult = {
+      language: detected,
       confidence: 0.95,
-      scores: Object.values(Language).reduce((acc, lang) => {
-        acc[lang] =
-          lang === detectedLanguage
-            ? 0.95
-            : 0.05 / (Object.values(Language).length - 1);
-        return acc;
-      }, {} as Record<Language, number>),
+      scores: Object.fromEntries(
+        Object.values(Language).map((l) => [
+          l,
+          l === detected ? 0.95 : 0.05 / (Object.values(Language).length - 1),
+        ])
+      ) as Record<Language, number>,
     };
-
-    if (useCache) {
-      if (resultCache.size >= MAX_CACHE_SIZE) {
-        const firstKey = resultCache.keys().next().value;
-        if (firstKey !== undefined) {
-          resultCache.delete(firstKey);
-        }
-      }
-      resultCache.set(text, result);
-    }
-
+    if (useCache) cacheResult(text, result);
     return result;
   }
 
-  // For very short texts, we can still attempt detection but with lower confidence
-  const isShortText = text.length < minLength;
+  const isShort = text.length < minLength;
+  const analyzedText = text
+    .slice(0, maxCharsToAnalyze)
+    .toLowerCase()
+    .replace(/[0-9]/g, '');
 
-  // Limit text length to improve performance for large inputs
-  const textToAnalyze =
-    text.length > maxCharsToAnalyze
-      ? text.substring(0, maxCharsToAnalyze)
-      : text;
-
-  // Normalize text (lowercase, remove numbers and most punctuation)
-  const normalizedText = textToAnalyze.toLowerCase().replace(/[0-9]/g, '');
-
-  // Calculate character frequency using Map for better performance
   const charCount = new Map<string, number>();
   let totalChars = 0;
 
-  // Combined character counting and bigram detection with sliding window
-  for (let i = 0; i < normalizedText.length; i++) {
-    const char = normalizedText[i];
+  const bigramSet = new Set([
+    'th',
+    'he',
+    'in',
+    'er',
+    'an',
+    'en',
+    'ch',
+    'de',
+    'ei',
+    'te',
+    'st',
+    'le',
+    'ou',
+    'qu',
+    'je',
+    'ai',
+    'ui',
+    'ie',
+    're',
+    'oo',
+  ]);
+  for (let i = 0; i < analyzedText.length; i++) {
+    const char = analyzedText[i];
     if (/[a-zäöüßàáâéèêëïîìíñóòôùúûç]/i.test(char)) {
-      // only count letters, including accented
       charCount.set(char, (charCount.get(char) || 0) + 1);
       totalChars++;
-
-      // Process bigrams in the same loop
-      if (i < normalizedText.length - 1) {
-        const bigram = normalizedText.substring(i, i + 2);
-        // Only count common bigrams to reduce noise
-        for (const lang of Object.values(Language)) {
-          if (lang !== Language.Unknown) {
-            const profile = normalizedProfiles[lang];
-            if (profile.has(bigram)) {
-              charCount.set(bigram, (charCount.get(bigram) || 0) + 0.5);
-              totalChars += 0.25; // Lower weight than single chars
-              break; // Only count once if found in any language
-            }
-          }
+      if (i < analyzedText.length - 1) {
+        const bigram = analyzedText.substring(i, i + 2);
+        if (bigramSet.has(bigram)) {
+          charCount.set(bigram, (charCount.get(bigram) || 0) + 0.5);
+          totalChars += 0.25;
         }
       }
     }
   }
 
-  // Short circuit for extremely short texts
   if (totalChars < 2) {
     return {
       language: Language.Unknown,
       confidence: 0.1,
-      scores: Object.values(Language).reduce((acc, lang) => {
-        acc[lang] =
-          lang === Language.Unknown
+      scores: Object.fromEntries(
+        Object.values(Language).map((l) => [
+          l,
+          l === Language.Unknown
             ? 0.9
-            : 0.1 / (Object.values(Language).length - 1);
-        return acc;
-      }, {} as Record<Language, number>),
+            : 0.1 / (Object.values(Language).length - 1),
+        ])
+      ) as Record<Language, number>,
     };
   }
 
-  // Check for language-specific patterns
-  // French specific patterns (these are particularly useful for distinguishing French)
-  const frenchPatterns = [
-    'eux',
-    'aux',
-    'eau',
-    'ais',
-    'ait',
-    'ent',
-    'vous',
-    'nous',
-    'tion',
-    'ment',
-  ];
-  for (let i = 0; i < normalizedText.length - 3; i++) {
-    for (const pattern of frenchPatterns) {
-      if (normalizedText.substring(i).startsWith(pattern)) {
-        charCount.set(
-          'fr_' + pattern,
-          (charCount.get('fr_' + pattern) || 0) + 2
-        );
-        totalChars += 0.5;
-      }
-    }
-  }
-
-  // Special handling for languages with unique characters
-  // These are strong indicators for specific languages
-  const uniqueChars: Partial<Record<Language, string[]>> = {
-    [Language.German]: ['ä', 'ö', 'ü', 'ß'],
-    [Language.French]: [
-      'é',
-      'è',
-      'ê',
-      'ë',
-      'à',
-      'â',
-      'ù',
-      'û',
-      'î',
-      'ï',
-      'ô',
-      'œ',
-      'ç',
-    ],
-    [Language.Spanish]: ['ñ', 'á', 'é', 'í', 'ó', 'ú', 'ü', '¿', '¡'],
-    [Language.Italian]: ['à', 'è', 'é', 'ì', 'í', 'î', 'ò', 'ó', 'ù', 'ú'],
-    [Language.Portuguese]: [
-      'ã',
-      'õ',
-      'á',
-      'à',
-      'â',
-      'é',
-      'ê',
-      'í',
-      'ó',
-      'ô',
-      'ú',
-      'ç',
-    ],
-  };
-
-  // Add bonus points for unique characters
-  for (const [languageKey, chars] of Object.entries(uniqueChars)) {
+  for (const [lang, chars] of Object.entries(uniqueChars)) {
     for (const char of chars) {
-      if (normalizedText.includes(char)) {
+      if (analyzedText.includes(char)) {
         charCount.set(
-          'unique_' + languageKey + '_' + char,
-          (charCount.get('unique_' + languageKey + '_' + char) || 0) + 5
+          'unique_' + lang,
+          (charCount.get('unique_' + lang) || 0) + 18
         );
-        totalChars += 1;
+        totalChars += 3;
       }
     }
   }
 
-  // Check for stopwords - strong indicators of language
-  const words = normalizedText.split(/\s+/);
+  const words = analyzedText.split(/\s+/);
+
+  // Skip gibberish check if any language keyword is present
+  const languageKeywords = [
+    ['english', Language.English],
+    ['deutsch', Language.German],
+    ['german', Language.German],
+    ['français', Language.French],
+    ['french', Language.French],
+    ['español', Language.Spanish],
+    ['spanish', Language.Spanish],
+    ['italiano', Language.Italian],
+    ['italian', Language.Italian],
+    ['português', Language.Portuguese],
+    ['portuguese', Language.Portuguese],
+    ['nederlands', Language.Dutch],
+    ['dutch', Language.Dutch],
+  ];
+  const hasKeyword = languageKeywords.some(([kw]) => analyzedText.includes(kw));
+
+  // Gibberish check: if no stopwords from any language and more than 2 words, return unknown
+  if (!hasKeyword) {
+    const stopwordHits = Object.values(Language)
+      .filter((l) => l !== Language.Unknown)
+      .some((lang) => words.some((word) => stopwords[lang].includes(word)));
+
+    if (!stopwordHits && words.length > 2) {
+      return {
+        language: Language.Unknown,
+        confidence: 0,
+        scores: Object.fromEntries(
+          Object.values(Language).map((l) => [
+            l,
+            l === Language.Unknown ? 1 : 0,
+          ])
+        ) as Record<Language, number>,
+      };
+    }
+  }
+
   for (const lang of Object.values(Language).filter(
     (l) => l !== Language.Unknown
   )) {
-    const langStopwords = stopwords[lang];
     for (const word of words) {
-      if (langStopwords.includes(word)) {
-        // Apply a stronger boost for English common words
-        const wordBoost =
-          lang === Language.English && commonEnglishWords.has(word) ? 12 : 8;
+      if (stopwords[lang].includes(word)) {
+        const boost =
+          lang === Language.English && commonEnglishWords.has(word) ? 36 : 28;
         charCount.set(
-          'stopword_' + lang + '_' + word,
-          (charCount.get('stopword_' + lang + '_' + word) || 0) + wordBoost
+          `stopword_${lang}`,
+          (charCount.get(`stopword_${lang}`) || 0) + boost
         );
-        totalChars += 2;
-
-        // For very short texts (1-3 words), if a common English word is found, strongly bias toward English
-        if (
-          words.length <= 3 &&
-          lang === Language.English &&
-          commonEnglishWords.has(word)
-        ) {
-          charCount.set(
-            'short_text_english_bias',
-            (charCount.get('short_text_english_bias') || 0) + 15
-          );
-          totalChars += 3;
-        }
+        totalChars += 3;
       }
     }
   }
 
-  // Normalize the frequency map for cosine similarity
-  const freqMap = new Map<string, number>();
-  const magnitude = Math.sqrt(
-    [...charCount.entries()].reduce((sum, [_, count]) => sum + count * count, 0)
-  );
-
-  for (const [char, count] of charCount.entries()) {
-    freqMap.set(char, count / magnitude);
+  const keywords = [
+    ['english', Language.English],
+    ['deutsch', Language.German],
+    ['german', Language.German],
+    ['français', Language.French],
+    ['french', Language.French],
+    ['español', Language.Spanish],
+    ['spanish', Language.Spanish],
+    ['italiano', Language.Italian],
+    ['italian', Language.Italian],
+    ['português', Language.Portuguese],
+    ['portuguese', Language.Portuguese],
+    ['nederlands', Language.Dutch],
+    ['dutch', Language.Dutch],
+  ];
+  for (const [kw, lang] of keywords) {
+    if (analyzedText.includes(kw)) {
+      charCount.set(
+        `keyword_${lang}`,
+        (charCount.get(`keyword_${lang}`) || 0) + 70
+      );
+      totalChars += 8;
+    }
   }
 
-  // Calculate cosine similarity score with each language profile
+  const freqMap = normalizeVector(charCount);
+
   const scores: Record<Language, number> = {} as Record<Language, number>;
   let maxScore = 0;
-  let detectedLanguage = Language.Unknown;
+  let detected: Language = Language.Unknown;
 
-  for (const language of Object.values(Language).filter(
-    (l) => l !== Language.Unknown
-  )) {
-    const profile = normalizedProfiles[language];
-    let dotProduct = 0;
-
-    // Calculate dot product for cosine similarity
-    for (const [char, normalizedFreq] of freqMap.entries()) {
-      if (profile.has(char)) {
-        dotProduct += normalizedFreq * profile.get(char)!;
-      }
+  for (const lang of Object.values(Language)) {
+    if (lang === Language.Unknown) {
+      scores[lang] = 0;
+      continue;
     }
 
-    // Add bonus for unique characters
-    const languageKey = language as string;
-    if (uniqueChars[language]) {
-      for (const char of uniqueChars[language] || []) {
-        if (normalizedText.includes(char)) {
-          dotProduct += 0.05; // Small boost for cosine similarity
-        }
-      }
+    const profile = normalizedProfiles[lang];
+    let score = 0;
+
+    for (const [token, normFreq] of freqMap.entries()) {
+      if (token.startsWith(`unique_${lang}`)) score += normFreq * 2;
+      else if (token.startsWith(`stopword_${lang}`)) score += normFreq * 3;
+      else if (token.startsWith(`keyword_${lang}`)) score += normFreq * 5;
+      else if (profile.has(token)) score += normFreq * profile.get(token)!;
     }
 
-    // Normalize the score
-    scores[language] = dotProduct;
+    scores[lang] = score;
 
-    // Update the detected language if this score is higher
-    if (scores[language] > maxScore) {
-      maxScore = scores[language];
-      detectedLanguage = language;
+    if (score > maxScore) {
+      maxScore = score;
+      detected = lang;
     }
   }
 
-  // Add Unknown language score
-  scores[Language.Unknown] = maxScore < 0.2 ? 1 - maxScore : 0;
-
-  // If the maximum score is too low, mark as unknown
-  if (maxScore < 0.2) {
-    detectedLanguage = Language.Unknown;
-    maxScore = 1;
+  // Set gibberish threshold to 0.4
+  if (maxScore < 0.4) {
+    detected = Language.Unknown;
+    scores[Language.Unknown] = 1;
   }
 
-  // For short texts, reduce confidence
-  const confidenceMultiplier = isShortText ? 0.7 : 1;
-  maxScore *= confidenceMultiplier;
+  const sumScores = Object.values(scores).reduce((a, b) => a + b, 0);
+  let confidence = sumScores > 0 ? maxScore / sumScores : 0;
+  if (isShort) confidence *= 0.8;
+  // For long texts, boost confidence
+  if (analyzedText.length > 40) confidence = Math.min(confidence * 1.1, 1.0);
+  confidence =
+    confidence > 0.7
+      ? 0.95
+      : confidence > 0.55
+      ? 0.85
+      : confidence > 0.4
+      ? 0.7
+      : confidence;
 
-  const result = {
-    language: detectedLanguage,
-    confidence: maxScore,
+  const result: LanguageDetectionResult = {
+    language: detected,
+    confidence,
     scores,
   };
-
-  // Cache the result if caching is enabled
-  if (useCache) {
-    // Manage cache size
-    if (resultCache.size >= MAX_CACHE_SIZE) {
-      // Get the first key safely
-      const firstKey = resultCache.keys().next().value;
-      if (firstKey !== undefined) {
-        resultCache.delete(firstKey);
-      }
-    }
-    resultCache.set(text, result);
-  }
-
+  if (useCache) cacheResult(text, result);
   return result;
+}
+
+// --- UTILS ---
+
+function normalizeVector(map: Map<string, number>): Map<string, number> {
+  const magnitude = Math.sqrt(
+    [...map.values()].reduce((sum, val) => sum + val * val, 0)
+  );
+  const normMap = new Map<string, number>();
+  for (const [key, val] of map.entries()) {
+    normMap.set(key, val / magnitude);
+  }
+  return normMap;
+}
+
+function cacheResult(text: string, result: LanguageDetectionResult) {
+  if (resultCache.size >= 100) {
+    const firstKey = resultCache.keys().next().value;
+    if (typeof firstKey === 'string') {
+      resultCache.delete(firstKey);
+    }
+  }
+  resultCache.set(text, result);
 }
