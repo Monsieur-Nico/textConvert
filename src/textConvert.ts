@@ -5,8 +5,9 @@ import {
   snakeCase,
 } from './Text/conventions';
 
+import { getTextStats } from './Text/Analysis/statistics';
 import { clear } from './Text/clear';
-import count, { countSentences, countWords } from './Text/count';
+import { count, countSentences, countWords } from './Text/count';
 import { reverse } from './Text/reverse';
 import { spread } from './Text/spread';
 
@@ -18,6 +19,7 @@ export {
   count,
   countSentences,
   countWords,
+  getTextStats,
   kebabCase,
   numbersToWords,
   pascalCase,

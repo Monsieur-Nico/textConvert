@@ -9,7 +9,7 @@ import { clear } from './clear';
  * @returns Number of letters and numbers (if requested) in a string.
  */
 
-export default function count(text: string, countNumbers = false): number {
+export function count(text: string, countNumbers = false): number {
   // Check string length
   if (!text.length) return 0;
   // Create a temp number.

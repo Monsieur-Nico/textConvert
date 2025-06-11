@@ -148,6 +148,30 @@ This package includes the following features at the moment:
   // Returns => "hello-world"
   ```
 
+- ### getTextStats
+
+  Analyzes text and returns comprehensive statistics about it.
+
+  `@param text` The text to analyze
+  `@param wordsPerMinute` Reading speed in words per minute (default: 200)
+
+  ```js
+  convert.getTextStats('Hello world. This is a test.');
+  /* Returns => {
+    characterCount: 30,
+    characterCountNoSpaces: 24,
+    letterCount: 18,
+    alphanumericCount: 18,
+    wordCount: 6,
+    sentenceCount: 2,
+    paragraphCount: 1,
+    averageWordLength: 4,
+    averageSentenceLength: 3,
+    readingTimeSeconds: 2,
+    readingTimeFormatted: "2 sec"
+  } */
+  ```
+
 </details>
 
 <details>

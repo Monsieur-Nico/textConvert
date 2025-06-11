@@ -1,0 +1,79 @@
+import { describe, expect, it } from 'vitest';
+import { getTextStats } from '../../../src/Text/Analysis/statistics';
+
+describe('#getTextStats', () => {
+  it('should return empty stats for empty input', () => {
+    const stats = getTextStats('');
+    expect(stats.characterCount).toBe(0);
+    expect(stats.letterCount).toBe(0);
+    expect(stats.alphanumericCount).toBe(0);
+    expect(stats.wordCount).toBe(0);
+    expect(stats.sentenceCount).toBe(0);
+  });
+
+  it('should correctly count characters with spaces', () => {
+    const stats = getTextStats('Hello world');
+    expect(stats.characterCount).toBe(11);
+  });
+
+  it('should correctly count characters without spaces', () => {
+    const stats = getTextStats('Hello world');
+    expect(stats.characterCountNoSpaces).toBe(10);
+  });
+
+  it('should correctly count words', () => {
+    const stats = getTextStats('Hello world. This is a test.');
+    expect(stats.wordCount).toBe(6);
+  });
+
+  it('should correctly count sentences', () => {
+    const stats = getTextStats('Hello world. This is a test.');
+    expect(stats.sentenceCount).toBe(2);
+  });
+
+  it('should correctly count paragraphs', () => {
+    const text = 'This is paragraph one.\n\nThis is paragraph two.';
+    const stats = getTextStats(text);
+    expect(stats.paragraphCount).toBe(2);
+  });
+
+  it('should calculate average word length', () => {
+    const stats = getTextStats('The quick brown fox');
+    expect(stats.averageWordLength).toBe(4);
+  });
+
+  it('should calculate average sentence length', () => {
+    const stats = getTextStats('Hello world. This is a test.');
+    expect(stats.averageSentenceLength).toBe(3);
+  });
+
+  it('should calculate reading time', () => {
+    // 200 words at 200 wpm = 1 minute
+    const text = Array(200).fill('word').join(' ');
+    const stats = getTextStats(text, 200);
+    expect(stats.readingTimeSeconds).toBe(60);
+    expect(stats.readingTimeFormatted).toBe('1 min');
+  });
+
+  it('should format reading time correctly for seconds only', () => {
+    const text = Array(20).fill('word').join(' ');
+    const stats = getTextStats(text, 200);
+    expect(stats.readingTimeFormatted).toBe('6 sec');
+  });
+
+  it('should format reading time correctly for minutes and seconds', () => {
+    const text = Array(250).fill('word').join(' ');
+    const stats = getTextStats(text, 200);
+    expect(stats.readingTimeFormatted).toBe('1 min 15 sec');
+  });
+
+  it('should correctly count letters only', () => {
+    const stats = getTextStats('Hello123 world!');
+    expect(stats.letterCount).toBe(10);
+  });
+
+  it('should correctly count alphanumeric characters', () => {
+    const stats = getTextStats('Hello123 world!');
+    expect(stats.alphanumericCount).toBe(13);
+  });
+});
