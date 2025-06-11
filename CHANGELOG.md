@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.4.0...v1.5.0) (2025-06-11)
+
+
+### 📚 Documentation
+
+* Add @Monsieur-Nico as a contributor ([b25ac5e](https://github.com/Monsieur-Nico/textConvert/commit/b25ac5eb771e58ab47372803820cab0484088c5b))
+* Add @Monsieur-Nico as a contributor ([1bdb491](https://github.com/Monsieur-Nico/textConvert/commit/1bdb491cf6342531b8eb73fdc3bbaf68ab816dc0))
+* add CONTRIBUTING.md to outline contribution guidelines and development workflow ([7948f03](https://github.com/Monsieur-Nico/textConvert/commit/7948f036d89884562cbd94382629ebbbd1935fbe))
+* update README to improve structure, add new features, and enhance usage examples ([fac3e0a](https://github.com/Monsieur-Nico/textConvert/commit/fac3e0a8311eb96be7c5d73a3064c301994fb259))
+* update README to reference CONTRIBUTING.md for contribution guidelines and streamline the contributing section ([a85b5c3](https://github.com/Monsieur-Nico/textConvert/commit/a85b5c39223fc32c3d783e79e8a2bdd1f2005c57))
+
+
+### 🔧 Chores
+
+* add commitlint configuration and update CI workflow to include linting, formatting checks, and type checking ([fe06971](https://github.com/Monsieur-Nico/textConvert/commit/fe06971dfa9f22d8e082328c885d6f4fb3bd88b0))
+* add ESLint configuration and TypeScript support by creating eslint.config.js, tsconfig.eslint.json, and vitest.config.js, while removing .eslintignore ([2647750](https://github.com/Monsieur-Nico/textConvert/commit/264775096bfc9a10cc16b3eaa74193eccfbc8628))
+* add Rollup configuration for building textConvert module with CommonJS and ESM outputs ([38ed5ce](https://github.com/Monsieur-Nico/textConvert/commit/38ed5ce165e7af181751e68615127db150da3c37))
+* add security audit step to CI workflow for moderate vulnerabilities ([4f02b91](https://github.com/Monsieur-Nico/textConvert/commit/4f02b91c32085d2603755952bfd39d3cad59caed))
+* enhance ESLint and Prettier integration by adding Prettier to ESLint config, creating .prettierrc, and updating package.json with linting scripts ([1a2b6b4](https://github.com/Monsieur-Nico/textConvert/commit/1a2b6b426da16e398070f9f966dfd57068784d15))
+* reorganize package.json scripts for clarity and consistency by removing duplicates and adding formatting and linting commands ([d886669](https://github.com/Monsieur-Nico/textConvert/commit/d886669bf4e6b98be12ebc5b5edd68b70e968143))
+* update CI workflow to support multiple Node.js versions (18.x, 20.x, 22.x) ([9371060](https://github.com/Monsieur-Nico/textConvert/commit/93710601f5a62775535393f047a9644e007cf875))
+* update package configuration with Rollup plugins, add funding information, and enhance export settings ([02e7be0](https://github.com/Monsieur-Nico/textConvert/commit/02e7be080f9f8ecde7fb3d5f5d72c53201a46291))
+* update TypeScript configuration to use ESNext module and enable node module resolution ([b916000](https://github.com/Monsieur-Nico/textConvert/commit/b9160002d1ca725cf30519af90cf860e251fdcfa))
+
+
+### 🧼 Refactors
+
+* clean up language.ts by improving code formatting and consistency, including normalization logic and unique character handling ([ab15e9e](https://github.com/Monsieur-Nico/textConvert/commit/ab15e9e9e8f5d1b70ee7cca7e5d26d2cb8ae14a3))
+
 ## [1.4.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.3.0...v1.4.0) (2025-06-11)
 
 
