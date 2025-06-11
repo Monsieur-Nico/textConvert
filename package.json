@@ -34,7 +34,8 @@
     "release:minor": "standard-version --release-as minor",
     "release:major": "standard-version --release-as major",
     "prepack": "npm run build",
-    "prepublishOnly": "npm test && npm run build"
+    "prepublishOnly": "npm test && npm run build",
+    "lint:fix": "eslint . --ext .ts --fix"
   },
   "engines": {
     "node": ">=22",
@@ -83,16 +84,20 @@
   },
   "homepage": "https://textconvert.tech/",
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@rollup/plugin-node-resolve": "^15.3.1",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@types/jest": "^29.5.14",
     "@types/node": "^22.7.8",
     "@typescript-eslint/eslint-plugin": "^8.11.0",
     "@typescript-eslint/parser": "^8.11.0",
     "@vitest/coverage-v8": "^3.2.3",
     "all-contributors-cli": "^6.26.1",
-    "cross-env": "^7.0.3",
     "eslint": "^9.13.0",
+    "eslint-config-prettier": "^10.1.5",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.0",
+    "prettier": "^3.0.0",
     "rimraf": "^6.0.1",
     "rollup": "^4.42.0",
     "standard-version": "^9.5.0",
@@ -108,5 +113,11 @@
   "sideEffects": false,
   "contributors": [
     "Nicolas Alkhoury <nicolas@alkhoury.com> (https://github.com/Monsieur-Nico)"
-  ]
+  ],
+  "lint-staged": {
+    "*.{ts,js,json,md}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  }
 }
