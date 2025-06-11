@@ -37,6 +37,12 @@ describe('#getTextStats', () => {
     expect(stats.paragraphCount).toBe(2);
   });
 
+  it('should handle single paragraph case correctly', () => {
+    const text = 'This is a single paragraph with no newlines.';
+    const stats = getTextStats(text);
+    expect(stats.paragraphCount).toBe(1);
+  });
+
   it('should calculate average word length', () => {
     const stats = getTextStats('The quick brown fox');
     expect(stats.averageWordLength).toBe(4);
@@ -45,6 +51,20 @@ describe('#getTextStats', () => {
   it('should calculate average sentence length', () => {
     const stats = getTextStats('Hello world. This is a test.');
     expect(stats.averageSentenceLength).toBe(3);
+  });
+
+  it('should handle zero word count when calculating average word length', () => {
+    const text = '!!!...???'; // No actual words, just punctuation
+    const stats = getTextStats(text);
+    expect(stats.wordCount).toBe(0);
+    expect(stats.averageWordLength).toBe(0);
+  });
+  it('should handle zero sentence count when calculating average sentence length', () => {
+    // This tests handling zero division in averageSentenceLength calculation
+    const text = 'no sentence ending punctuation here'; // No period, no sentence count
+    const stats = getTextStats(text);
+    expect(stats.sentenceCount).toBe(1);
+    expect(stats.averageSentenceLength).toBe(stats.wordCount);
   });
 
   it('should calculate reading time', () => {
@@ -65,6 +85,13 @@ describe('#getTextStats', () => {
     const text = Array(250).fill('word').join(' ');
     const stats = getTextStats(text, 200);
     expect(stats.readingTimeFormatted).toBe('1 min 15 sec');
+  });
+
+  it('should format reading time correctly for zero seconds', () => {
+    // This tests line 147 in formatReadingTime function
+    const stats = getTextStats('', 200); // Empty text has 0 reading time
+    expect(stats.readingTimeSeconds).toBe(0);
+    expect(stats.readingTimeFormatted).toBe('0 sec');
   });
 
   it('should correctly count letters only', () => {

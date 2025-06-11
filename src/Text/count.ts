@@ -48,21 +48,30 @@ export function count(text: string, countNumbers = false): number {
  */
 export function countWords(text: string): number {
   if (!text?.trim()) return 0;
+
+  // If the text contains only punctuation, return 0
+  if (!/[a-zA-Z0-9]/.test(text)) return 0;
+
   return text
     .trim()
     .split(/\s+/)
-    .filter((word) => word.length > 0).length;
+    .filter((word) => word.length > 0 && /[a-zA-Z0-9]/.test(word)).length;
 }
 
 /**
  * Counts the number of sentences in a string.
  * Sentences are defined as sequences of text ending with ., !, or ? followed by whitespace or end of string.
+ * Text without any sentence-ending punctuation is considered to be a single sentence.
  *
  * @param text String input to count sentences from
  * @returns Number of sentences in the string
  */
 export function countSentences(text: string): number {
   if (!text?.trim()) return 0;
+
+  // If there's no sentence-ending punctuation but there is text, it's considered one sentence
+  if (!/[.!?]/.test(text) && text.trim().length > 0) return 1;
+
   return text
     .trim()
     .split(/[.!?]+(?=\s|$)/)
