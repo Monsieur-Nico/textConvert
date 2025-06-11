@@ -1,3 +1,23 @@
+### Conventional Commit Message Format
+
+Please use the Conventional Commits format for your commits:
+
+`<type>: <short summary>`
+
+**Allowed types:**
+
+- feat: ✨ Features
+- fix: 🐛 Fixes
+- refactor: 🧼 Refactors
+- docs: 📚 Documentation
+- test: ✅ Tests
+- chore: 🔧 Chores
+
+**Example:**
+`feat: add support for Dutch language detection`
+
+---
+
 ### Summary
 
 `#<issue-number>` _(Delete this line if it's not related to an issue)._
