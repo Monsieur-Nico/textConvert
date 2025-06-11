@@ -6,7 +6,7 @@
   "files": [
     "README.md"
   ],
-  "imageSize": 100,
+  "imageSize": 75,
   "commit": true,
   "commitConvention": "eslint",
   "contributors": [
@@ -16,7 +16,9 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/74289847?v=4",
       "profile": "https://nicoscripting.com/",
       "contributions": [
+        "question",
         "bug",
+        "business",
         "code",
         "data",
         "design",
@@ -29,6 +31,7 @@
         "plugin",
         "projectManagement",
         "research",
+        "review",
         "test",
         "tool",
         "userTesting"
@@ -36,5 +39,5 @@
     }
   ],
   "contributorsPerLine": 7,
-  "linkToUsage": true
+  "linkToUsage": false
 }

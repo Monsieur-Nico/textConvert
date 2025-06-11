@@ -32,7 +32,8 @@
     "release:patch": "standard-version --release-as patch",
     "release:minor": "standard-version --release-as minor",
     "release:major": "standard-version --release-as major",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "prepublishOnly": "npm test && npm run build"
   },
   "engines": {
     "node": ">=22",
@@ -88,6 +89,7 @@
     "@typescript-eslint/eslint-plugin": "^8.11.0",
     "@typescript-eslint/parser": "^8.11.0",
     "@vitest/coverage-v8": "^3.2.3",
+    "all-contributors-cli": "^6.26.1",
     "cross-env": "^7.0.3",
     "eslint": "^9.13.0",
     "rimraf": "^6.0.1",
@@ -101,5 +103,9 @@
   "funding": {
     "type": "github",
     "url": "https://github.com/sponsors/Monsieur-Nico"
-  }
+  },
+  "sideEffects": false,
+  "contributors": [
+    "Nicolas Alkhoury <nicolas@alkhoury.com> (https://github.com/Monsieur-Nico)"
+  ]
 }
