@@ -25,6 +25,8 @@ jobs:
         run: npm ci || npm install
       - run: npm run build --if-present
       - run: npm test
+      - name: Security audit
+        run: npm audit --audit-level=moderate
       - name: Run coverage
         run: npm run coverage
 
