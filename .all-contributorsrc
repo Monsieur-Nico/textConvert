@@ -1,0 +1,40 @@
+{
+  "projectName": "textConvert",
+  "projectOwner": "Monsieur-Nico",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "eslint",
+  "contributors": [
+    {
+      "login": "Monsieur-Nico",
+      "name": "Nicolas Alkhoury",
+      "avatar_url": "https://avatars.githubusercontent.com/u/74289847?v=4",
+      "profile": "https://nicoscripting.com/",
+      "contributions": [
+        "bug",
+        "code",
+        "data",
+        "design",
+        "doc",
+        "ideas",
+        "infra",
+        "maintenance",
+        "mentoring",
+        "platform",
+        "plugin",
+        "projectManagement",
+        "research",
+        "test",
+        "tool",
+        "userTesting"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "linkToUsage": true
+}
