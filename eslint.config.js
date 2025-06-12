@@ -57,14 +57,14 @@ export default [
   },
   // Override for test files to disable no-undef
   {
-    files: ['tests/**/*.ts'],
+    files: ['**/[Tt]ests/**/*.ts'],
     rules: {
       'no-undef': 'off',
     },
   },
   // Override for spread.test.ts to disable ban-ts-comment
   {
-    files: ['tests/text/spread.test.ts'],
+    files: ['**/[Tt]ests/text/spread.test.ts'],
     rules: {
       '@typescript-eslint/ban-ts-comment': 'off',
     },
