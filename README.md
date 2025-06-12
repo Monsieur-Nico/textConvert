@@ -77,11 +77,12 @@ const convert = require('textconvert');
 ## Quick Examples
 
 ```js
-import { camelCase, count, isEmail } from 'textconvert';
+import { camelCase, count, isEmail, isUrl } from 'textconvert';
 
 camelCase('hello world'); // 'helloWorld'
 count('Hello, world!'); // 10
 isEmail('user@example.com'); // true
+isUrl('https://example.com/path?query=123'); // true
 ```
 
 See more usage examples in [docs/RECIPES.md](docs/RECIPES.md).
