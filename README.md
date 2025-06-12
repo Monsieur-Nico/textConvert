@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD033 -->
+
 <h1 align="center">📦 textConvert 📦</h1>
 
 <div align="center">
@@ -32,10 +34,10 @@
   - [Installation](#installation)
   - [Usage](#usage)
 - [✨ Features](#-features)
+- [Quick Examples](#quick-examples)
+- [API Docs](#api-docs)
 - [Advanced Examples](#advanced-examples)
 - [Why Use textConvert?](#why-use-textconvert)
-- [API Reference](#api-reference)
-- [FAQ / Troubleshooting](#faq--troubleshooting)
 - [Contributing](#contributing)
 - [Changelog](#changelog)
 - [License](#license)
@@ -70,92 +72,27 @@ const convert = require('textconvert');
 - Number to words: Converts numbers < 100 million to English words
 - Pure, dependency-free, and TypeScript-ready
 
-<details>
-  <summary><b>Text Related</b></summary>
+---
 
-- <b>clear</b>: Remove punctuation and return a cleaned string or array of words.
+## Quick Examples
 
-  ```js
-  convert.clear('Hello,world'); // ["hello", "world"]
-  convert.clear('Hello, world', false); // "hello world"
-  ```
+```js
+import { camelCase, count, isEmail } from 'textconvert';
 
-- <b>count</b>: Count the number of letters (optionally including numbers).
+camelCase('hello world'); // 'helloWorld'
+count('Hello, world!'); // 10
+isEmail('user@example.com'); // true
+```
 
-  ```js
-  convert.count('Hello,world'); // 10
-  convert.count('Hello0 world', true); // 11
-  ```
+See more usage examples in [docs/RECIPES.md](docs/RECIPES.md).
 
-- <b>reverse</b>: Reverse all characters in a string.
+---
 
-  ```js
-  convert.reverse('Hello, world!'); // "!dlrow ,olleH"
-  ```
+## API Docs
 
-- <b>spread</b>: Return an array of characters (optionally removing punctuation).
+See the [full API documentation](docs/API.md) for all functions, parameters, and return types.
 
-  ```js
-  convert.spread('Hello, world!'); // ['H', 'e', ...]
-  convert.spread('Hello, world!', true); // ['H', 'e', ...]
-  ```
-
-- <b>camelCase</b>, <b>pascalCase</b>, <b>snakeCase</b>, <b>kebabCase</b>: Convert strings to various cases.
-
-  ```js
-  convert.camelCase('hello world'); // "helloWorld"
-  convert.pascalCase('hello world'); // "HelloWorld"
-  convert.snakeCase('hello world'); // "hello_world"
-  convert.kebabCase('hello world'); // "hello-world"
-  ```
-
-- <b>getTextStats</b>: Analyze text and return statistics (characters, words, sentences, reading time, etc).
-
-  ```js
-  convert.getTextStats('Hello world. This is a test.');
-  // { characterCount: 30, wordCount: 6, ... }
-  ```
-
-- <b>detectLanguage</b>: Detect the most likely language of a text.
-
-  ```js
-  import { detectLanguage, Language } from 'textconvert';
-  const result = detectLanguage('Bonjour le monde');
-  console.log(result.language); // "french"
-  console.log(result.confidence); // 0.95
-  ```
-
-  <details>
-    <summary>Advanced: Language enum and options</summary>
-
-  ```js
-  // Supported: english, french, spanish, german, italian, portuguese, dutch, unknown
-  console.log(Language.English); // "english"
-  // ...
-  detectLanguage('Hola mundo', 4, { maxCharsToAnalyze: 300, useCache: true });
-  ```
-
-  </details>
-
-- <b>isEmail</b>: Validate if a string is a valid email address.
-
-  ```js
-  convert.isEmail('user@example.com'); // true
-  convert.isEmail('not-an-email'); // false
-  ```
-
-</details>
-
-<details>
-  <summary><b>Numbers Related</b></summary>
-
-- <b>numbersToWords</b>: Convert any number below 100 million to words.
-
-  ```js
-  convert.numbersToWords(1245); // "one thousand two hundred and forty-five"
-  ```
-
-</details>
+---
 
 ## Advanced Examples
 
@@ -188,41 +125,11 @@ console.log(convert.numbersToWords(987654));
 
 ---
 
-## API Reference
-
-| Function         | Description                              | Example Usage                        |
-| ---------------- | ---------------------------------------- | ------------------------------------ |
-| `clear`          | Remove punctuation, return string/array  | `clear('Hello, world!')`             |
-| `count`          | Count letters (optionally numbers)       | `count('abc123', true)`              |
-| `reverse`        | Reverse all characters in a string       | `reverse('abc')`                     |
-| `spread`         | Array of characters (optionally cleaned) | `spread('abc!')`                     |
-| `camelCase`      | Convert to camelCase                     | `camelCase('hello world')`           |
-| `pascalCase`     | Convert to PascalCase                    | `pascalCase('hello world')`          |
-| `snakeCase`      | Convert to snake_case                    | `snakeCase('hello world')`           |
-| `kebabCase`      | Convert to kebab-case                    | `kebabCase('hello world')`           |
-| `getTextStats`   | Analyze text, return statistics          | `getTextStats('Hello world.')`       |
-| `detectLanguage` | Detect language, return result object    | `detectLanguage('Bonjour le monde')` |
-| `numbersToWords` | Convert number < 100M to words           | `numbersToWords(12345)`              |
-| `isEmail`        | Validate if string is a valid email      | `isEmail('user@example.com')`        |
-
----
-
-## FAQ / Troubleshooting
-
-**Q: Does textConvert work in the browser?**
-A: Yes, it works in modern browsers and Node.js.
-
-**Q: How do I contribute a new feature?**
-A: See the [CONTRIBUTING.md](./CONTRIBUTING.md) file for detailed instructions.
-
-**Q: How accurate is language detection?**
-A: It's optimized for short and medium texts in supported languages. For critical use, always validate results.
-
----
-
 ## Contributing
 
 Contributions are welcome! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines and workflow.
+
+If you are adding a new function, follow the step-by-step instructions in [docs/ADDING_FUNCTION.md](docs/ADDING_FUNCTION.md).
 
 ---
 
