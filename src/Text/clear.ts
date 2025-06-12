@@ -1,4 +1,4 @@
-import { regex } from "../assets/regex";
+import { regex } from '../assets/regex';
 
 const { values } = regex;
 
@@ -11,16 +11,16 @@ const { values } = regex;
 
 export function clear(text: string): string {
   // Make sure there's an input
-  if (!text) return "Please provide a valid input text";
+  if (!text) return 'Please provide a valid input text';
 
   // Create an array of words
   const wordsArray: string[] = text.split(values.punctuation);
 
   // Filter wordsArray and remove punctuations
   const clearWords = wordsArray.map((word) => {
-    word = word.trim().toLowerCase().replace(values.punctuation, "");
+    word = word.trim().toLowerCase().replace(values.punctuation, '');
     return word;
   });
 
-  return clearWords.join(" ");
+  return clearWords.join(' ');
 }

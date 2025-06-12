@@ -67,10 +67,7 @@ export interface TextStatistics {
  * @param wordsPerMinute Reading speed in words per minute (default: 200)
  * @returns TextStatistics object with various metrics
  */
-export function getTextStats(
-  text: string,
-  wordsPerMinute: number = 200
-): TextStatistics {
+export function getTextStats(text: string, wordsPerMinute: number = 200): TextStatistics {
   // Handle empty input
   if (!text || !text.trim()) {
     return {
@@ -97,8 +94,7 @@ export function getTextStats(
   const sentenceCount = countSentences(text);
 
   // Paragraph count (separated by 2+ newlines)
-  const paragraphCount =
-    text.split(/\n\s*\n/).filter((p) => p.trim().length > 0).length || 1;
+  const paragraphCount = text.split(/\n\s*\n/).filter((p) => p.trim().length > 0).length || 1;
 
   // Calculate averages - fix for more accurate calculation
   let totalWordLength = 0;
@@ -109,8 +105,7 @@ export function getTextStats(
     totalWordLength += word.replace(/[^a-zA-Z0-9]/g, '').length;
   }
 
-  const averageWordLength =
-    wordCount > 0 ? Math.round((totalWordLength / wordCount) * 10) / 10 : 0;
+  const averageWordLength = wordCount > 0 ? Math.round((totalWordLength / wordCount) * 10) / 10 : 0;
 
   const averageSentenceLength =
     sentenceCount > 0 ? Math.round((wordCount / sentenceCount) * 10) / 10 : 0;

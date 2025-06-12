@@ -31,7 +31,7 @@ const textSamples = {
     .fill(
       `The quick brown fox jumps over the lazy dog. This sentence contains all the letters in the English alphabet.
     It is often used as a sample text because it contains all the letters. This is a longer text to test confidence.
-    The fox jumped over the fence and ran across the field. The dog, being lazy, stayed behind and watched.`
+    The fox jumped over the fence and ran across the field. The dog, being lazy, stayed behind and watched.`,
     )
     .join('\n'),
 };
@@ -72,38 +72,22 @@ console.log('LANGUAGE DETECTION BENCHMARKS');
 console.log('============================');
 
 // Test regular usage
-benchmark(
-  'English text detection',
-  () => detectLanguage(textSamples.english),
-  20
-);
-benchmark(
-  'French text detection',
-  () => detectLanguage(textSamples.french),
-  20
-);
-benchmark(
-  'Spanish text detection',
-  () => detectLanguage(textSamples.spanish),
-  20
-);
-benchmark(
-  'German text detection',
-  () => detectLanguage(textSamples.german),
-  20
-);
+benchmark('English text detection', () => detectLanguage(textSamples.english), 20);
+benchmark('French text detection', () => detectLanguage(textSamples.french), 20);
+benchmark('Spanish text detection', () => detectLanguage(textSamples.spanish), 20);
+benchmark('German text detection', () => detectLanguage(textSamples.german), 20);
 
 // Test cache performance
 console.log('\nTesting cache performance:');
 benchmark(
   'First run (no cache)',
   () => detectLanguage(textSamples.english, 4, { useCache: true }),
-  20
+  20,
 );
 benchmark(
   'Second run (cached)',
   () => detectLanguage(textSamples.english, 4, { useCache: true }),
-  20
+  20,
 );
 
 // Test large text performance
@@ -115,7 +99,7 @@ benchmark(
       useCache: false,
       maxCharsToAnalyze: undefined,
     }),
-  20
+  20,
 );
 benchmark(
   'Large text with maxCharsToAnalyze=500',
@@ -124,7 +108,7 @@ benchmark(
       useCache: false,
       maxCharsToAnalyze: 500,
     }),
-  20
+  20,
 );
 
 console.log('\nBenchmarks completed!');

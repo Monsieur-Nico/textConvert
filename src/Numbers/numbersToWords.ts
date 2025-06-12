@@ -1,10 +1,9 @@
 // Create digits in words
 const numbers: string[] =
   'zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen'.split(
-    ' '
+    ' ',
   );
-const tens: string[] =
-  'twenty thirty forty fifty sixty seventy eighty ninety'.split(' ');
+const tens: string[] = 'twenty thirty forty fifty sixty seventy eighty ninety'.split(' ');
 
 /**
  * Get any number below 100 million converted to words.
@@ -24,8 +23,7 @@ export function numbersToWords(number: number): string {
   const digit: number = number % 10;
 
   // Check if the input is between 20-99
-  if (number < 100)
-    return tens[~~(number / 10) - 2] + (digit ? '-' + numbers[digit] : '');
+  if (number < 100) return tens[~~(number / 10) - 2] + (digit ? '-' + numbers[digit] : '');
 
   // Check if the input is between 100 and 999
   if (number < 1000)
@@ -52,8 +50,6 @@ export function numbersToWords(number: number): string {
   const remainder = number % 1000000;
 
   return (
-    numbersToWords(millions) +
-    ' million' +
-    (remainder != 0 ? ' ' + numbersToWords(remainder) : '')
+    numbersToWords(millions) + ' million' + (remainder != 0 ? ' ' + numbersToWords(remainder) : '')
   );
 }

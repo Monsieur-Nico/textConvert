@@ -6,18 +6,14 @@ describe('#numbersToWords', () => {
     expect(numbersToWords(152)).toBe('one hundred and fifty-two');
   });
   it("should return 'one thousand five hundred and fifty-two' for 1552", () => {
-    expect(numbersToWords(1552)).toBe(
-      'one thousand five hundred and fifty-two'
-    );
+    expect(numbersToWords(1552)).toBe('one thousand five hundred and fifty-two');
   });
   it("should return 'eleven thousand five hundred and fifty-two' for 11552", () => {
-    expect(numbersToWords(11552)).toBe(
-      'eleven thousand five hundred and fifty-two'
-    );
+    expect(numbersToWords(11552)).toBe('eleven thousand five hundred and fifty-two');
   });
   it("should return 'one hundred and eleven thousand five hundred and fifty-two' for 111552", () => {
     expect(numbersToWords(111552)).toBe(
-      'one hundred and eleven thousand five hundred and fifty-two'
+      'one hundred and eleven thousand five hundred and fifty-two',
     );
   });
   it("should return 'ten million' for 10000000", () => {
@@ -27,9 +23,7 @@ describe('#numbersToWords', () => {
     expect(numbersToWords(92000000)).toBe('ninety-two million');
   });
   it('should return Error for 100,000,000', () => {
-    expect(() => numbersToWords(100000000)).toThrow(
-      'Please enter a number under 100 million!'
-    );
+    expect(() => numbersToWords(100000000)).toThrow('Please enter a number under 100 million!');
   });
 
   // Adding more test cases to improve coverage
@@ -55,8 +49,6 @@ describe('#numbersToWords', () => {
     expect(numbersToWords(1000000)).toBe('one million');
   });
   it("should return 'ninety-nine thousand nine hundred and ninety-nine' for 99999", () => {
-    expect(numbersToWords(99999)).toBe(
-      'ninety-nine thousand nine hundred and ninety-nine'
-    );
+    expect(numbersToWords(99999)).toBe('ninety-nine thousand nine hundred and ninety-nine');
   });
 });

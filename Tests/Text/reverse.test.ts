@@ -13,7 +13,7 @@ describe('#reverse', () => {
   });
   it("it should return 'This text is about to be reversed!' from '!desrever eb ot tuoba si txet sihT'", () => {
     expect(reverse('This text is about to be reversed!')).toBe(
-      '!desrever eb ot tuoba si txet sihT'
+      '!desrever eb ot tuoba si txet sihT',
     );
   });
   it("should return 'Please provide a valid input text' for empty input", () => {

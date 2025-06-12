@@ -62,9 +62,7 @@ describe('#countSentences', () => {
   });
 
   it('should return 3 for text with multiple sentences', () => {
-    expect(
-      countSentences('First sentence. Second sentence! Third sentence?')
-    ).toBe(3);
+    expect(countSentences('First sentence. Second sentence! Third sentence?')).toBe(3);
   });
 
   it('should handle sentences without final punctuation', () => {

@@ -15,13 +15,7 @@ const commonRules = {
 
 export default [
   {
-    ignores: [
-      'node_modules',
-      'dist',
-      '**/temp.js',
-      '**/temp.ts',
-      'config/**',
-    ],
+    ignores: ['node_modules', 'dist', '**/temp.js', '**/temp.ts', 'config/**'],
   },
   js.configs.recommended,
   // Type-aware linting for src and Tests

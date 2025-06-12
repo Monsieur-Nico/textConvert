@@ -1,4 +1,4 @@
-import { regex } from "../assets/regex";
+import { regex } from '../assets/regex';
 
 const { values } = regex;
 
@@ -9,7 +9,7 @@ const { values } = regex;
  */
 export function camelCase(text: string): string {
   // Make sure there's an input
-  if (!text) return "Please provide a valid input text";
+  if (!text) return 'Please provide a valid input text';
 
   // Make an array of words after splitting them
   const wordsArray: string[] = text.split(values.nonAlphabetic);
@@ -23,7 +23,7 @@ export function camelCase(text: string): string {
   });
 
   // Join the words and return them
-  return firstWord + cCaseArray.join("");
+  return firstWord + cCaseArray.join('');
 }
 
 /**
@@ -33,7 +33,7 @@ export function camelCase(text: string): string {
  */
 export function pascalCase(text: string): string {
   // Make sure there's an input
-  if (!text) return "Please provide a valid input text";
+  if (!text) return 'Please provide a valid input text';
 
   // Make an array of words after splitting them
   const wordsArray: string[] = text.split(values.nonAlphabetic);
@@ -45,7 +45,7 @@ export function pascalCase(text: string): string {
   });
 
   // Join the words and return them
-  return pCaseArray.join("");
+  return pCaseArray.join('');
 }
 
 /**
@@ -55,7 +55,7 @@ export function pascalCase(text: string): string {
  */
 export function snakeCase(text: string): string {
   // Make sure there's an input
-  if (!text) return "Please provide a valid input text";
+  if (!text) return 'Please provide a valid input text';
 
   // Make an array of words after splitting them depending on the input case
   const wordsArray: string[] = values.nonAlphaTest.test(text)
@@ -71,7 +71,7 @@ export function snakeCase(text: string): string {
     });
 
   // Join the words with "_" and return them
-  return sCaseArray.join("_");
+  return sCaseArray.join('_');
 }
 
 /**
@@ -81,7 +81,7 @@ export function snakeCase(text: string): string {
  */
 export function kebabCase(text: string): string {
   // Make sure there's an input
-  if (!text) return "Please provide a valid input text";
+  if (!text) return 'Please provide a valid input text';
 
   // Make an array of words after splitting them depending on the input case
   const wordsArray: string[] = values.nonAlphaTest.test(text)
@@ -97,5 +97,5 @@ export function kebabCase(text: string): string {
     });
 
   // Join the words with "-" and return them
-  return kCaseArray.join("-");
+  return kCaseArray.join('-');
 }

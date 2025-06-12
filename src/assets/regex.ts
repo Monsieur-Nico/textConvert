@@ -3,8 +3,8 @@
  */
 
 const regex = {
-  name: "Regex List",
-  description: "Regex patterns list to be used in functions",
+  name: 'Regex List',
+  description: 'Regex patterns list to be used in functions',
   values: {
     upperCase: /[A-Z]/g,
     upperCaseKeepLetter: /(?=[A-Z])/g,

@@ -28,10 +28,7 @@ export function count(text: string, countNumbers = false): number {
       return;
     }
     // Count letters with numbers.
-    if (
-      !(/[a-z]/g.test(letter) || /[A-Z]/g.test(letter) || /[0-9]/g.test(letter))
-    )
-      return;
+    if (!(/[a-z]/g.test(letter) || /[A-Z]/g.test(letter) || /[0-9]/g.test(letter))) return;
     temp++;
   });
 

@@ -1,10 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import {
-  camelCase,
-  kebabCase,
-  pascalCase,
-  snakeCase,
-} from '../../src/textConvert';
+import { camelCase, kebabCase, pascalCase, snakeCase } from '../../src/textConvert';
 
 describe('#camelCase', () => {
   it("should return helloWorld for 'hello-world'", () => {

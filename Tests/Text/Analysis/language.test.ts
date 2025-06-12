@@ -6,10 +6,7 @@ import {
 } from '../../../src/Text/Analysis/language';
 
 // Helper to assert dominant language with safer confidence check
-function expectDominantLanguage(
-  result: LanguageDetectionResult,
-  expected: Language
-) {
+function expectDominantLanguage(result: LanguageDetectionResult, expected: Language) {
   expect(result.language).toBe(expected);
   expect(result.confidence).toBeGreaterThanOrEqual(0.6);
   for (const [lang, score] of Object.entries(result.scores)) {
@@ -51,12 +48,10 @@ describe('#detectLanguage', () => {
   it('should have higher confidence for longer texts', () => {
     const shortResult = detectLanguage('Hello');
     const longResult = detectLanguage(
-      'The quick brown fox jumps over the lazy dog multiple times during every morning.'
+      'The quick brown fox jumps over the lazy dog multiple times during every morning.',
     );
 
-    expect(longResult.confidence).toBeGreaterThanOrEqual(
-      shortResult.confidence
-    );
+    expect(longResult.confidence).toBeGreaterThanOrEqual(shortResult.confidence);
     expectDominantLanguage(longResult, Language.English);
   });
 
@@ -114,14 +109,8 @@ describe('#detectLanguage', () => {
 
   it('should correctly detect dominant language in mixed texts', () => {
     const mixedCases: [string, Language][] = [
-      [
-        'This is mostly English text with algunas palabras en español.',
-        Language.English,
-      ],
-      [
-        'Este es principalmente español with some random English words.',
-        Language.Spanish,
-      ],
+      ['This is mostly English text with algunas palabras en español.', Language.English],
+      ['Este es principalmente español with some random English words.', Language.Spanish],
     ];
 
     mixedCases.forEach(([input, expectedLanguage]) => {
