@@ -66,6 +66,21 @@ export interface TextStatistics {
  * @param text The text to analyze
  * @param wordsPerMinute Reading speed in words per minute (default: 200)
  * @returns TextStatistics object with various metrics
+ * @example
+ * getTextStats('Hello world! This is a test.');
+ * // {
+ * //   characterCount: 28,
+ * //   characterCountNoSpaces: 24,
+ * //   letterCount: 20,
+ * //   alphanumericCount: 20,
+ * //   wordCount: 6,
+ * //   sentenceCount: 2,
+ * //   paragraphCount: 1,
+ * //   averageWordLength: 3.3,
+ * //   averageSentenceLength: 3,
+ * //   readingTimeSeconds: 2,
+ * //   readingTimeFormatted: '2 sec'
+ * // }
  */
 export function getTextStats(text: string, wordsPerMinute: number = 200): TextStatistics {
   // Handle empty input
