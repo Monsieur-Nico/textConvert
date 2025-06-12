@@ -2,6 +2,47 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.1](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.0...v1.5.1) (2025-06-12)
+
+
+### 🧼 Refactors
+
+* streamline import statements in textConvert.ts for improved readability and consistency ([d621916](https://github.com/Monsieur-Nico/textConvert/commit/d6219167e5038bce2eb4b477027148eac546bf2a))
+
+
+### ✅ Tests
+
+* add comprehensive unit tests for email validation functionality, covering valid, invalid, and edge case scenarios ([21410ca](https://github.com/Monsieur-Nico/textConvert/commit/21410cafcfbc5c7909e04f81a6a890da41e0186a))
+
+
+### ✨ Features
+
+* add isEmail function to textConvert.ts for email validation integration ([b363b32](https://github.com/Monsieur-Nico/textConvert/commit/b363b32e66a51db6676e03fdbb71d8e378989190))
+* implement email validation function adhering to RFC 5322 standards, including comprehensive checks for structure, character validity, and length limits ([4f7fd7b](https://github.com/Monsieur-Nico/textConvert/commit/4f7fd7bd0a809adb908b5fec6beb863638a056ab))
+
+
+### 🔧 Chores
+
+* format all the files ([5fcc904](https://github.com/Monsieur-Nico/textConvert/commit/5fcc904bb33fd9f1bcc84229f683f4993d9311d6))
+* remove outdated documentation files and assets from the repository ([97a7fc3](https://github.com/Monsieur-Nico/textConvert/commit/97a7fc3599d927a07b5397cf7551ad7ead3caaef))
+
+
+### 📚 Documentation
+
+* add architecture overview for textConvert library, detailing project structure, main modules, design principles, and future directions ([0a110b7](https://github.com/Monsieur-Nico/textConvert/commit/0a110b705c37ec2c26c065a6612582de7c7ab649))
+* add comprehensive API reference for textConvert library, detailing all public functions, parameters, return values, examples, and edge cases ([5b43b72](https://github.com/Monsieur-Nico/textConvert/commit/5b43b7244a6e638640a943a9940a44051511f007))
+* add example usage for getTextStats function to enhance documentation clarity ([e2ed14d](https://github.com/Monsieur-Nico/textConvert/commit/e2ed14d5d86afe4464feb93e0ca09699b7cfb278))
+* add examples to various text processing functions for improved clarity and usage guidance ([bcd4f2a](https://github.com/Monsieur-Nico/textConvert/commit/bcd4f2a7f3d8beaa20aee6dbc6fdeedb2c10ad3c))
+* add FAQ section for textConvert library, covering installation, usage, features, compatibility, contributing, and troubleshooting ([0f5845e](https://github.com/Monsieur-Nico/textConvert/commit/0f5845ed1a4ca73bc63609efe802199ee031ab40))
+* add guide for adding new functions to textConvert library ([109761d](https://github.com/Monsieur-Nico/textConvert/commit/109761d1ced7df68c9a2d33f0440a15d0483ac06))
+* add recipes and advanced usage guide for textConvert library ([bb5d493](https://github.com/Monsieur-Nico/textConvert/commit/bb5d493413a6a93e8fe6aa4dd58cbf86927bba16))
+* enhance contributing guidelines with detailed development workflow and documentation requirements ([0e190f8](https://github.com/Monsieur-Nico/textConvert/commit/0e190f8116cabcac887bbabe13acec4b8d82a649))
+* update architecture document to specify code block formatting for project structure ([d073101](https://github.com/Monsieur-Nico/textConvert/commit/d073101cc612978141b55aa7b1b9d455a46c739e))
+* update function addition guide to include detailed documentation requirements for README.md, API.md, and RECIPES.md ([05eac9f](https://github.com/Monsieur-Nico/textConvert/commit/05eac9fdab834d230545b2c4512ba2938e70d4c2))
+* update pull request template to improve formatting and clarity ([445377d](https://github.com/Monsieur-Nico/textConvert/commit/445377d6cad08985d57b60be7598533bc81d5541))
+* update README to include isEmail function details and usage examples ([ac441aa](https://github.com/Monsieur-Nico/textConvert/commit/ac441aa836f7e6ca65ccc4da07366423daf19be5))
+* update README.md to include quick examples and API documentation links for enhanced usability ([7dcb8f4](https://github.com/Monsieur-Nico/textConvert/commit/7dcb8f443a79937e3d3a197892583a15ba18a953))
+
 ## [1.5.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.4.0...v1.5.0) (2025-06-11)
 
 ### 📚 Documentation
