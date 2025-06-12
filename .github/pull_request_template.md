@@ -1,4 +1,4 @@
-### Conventional Commit Message Format
+# Conventional Commit Message Format
 
 Please use the Conventional Commits format for your commits:
 
@@ -18,7 +18,7 @@ Please use the Conventional Commits format for your commits:
 
 ---
 
-### Summary
+## Summary
 
 `#<issue-number>` _(Delete this line if it's not related to an issue)._
 
