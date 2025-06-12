@@ -1039,6 +1039,8 @@ const uniqueChars: Partial<Record<Language, string[]>> = {
  * @param minLength Minimum text length for reliable detection (default: 4)
  * @param options Additional options for detection
  * @returns Language detection result with confidence score
+ * @example
+ * detectLanguage('Bonjour le monde'); // { language: 'French', ... }
  */
 export function detectLanguage(
   text: string,

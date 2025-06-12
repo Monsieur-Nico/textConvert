@@ -2,6 +2,8 @@
  * Reverses all characters in a string.
  * @param text A string to reverse.
  * @returns Reversed string.
+ * @example
+ * reverse('Hello, world!'); // '!dlrow ,olleH'
  */
 
 export function reverse(text: string) {

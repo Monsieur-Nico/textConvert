@@ -7,6 +7,9 @@ import { clear } from './clear';
  * @param countNumbers boolean value to determine if numbers should be counted as letters.
  *
  * @returns Number of letters and numbers (if requested) in a string.
+ * @example
+ * count('Hello, world!'); // 10
+ * count('Hello0 world', true); // 11
  */
 
 export function count(text: string, countNumbers = false): number {
@@ -42,6 +45,8 @@ export function count(text: string, countNumbers = false): number {
  *
  * @param text String input to count words from
  * @returns Number of words in the string
+ * @example
+ * countWords('Hello, world!'); // 2
  */
 export function countWords(text: string): number {
   if (!text?.trim()) return 0;
@@ -62,6 +67,8 @@ export function countWords(text: string): number {
  *
  * @param text String input to count sentences from
  * @returns Number of sentences in the string
+ * @example
+ * countSentences('Hello world! How are you?'); // 2
  */
 export function countSentences(text: string): number {
   if (!text?.trim()) return 0;

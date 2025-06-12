@@ -6,6 +6,8 @@ const { values } = regex;
  * Convert a string from any convention to Camel Case convention.
  * @param text A string to be converted to Camel Case.
  * @returns A string in camelCase convention.
+ * @example
+ * camelCase('hello world'); // 'helloWorld'
  */
 export function camelCase(text: string): string {
   // Make sure there's an input
@@ -30,6 +32,8 @@ export function camelCase(text: string): string {
  * Convert a string from any convention to Pascal Case convention.
  * @param text A string to be converted to Camel Case.
  * @returns A string in PascalCase convention.
+ * @example
+ * pascalCase('hello world'); // 'HelloWorld'
  */
 export function pascalCase(text: string): string {
   // Make sure there's an input
@@ -52,6 +56,8 @@ export function pascalCase(text: string): string {
  * Convert a string from any convention to Snake Case convention.
  * @param text A string to be converted to Snake Case.
  * @returns A string in snake_case convention.
+ * @example
+ * snakeCase('hello world'); // 'hello_world'
  */
 export function snakeCase(text: string): string {
   // Make sure there's an input
@@ -78,6 +84,8 @@ export function snakeCase(text: string): string {
  * Convert a string from any convention to Kebab Case convention.
  * @param text A string to be converted to Kebab Case.
  * @returns A string in kebab-case convention.
+ * @example
+ * kebabCase('hello world'); // 'hello-world'
  */
 export function kebabCase(text: string): string {
   // Make sure there's an input

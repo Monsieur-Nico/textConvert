@@ -3,6 +3,9 @@
  * @param text A string to spread.
  * @param clear Whether to clear punctuation from the text. Default is false.
  * @returns Array of characters or an error message.
+ * @example
+ * spread('Hello, world!'); // ['H', 'e', ...]
+ * spread('Hello, world!', true); // ['H', 'e', ...]
  */
 import { clear as clearText } from './clear';
 

@@ -7,6 +7,8 @@ const { values } = regex;
  *
  * @param text String input to clear from punctuation.
  * @returns Either a string or an array of strings cleared from punctuations based on the arguments passed.
+ * @example
+ * clear('Hello, world!'); // 'hello world'
  */
 
 export function clear(text: string): string {

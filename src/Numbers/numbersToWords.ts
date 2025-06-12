@@ -9,6 +9,8 @@ const tens: string[] = 'twenty thirty forty fifty sixty seventy eighty ninety'.s
  * Get any number below 100 million converted to words.
  * @param number Integer input to turn into text.
  * @returns A string of numbers converted to words.
+ * @example
+ * numbersToWords(12345); // 'twelve thousand three hundred and forty-five'
  */
 export function numbersToWords(number: number): string {
   // Check if the number is less than 100 million
