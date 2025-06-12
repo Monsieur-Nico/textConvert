@@ -34,10 +34,15 @@ This guide explains the steps to add a new function to the textConvert library, 
   };
   ```
 
-## 3. Add Documentation
+## 3. Update Documentation (Required)
 
-- Add a description and example for your function in the **Features** section of `README.md`.
-- Add your function to the **API Reference** table in `README.md`.
+- **README.md**
+  - Add a description and example for your function in the **Features** section.
+  - Add your function to the **API Reference** table.
+- **docs/API.md**
+  - Add a detailed entry for your function: description, parameters, return type, example, and edge cases.
+- **docs/RECIPES.md**
+  - Add at least one practical usage example or recipe for your function if applicable.
 
 ## 4. Write Tests
 
@@ -70,4 +75,4 @@ This guide explains the steps to add a new function to the textConvert library, 
 
 ---
 
-By following these steps, your new function will be fully integrated, documented, and tested in the textConvert library.
+By following these steps, your new function will be fully integrated, documented, and tested in the textConvert library. Keeping all documentation up to date ensures a great experience for all users and contributors.
