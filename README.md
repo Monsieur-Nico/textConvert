@@ -137,6 +137,13 @@ const convert = require('textconvert');
 
   </details>
 
+- <b>isEmail</b>: Validate if a string is a valid email address.
+
+  ```js
+  convert.isEmail('user@example.com'); // true
+  convert.isEmail('not-an-email'); // false
+  ```
+
 </details>
 
 <details>
@@ -196,6 +203,7 @@ console.log(convert.numbersToWords(987654));
 | `getTextStats`   | Analyze text, return statistics          | `getTextStats('Hello world.')`       |
 | `detectLanguage` | Detect language, return result object    | `detectLanguage('Bonjour le monde')` |
 | `numbersToWords` | Convert number < 100M to words           | `numbersToWords(12345)`              |
+| `isEmail`        | Validate if string is a valid email      | `isEmail('user@example.com')`        |
 
 ---
 
