@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getTextStats } from '../../../src/Text/Analysis/statistics';
+import { getTextStats } from '../../../src/text/analysis/statistics';
 
 describe('#getTextStats', () => {
   it('should return empty stats for empty input', () => {

@@ -1,12 +1,12 @@
-import { camelCase, kebabCase, pascalCase, snakeCase } from './Text/conventions';
+import { camelCase, kebabCase, pascalCase, snakeCase } from './text/conventions';
 
-import { detectLanguage, Language, LanguageDetectionResult } from './Text/analysis/language';
-import { getTextStats } from './Text/analysis/statistics';
-import { clear } from './Text/clear';
-import { count, countSentences, countWords } from './Text/count';
-import { reverse } from './Text/reverse';
-import { spread } from './Text/spread';
-import { isEmail } from './Text/Validation/email';
+import { detectLanguage, Language, LanguageDetectionResult } from './text/analysis/language';
+import { getTextStats } from './text/analysis/statistics';
+import { clear } from './text/clear';
+import { count, countSentences, countWords } from './text/count';
+import { reverse } from './text/reverse';
+import { spread } from './text/spread';
+import { isEmail } from './text/validation/email';
 
 import { numbersToWords } from './numbers/numbersToWords';
 

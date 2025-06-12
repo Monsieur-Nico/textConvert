@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { isEmail } from '../../../src/Text/Validation/email';
+import { isEmail } from '../../../src/text/validation/email';
 
 describe('#isEmail', () => {
   // Valid email addresses

@@ -5,7 +5,7 @@
  * npx ts-node Tests/Text/Analysis/language.benchmark.ts
  */
 
-import { detectLanguage } from '../../../src/Text/Analysis/language';
+import { detectLanguage } from '../../../src/text/analysis/language';
 
 // Sample texts for benchmarking
 const textSamples = {

@@ -6,7 +6,7 @@ This guide explains the steps to add a new function to the textConvert library, 
 
 ## 1. Implement the Function
 
-- Create a new file in the appropriate directory under `src/` (e.g., `src/Text/Validation/yourFunction.ts`).
+- Create a new file in the appropriate directory under `src/` (e.g., `src/text/validation/yourFunction.ts`).
 - Write your function as a named export:
 
   ```ts
@@ -22,7 +22,7 @@ This guide explains the steps to add a new function to the textConvert library, 
 - Import your function in `src/textConvert.ts`:
 
   ```ts
-  import { yourFunction } from './Text/Validation/yourFunction';
+  import { yourFunction } from './text/validation/yourFunction';
   ```
 
 - Add it to the export block:
@@ -46,7 +46,7 @@ This guide explains the steps to add a new function to the textConvert library, 
 
 ## 4. Write Tests
 
-- Create a test file in the appropriate directory under `Tests/` (e.g., `Tests/Text/Validation/yourFunction.test.ts`).
+- Create a test file in the appropriate directory under `tests/` (e.g., `tests/text/validation/yourFunction.test.ts`).
 - Use the `vitest` framework for writing tests.
 - Cover normal, edge, and invalid input cases.
 

@@ -3,7 +3,7 @@ import {
   detectLanguage,
   Language,
   LanguageDetectionResult,
-} from '../../../src/Text/Analysis/language';
+} from '../../../src/text/analysis/language';
 
 // Helper to assert dominant language with safer confidence check
 function expectDominantLanguage(result: LanguageDetectionResult, expected: Language) {
