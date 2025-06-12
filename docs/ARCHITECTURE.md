@@ -6,7 +6,7 @@ This document provides a high-level overview of the architecture and design prin
 
 ## Project Structure
 
-```
+```text
 textConvert/
   src/
     Text/
