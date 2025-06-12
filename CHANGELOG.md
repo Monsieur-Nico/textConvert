@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.3](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.2...v1.5.3) (2025-06-12)
+
+
+### ✅ Tests
+
+* update error handling test for spread function to use [@ts-expect-error](https://github.com/ts-expect-error) for type checking ([31dcdb1](https://github.com/Monsieur-Nico/textConvert/commit/31dcdb17815b3c3d7e49f2b34a29d9b80e7289e3))
+
+
+### 🐛 Fixes
+
+* rename folders ([11c3873](https://github.com/Monsieur-Nico/textConvert/commit/11c3873a5ba419f9a4093c78eb037807f552b6b5))
+* rename folders ([41d2c35](https://github.com/Monsieur-Nico/textConvert/commit/41d2c3582a179311c99190dde43ae0540eb35da8))
+* update ESLint configuration to support case-insensitive test folder matching ([e027625](https://github.com/Monsieur-Nico/textConvert/commit/e027625cae089b9c6f0f04057fd4be5292dca677))
+
 ### [1.5.2](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.1...v1.5.2) (2025-06-12)
 
 
