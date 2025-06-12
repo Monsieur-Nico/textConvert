@@ -371,3 +371,27 @@ isEmail('not-an-email'); // false
 **Edge Cases:**
 
 - Returns `false` for empty, non-string, or malformed input.
+
+## isUrl
+
+Validates if a string is a valid URL.
+
+**Parameters:**
+
+- `text: string` — The string to validate.
+
+**Returns:**
+
+- `boolean` — `true` if valid, `false` otherwise.
+
+**Example:**
+
+```js
+isUrl('https://example.com/path?query=123'); // true
+isUrl('ftp://fileserver'); // false
+isUrl('not a url'); // false
+```
+
+**Edge Cases:**
+
+- Returns `false` for empty input, non-string inputs or wrong protocol/format.

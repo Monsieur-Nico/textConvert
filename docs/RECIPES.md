@@ -25,6 +25,16 @@ isEmail('user@example.com'); // true
 isEmail('not-an-email'); // false
 ```
 
+### Validate a URL
+
+```js
+import { isUrl } from 'textconvert';
+
+isUrl('https://example.com/path?query=123'); // true
+isUrl('ftp://fileserver'); // false
+isUrl('not a url'); // false
+```
+
 ---
 
 ## Case Conversion
