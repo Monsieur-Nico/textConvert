@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.2](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.1...v1.5.2) (2025-06-12)
+
+
+### 🐛 Fixes
+
+* rename folders properly ([15e12bb](https://github.com/Monsieur-Nico/textConvert/commit/15e12bbb1cd48259d8add501ca153eb29559ae36))
+
+
+### 🧼 Refactors
+
+* standardize folder names to lowercase for consistency across the project ([051573e](https://github.com/Monsieur-Nico/textConvert/commit/051573e89b91422140997ccd3dff081abf01c039))
+
+
+### 📚 Documentation
+
+* enhance CHANGELOG.md with detailed entries for new features, tests, refactors, and documentation updates in version 1.5.1 ([42df2c1](https://github.com/Monsieur-Nico/textConvert/commit/42df2c12cf1f97b850bfea65ddfbbf393abababf))
+
 ### [1.5.1](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.0...v1.5.1) (2025-06-12)
 
 ### 🧼 Refactors
