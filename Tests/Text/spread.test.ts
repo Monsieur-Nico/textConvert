@@ -25,7 +25,7 @@ describe('#spread', () => {
 
   // Adding more test cases to improve coverage
   it('should return error message for invalid input type', () => {
-    // @ts-ignore - Testing runtime behavior with incorrect types
+    // @ts-expect-error Testing runtime behavior with incorrect types
     expect(spread(123)).toBe('Input text should be a string!');
   });
 
