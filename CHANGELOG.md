@@ -4,34 +4,29 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [1.5.3](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.2...v1.5.3) (2025-06-12)
 
-
 ### ✅ Tests
 
-* update error handling test for spread function to use [@ts-expect-error](https://github.com/ts-expect-error) for type checking ([31dcdb1](https://github.com/Monsieur-Nico/textConvert/commit/31dcdb17815b3c3d7e49f2b34a29d9b80e7289e3))
-
+- update error handling test for spread function to use [@ts-expect-error](https://github.com/ts-expect-error) for type checking ([31dcdb1](https://github.com/Monsieur-Nico/textConvert/commit/31dcdb17815b3c3d7e49f2b34a29d9b80e7289e3))
 
 ### 🐛 Fixes
 
-* rename folders ([11c3873](https://github.com/Monsieur-Nico/textConvert/commit/11c3873a5ba419f9a4093c78eb037807f552b6b5))
-* rename folders ([41d2c35](https://github.com/Monsieur-Nico/textConvert/commit/41d2c3582a179311c99190dde43ae0540eb35da8))
-* update ESLint configuration to support case-insensitive test folder matching ([e027625](https://github.com/Monsieur-Nico/textConvert/commit/e027625cae089b9c6f0f04057fd4be5292dca677))
+- rename folders ([11c3873](https://github.com/Monsieur-Nico/textConvert/commit/11c3873a5ba419f9a4093c78eb037807f552b6b5))
+- rename folders ([41d2c35](https://github.com/Monsieur-Nico/textConvert/commit/41d2c3582a179311c99190dde43ae0540eb35da8))
+- update ESLint configuration to support case-insensitive test folder matching ([e027625](https://github.com/Monsieur-Nico/textConvert/commit/e027625cae089b9c6f0f04057fd4be5292dca677))
 
 ### [1.5.2](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.1...v1.5.2) (2025-06-12)
 
-
 ### 🐛 Fixes
 
-* rename folders properly ([15e12bb](https://github.com/Monsieur-Nico/textConvert/commit/15e12bbb1cd48259d8add501ca153eb29559ae36))
-
+- rename folders properly ([15e12bb](https://github.com/Monsieur-Nico/textConvert/commit/15e12bbb1cd48259d8add501ca153eb29559ae36))
 
 ### 🧼 Refactors
 
-* standardize folder names to lowercase for consistency across the project ([051573e](https://github.com/Monsieur-Nico/textConvert/commit/051573e89b91422140997ccd3dff081abf01c039))
-
+- standardize folder names to lowercase for consistency across the project ([051573e](https://github.com/Monsieur-Nico/textConvert/commit/051573e89b91422140997ccd3dff081abf01c039))
 
 ### 📚 Documentation
 
-* enhance CHANGELOG.md with detailed entries for new features, tests, refactors, and documentation updates in version 1.5.1 ([42df2c1](https://github.com/Monsieur-Nico/textConvert/commit/42df2c12cf1f97b850bfea65ddfbbf393abababf))
+- enhance CHANGELOG.md with detailed entries for new features, tests, refactors, and documentation updates in version 1.5.1 ([42df2c1](https://github.com/Monsieur-Nico/textConvert/commit/42df2c12cf1f97b850bfea65ddfbbf393abababf))
 
 ### [1.5.1](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.0...v1.5.1) (2025-06-12)
 
