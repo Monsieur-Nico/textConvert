@@ -34,8 +34,16 @@
         "tool",
         "userTesting"
       ]
+    },
+    {
+      "login": "madesh02104",
+      "name": "Madesh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/173074134?v=4",
+      "profile": "https://github.com/madesh02104",
+      "contributions": ["code", "doc", "example", "test"]
     }
   ],
   "contributorsPerLine": 7,
   "linkToUsage": false
 }
+
