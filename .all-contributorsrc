@@ -41,6 +41,13 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/173074134?v=4",
       "profile": "https://github.com/madesh02104",
       "contributions": ["code", "doc", "example", "test"]
+    },
+    {
+      "login": "Kuba429",
+      "name": "Kuba",
+      "avatar_url": "https://avatars.githubusercontent.com/u/67023529?v=4",
+      "profile": "https://github.com/Kuba429",
+      "contributions": ["code", "doc", "example"]
     }
   ],
   "contributorsPerLine": 7,
