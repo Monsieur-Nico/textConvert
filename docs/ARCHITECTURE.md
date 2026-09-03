@@ -10,8 +10,12 @@ This document provides a high-level overview of the architecture and design prin
 textConvert/
   src/
     text/
-      analysis/         # Text analysis utilities (e.g., statistics, language detection)
-      validation/       # Validation utilities (e.g., isEmail)
+      analysis/
+        statistics.ts    # Text statistics (word/char/sentence counts, reading time)
+        language.ts      # Language detection
+      validation/
+        email.ts         # Email validation
+        url.ts           # URL validation
       conventions.ts    # Case conversion functions
       clear.ts          # Punctuation removal
       count.ts          # Counting utilities (words, sentences, letters)
@@ -31,7 +35,7 @@ textConvert/
 ## Main Modules & Responsibilities
 
 - **text/analysis/**: Text statistics, language detection, and related analysis tools.
-- **text/validation/**: Validation functions (e.g., email, future: URL, phone, etc.).
+- **text/validation/**: Validation functions (email, URL; future: phone, etc.).
 - **text/conventions.ts**: Case conversion (camelCase, PascalCase, etc.).
 - **text/clear.ts**: Remove punctuation and clean text.
 - **text/count.ts**: Count words, sentences, and letters.
@@ -72,7 +76,7 @@ textConvert/
 
 ## Future Directions
 
-- More validators (URL, phone, etc.)
+- More validators (phone number, etc.)
 - Internationalization and localization
 - More advanced text analytics
 - Documentation website

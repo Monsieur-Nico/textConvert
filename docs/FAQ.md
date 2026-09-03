@@ -7,7 +7,7 @@ This FAQ answers common questions about installing, using, and contributing to t
 ## General
 
 **Q: What is textConvert?**
-A: textConvert is a TypeScript library for text conversion, analysis, and validation, including case conversion, word/sentence counting, email validation, and more.
+A: textConvert is a TypeScript library for text conversion, analysis, and validation, including case conversion, word/sentence counting, email and URL validation, and more.
 
 **Q: Who maintains this library?**
 A: textConvert is maintained by Nicolas Alkhoury and open-source contributors.
@@ -36,10 +36,13 @@ A: Yes, textConvert works in modern browsers and Node.js.
 ## Features & API
 
 **Q: What can textConvert do?**
-A: It can convert text between cases, analyze text (count words, sentences, etc.), validate emails, convert numbers to words, and more. See the README and API Reference for details.
+A: It can convert text between cases, analyze text (count words, sentences, etc.), validate emails and URLs, detect language, convert numbers to words, and more. See the README and API Reference for details.
 
 **Q: How do I validate an email address?**
 A: Use `isEmail('user@example.com')` — returns `true` if valid, `false` otherwise.
+
+**Q: How do I validate a URL?**
+A: Use `isUrl('https://example.com')` — returns `true` if valid, `false` otherwise. Only `http`/`https` URLs are accepted.
 
 **Q: How do I add a new function?**
 A: See `docs/ADDING_FUNCTION.md` for a step-by-step guide.

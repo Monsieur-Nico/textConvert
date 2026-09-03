@@ -4,7 +4,7 @@
 
 <div align="center">
   <a href="#contributors-">
-    <img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square" alt="All Contributors" />
+    <img src="https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square" alt="All Contributors" />
   </a>
   <img src="https://img.shields.io/github/package-json/v/Monsieur-Nico/textConvert?style=flat-square" alt="GitHub package version" />
   <img src="https://img.shields.io/github/license/Monsieur-Nico/textConvert?style=flat-square" alt="GitHub license" />
@@ -34,8 +34,8 @@
   - [Installation](#installation)
   - [Usage](#usage)
 - [✨ Features](#-features)
+- [📋 API Reference](#-api-reference)
 - [Quick Examples](#quick-examples)
-- [API Docs](#api-docs)
 - [Advanced Examples](#advanced-examples)
 - [Why Use textConvert?](#why-use-textconvert)
 - [Contributing](#contributing)
@@ -68,9 +68,34 @@ const convert = require('textconvert');
 
 - Case conversion: camelCase, PascalCase, snake_case, kebab-case
 - Text analysis: word/letter/sentence/paragraph counting, reading time, etc.
+- Validation: email addresses and URLs
 - Language detection: English, French, Spanish, German, Italian, Portuguese, Dutch
 - Number to words: Converts numbers < 100 million to English words
 - Pure, dependency-free, and TypeScript-ready
+
+---
+
+## 📋 API Reference
+
+| Function                                     | Description                                           |
+| -------------------------------------------- | ----------------------------------------------------- |
+| `camelCase(text)`                            | Convert to camelCase                                  |
+| `pascalCase(text)`                           | Convert to PascalCase                                 |
+| `snakeCase(text)`                            | Convert to snake_case                                 |
+| `kebabCase(text)`                            | Convert to kebab-case                                 |
+| `clear(text)`                                | Remove punctuation from text                          |
+| `count(text, countNumbers?)`                 | Count letters (optionally including numbers)          |
+| `countWords(text)`                           | Count words                                           |
+| `countSentences(text)`                       | Count sentences                                       |
+| `reverse(text)`                              | Reverse a string                                      |
+| `spread(text, clear?)`                       | Split a string into an array of characters            |
+| `getTextStats(text, wordsPerMinute?)`        | Full text statistics (counts, averages, reading time) |
+| `detectLanguage(text, minLength?, options?)` | Detect the language of a piece of text                |
+| `numbersToWords(number)`                     | Convert a number under 100 million to English words   |
+| `isEmail(text)`                              | Validate an email address                             |
+| `isUrl(text)`                                | Validate a URL                                        |
+
+See [docs/API.md](docs/API.md) for full parameter, return type, and edge-case details on every function.
 
 ---
 
@@ -86,12 +111,6 @@ isUrl('https://example.com/path?query=123'); // true
 ```
 
 See more usage examples in [docs/RECIPES.md](docs/RECIPES.md).
-
----
-
-## API Docs
-
-See the [full API documentation](docs/API.md) for all functions, parameters, and return types.
 
 ---
 

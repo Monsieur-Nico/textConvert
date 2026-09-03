@@ -75,7 +75,12 @@
     "camelcase",
     "pascalcase",
     "snakecase",
-    "kebabase"
+    "kebabcase",
+    "validation",
+    "email-validation",
+    "url-validation",
+    "language-detection",
+    "typescript"
   ],
   "author": "Nicolas Alkhoury",
   "license": "MIT",
