@@ -1,6 +1,10 @@
 <!-- markdownlint-disable MD033 -->
 
-<h1 align="center">📦 textConvert 📦</h1>
+<p align="center">
+  <img src="media/logo.png" alt="textConvert logo" width="96" height="96" />
+</p>
+
+<h1 align="center">textConvert</h1>
 
 <div align="center">
   <a href="#contributors-">
