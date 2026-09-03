@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [1.5.4](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.3...v1.5.4) (2026-09-03)
+
+
+### Bug Fixes
+
+* **ci:** resolve tsc from the local devDependency, not an ambient global ([7e98857](https://github.com/Monsieur-Nico/textConvert/commit/7e988577da5e4d59105a8a45aeaef35c43ad668f))
+* **ci:** run a real format check and align node matrix with engines ([024536b](https://github.com/Monsieur-Nico/textConvert/commit/024536bd4e30b5f000f19d5bb9bd4e115a934b79))
+
 ### [1.5.3](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.2...v1.5.3) (2025-06-12)
 
 ### ✅ Tests
