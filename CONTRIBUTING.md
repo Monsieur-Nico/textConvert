@@ -119,8 +119,9 @@ This project follows the [all-contributors](https://allcontributors.org/) specif
 
 ## Release & Publishing
 
-- Releases are managed with `standard-version` and follow Conventional Commits.
-- When a release is published on GitHub, the package is automatically published to npm via GitHub Actions.
+- Releases are managed automatically by [release-please](https://github.com/googleapis/release-please), driven by Conventional Commits on `main`. There's nothing to run manually.
+- Every push to `main` that contains releasable commits (`feat`, `fix`, etc.) opens or updates a release PR with the version bump and CHANGELOG.md entry. Merging that PR creates the GitHub Release and tag.
+- When that release is published, the package is automatically published to npm via GitHub Actions.
 
 ## Code of Conduct
 
