@@ -1,6 +1,6 @@
 {
   "name": "textconvert",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "Public library to convert text into many conventions and formats.",
   "type": "module",
   "main": "dist/textConvert.js",
