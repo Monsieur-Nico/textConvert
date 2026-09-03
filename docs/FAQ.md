@@ -36,13 +36,16 @@ A: Yes, textConvert works in modern browsers and Node.js.
 ## Features & API
 
 **Q: What can textConvert do?**
-A: It can convert text between cases, analyze text (count words, sentences, etc.), validate emails and URLs, detect language, convert numbers to words, and more. See the README and API Reference for details.
+A: It can convert text between cases, analyze text (count words, sentences, etc.), validate emails, URLs, and phone numbers, detect language, convert numbers to words, and more. See the README and API Reference for details.
 
 **Q: How do I validate an email address?**
 A: Use `isEmail('user@example.com')` — returns `true` if valid, `false` otherwise.
 
 **Q: How do I validate a URL?**
 A: Use `isUrl('https://example.com')` — returns `true` if valid, `false` otherwise. Only `http`/`https` URLs are accepted.
+
+**Q: How do I validate a phone number?**
+A: Use `isPhoneNumber('+1-202-555-0173')` — returns `true` if valid, `false` otherwise. This is structural validation only (digit count and format), not a check against real country codes or numbering plans — see [docs/API.md](API.md) for the exact rules.
 
 **Q: How do I add a new function?**
 A: See `docs/ADDING_FUNCTION.md` for a step-by-step guide.

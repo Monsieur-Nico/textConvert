@@ -35,6 +35,16 @@ isUrl('ftp://fileserver'); // false
 isUrl('not a url'); // false
 ```
 
+### Validate a Phone Number
+
+```js
+import { isPhoneNumber } from 'textconvert';
+
+isPhoneNumber('+1-202-555-0173'); // true (international, explicit country code)
+isPhoneNumber('(202) 555 0173'); // true (local, includes area code)
+isPhoneNumber('5550173'); // false (too short, no area code)
+```
+
 ---
 
 ## Case Conversion
