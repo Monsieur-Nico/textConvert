@@ -4,6 +4,7 @@ node_modules/
 # Build outputs
 dist/
 build/
+typedoc-site/
 
 # Coverage & test output
 coverage/

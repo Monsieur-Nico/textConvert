@@ -1,0 +1,9 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src/textConvert.ts"],
+  "out": "typedoc-site",
+  "name": "textConvert",
+  "excludePrivate": true,
+  "excludeInternal": true,
+  "cleanOutputDir": true
+}

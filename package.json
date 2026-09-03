@@ -32,6 +32,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "coverage": "vitest run --coverage",
+    "docs:build": "typedoc",
     "prepack": "npm run build",
     "prepublishOnly": "npm test && npm run build",
     "lint:fix": "eslint . --ext .ts --fix",
@@ -89,7 +90,7 @@
   "bugs": {
     "url": "https://github.com/Monsieur-Nico/textConvert/issues"
   },
-  "homepage": "https://textconvert.tech/",
+  "homepage": "https://monsieur-nico.github.io/textConvert/",
   "devDependencies": {
     "@commitlint/cli": "^21.2.2",
     "@commitlint/config-conventional": "^21.2.2",
@@ -107,6 +108,7 @@
     "rollup": "^4.63.1",
     "tslib": "^2.8.1",
     "tsx": "^4.23.13",
+    "typedoc": "^0.28.20",
     "typescript": "^5.9.3",
     "vitest": "^5.0.0",
     "@eslint/js": "^10.0.1"

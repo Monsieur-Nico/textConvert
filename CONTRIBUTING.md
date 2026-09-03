@@ -61,6 +61,14 @@ Thank you for your interest in contributing! 🎉
   npm run format
   ```
 
+- **Build the API reference site locally:**
+
+  ```sh
+  npm run docs:build
+  ```
+
+  Generates a static site from JSDoc comments into `typedoc-site/` (gitignored, not committed). The live version is published automatically to [GitHub Pages](https://monsieur-nico.github.io/textConvert/) on every push to `main`.
+
 ## Commit Message Guidelines
 
 We use [Conventional Commits](https://www.conventionalcommits.org/) for all commits. This is enforced by pre-commit hooks and CI.
