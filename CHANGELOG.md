@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [1.6.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.7...v1.6.0) (2026-09-03)
+
+
+### Features
+
+* add isPhoneNumber(text) function ([44eb568](https://github.com/Monsieur-Nico/textConvert/commit/44eb568bf9d8538597e578722c6e3177277a4ef3))
+* add isPhoneNumber(text) function ([5a8bfa9](https://github.com/Monsieur-Nico/textConvert/commit/5a8bfa9f0a80d25e17754d9dd9f12e3bc74bac35)), closes [#243](https://github.com/Monsieur-Nico/textConvert/issues/243)
+
 ## [1.5.7](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.6...v1.5.7) (2026-09-03)
 
 
