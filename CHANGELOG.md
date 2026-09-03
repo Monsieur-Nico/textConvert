@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [1.5.6](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.5...v1.5.6) (2026-09-03)
+
+
+### Bug Fixes
+
+* **ci:** grant id-token: write for npm provenance publishing ([230ebfd](https://github.com/Monsieur-Nico/textConvert/commit/230ebfded155bf5119e23552aefcebdff8215630))
+* **ci:** grant id-token: write to the publish job for npm provenance ([db732ee](https://github.com/Monsieur-Nico/textConvert/commit/db732ee02ca706e664f5d52a418684d2dbc6307c))
+
 ## [1.5.5](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.4...v1.5.5) (2026-09-03)
 
 
