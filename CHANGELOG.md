@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [1.7.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.6.0...v1.7.0) (2026-09-03)
+
+
+### Features
+
+* add real logo artwork and generate proper favicons ([6d03909](https://github.com/Monsieur-Nico/textConvert/commit/6d03909c60fddb21847334b65b66980ccbc5b0e0))
+* publish a TypeDoc API reference via GitHub Pages ([e095810](https://github.com/Monsieur-Nico/textConvert/commit/e0958109e58f0176ff0f27d7b4846c3e3b39324b))
+* publish a TypeDoc API reference via GitHub Pages ([5ea29f7](https://github.com/Monsieur-Nico/textConvert/commit/5ea29f7443b9f6ee641bb22600ac6cc76b03062e))
+
+
+### Bug Fixes
+
+* switch moduleResolution from node10 to bundler ([d055344](https://github.com/Monsieur-Nico/textConvert/commit/d055344717c42bfd78a1cd9472b76d4eb32acb2c))
+
 ## [1.6.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.7...v1.6.0) (2026-09-03)
 
 
