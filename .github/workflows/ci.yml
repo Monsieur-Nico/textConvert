@@ -28,7 +28,7 @@ jobs:
       - name: Check formatting
         run: npm run format:check
       - name: Type check
-        run: tsc --noEmit
+        run: npm run typecheck
       - run: npm run build --if-present
       - run: npm test
       - name: Security audit
