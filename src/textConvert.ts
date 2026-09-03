@@ -1,7 +1,7 @@
 import { camelCase, kebabCase, pascalCase, snakeCase } from './text/conventions';
 
 import { detectLanguage, Language, LanguageDetectionResult } from './text/analysis/language';
-import { getTextStats } from './text/analysis/statistics';
+import { getTextStats, TextStatistics } from './text/analysis/statistics';
 import { clear } from './text/clear';
 import { count, countSentences, countWords } from './text/count';
 import { reverse } from './text/reverse';
@@ -30,4 +30,5 @@ export {
   reverse,
   snakeCase,
   spread,
+  TextStatistics,
 };

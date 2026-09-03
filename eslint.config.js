@@ -15,7 +15,15 @@ const commonRules = {
 
 export default [
   {
-    ignores: ['node_modules', 'dist', '**/temp.js', '**/temp.ts', 'config/**'],
+    ignores: [
+      'node_modules',
+      'dist',
+      'typedoc-site',
+      'media/favicons',
+      '**/temp.js',
+      '**/temp.ts',
+      'config/**',
+    ],
   },
   js.configs.recommended,
   // Type-aware linting for src and Tests
@@ -67,6 +75,16 @@ export default [
     files: ['**/[Tt]ests/text/spread.test.ts'],
     rules: {
       '@typescript-eslint/ban-ts-comment': 'off',
+    },
+  },
+  // Node globals for standalone build/tooling scripts
+  {
+    files: ['scripts/**/*.mjs'],
+    languageOptions: {
+      globals: {
+        console: 'readonly',
+        process: 'readonly',
+      },
     },
   },
   // Override for commitlint.config.js to disable no-undef

@@ -1,6 +1,10 @@
 <!-- markdownlint-disable MD033 -->
 
-<h1 align="center">📦 textConvert 📦</h1>
+<p align="center">
+  <img src="media/logo.png" alt="textConvert logo" width="96" height="96" />
+</p>
+
+<h1 align="center">textConvert</h1>
 
 <div align="center">
   <a href="#contributors-">
@@ -16,6 +20,9 @@
     <img src="https://codecov.io/gh/Monsieur-Nico/textConvert/graph/badge.svg?token=yourtoken" alt="Coverage Status" />
   </a>
   <img src="https://github.com/Monsieur-Nico/textConvert/actions/workflows/ci.yml/badge.svg" alt="CI Status" />
+  <a href="https://monsieur-nico.github.io/textConvert/" target="_blank">
+    <img src="https://img.shields.io/badge/docs-online-blue?style=flat-square" alt="Docs" />
+  </a>
 </div>
 
 ---
@@ -96,7 +103,7 @@ const convert = require('textconvert');
 | `isUrl(text)`                                | Validate a URL                                        |
 | `isPhoneNumber(text)`                        | Validate a phone number                               |
 
-See [docs/API.md](docs/API.md) for full parameter, return type, and edge-case details on every function.
+See [docs/API.md](docs/API.md) for full parameter, return type, and edge-case details on every function, or browse the auto-generated [API reference site](https://monsieur-nico.github.io/textConvert/).
 
 ---
 

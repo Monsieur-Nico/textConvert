@@ -1,0 +1,10 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src/textConvert.ts"],
+  "out": "typedoc-site",
+  "name": "textConvert",
+  "favicon": "media/favicons/favicon.ico",
+  "excludePrivate": true,
+  "excludeInternal": true,
+  "cleanOutputDir": true
+}
