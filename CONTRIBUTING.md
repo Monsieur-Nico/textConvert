@@ -110,6 +110,13 @@ When adding or changing any **public function**:
 - Add or update `@example` tags in JSDoc comments for all public functions to ensure TypeDoc generates accurate usage examples.
 - Ensure all documentation is clear, accurate, and up to date.
 
+## Recognizing Contributors
+
+This project follows the [all-contributors](https://allcontributors.org/) specification, but the CLI is intentionally **not** a devDependency (its dependency chain carries unresolved security advisories). To add a contributor, either:
+
+- Run it as a one-off, without installing it: `npx all-contributors-cli add <username> <contribution-type>[,<contribution-type>...]`, or
+- Edit [.all-contributorsrc](.all-contributorsrc) and the contributors table in [README.md](README.md) by hand — the format is straightforward and changes are infrequent.
+
 ## Release & Publishing
 
 - Releases are managed with `standard-version` and follow Conventional Commits.
