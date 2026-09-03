@@ -68,7 +68,7 @@ const convert = require('textconvert');
 
 - Case conversion: camelCase, PascalCase, snake_case, kebab-case
 - Text analysis: word/letter/sentence/paragraph counting, reading time, etc.
-- Validation: email addresses and URLs
+- Validation: email addresses, URLs, and phone numbers
 - Language detection: English, French, Spanish, German, Italian, Portuguese, Dutch
 - Number to words: Converts numbers < 100 million to English words
 - Pure, dependency-free, and TypeScript-ready
@@ -94,6 +94,7 @@ const convert = require('textconvert');
 | `numbersToWords(number)`                     | Convert a number under 100 million to English words   |
 | `isEmail(text)`                              | Validate an email address                             |
 | `isUrl(text)`                                | Validate a URL                                        |
+| `isPhoneNumber(text)`                        | Validate a phone number                               |
 
 See [docs/API.md](docs/API.md) for full parameter, return type, and edge-case details on every function.
 
@@ -102,12 +103,13 @@ See [docs/API.md](docs/API.md) for full parameter, return type, and edge-case de
 ## Quick Examples
 
 ```js
-import { camelCase, count, isEmail, isUrl } from 'textconvert';
+import { camelCase, count, isEmail, isUrl, isPhoneNumber } from 'textconvert';
 
 camelCase('hello world'); // 'helloWorld'
 count('Hello, world!'); // 10
 isEmail('user@example.com'); // true
 isUrl('https://example.com/path?query=123'); // true
+isPhoneNumber('+1-202-555-0173'); // true
 ```
 
 See more usage examples in [docs/RECIPES.md](docs/RECIPES.md).

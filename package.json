@@ -79,6 +79,8 @@
     "validation",
     "email-validation",
     "url-validation",
+    "phone-validation",
+    "phone-number",
     "language-detection",
     "typescript"
   ],

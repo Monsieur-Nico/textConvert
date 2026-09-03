@@ -7,6 +7,7 @@ import { count, countSentences, countWords } from './text/count';
 import { reverse } from './text/reverse';
 import { spread } from './text/spread';
 import { isEmail } from './text/validation/email';
+import { isPhoneNumber } from './text/validation/phoneNumber';
 import { isUrl } from './text/validation/url';
 import { numbersToWords } from './numbers/numbersToWords';
 
@@ -19,6 +20,7 @@ export {
   detectLanguage,
   getTextStats,
   isEmail,
+  isPhoneNumber,
   isUrl,
   kebabCase,
   Language,

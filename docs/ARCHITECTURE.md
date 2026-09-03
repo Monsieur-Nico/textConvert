@@ -16,6 +16,7 @@ textConvert/
       validation/
         email.ts         # Email validation
         url.ts           # URL validation
+        phoneNumber.ts   # Phone number validation
       conventions.ts    # Case conversion functions
       clear.ts          # Punctuation removal
       count.ts          # Counting utilities (words, sentences, letters)
@@ -35,7 +36,7 @@ textConvert/
 ## Main Modules & Responsibilities
 
 - **text/analysis/**: Text statistics, language detection, and related analysis tools.
-- **text/validation/**: Validation functions (email, URL; future: phone, etc.).
+- **text/validation/**: Validation functions (email, URL, phone number).
 - **text/conventions.ts**: Case conversion (camelCase, PascalCase, etc.).
 - **text/clear.ts**: Remove punctuation and clean text.
 - **text/count.ts**: Count words, sentences, and letters.
@@ -76,7 +77,6 @@ textConvert/
 
 ## Future Directions
 
-- More validators (phone number, etc.)
 - Internationalization and localization
 - More advanced text analytics
 - Documentation website
