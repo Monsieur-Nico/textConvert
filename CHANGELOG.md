@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [1.5.7](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.6...v1.5.7) (2026-09-03)
+
+
+### Bug Fixes
+
+* **ci:** upgrade npm before publish for trusted publishing OIDC support ([753241f](https://github.com/Monsieur-Nico/textConvert/commit/753241f33400ce7701ed4da3cf592ce1f7715206))
+* **ci:** upgrade npm for trusted publishing before npm publish ([79f6275](https://github.com/Monsieur-Nico/textConvert/commit/79f6275e90b7683fb48edde7e64a2a7f89f6c541))
+
 ## [1.5.6](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.5...v1.5.6) (2026-09-03)
 
 
