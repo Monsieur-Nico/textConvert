@@ -20,6 +20,7 @@ This document provides detailed documentation for all public functions exported 
 - [detectLanguage](#detectlanguage)
 - [numbersToWords](#numberstowords)
 - [isEmail](#isemail)
+- [isUrl](#isurl)
 
 ---
 
@@ -371,6 +372,8 @@ isEmail('not-an-email'); // false
 **Edge Cases:**
 
 - Returns `false` for empty, non-string, or malformed input.
+
+---
 
 ## isUrl
 
