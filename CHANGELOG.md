@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [1.5.5](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.4...v1.5.5) (2026-09-03)
+
+
+### Bug Fixes
+
+* **ci:** move npm publish into release-please's own workflow ([79a0abf](https://github.com/Monsieur-Nico/textConvert/commit/79a0abf6f0fc1b87f5b00683300913e1027112b4))
+* **ci:** move npm publish into release-please's own workflow ([4ab8929](https://github.com/Monsieur-Nico/textConvert/commit/4ab8929db31bce01bf50fb8db9fad6cbc4af2a82))
+
 ## [1.5.4](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.3...v1.5.4) (2026-09-03)
 
 
