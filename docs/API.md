@@ -25,6 +25,7 @@ This document provides detailed documentation for all public functions exported 
 - [isUrl](#isurl)
 - [isPhoneNumber](#isphonenumber)
 - [extractEmails](#extractemails)
+- [extractUrls](#extracturls)
 
 ---
 
@@ -516,3 +517,30 @@ extractEmails('Contact us at hello@example.com or support@example.org for help.'
 
 - Returns an empty array for empty input or when no valid email is found.
 - Strips trailing sentence punctuation (e.g. a period right after the domain) before validating.
+
+---
+
+## extractUrls
+
+Extracts all URLs found in a block of text, rather than validating a single string like `isUrl` does. Each candidate is validated with `isUrl` before being included, so results are exactly the substrings that would pass `isUrl`.
+
+**Parameters:**
+
+- `text: string` — The text to search for URLs.
+
+**Returns:**
+
+- `string[]` — The URLs found, in the order they appear.
+
+**Example:**
+
+```js
+extractUrls('Check out https://example.com and http://another.example.org/path for details.');
+// ['https://example.com', 'http://another.example.org/path']
+```
+
+**Edge Cases:**
+
+- Returns an empty array for empty input or when no valid URL is found.
+- Only `http://`/`https://` are recognized as URL starts (matching `isUrl`'s scope).
+- Excludes common wrapping delimiters (quotes, angle brackets, parentheses) from the match, and strips trailing sentence punctuation before validating.

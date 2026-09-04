@@ -77,7 +77,7 @@ const convert = require('textconvert');
 - Text analysis: word/letter/sentence/paragraph counting, reading time, etc.
 - Text utilities: truncate with word-boundary awareness
 - Validation: email addresses, URLs, and phone numbers
-- Extraction: pull email addresses out of a block of text
+- Extraction: pull email addresses and URLs out of a block of text
 - Language detection: English, French, Spanish, German, Italian, Portuguese, Dutch
 - Number to words: Converts numbers < 100 million to English words
 - Pure, dependency-free, and TypeScript-ready
@@ -107,6 +107,7 @@ const convert = require('textconvert');
 | `isUrl(text)`                                | Validate a URL                                        |
 | `isPhoneNumber(text)`                        | Validate a phone number                               |
 | `extractEmails(text)`                        | Extract all email addresses found in a block of text  |
+| `extractUrls(text)`                          | Extract all URLs found in a block of text             |
 
 See [docs/API.md](docs/API.md) for full parameter, return type, and edge-case details on every function, or browse the auto-generated [API reference site](https://monsieur-nico.github.io/textConvert/).
 

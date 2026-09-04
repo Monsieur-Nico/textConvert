@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { extractEmails } from '../../src/textConvert';
+import { extractEmails, extractUrls } from '../../src/textConvert';
 
 describe('#extractEmails', () => {
   it('should extract multiple emails from a sentence', () => {
@@ -29,5 +29,39 @@ describe('#extractEmails', () => {
 
   it('should return an empty array for empty input', () => {
     expect(extractEmails('')).toEqual([]);
+  });
+});
+
+describe('#extractUrls', () => {
+  it('should extract multiple URLs from a sentence', () => {
+    expect(
+      extractUrls('Check out https://example.com and http://another.example.org/path for details.'),
+    ).toEqual(['https://example.com', 'http://another.example.org/path']);
+  });
+
+  it('should strip a trailing sentence-ending period', () => {
+    expect(extractUrls('Visit https://example.com.')).toEqual(['https://example.com']);
+  });
+
+  it('should exclude surrounding parentheses, quotes, and angle brackets', () => {
+    expect(extractUrls('(see https://example.com/path) for more')).toEqual([
+      'https://example.com/path',
+    ]);
+    expect(extractUrls('Quoted: "https://example.com" and <https://example.org>')).toEqual([
+      'https://example.com',
+      'https://example.org',
+    ]);
+  });
+
+  it('should ignore non-http(s) protocols', () => {
+    expect(extractUrls('Bad ones: ftp://example.com, not a url')).toEqual([]);
+  });
+
+  it('should return an empty array when there are no URLs', () => {
+    expect(extractUrls('No urls here.')).toEqual([]);
+  });
+
+  it('should return an empty array for empty input', () => {
+    expect(extractUrls('')).toEqual([]);
   });
 });
