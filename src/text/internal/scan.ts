@@ -40,3 +40,29 @@ export function stripTrailing(value: string, chars: Set<string>): string {
   while (end > 0 && chars.has(value[end - 1])) end--;
   return value.slice(0, end);
 }
+
+/**
+ * Finds `prefix`-anchored tokens (e.g. `@mentions`, `#hashtags`): a single
+ * `prefix` character followed by a run of one or more `bodyChars`. A match
+ * only starts when the prefix isn't immediately preceded by a body
+ * character itself, so e.g. `findPrefixedTokens('user@example.com', '@',
+ * wordChars)` doesn't treat the email's `@` as a token start. A single
+ * linear pass, no regex backtracking risk.
+ */
+export function findPrefixedTokens(text: string, prefix: string, bodyChars: Set<string>): string[] {
+  const candidates: string[] = [];
+
+  for (let i = 0; i < text.length; i++) {
+    if (text[i] !== prefix) continue;
+    if (i > 0 && bodyChars.has(text[i - 1])) continue;
+
+    let end = i + 1;
+    while (end < text.length && bodyChars.has(text[end])) end++;
+
+    if (end > i + 1) candidates.push(text.slice(i, end));
+
+    i = end - 1;
+  }
+
+  return candidates;
+}

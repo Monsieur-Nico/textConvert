@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { extractEmails, extractUrls } from '../../src/textConvert';
+import {
+  extractEmails,
+  extractHashtags,
+  extractMentions,
+  extractUrls,
+} from '../../src/textConvert';
 
 describe('#extractEmails', () => {
   it('should extract multiple emails from a sentence', () => {
@@ -63,5 +68,72 @@ describe('#extractUrls', () => {
 
   it('should return an empty array for empty input', () => {
     expect(extractUrls('')).toEqual([]);
+  });
+});
+
+describe('#extractMentions', () => {
+  it('should extract multiple mentions from a sentence', () => {
+    expect(extractMentions('Thanks @jordan and @alex_dev for the review!')).toEqual([
+      '@jordan',
+      '@alex_dev',
+    ]);
+  });
+
+  it('should keep the leading @ symbol', () => {
+    expect(extractMentions('cc @octocat')).toEqual(['@octocat']);
+  });
+
+  it('should not match an email address as a mention', () => {
+    expect(extractMentions('Contact user@example.com for help')).toEqual([]);
+  });
+
+  it('should extract a real mention even when an email is present too', () => {
+    expect(extractMentions('email me at hello@example.com or ping @jordan')).toEqual(['@jordan']);
+  });
+
+  it('should include digits and underscores in the mention body', () => {
+    expect(extractMentions('shoutout to @user_123')).toEqual(['@user_123']);
+  });
+
+  it('should stop a mention at punctuation, without needing separate stripping', () => {
+    expect(extractMentions('Thanks, @jordan!')).toEqual(['@jordan']);
+  });
+
+  it('should return an empty array when there are no mentions', () => {
+    expect(extractMentions('No mentions here.')).toEqual([]);
+  });
+
+  it('should return an empty array for empty input', () => {
+    expect(extractMentions('')).toEqual([]);
+  });
+});
+
+describe('#extractHashtags', () => {
+  it('should extract multiple hashtags from a sentence', () => {
+    expect(extractHashtags('Just shipped v2! #typescript #opensource #buildinpublic')).toEqual([
+      '#typescript',
+      '#opensource',
+      '#buildinpublic',
+    ]);
+  });
+
+  it('should keep the leading # symbol', () => {
+    expect(extractHashtags('so much #hype')).toEqual(['#hype']);
+  });
+
+  it('should not match "C#" as a hashtag', () => {
+    expect(extractHashtags('Written in C#')).toEqual([]);
+  });
+
+  it('should include digits and underscores in the hashtag body', () => {
+    expect(extractHashtags('#web3 #the_best')).toEqual(['#web3', '#the_best']);
+  });
+
+  it('should return an empty array when there are no hashtags', () => {
+    expect(extractHashtags('No hashtags here.')).toEqual([]);
+  });
+
+  it('should return an empty array for empty input', () => {
+    expect(extractHashtags('')).toEqual([]);
   });
 });

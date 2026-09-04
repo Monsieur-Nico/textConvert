@@ -1,8 +1,8 @@
 # Extraction
 
-`extractEmails`, `extractUrls`.
+`extractEmails`, `extractUrls`, `extractMentions`, `extractHashtags`.
 
-Both functions find candidate substrings in free-form text with a single linear pass (no regex backtracking risk — see each function's ReDoS note below), then validate every candidate with `isEmail`/`isUrl` before including it, so results are exactly the substrings that would independently pass validation. See [validation.md](validation.md) for the exact rules those two apply.
+All four functions find candidate substrings in free-form text with a single linear pass (no regex backtracking risk — see each function's notes below). `extractEmails`/`extractUrls` validate every candidate with `isEmail`/`isUrl` before including it, so results are exactly the substrings that would independently pass validation — see [validation.md](validation.md) for the exact rules those two apply. `extractMentions`/`extractHashtags` don't have a separate validator to check against; their character-class scan already guarantees a correctly-shaped result on its own.
 
 ---
 
@@ -10,6 +10,8 @@ Both functions find candidate substrings in free-form text with a single linear 
 
 - [extractEmails](#extractemails)
 - [extractUrls](#extracturls)
+- [extractMentions](#extractmentions)
+- [extractHashtags](#extracthashtags)
 
 ---
 
@@ -74,3 +76,67 @@ extractUrls('Check out https://example.com and http://another.example.org/path f
 - Only `http://`/`https://` are recognized as URL starts, matching `isUrl`'s scope — a bare `example.com` or an `ftp://` link in the text is never extracted.
 - Excludes common wrapping delimiters (quotes, angle brackets, parentheses) from the match, and strips trailing sentence punctuation before validating — `"See https://example.com."` extracts `https://example.com`, not `https://example.com.`.
 - Since every candidate is independently validated with `isUrl`, the same IPv4-hostname exception documented there applies here too.
+
+---
+
+## extractMentions
+
+Extracts all `@mentions` found in a block of text, symbol included.
+
+**Parameters:**
+
+- `text: string` — The text to search for mentions.
+
+**Returns:**
+
+- `string[]` — The mentions found (including the leading `@`), in the order they appear.
+
+**Example:**
+
+```js
+import { extractMentions } from 'textconvert';
+
+extractMentions('Thanks @jordan and @alex_dev for the review!');
+// ['@jordan', '@alex_dev']
+```
+
+**How matching works:** each `@` is checked against the character immediately before it — a match only starts when that character isn't itself a letter/digit/underscore. The body after `@` is a run of letters, digits, and underscores (the common convention across Twitter/X, Instagram, and similar platforms) — no hyphens, no dots.
+
+**Edge Cases:**
+
+- Returns an empty array for empty input or when no mentions are found.
+- The not-preceded-by-a-body-character rule means an email address's `@` is never mistaken for a mention: `extractMentions('user@example.com')` returns `[]`, not `['@example']`.
+- No separate trailing-punctuation stripping is needed (unlike `extractEmails`/`extractUrls`) — since the body is letters/digits/underscore only, the character scan itself naturally stops before any trailing punctuation, e.g. `extractMentions('Thanks, @jordan!')` → `['@jordan']`.
+- Does not de-duplicate — the same mention appearing twice in the input appears twice in the result, in order.
+
+---
+
+## extractHashtags
+
+Extracts all `#hashtags` found in a block of text, symbol included.
+
+**Parameters:**
+
+- `text: string` — The text to search for hashtags.
+
+**Returns:**
+
+- `string[]` — The hashtags found (including the leading `#`), in the order they appear.
+
+**Example:**
+
+```js
+import { extractHashtags } from 'textconvert';
+
+extractHashtags('Just shipped v2! #typescript #opensource #buildinpublic');
+// ['#typescript', '#opensource', '#buildinpublic']
+```
+
+**How matching works:** identical rule to `extractMentions` above (see there for the full explanation), just anchored on `#` instead of `@`.
+
+**Edge Cases:**
+
+- Returns an empty array for empty input or when no hashtags are found.
+- The same not-preceded-by-a-body-character rule that keeps `extractMentions` from matching inside an email has a useful side effect here too: it keeps a language name like `C#` from being mistaken for a hashtag — `extractHashtags('Written in C#')` returns `[]`.
+- No separate trailing-punctuation stripping needed, same reasoning as `extractMentions`.
+- Does not de-duplicate.
