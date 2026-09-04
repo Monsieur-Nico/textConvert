@@ -9,6 +9,7 @@ This guide provides practical examples and advanced usage patterns for the textC
 - [Basic Validation](#basic-validation)
 - [Case Conversion](#case-conversion)
 - [Text Analysis](#text-analysis)
+- [Text Utilities](#text-utilities)
 - [Combining Functions](#combining-functions)
 - [Custom Utilities](#custom-utilities)
 
@@ -76,6 +77,20 @@ const stats = getTextStats('Hello world! This is a test.');
 //   sentenceCount: 2,
 //   ...
 // }
+```
+
+---
+
+## Text Utilities
+
+### Truncate a Preview for a Card or List Item
+
+```js
+import { truncate } from 'textconvert';
+
+const summary = 'The quick brown fox jumps over the lazy dog';
+truncate(summary, 20); // 'The quick brown f...'
+truncate(summary, 20, { byWords: true }); // 'The quick brown...'
 ```
 
 ---
