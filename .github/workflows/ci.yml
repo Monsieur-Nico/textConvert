@@ -14,6 +14,13 @@ jobs:
       matrix:
         node-version: [22.x, 24.x]
 
+    env:
+      # Works around Node's IPv6-first DNS resolution ("Happy Eyeballs")
+      # hanging for minutes on GitHub-hosted runners when IPv6 is
+      # advertised but not actually reachable - observed specifically
+      # on the 24.x leg of this matrix, npm ci hanging indefinitely.
+      NODE_OPTIONS: '--dns-result-order=ipv4first'
+
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
