@@ -46,3 +46,18 @@ jobs:
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Sync jsr.json version with package.json
+        run: |
+          node -e "
+            const fs = require('fs');
+            const pkg = require('./package.json');
+            const jsr = JSON.parse(fs.readFileSync('./jsr.json', 'utf8'));
+            jsr.version = pkg.version;
+            fs.writeFileSync('./jsr.json', JSON.stringify(jsr, null, 2) + '\n');
+          "
+      - name: Publish to JSR
+        # Best-effort mirror alongside npm (the primary registry) -- a JSR
+        # hiccup shouldn't fail the whole release workflow after npm has
+        # already published successfully.
+        run: npx jsr publish --allow-slow-types
+        continue-on-error: true

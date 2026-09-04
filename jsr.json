@@ -1,0 +1,10 @@
+{
+  "name": "@monsieur-nico/textconvert",
+  "version": "1.14.0",
+  "license": "MIT",
+  "exports": "./src/textConvert.ts",
+  "publish": {
+    "include": ["src", "README.md", "LICENSE", "CHANGELOG.md"],
+    "exclude": ["**/*.test.ts"]
+  }
+}

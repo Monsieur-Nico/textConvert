@@ -161,6 +161,7 @@ This project follows the [all-contributors](https://allcontributors.org/) specif
 - Every push to `main` that contains releasable commits (`feat`, `fix`, etc.) opens or updates a release PR with the version bump and CHANGELOG.md entry. Merging that PR creates the GitHub Release and tag.
 - See [How Commit Messages Drive the Version Bump](#how-commit-messages-drive-the-version-bump) above for exactly which commit type produces which bump, and what counts as a breaking change for this project.
 - When that release is published, the package is automatically published to npm via GitHub Actions.
+- The package is also mirrored to [JSR](https://jsr.io/@monsieur-nico/textconvert) as a fallback registry, published from the same workflow right after npm. `jsr.json`'s `version` field is synced from `package.json` automatically in CI — it doesn't need to be updated by hand. The JSR publish step is best-effort (`continue-on-error`), so a JSR-side hiccup doesn't fail the whole release after npm has already succeeded.
 
 ## Code of Conduct
 
