@@ -71,13 +71,32 @@ export function countWords(text: string): number {
  * countSentences('Hello world! How are you?'); // 2
  */
 export function countSentences(text: string): number {
-  if (!text?.trim()) return 0;
+  const trimmed = text?.trim();
+  if (!trimmed) return 0;
 
   // If there's no sentence-ending punctuation but there is text, it's considered one sentence
-  if (!/[.!?]/.test(text) && text.trim().length > 0) return 1;
+  if (!/[.!?]/.test(trimmed)) return 1;
 
-  return text
-    .trim()
-    .split(/[.!?]+(?=\s|$)/)
-    .filter((sentence) => sentence.trim().length > 0).length;
+  // Walk the string manually instead of using a backtracking regex split: a
+  // lookahead-based `[.!?]+(?=\s|$)` pattern runs in quadratic time on long
+  // runs of punctuation that aren't followed by whitespace (ReDoS).
+  const punctuationRun = /[.!?]+/g;
+  let sentences = 0;
+  let segmentStart = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = punctuationRun.exec(trimmed)) !== null) {
+    const runEnd = match.index + match[0].length;
+    const nextChar = trimmed[runEnd];
+    const isBoundary = nextChar === undefined || /\s/.test(nextChar);
+
+    if (isBoundary) {
+      if (trimmed.slice(segmentStart, match.index).trim().length > 0) sentences++;
+      segmentStart = runEnd;
+    }
+  }
+
+  if (trimmed.slice(segmentStart).trim().length > 0) sentences++;
+
+  return sentences;
 }
