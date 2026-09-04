@@ -11,6 +11,7 @@ import { isPhoneNumber } from './text/validation/phoneNumber';
 import { isUrl } from './text/validation/url';
 import { numbersToWords } from './numbers/numbersToWords';
 import { slugify } from './text/slugify';
+import { truncate } from './text/truncate';
 
 export {
   camelCase,
@@ -33,4 +34,5 @@ export {
   snakeCase,
   spread,
   TextStatistics,
+  truncate,
 };
