@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { camelCase, kebabCase, pascalCase, snakeCase } from '../../src/textConvert';
+import { camelCase, capitalize, kebabCase, pascalCase, snakeCase } from '../../src/textConvert';
 
 describe('#camelCase', () => {
   it("should return helloWorld for 'hello-world'", () => {
@@ -136,5 +136,23 @@ describe('#KebabCase', () => {
   });
   it("should return 'Please provide a valid input text' for empty input", () => {
     expect(kebabCase('')).toBe('Please provide a valid input text');
+  });
+});
+
+describe('#capitalize', () => {
+  it("should return 'Hello world' for 'hello world'", () => {
+    expect(capitalize('hello world')).toBe('Hello world');
+  });
+  it("should return 'HELLO WORLD' for 'HELLO WORLD' (only the first letter is touched)", () => {
+    expect(capitalize('HELLO WORLD')).toBe('HELLO WORLD');
+  });
+  it("should return 'Hello' for a single-character input 'h'", () => {
+    expect(capitalize('h')).toBe('H');
+  });
+  it('should leave an already-capitalized string unchanged', () => {
+    expect(capitalize('Hello world')).toBe('Hello world');
+  });
+  it("should return 'Please provide a valid input text' for empty input", () => {
+    expect(capitalize('')).toBe('Please provide a valid input text');
   });
 });

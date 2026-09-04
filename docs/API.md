@@ -20,6 +20,7 @@ This document provides detailed documentation for all public functions exported 
 - [snakeCase](#snakecase)
 - [kebabCase](#kebabcase)
 - [slugify](#slugify)
+- [capitalize](#capitalize)
 - [getTextStats](#gettextstats)
 - [detectLanguage](#detectlanguage)
 - [numbersToWords](#numberstowords)
@@ -329,6 +330,32 @@ slugify('Café Résumé Review'); // 'cafe-resume-review'
 
 - Returns an error message for empty input.
 - Numbers are preserved (not treated as separators).
+
+---
+
+## capitalize
+
+Capitalizes only the first letter of a string, leaving the rest unchanged.
+
+**Parameters:**
+
+- `text: string` — The input string.
+
+**Returns:**
+
+- `string` — The string with its first letter capitalized.
+
+**Example:**
+
+```js
+capitalize('hello world'); // 'Hello world'
+capitalize('HELLO WORLD'); // 'HELLO WORLD'
+```
+
+**Edge Cases:**
+
+- Returns an error message for empty input.
+- Only the first character is touched — the rest of the string, including existing casing, is left as-is.
 
 ---
 

@@ -107,3 +107,18 @@ export function kebabCase(text: string): string {
   // Join the words with "-" and return them
   return kCaseArray.join('-');
 }
+
+/**
+ * Capitalizes only the first letter of a string, leaving the rest unchanged.
+ * @param text A string to capitalize.
+ * @returns The string with its first letter capitalized.
+ * @example
+ * capitalize('hello world'); // 'Hello world'
+ * capitalize('HELLO WORLD'); // 'HELLO WORLD'
+ */
+export function capitalize(text: string): string {
+  // Make sure there's an input
+  if (!text) return 'Please provide a valid input text';
+
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
