@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [1.12.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.11.0...v1.12.0) (2026-09-04)
+
+
+### Features
+
+* add maskText function ([3dcb903](https://github.com/Monsieur-Nico/textConvert/commit/3dcb903a46cb40060cdb5a9ff44f572c6b1ac48d))
+
 ## [1.11.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.10.0...v1.11.0) (2026-09-04)
 
 
