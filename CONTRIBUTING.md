@@ -11,6 +11,8 @@ Thank you for your interest in contributing! 🎉
    npm install
    ```
 
+3. New to the codebase? Read [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) first — it covers the project structure, module responsibilities, and design principles behind the library.
+
 ## Development Workflow
 
 - **Start development:**
@@ -143,8 +145,7 @@ When adding or changing any **public function**:
 
 - Follow the step-by-step instructions in [docs/ADDING_FUNCTION.md](docs/ADDING_FUNCTION.md).
 - Update [README.md](README.md) (Features section and API Reference table).
-- Update [docs/API.md](docs/API.md) (detailed API entry).
-- Update [docs/RECIPES.md](docs/RECIPES.md) (add at least one usage example or recipe, if applicable).
+- Add a detailed entry (description, parameters, return type, example, edge cases) to the matching category file under [docs/api/](docs/api/) — e.g. a new validation function goes in `docs/api/validation.md`. If it doesn't fit an existing category, add a new `docs/api/<category>.md` file and link it from `docs/API.md`'s index. Do **not** add a separate example to a second file — the category file's own example is the only one, by design (see #340).
 - Add or update `@example` tags in JSDoc comments for all public functions to ensure TypeDoc generates accurate usage examples.
 - Ensure all documentation is clear, accurate, and up to date.
 
