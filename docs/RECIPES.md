@@ -136,6 +136,19 @@ maskEmail('jordan@example.com'); // 'jo****************'
 maskText('4111111111111234', { visibleEnd: 4 }); // '************1234' (card number, last 4 visible)
 ```
 
+### Redact PII Before Logging User Input
+
+```js
+import { redact } from 'textconvert';
+
+function safeLog(message) {
+  console.log(redact(message));
+}
+
+safeLog('Contact me at jordan@example.com or 555-123-4567');
+// 'Contact me at jo**************** or 55**********'
+```
+
 ---
 
 ## Combining Functions

@@ -75,7 +75,7 @@ const convert = require('textconvert');
 
 - Case conversion: camelCase, PascalCase, snake_case, kebab-case, slugify
 - Text analysis: word/letter/sentence/paragraph counting, reading time, etc.
-- Text utilities: truncate with word-boundary awareness, partial masking for display
+- Text utilities: truncate with word-boundary awareness, partial masking for display, PII redaction
 - Validation: email addresses, URLs, and phone numbers
 - Extraction: pull email addresses and URLs out of a block of text
 - Language detection: English, French, Spanish, German, Italian, Portuguese, Dutch
@@ -101,6 +101,7 @@ const convert = require('textconvert');
 | `spread(text, clear?)`                       | Split a string into an array of characters            |
 | `truncate(text, maxLength, options?)`        | Shorten text to a max length, with an ellipsis        |
 | `maskText(text, options?)`                   | Partially mask a string for display                   |
+| `redact(text, options?)`                     | Mask emails and phone numbers embedded in text        |
 | `getTextStats(text, wordsPerMinute?)`        | Full text statistics (counts, averages, reading time) |
 | `detectLanguage(text, minLength?, options?)` | Detect the language of a piece of text                |
 | `numbersToWords(number)`                     | Convert a number under 100 million to English words   |

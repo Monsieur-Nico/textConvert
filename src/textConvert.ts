@@ -6,6 +6,7 @@ import { clear } from './text/clear';
 import { count, countSentences, countWords } from './text/count';
 import { extractEmails, extractUrls } from './text/extract';
 import { maskText } from './text/mask';
+import { redact } from './text/redact';
 import { reverse } from './text/reverse';
 import { spread } from './text/spread';
 import { isEmail } from './text/validation/email';
@@ -34,6 +35,7 @@ export {
   maskText,
   numbersToWords,
   pascalCase,
+  redact,
   reverse,
   slugify,
   snakeCase,
