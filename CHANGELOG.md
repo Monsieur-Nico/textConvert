@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.2.1](https://github.com/Monsieur-Nico/textConvert/compare/v2.2.0...v2.2.1) (2026-09-04)
+
+
+### Bug Fixes
+
+* add explicit return type to reverse, drop --allow-slow-types ([05d6bc3](https://github.com/Monsieur-Nico/textConvert/commit/05d6bc31fef7389a6479446ef937b9a9df1cf74b))
+* add explicit return type to reverse, drop --allow-slow-types ([816c697](https://github.com/Monsieur-Nico/textConvert/commit/816c697a434a4cc5cd016bc367ad5ef05b3879d3))
+
 ## [2.2.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.1.0...v2.2.0) (2026-09-04)
 
 
