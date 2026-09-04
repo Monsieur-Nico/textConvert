@@ -1,3 +1,4 @@
+import { stripTrailing } from './internal/scan';
 import { isEmail } from './validation/email';
 import { isUrl } from './validation/url';
 
@@ -19,9 +20,7 @@ const urlBoundaryChars = new Set([...' \t\n\r\f\v<>"\'()[]{}']);
 // Trims trailing punctuation (e.g. a sentence-ending period right after the
 // domain) that's part of the surrounding sentence, not the address itself.
 function stripTrailingPunctuation(value: string): string {
-  let end = value.length;
-  while (end > 0 && trailingPunctuationChars.has(value[end - 1])) end--;
-  return value.slice(0, end);
+  return stripTrailing(value, trailingPunctuationChars);
 }
 
 /**
