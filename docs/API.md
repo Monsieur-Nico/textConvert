@@ -4,7 +4,7 @@ Detailed documentation for every function has moved into per-category files unde
 
 - [**Case Conversion**](api/case-conversion.md) — [camelCase](#camelcase), [pascalCase](#pascalcase), [snakeCase](#snakecase), [kebabCase](#kebabcase), [slugify](#slugify), [capitalize](#capitalize), [titleCase](#titlecase)
 - [**Validation**](api/validation.md) — [isEmail](#isemail), [isUrl](#isurl), [isPhoneNumber](#isphonenumber)
-- [**Extraction**](api/extraction.md) — [extractEmails](#extractemails), [extractUrls](#extracturls)
+- [**Extraction**](api/extraction.md) — [extractEmails](#extractemails), [extractUrls](#extracturls), [extractMentions](#extractmentions), [extractHashtags](#extracthashtags)
 - [**Security**](api/security.md) — [redact](#redact), [maskText](#masktext)
 - [**Text Analysis**](api/text-analysis.md) — [clear](#clear), [count](#count), [countWords](#countwords), [countSentences](#countsentences), [getTextStats](#gettextstats), [isPalindrome](#ispalindrome), [reverse](#reverse), [spread](#spread), [truncate](#truncate)
 - [**Language**](api/language.md) — [detectLanguage](#detectlanguage)
@@ -69,6 +69,14 @@ Full docs: [docs/api/extraction.md#extractemails](api/extraction.md#extractemail
 ### extractUrls
 
 Full docs: [docs/api/extraction.md#extracturls](api/extraction.md#extracturls)
+
+### extractMentions
+
+Full docs: [docs/api/extraction.md#extractmentions](api/extraction.md#extractmentions)
+
+### extractHashtags
+
+Full docs: [docs/api/extraction.md#extracthashtags](api/extraction.md#extracthashtags)
 
 ---
 

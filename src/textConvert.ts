@@ -11,7 +11,7 @@ import { detectLanguage, Language, LanguageDetectionResult } from './text/analys
 import { getTextStats, TextStatistics } from './text/analysis/statistics';
 import { clear } from './text/clear';
 import { count, countSentences, countWords } from './text/count';
-import { extractEmails, extractUrls } from './text/extract';
+import { extractEmails, extractHashtags, extractMentions, extractUrls } from './text/extract';
 import { isPalindrome } from './text/isPalindrome';
 import { maskText } from './text/mask';
 import { redact } from './text/redact';
@@ -33,6 +33,8 @@ export {
   countWords,
   detectLanguage,
   extractEmails,
+  extractHashtags,
+  extractMentions,
   extractUrls,
   getTextStats,
   isEmail,

@@ -96,7 +96,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 - **CLI:** `npx textconvert redact <file>` sanitizes a file (or stdin) from the command line, no JS required
 - Case conversion: camelCase, PascalCase, snake_case, kebab-case, slugify, capitalize, Title Case
 - Validation: email addresses, URLs, and phone numbers
-- Extraction: pull email addresses and URLs out of a block of text
+- Extraction: pull email addresses, URLs, @mentions, and #hashtags out of a block of text
 - Text analysis: word/letter/sentence/paragraph counting, reading time, palindrome checking, etc.
 - Text utilities: truncate with word-boundary awareness
 - Language detection: English, French, Spanish, German, Italian, Portuguese, Dutch
@@ -145,6 +145,8 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 | `isPhoneNumber(text)`                        | Validate a phone number                               |
 | `extractEmails(text)`                        | Extract all email addresses found in a block of text  |
 | `extractUrls(text)`                          | Extract all URLs found in a block of text             |
+| `extractMentions(text)`                      | Extract all @mentions found in a block of text        |
+| `extractHashtags(text)`                      | Extract all #hashtags found in a block of text        |
 
 See [docs/API.md](docs/API.md) for full parameter, return type, and edge-case details on every function, or browse the auto-generated [API reference site](https://monsieur-nico.github.io/textConvert/).
 

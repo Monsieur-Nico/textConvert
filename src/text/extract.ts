@@ -1,4 +1,4 @@
-import { stripTrailing } from './internal/scan';
+import { findPrefixedTokens, stripTrailing } from './internal/scan';
 import { isEmail } from './validation/email';
 import { isUrl } from './validation/url';
 
@@ -111,4 +111,49 @@ export function extractUrls(text: string): string[] {
   if (!text) return [];
 
   return findUrlCandidates(text).map(stripTrailingPunctuation).filter(isUrl);
+}
+
+// Characters allowed in a mention/hashtag body: letters, digits, and
+// underscore -- the common convention across Twitter/X, Instagram, and
+// similar platforms.
+const mentionHashtagBodyChars = new Set(
+  'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_',
+);
+
+/**
+ * Extracts all @mentions found in a block of text, symbol included.
+ *
+ * A match only starts when the `@` isn't immediately preceded by a
+ * letter/digit/underscore, so an email address's `@` (e.g.
+ * `user@example.com`) is never mistaken for a mention.
+ *
+ * @param text Text to search for mentions.
+ * @returns An array of the mentions found (including the leading `@`), in the order they appear.
+ * @example
+ * extractMentions('Thanks @jordan and @alex_dev for the review!');
+ * // ['@jordan', '@alex_dev']
+ */
+export function extractMentions(text: string): string[] {
+  if (!text) return [];
+
+  return findPrefixedTokens(text, '@', mentionHashtagBodyChars);
+}
+
+/**
+ * Extracts all #hashtags found in a block of text, symbol included.
+ *
+ * Uses the same not-preceded-by-a-body-character rule as {@link
+ * extractMentions}, which has a useful side effect: it also keeps a
+ * language name like `C#` from being mistaken for a hashtag.
+ *
+ * @param text Text to search for hashtags.
+ * @returns An array of the hashtags found (including the leading `#`), in the order they appear.
+ * @example
+ * extractHashtags('Just shipped v2! #typescript #opensource #buildinpublic');
+ * // ['#typescript', '#opensource', '#buildinpublic']
+ */
+export function extractHashtags(text: string): string[] {
+  if (!text) return [];
+
+  return findPrefixedTokens(text, '#', mentionHashtagBodyChars);
 }
