@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.3.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.2.1...v2.3.0) (2026-09-04)
+
+
+### Features
+
+* add extractMentions and extractHashtags functions ([8a3481e](https://github.com/Monsieur-Nico/textConvert/commit/8a3481e7c659f06a867a45bb4db216847b3a8ae7))
+* add extractMentions and extractHashtags functions ([ce60d77](https://github.com/Monsieur-Nico/textConvert/commit/ce60d77e90bc78c4bc036de84c4185472ee64311)), closes [#325](https://github.com/Monsieur-Nico/textConvert/issues/325)
+
 ## [2.2.1](https://github.com/Monsieur-Nico/textConvert/compare/v2.2.0...v2.2.1) (2026-09-04)
 
 
