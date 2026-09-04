@@ -94,6 +94,36 @@ We use [Conventional Commits](https://www.conventionalcommits.org/) for all comm
 feat: add support for Dutch language detection
 ```
 
+### How Commit Messages Drive the Version Bump
+
+[release-please](https://github.com/googleapis/release-please) reads commit types on `main` to decide the next version — this is mechanical (it just parses your commit message), so getting the type right is what actually determines the release:
+
+| Commit type                                       | Version bump                                |
+| ------------------------------------------------- | ------------------------------------------- |
+| `fix:`                                            | Patch (`1.10.0` → `1.10.1`)                 |
+| `feat:`                                           | Minor (`1.10.0` → `1.11.0`)                 |
+| `feat!:` / `fix!:` or a `BREAKING CHANGE:` footer | Major (`1.10.0` → `2.0.0`)                  |
+| `docs:`, `chore:`, `test:`, `refactor:`           | None — doesn't trigger a release on its own |
+
+This is entirely up to whoever writes the commit — nothing checks whether a change is _actually_ breaking, it only trusts what the message says. Mark something `feat:` when it should've been `feat!:` and it ships as a minor bump with no warning.
+
+**Marking a breaking change:**
+
+```text
+feat!: change truncate's maxLength to exclude the ellipsis
+
+BREAKING CHANGE: maxLength previously included the ellipsis in the count; it is now added on top, so truncated strings may be up to `ellipsis.length` characters longer than before.
+```
+
+For this project, that includes:
+
+- Removing or renaming an exported function or type (e.g. `slugify`, `Language`, `TextStatistics`).
+- Changing a function's parameters — order, removing one, or optional → required.
+- Changing a function's return shape.
+- Changing a function's output for previously-valid inputs, even with the signature unchanged (e.g. tightening a validator's rules).
+- Changing the shared "invalid input" convention most functions follow (returning `'Please provide a valid input text'` instead of throwing) — since it's used across most of the library, changing it is breaking everywhere at once, not just for one function.
+- Raising the minimum Node version in `engines.node`, or changing the build output (e.g. dropping CJS support).
+
 ## Pre-commit & Pre-push Hooks
 
 - **Pre-commit:** Only staged files are linted and formatted automatically.
@@ -129,6 +159,7 @@ This project follows the [all-contributors](https://allcontributors.org/) specif
 
 - Releases are managed automatically by [release-please](https://github.com/googleapis/release-please), driven by Conventional Commits on `main`. There's nothing to run manually.
 - Every push to `main` that contains releasable commits (`feat`, `fix`, etc.) opens or updates a release PR with the version bump and CHANGELOG.md entry. Merging that PR creates the GitHub Release and tag.
+- See [How Commit Messages Drive the Version Bump](#how-commit-messages-drive-the-version-bump) above for exactly which commit type produces which bump, and what counts as a breaking change for this project.
 - When that release is published, the package is automatically published to npm via GitHub Actions.
 
 ## Code of Conduct
