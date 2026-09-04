@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.2.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.1.0...v2.2.0) (2026-09-04)
+
+
+### Features
+
+* add isPalindrome(text) function ([358494e](https://github.com/Monsieur-Nico/textConvert/commit/358494e35e096538e95a1c50754b3eb5feb6ac96))
+* add isPalindrome(text) function ([034521f](https://github.com/Monsieur-Nico/textConvert/commit/034521f3641ad7cb37a3b6f06cfb64cb1ac2e998)), closes [#293](https://github.com/Monsieur-Nico/textConvert/issues/293)
+
+
+### Bug Fixes
+
+* restore docs/API.md's stub index, reverted by a rebase mistake ([be9dfc0](https://github.com/Monsieur-Nico/textConvert/commit/be9dfc05ae68aaca7cafdaaed9a71db995e99e60))
+
 ## [2.1.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.0.1...v2.1.0) (2026-09-04)
 
 
