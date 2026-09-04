@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [1.11.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.10.0...v1.11.0) (2026-09-04)
+
+
+### Features
+
+* add extractUrls function ([13d1c01](https://github.com/Monsieur-Nico/textConvert/commit/13d1c012ca4f2b157559773df34ed30e11d7a9ce))
+* add extractUrls function ([ee04251](https://github.com/Monsieur-Nico/textConvert/commit/ee0425135f36672242d5912d9102017d03f4ee42)), closes [#294](https://github.com/Monsieur-Nico/textConvert/issues/294)
+
 ## [1.10.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.9.0...v1.10.0) (2026-09-04)
 
 
