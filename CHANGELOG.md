@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [1.16.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.15.0...v1.16.0) (2026-09-04)
+
+
+### Features
+
+* add titleCase function ([0db8afb](https://github.com/Monsieur-Nico/textConvert/commit/0db8afb27c85119ea038612efb3bdfc92c083f28))
+* add titleCase function ([fbae2ae](https://github.com/Monsieur-Nico/textConvert/commit/fbae2ae1dc3e12b6da1e498788718de9a8fba01a)), closes [#289](https://github.com/Monsieur-Nico/textConvert/issues/289)
+
 ## [1.15.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.14.0...v1.15.0) (2026-09-04)
 
 
