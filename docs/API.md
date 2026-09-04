@@ -12,6 +12,7 @@ This document provides detailed documentation for all public functions exported 
 - [countSentences](#countsentences)
 - [reverse](#reverse)
 - [spread](#spread)
+- [truncate](#truncate)
 - [camelCase](#camelcase)
 - [pascalCase](#pascalcase)
 - [snakeCase](#snakecase)
@@ -171,6 +172,36 @@ spread('Hello, world!', true); // ['H', 'e', ...]
 **Edge Cases:**
 
 - Returns an error message for invalid input type or empty string.
+
+---
+
+## truncate
+
+Shortens text to a maximum length, appending an ellipsis when truncation happens. `maxLength` includes the ellipsis itself.
+
+**Parameters:**
+
+- `text: string` — The input string.
+- `maxLength: number` — Maximum length of the returned string, including the ellipsis.
+- `options?: { ellipsis?: string; byWords?: boolean }` — `ellipsis` overrides the default `'...'`; `byWords` (default `false`) snaps the cut to the last full word instead of cutting mid-word.
+
+**Returns:**
+
+- `string` — The truncated string, or the original string unchanged if it's already within `maxLength`.
+
+**Example:**
+
+```js
+truncate('The quick brown fox jumps over the lazy dog', 20); // 'The quick brown f...'
+truncate('The quick brown fox jumps over the lazy dog', 20, { byWords: true }); // 'The quick brown...'
+truncate('Short text', 20); // 'Short text'
+```
+
+**Edge Cases:**
+
+- Returns an error message for empty input.
+- If `maxLength` is smaller than or equal to the ellipsis length, returns as much of the ellipsis as fits.
+- With `byWords`, falls back to a hard cut if there's no word boundary before the cut point.
 
 ---
 

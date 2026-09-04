@@ -75,6 +75,7 @@ const convert = require('textconvert');
 
 - Case conversion: camelCase, PascalCase, snake_case, kebab-case
 - Text analysis: word/letter/sentence/paragraph counting, reading time, etc.
+- Text utilities: truncate with word-boundary awareness
 - Validation: email addresses, URLs, and phone numbers
 - Language detection: English, French, Spanish, German, Italian, Portuguese, Dutch
 - Number to words: Converts numbers < 100 million to English words
@@ -96,6 +97,7 @@ const convert = require('textconvert');
 | `countSentences(text)`                       | Count sentences                                       |
 | `reverse(text)`                              | Reverse a string                                      |
 | `spread(text, clear?)`                       | Split a string into an array of characters            |
+| `truncate(text, maxLength, options?)`        | Shorten text to a max length, with an ellipsis        |
 | `getTextStats(text, wordsPerMinute?)`        | Full text statistics (counts, averages, reading time) |
 | `detectLanguage(text, minLength?, options?)` | Detect the language of a piece of text                |
 | `numbersToWords(number)`                     | Convert a number under 100 million to English words   |
