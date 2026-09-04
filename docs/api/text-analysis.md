@@ -1,6 +1,6 @@
 # Text Analysis
 
-`clear`, `count`, `countWords`, `countSentences`, `getTextStats`, `reverse`, `spread`, `truncate`.
+`clear`, `count`, `countWords`, `countSentences`, `getTextStats`, `isPalindrome`, `reverse`, `spread`, `truncate`.
 
 ---
 
@@ -11,6 +11,7 @@
 - [countWords](#countwords)
 - [countSentences](#countsentences)
 - [getTextStats](#gettextstats)
+- [isPalindrome](#ispalindrome)
 - [reverse](#reverse)
 - [spread](#spread)
 - [truncate](#truncate)
@@ -186,6 +187,37 @@ getTextStats('Hello world! This is a test.');
 - Returns all numeric fields as 0 and `readingTimeFormatted: '0 sec'` for empty (or whitespace-only) input.
 - `paragraphCount` is never less than 1 for non-empty input, even if there isn't a single blank-line-separated break.
 - Built from the other analysis functions internally (`count`, `countWords`, `countSentences`) rather than re-implementing their rules, so anything documented as an edge case for those applies here too.
+
+---
+
+## isPalindrome
+
+Checks whether text reads the same forwards and backwards, ignoring case, spaces, and punctuation.
+
+**Parameters:**
+
+- `text: string` — The input string.
+
+**Returns:**
+
+- `boolean` — `true` if text is a palindrome under those rules, `false` otherwise.
+
+**Example:**
+
+```js
+import { isPalindrome } from 'textconvert';
+
+isPalindrome('A man a plan a canal Panama'); // true
+isPalindrome('racecar'); // true
+isPalindrome('hello world'); // false
+```
+
+**Edge Cases:**
+
+- Returns `false` for empty input, matching the boolean-sentinel convention `isEmail`/`isUrl`/`isPhoneNumber` already use.
+- Punctuation/whitespace-only _non-empty_ input (e.g. `'!!!'`) normalizes down to an empty string once case/spaces/punctuation are stripped — treated as `true` (an empty string trivially equals its own reverse), not `false`.
+- Digits are preserved (not stripped as punctuation), so numeric palindromes work too: `isPalindrome('12321')` is `true`.
+- Composes `clear` (lowercases, strips punctuation) and `reverse` internally, so it shares `reverse`'s astral-Unicode limitation — a palindrome check on text containing emoji or other surrogate-pair characters isn't reliable.
 
 ---
 
