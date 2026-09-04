@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [1.9.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.8.0...v1.9.0) (2026-09-04)
+
+
+### Features
+
+* add slugify function ([0c8d58c](https://github.com/Monsieur-Nico/textConvert/commit/0c8d58c83986e452bb4c178050a3a7ba6800f848))
+
 ## [1.8.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.7.1...v1.8.0) (2026-09-04)
 
 
