@@ -39,10 +39,10 @@ This guide explains the steps to add a new function to the textConvert library, 
 - **README.md**
   - Add a description and example for your function in the **Features** section.
   - Add your function to the **API Reference** table.
-- **docs/API.md**
-  - Add a detailed entry for your function: description, parameters, return type, example, and edge cases.
-- **docs/RECIPES.md**
-  - Add at least one practical usage example or recipe for your function if applicable.
+- **docs/api/&lt;category&gt;.md**
+  - Add a detailed entry for your function to the category file it belongs to (e.g. `docs/api/validation.md` for a new validator) — description, parameters, return type, one usage example, and edge cases, all together in one place.
+  - If your function doesn't fit an existing category, create a new `docs/api/<category>.md` file, following the structure of the existing ones, and link it from the index in `docs/API.md`.
+  - Don't duplicate the example anywhere else — one example per function, in its category file, is the whole point of this structure (see [docs/API.md](API.md) and issue [#340](https://github.com/Monsieur-Nico/textConvert/issues/340)).
 
 ## 4. Write Tests
 

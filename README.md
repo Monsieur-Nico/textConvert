@@ -149,7 +149,7 @@ isUrl('https://example.com/path?query=123'); // true
 isPhoneNumber('+1-202-555-0173'); // true
 ```
 
-See more usage examples in [docs/RECIPES.md](docs/RECIPES.md).
+See [docs/API.md](docs/API.md) for a usage example, parameters, and edge cases for every function.
 
 ---
 
