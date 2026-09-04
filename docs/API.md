@@ -24,6 +24,7 @@ This document provides detailed documentation for all public functions exported 
 - [isEmail](#isemail)
 - [isUrl](#isurl)
 - [isPhoneNumber](#isphonenumber)
+- [extractEmails](#extractemails)
 
 ---
 
@@ -489,3 +490,29 @@ isPhoneNumber('5550173'); // false
 - Returns `false` for empty, non-string, or malformed input.
 - Returns `false` for numbers below the international (7-digit) or local (10-digit) floor, or above E.164's 15-digit max.
 - Does not verify the country calling code or the number's real-world validity.
+
+---
+
+## extractEmails
+
+Extracts all email addresses found in a block of text, rather than validating a single string like `isEmail` does. Each candidate is validated with `isEmail` before being included, so results are exactly the substrings that would pass `isEmail`.
+
+**Parameters:**
+
+- `text: string` — The text to search for email addresses.
+
+**Returns:**
+
+- `string[]` — The email addresses found, in the order they appear.
+
+**Example:**
+
+```js
+extractEmails('Contact us at hello@example.com or support@example.org for help.');
+// ['hello@example.com', 'support@example.org']
+```
+
+**Edge Cases:**
+
+- Returns an empty array for empty input or when no valid email is found.
+- Strips trailing sentence punctuation (e.g. a period right after the domain) before validating.
