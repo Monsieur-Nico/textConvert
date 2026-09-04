@@ -12,6 +12,7 @@ import { getTextStats, TextStatistics } from './text/analysis/statistics';
 import { clear } from './text/clear';
 import { count, countSentences, countWords } from './text/count';
 import { extractEmails, extractHashtags, extractMentions, extractUrls } from './text/extract';
+import { escapeHtml, unescapeHtml } from './text/html';
 import { isPalindrome } from './text/isPalindrome';
 import { maskText } from './text/mask';
 import { redact } from './text/redact';
@@ -32,6 +33,7 @@ export {
   countSentences,
   countWords,
   detectLanguage,
+  escapeHtml,
   extractEmails,
   extractHashtags,
   extractMentions,
@@ -55,4 +57,5 @@ export {
   TextStatistics,
   titleCase,
   truncate,
+  unescapeHtml,
 };
