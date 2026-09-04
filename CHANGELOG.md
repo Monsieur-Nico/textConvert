@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [1.8.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.7.1...v1.8.0) (2026-09-04)
+
+
+### Features
+
+* add truncate function ([25ab9c2](https://github.com/Monsieur-Nico/textConvert/commit/25ab9c2b86597e2242345f2f14bca8c1535c55a5))
+* add truncate function ([5b1d1f4](https://github.com/Monsieur-Nico/textConvert/commit/5b1d1f4160595308f275efcc07604f0c70ee4bc2)), closes [#291](https://github.com/Monsieur-Nico/textConvert/issues/291)
+
+
+### Bug Fixes
+
+* avoid ReDoS in countSentences sentence-splitting regex ([debc2b3](https://github.com/Monsieur-Nico/textConvert/commit/debc2b33f7a07ab41c55b550ca3460875f2b08b1))
+* ReDoS in countSentences and missing CI workflow permissions ([0feeddc](https://github.com/Monsieur-Nico/textConvert/commit/0feeddc10bcd30d87e7943c36d68b4d4deea18af))
+
 ## [1.7.1](https://github.com/Monsieur-Nico/textConvert/compare/v1.7.0...v1.7.1) (2026-09-04)
 
 
