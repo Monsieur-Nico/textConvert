@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.1.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.0.1...v2.1.0) (2026-09-04)
+
+
+### Features
+
+* add a redact CLI (npx textconvert redact &lt;file&gt;) ([0584930](https://github.com/Monsieur-Nico/textConvert/commit/05849303e43a64443b53723e75d1987a3c7d951c))
+* add a redact CLI (npx textconvert redact &lt;file&gt;) ([120cbb6](https://github.com/Monsieur-Nico/textConvert/commit/120cbb690abf6f5e5d8163adb0c75f7bb3eb9901)), closes [#322](https://github.com/Monsieur-Nico/textConvert/issues/322)
+
 ## [2.0.1](https://github.com/Monsieur-Nico/textConvert/compare/v2.0.0...v2.0.1) (2026-09-04)
 
 
