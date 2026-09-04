@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.0.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.16.0...v2.0.0) (2026-09-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* numbersToWords no longer throws for input >= 100 million -- it returns 'Please provide a valid number under 100 million', matching the sentinel-return convention every other function in this library follows. Code with a try/catch around numbersToWords for out-of-range input needs to check the return value instead.
+
+### Bug Fixes
+
+* numbersToWords returns a sentinel string instead of throwing ([aa0e4a6](https://github.com/Monsieur-Nico/textConvert/commit/aa0e4a61a362046fb559822c5b4259985c3295c8)), closes [#330](https://github.com/Monsieur-Nico/textConvert/issues/330)
+
 ## [1.16.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.15.0...v1.16.0) (2026-09-04)
 
 
