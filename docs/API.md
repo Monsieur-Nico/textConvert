@@ -2,62 +2,13 @@
 
 Detailed documentation for every function has moved into per-category files under [docs/api/](api/). This page stays in place as a stable index — every anchor below (`docs/API.md#redact`, etc.) still resolves, it just points you one click further to the full spec, parameters, examples, and edge cases.
 
-- [Case Conversion](api/case-conversion.md) — `camelCase`, `pascalCase`, `snakeCase`, `kebabCase`, `slugify`, `capitalize`, `titleCase`
-- [Validation](api/validation.md) — `isEmail`, `isUrl`, `isPhoneNumber`
-- [Extraction](api/extraction.md) — `extractEmails`, `extractUrls`
-- [Security](api/security.md) — `redact`, `maskText`
-- [Text Analysis](api/text-analysis.md) — `clear`, `count`, `countWords`, `countSentences`, `getTextStats`, `reverse`, `spread`, `truncate`
-- [Language](api/language.md) — `detectLanguage`
-- [Numbers](api/numbers.md) — `numbersToWords`
-
----
-
-## Table of Contents
-
-**Case Conversion**
-
-- [camelCase](#camelcase)
-- [pascalCase](#pascalcase)
-- [snakeCase](#snakecase)
-- [kebabCase](#kebabcase)
-- [slugify](#slugify)
-- [capitalize](#capitalize)
-- [titleCase](#titlecase)
-
-**Validation**
-
-- [isEmail](#isemail)
-- [isUrl](#isurl)
-- [isPhoneNumber](#isphonenumber)
-
-**Extraction**
-
-- [extractEmails](#extractemails)
-- [extractUrls](#extracturls)
-
-**Security**
-
-- [redact](#redact)
-- [maskText](#masktext)
-
-**Text Analysis**
-
-- [clear](#clear)
-- [count](#count)
-- [countWords](#countwords)
-- [countSentences](#countsentences)
-- [getTextStats](#gettextstats)
-- [reverse](#reverse)
-- [spread](#spread)
-- [truncate](#truncate)
-
-**Language**
-
-- [detectLanguage](#detectlanguage)
-
-**Numbers**
-
-- [numbersToWords](#numberstowords)
+- [**Case Conversion**](api/case-conversion.md) — [camelCase](#camelcase), [pascalCase](#pascalcase), [snakeCase](#snakecase), [kebabCase](#kebabcase), [slugify](#slugify), [capitalize](#capitalize), [titleCase](#titlecase)
+- [**Validation**](api/validation.md) — [isEmail](#isemail), [isUrl](#isurl), [isPhoneNumber](#isphonenumber)
+- [**Extraction**](api/extraction.md) — [extractEmails](#extractemails), [extractUrls](#extracturls)
+- [**Security**](api/security.md) — [redact](#redact), [maskText](#masktext)
+- [**Text Analysis**](api/text-analysis.md) — [clear](#clear), [count](#count), [countWords](#countwords), [countSentences](#countsentences), [getTextStats](#gettextstats), [reverse](#reverse), [spread](#spread), [truncate](#truncate)
+- [**Language**](api/language.md) — [detectLanguage](#detectlanguage)
+- [**Numbers**](api/numbers.md) — [numbersToWords](#numberstowords)
 
 ---
 
