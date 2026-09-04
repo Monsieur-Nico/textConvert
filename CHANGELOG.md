@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [1.14.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.13.0...v1.14.0) (2026-09-04)
+
+
+### Features
+
+* extend redact with credit card and API key detection ([7017210](https://github.com/Monsieur-Nico/textConvert/commit/701721016ebb5c831b2a5c5e6a1ab7ea6b845b91))
+* extend redact with credit card and API key detection ([d60fe11](https://github.com/Monsieur-Nico/textConvert/commit/d60fe117283716a6be1686dd6a2c41f3d8d62110)), closes [#320](https://github.com/Monsieur-Nico/textConvert/issues/320)
+
 ## [1.13.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.12.0...v1.13.0) (2026-09-04)
 
 
