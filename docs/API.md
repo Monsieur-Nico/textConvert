@@ -13,6 +13,7 @@ This document provides detailed documentation for all public functions exported 
 - [reverse](#reverse)
 - [spread](#spread)
 - [truncate](#truncate)
+- [maskText](#masktext)
 - [camelCase](#camelcase)
 - [pascalCase](#pascalcase)
 - [snakeCase](#snakecase)
@@ -544,3 +545,36 @@ extractUrls('Check out https://example.com and http://another.example.org/path f
 - Returns an empty array for empty input or when no valid URL is found.
 - Only `http://`/`https://` are recognized as URL starts (matching `isUrl`'s scope).
 - Excludes common wrapping delimiters (quotes, angle brackets, parentheses) from the match, and strips trailing sentence punctuation before validating.
+
+---
+
+## maskText
+
+Partially masks a string for display purposes (e.g. showing a masked email or card number in a UI without exposing the full value).
+
+If neither `visibleStart` nor `visibleEnd` is given, the first 2 characters are shown by default. Specifying either one turns off that implicit default for the side you didn't specify — e.g. passing only `visibleEnd` hides the start entirely, rather than also showing the first 2 characters.
+
+**Parameters:**
+
+- `text: string` — The input string.
+- `options.visibleStart?: number` — Number of characters to leave visible at the start.
+- `options.visibleEnd?: number` — Number of characters to leave visible at the end.
+- `options.maskChar?: string` — Character(s) to use for masked positions. Default is `'*'`.
+
+**Returns:**
+
+- `string` — The masked string, or the original string unchanged if the requested visible portions cover the whole string.
+
+**Example:**
+
+```js
+maskText('jordan@example.com'); // 'jo****************'
+maskText('4111111111111234', { visibleEnd: 4 }); // '************1234'
+maskText('secret-token-value', { visibleStart: 0, visibleEnd: 0, maskChar: '#' }); // '##################'
+```
+
+**Edge Cases:**
+
+- Returns an error message for empty input.
+- If the requested visible portions (start + end) cover the whole string, returns the string unchanged rather than over-masking.
+- `visibleStart`/`visibleEnd` are clamped to the string's length, and clamped further so the two visible portions never overlap.

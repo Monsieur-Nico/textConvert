@@ -123,6 +123,19 @@ truncate(summary, 20); // 'The quick brown f...'
 truncate(summary, 20, { byWords: true }); // 'The quick brown...'
 ```
 
+### Mask Sensitive Data for Display
+
+```js
+import { maskText, isEmail } from 'textconvert';
+
+function maskEmail(email) {
+  return isEmail(email) ? maskText(email) : email;
+}
+
+maskEmail('jordan@example.com'); // 'jo****************'
+maskText('4111111111111234', { visibleEnd: 4 }); // '************1234' (card number, last 4 visible)
+```
+
 ---
 
 ## Combining Functions

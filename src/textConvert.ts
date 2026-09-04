@@ -5,6 +5,7 @@ import { getTextStats, TextStatistics } from './text/analysis/statistics';
 import { clear } from './text/clear';
 import { count, countSentences, countWords } from './text/count';
 import { extractEmails, extractUrls } from './text/extract';
+import { maskText } from './text/mask';
 import { reverse } from './text/reverse';
 import { spread } from './text/spread';
 import { isEmail } from './text/validation/email';
@@ -30,6 +31,7 @@ export {
   kebabCase,
   Language,
   LanguageDetectionResult,
+  maskText,
   numbersToWords,
   pascalCase,
   reverse,
