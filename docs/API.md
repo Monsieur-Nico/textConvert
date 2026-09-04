@@ -14,6 +14,7 @@ This document provides detailed documentation for all public functions exported 
 - [spread](#spread)
 - [truncate](#truncate)
 - [maskText](#masktext)
+- [redact](#redact)
 - [camelCase](#camelcase)
 - [pascalCase](#pascalcase)
 - [snakeCase](#snakecase)
@@ -578,3 +579,35 @@ maskText('secret-token-value', { visibleStart: 0, visibleEnd: 0, maskChar: '#' }
 - Returns an error message for empty input.
 - If the requested visible portions (start + end) cover the whole string, returns the string unchanged rather than over-masking.
 - `visibleStart`/`visibleEnd` are clamped to the string's length, and clamped further so the two visible portions never overlap.
+
+---
+
+## redact
+
+Scans free-form text for embedded PII (emails and phone numbers) and masks each match in place, using `extractEmails` to locate emails and `maskText` to mask every match — for sanitizing logs, support tickets, or user-generated content before storage or display.
+
+**Parameters:**
+
+- `text: string` — The text to redact.
+- `options.types?: Array<'email' | 'phone'>` — Which PII types to redact. Default is both.
+- `options.maskChar?: string` — Character(s) to use for masked positions, passed through to `maskText`. Default is `'*'`.
+
+**Returns:**
+
+- `string` — The text with each detected match masked in place.
+
+**Example:**
+
+```js
+redact('Contact me at jordan@example.com or 555-123-4567');
+// 'Contact me at jo**************** or 55**********'
+redact('Email: jordan@example.com', { types: ['email'] });
+// 'Email: jo****************'
+```
+
+**Edge Cases:**
+
+- Returns an error message for empty input.
+- Returns the text unchanged when no PII of the requested type(s) is found, or when `types` is an empty array.
+- Phone detection reuses `isPhoneNumber`'s scope, so the same limits apply — e.g. a bare 7-digit local number without an area code is not detected, matching `isPhoneNumber('5550173') // false`.
+- Every occurrence of a repeated match is masked, not just the first.
