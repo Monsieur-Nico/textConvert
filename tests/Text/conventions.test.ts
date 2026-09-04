@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { camelCase, capitalize, kebabCase, pascalCase, snakeCase } from '../../src/textConvert';
+import {
+  camelCase,
+  capitalize,
+  kebabCase,
+  pascalCase,
+  snakeCase,
+  titleCase,
+} from '../../src/textConvert';
 
 describe('#camelCase', () => {
   it("should return helloWorld for 'hello-world'", () => {
@@ -154,5 +161,23 @@ describe('#capitalize', () => {
   });
   it("should return 'Please provide a valid input text' for empty input", () => {
     expect(capitalize('')).toBe('Please provide a valid input text');
+  });
+});
+
+describe('#titleCase', () => {
+  it("should return 'The Lord Of The Rings' for 'the lord of the rings'", () => {
+    expect(titleCase('the lord of the rings')).toBe('The Lord Of The Rings');
+  });
+  it("should return 'Hello-World_Example' for 'hello-world_example', keeping separators intact", () => {
+    expect(titleCase('hello-world_example')).toBe('Hello-World_Example');
+  });
+  it('should leave digits untouched', () => {
+    expect(titleCase('top 10 tips')).toBe('Top 10 Tips');
+  });
+  it('should leave an already-title-cased string unchanged', () => {
+    expect(titleCase('Already Title Case')).toBe('Already Title Case');
+  });
+  it("should return 'Please provide a valid input text' for empty input", () => {
+    expect(titleCase('')).toBe('Please provide a valid input text');
   });
 });
