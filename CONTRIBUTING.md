@@ -11,6 +11,8 @@ Thank you for your interest in contributing! 🎉
    npm install
    ```
 
+3. New to the codebase? Read [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) first — it covers the project structure, module responsibilities, and design principles behind the library.
+
 ## Development Workflow
 
 - **Start development:**

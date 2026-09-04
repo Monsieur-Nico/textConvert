@@ -178,6 +178,8 @@ console.log(convert.numbersToWords(987654));
 
 Contributions are welcome! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines and workflow.
 
+New to the codebase? [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) covers the project structure and design principles.
+
 If you are adding a new function, follow the step-by-step instructions in [docs/ADDING_FUNCTION.md](docs/ADDING_FUNCTION.md).
 
 ---
