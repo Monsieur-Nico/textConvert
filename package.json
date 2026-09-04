@@ -5,6 +5,9 @@
   "type": "module",
   "main": "dist/textConvert.js",
   "types": "dist/textConvert.d.ts",
+  "bin": {
+    "textconvert": "./dist/cli.js"
+  },
   "exports": {
     ".": {
       "types": "./dist/textConvert.d.ts",
@@ -56,7 +59,8 @@
       ],
       "exclude": [
         "**/*.d.ts",
-        "**/*.test.ts"
+        "**/*.test.ts",
+        "src/bin/**"
       ]
     }
   },
@@ -84,7 +88,10 @@
     "phone-validation",
     "phone-number",
     "language-detection",
-    "typescript"
+    "typescript",
+    "cli",
+    "redact",
+    "pii"
   ],
   "author": "Nicolas Alkhoury",
   "license": "MIT",
@@ -98,6 +105,7 @@
     "@eslint/js": "^10.0.1",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-typescript": "^12.3.0",
+    "@types/node": "^22.20.1",
     "@typescript-eslint/eslint-plugin": "^8.69.0",
     "@typescript-eslint/parser": "^8.69.0",
     "@vitest/coverage-v8": "^5.0.0",

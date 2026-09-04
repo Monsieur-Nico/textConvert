@@ -87,6 +87,16 @@ export default [
       },
     },
   },
+  // Node globals for the CLI entry point -- the one legitimate exception to
+  // the rest of src/ staying Node-agnostic by design.
+  {
+    files: ['src/cli.ts', 'src/bin/**/*.ts'],
+    languageOptions: {
+      globals: {
+        process: 'readonly',
+      },
+    },
+  },
   // Override for commitlint.config.js to disable no-undef
   {
     files: ['commitlint.config.js'],

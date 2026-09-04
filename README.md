@@ -46,6 +46,7 @@ redact('Contact me at jordan@example.com or 555-123-4567');
 - [🚀 Getting Started](#-getting-started)
   - [Installation](#installation)
   - [Usage](#usage)
+  - [CLI](#cli)
 - [✨ Features](#-features)
 - [Why Use textConvert?](#why-use-textconvert)
 - [📋 API Reference](#-api-reference)
@@ -75,11 +76,24 @@ import * as convert from 'textconvert';
 const convert = require('textconvert');
 ```
 
+### CLI
+
+A `redact` command is included for sanitizing PII/secrets from the command line — no JS required:
+
+```sh
+npx textconvert redact input.log
+npx textconvert redact input.log --types email,phone --mask-char '#'
+cat input.log | npx textconvert redact > output.log
+```
+
+Reads from the given file, or from stdin if no file is given; always writes to stdout. Run `npx textconvert --help` for the full option list.
+
 ---
 
 ## ✨ Features
 
 - **PII redaction:** mask emails, phone numbers, credit card numbers, and (opt-in) API keys/tokens embedded in free-form text, or partially mask a known value for display
+- **CLI:** `npx textconvert redact <file>` sanitizes a file (or stdin) from the command line, no JS required
 - Case conversion: camelCase, PascalCase, snake_case, kebab-case, slugify, capitalize, Title Case
 - Validation: email addresses, URLs, and phone numbers
 - Extraction: pull email addresses and URLs out of a block of text
