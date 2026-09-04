@@ -28,9 +28,15 @@
 ---
 
 <p align="center">
-  <b>textConvert</b> is a lightweight, dependency-free library for converting and analyzing text in many formats and conventions.<br />
-  <i>More features coming soon. Stay tuned!</i>
+  <b>textConvert</b> is a lightweight, dependency-free TypeScript library for text conversion, validation, and analysis — including <code>redact()</code>, which masks PII embedded in free-form text before it hits a log or a database.
 </p>
+
+```js
+import { redact } from 'textconvert';
+
+redact('Contact me at jordan@example.com or 555-123-4567');
+// 'Contact me at jo**************** or 55**********'
+```
 
 ---
 
@@ -41,10 +47,10 @@
   - [Installation](#installation)
   - [Usage](#usage)
 - [✨ Features](#-features)
+- [Why Use textConvert?](#why-use-textconvert)
 - [📋 API Reference](#-api-reference)
 - [Quick Examples](#quick-examples)
 - [Advanced Examples](#advanced-examples)
-- [Why Use textConvert?](#why-use-textconvert)
 - [Contributing](#contributing)
 - [Changelog](#changelog)
 - [License](#license)
@@ -73,14 +79,26 @@ const convert = require('textconvert');
 
 ## ✨ Features
 
+- **PII redaction:** mask emails and phone numbers embedded in free-form text, or partially mask a known value for display
 - Case conversion: camelCase, PascalCase, snake_case, kebab-case, slugify
-- Text analysis: word/letter/sentence/paragraph counting, reading time, etc.
-- Text utilities: truncate with word-boundary awareness, partial masking for display, PII redaction
 - Validation: email addresses, URLs, and phone numbers
 - Extraction: pull email addresses and URLs out of a block of text
+- Text analysis: word/letter/sentence/paragraph counting, reading time, etc.
+- Text utilities: truncate with word-boundary awareness
 - Language detection: English, French, Spanish, German, Italian, Portuguese, Dutch
 - Number to words: Converts numbers < 100 million to English words
 - Pure, dependency-free, and TypeScript-ready
+
+---
+
+## Why Use textConvert?
+
+- **PII Redaction Built In:** Mask emails and phone numbers embedded in free-form text — sanitize logs and user content without reaching for a full NLP-based PII detector or a paid API.
+- **Lightweight & Dependency-Free:** No external dependencies, fast and easy to use.
+- **Comprehensive Text Utilities:** Covers case conversion, text analysis, language detection, and more.
+- **TypeScript Support:** Fully typed for safe and productive development.
+- **Modern API:** Designed for clarity, performance, and extensibility.
+- **Actively Maintained:** Open to contributions and new features.
 
 ---
 
@@ -118,8 +136,10 @@ See [docs/API.md](docs/API.md) for full parameter, return type, and edge-case de
 ## Quick Examples
 
 ```js
-import { camelCase, count, isEmail, isUrl, isPhoneNumber } from 'textconvert';
+import { redact, camelCase, count, isEmail, isUrl, isPhoneNumber } from 'textconvert';
 
+redact('Contact me at jordan@example.com or 555-123-4567');
+// 'Contact me at jo**************** or 55**********'
 camelCase('hello world'); // 'helloWorld'
 count('Hello, world!'); // 10
 isEmail('user@example.com'); // true
@@ -149,16 +169,6 @@ console.log(stats.wordCount, stats.readingTimeFormatted);
 console.log(convert.numbersToWords(987654));
 // "nine hundred eighty-seven thousand six hundred and fifty-four"
 ```
-
----
-
-## Why Use textConvert?
-
-- **Lightweight & Dependency-Free:** No external dependencies, fast and easy to use.
-- **Comprehensive Text Utilities:** Covers case conversion, text analysis, language detection, and more.
-- **TypeScript Support:** Fully typed for safe and productive development.
-- **Modern API:** Designed for clarity, performance, and extensibility.
-- **Actively Maintained:** Open to contributions and new features.
 
 ---
 
