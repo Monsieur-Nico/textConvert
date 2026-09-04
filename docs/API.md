@@ -584,12 +584,14 @@ maskText('secret-token-value', { visibleStart: 0, visibleEnd: 0, maskChar: '#' }
 
 ## redact
 
-Scans free-form text for embedded PII (emails and phone numbers) and masks each match in place, using `extractEmails` to locate emails and `maskText` to mask every match — for sanitizing logs, support tickets, or user-generated content before storage or display.
+Scans free-form text for embedded PII (emails, phone numbers, credit card numbers) and secrets (API keys/tokens) and masks each match in place, using `extractEmails` to locate emails and `maskText` to mask every match — for sanitizing logs, support tickets, or user-generated content before storage or display.
+
+`redact` is best-effort pattern matching, not a complete PII/secret detector. False negatives are possible — pair it with review for anything where a missed match matters, rather than relying on it as the only safeguard.
 
 **Parameters:**
 
 - `text: string` — The text to redact.
-- `options.types?: Array<'email' | 'phone'>` — Which PII types to redact. Default is both.
+- `options.types?: Array<'email' | 'phone' | 'creditCard' | 'apiKey'>` — Which types to redact. Default is `'email'`, `'phone'`, and `'creditCard'`. `'apiKey'` is opt-in only — see Edge Cases.
 - `options.maskChar?: string` — Character(s) to use for masked positions, passed through to `maskText`. Default is `'*'`.
 
 **Returns:**
@@ -603,6 +605,10 @@ redact('Contact me at jordan@example.com or 555-123-4567');
 // 'Contact me at jo**************** or 55**********'
 redact('Email: jordan@example.com', { types: ['email'] });
 // 'Email: jo****************'
+redact('Card: 4111 1111 1111 1111', { types: ['creditCard'] });
+// 'Card: ***************1111'
+redact('Key: AKIAIOSFODNN7EXAMPLE leaked', { types: ['apiKey'] });
+// 'Key: ******************** leaked'
 ```
 
 **Edge Cases:**
@@ -610,4 +616,6 @@ redact('Email: jordan@example.com', { types: ['email'] });
 - Returns an error message for empty input.
 - Returns the text unchanged when no PII of the requested type(s) is found, or when `types` is an empty array.
 - Phone detection reuses `isPhoneNumber`'s scope, so the same limits apply — e.g. a bare 7-digit local number without an area code is not detected, matching `isPhoneNumber('5550173') // false`.
+- Credit card numbers are validated with a Luhn checksum, so an arbitrary 13-19 digit sequence (an order ID, an invoice number) that fails the checksum is not matched. The last 4 digits stay visible in the mask, matching the standard "card ending in 1234" convention.
+- API key/token detection is prefix-based only (AWS `AKIA...`, GitHub `ghp_...`/`github_pat_...`, Stripe `sk_live_...`) — deliberately not entropy-based ("looks like a random string"), which produces heavy false positives on hashes, UUIDs, and ordinary identifiers. Because even prefix-based detection carries more false-positive risk than email/phone/card, `'apiKey'` must be explicitly requested via `types` — it's never included by default.
 - Every occurrence of a repeated match is masked, not just the first.
