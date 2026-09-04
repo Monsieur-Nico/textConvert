@@ -1,6 +1,6 @@
 # Security
 
-`redact`, `maskText`.
+`redact`, `maskText`, `escapeHtml`, `unescapeHtml`.
 
 ---
 
@@ -8,6 +8,8 @@
 
 - [redact](#redact)
 - [maskText](#masktext)
+- [escapeHtml](#escapehtml)
+- [unescapeHtml](#unescapehtml)
 
 ---
 
@@ -92,3 +94,64 @@ function maskEmail(email) {
 - If the requested visible portions (start + end) cover the whole string, returns the string unchanged rather than over-masking.
 - `visibleStart`/`visibleEnd` are clamped to the string's length, and clamped further so the two visible portions never overlap.
 - `maskChar` isn't restricted to a single character — passing a multi-character string (e.g. `'#*'`) repeats the whole string per masked position, so the masked region's length can differ from the number of masked characters. Pass a single character if you need a 1:1 length match.
+
+---
+
+## escapeHtml
+
+Escapes the five HTML special characters (`& < > " '`) in a string, per [OWASP's XSS Prevention Cheat Sheet Rule #1](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html) for HTML element content — useful for safely rendering user-supplied text without pulling in a dedicated escaping library.
+
+This covers HTML element content only, not other injection contexts (HTML attributes, `<script>` bodies, CSS, URLs) — those need different, context-specific encoding that this function doesn't provide.
+
+**Parameters:**
+
+- `text: string` — The input string.
+
+**Returns:**
+
+- `string` — The escaped string, or an error message for invalid input.
+
+**Example:**
+
+```js
+import { escapeHtml } from 'textconvert';
+
+escapeHtml('<script>alert("hi")</script>');
+// '&lt;script&gt;alert(&quot;hi&quot;)&lt;/script&gt;'
+```
+
+**Edge Cases:**
+
+- Returns an error message for empty input.
+- The five escaped characters are `&` → `&amp;`, `<` → `&lt;`, `>` → `&gt;`, `"` → `&quot;`, `'` → `&#x27;` — the hex numeric form for apostrophe, matching OWASP's own convention (some other escaping libraries, e.g. lodash, use the decimal `&#39;` instead — both decode identically in every HTML parser, this just documents which one `escapeHtml` itself produces).
+- Backtick is deliberately **not** escaped — it's not part of OWASP's Rule #1 for HTML element content, despite sometimes being confused for one (it shows up in separate, unrelated advice about never using backtick as an HTML attribute delimiter).
+- Implemented as a single pass over the string with one combined regex, not chained sequential replacements — chaining would corrupt its own output (escaping `<` before `&` would turn the resulting `&lt;` into `&amp;lt;` on a second pass).
+
+---
+
+## unescapeHtml
+
+Reverses exactly the five escapes `escapeHtml` produces.
+
+**Parameters:**
+
+- `text: string` — The input string.
+
+**Returns:**
+
+- `string` — The unescaped string, or an error message for invalid input.
+
+**Example:**
+
+```js
+import { unescapeHtml } from 'textconvert';
+
+unescapeHtml('Tom &amp; Jerry');
+// 'Tom & Jerry'
+```
+
+**Edge Cases:**
+
+- Returns an error message for empty input.
+- **Not a general-purpose HTML entity decoder.** Only the five entities `escapeHtml` produces are reversed — `&nbsp;`, `&copy;`, numeric character references like `&#65;`, and every other named or numeric entity are left untouched, by design.
+- Accepts both `&#x27;` (hex, what `escapeHtml` produces) and `&#39;` (decimal) as valid apostrophe input, plus the named `&apos;` form — even though `escapeHtml` only ever outputs `&#x27;`, so round-tripping output from other tools that use a different convention still works.

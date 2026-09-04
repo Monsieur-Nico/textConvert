@@ -93,6 +93,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 ## ✨ Features
 
 - **PII redaction:** mask emails, phone numbers, credit card numbers, and (opt-in) API keys/tokens embedded in free-form text, or partially mask a known value for display
+- **XSS-safe HTML escaping:** escape/unescape the five HTML special characters per OWASP's XSS Prevention Cheat Sheet, without a dedicated escaping library
 - **CLI:** `npx textconvert redact <file>` sanitizes a file (or stdin) from the command line, no JS required
 - Case conversion: camelCase, PascalCase, snake_case, kebab-case, slugify, capitalize, Title Case
 - Validation: email addresses, URLs, and phone numbers
@@ -147,6 +148,8 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 | `extractUrls(text)`                          | Extract all URLs found in a block of text             |
 | `extractMentions(text)`                      | Extract all @mentions found in a block of text        |
 | `extractHashtags(text)`                      | Extract all #hashtags found in a block of text        |
+| `escapeHtml(text)`                           | Escape the five HTML special characters               |
+| `unescapeHtml(text)`                         | Reverse `escapeHtml`'s escaping                       |
 
 See [docs/API.md](docs/API.md) for full parameter, return type, and edge-case details on every function, or browse the auto-generated [API reference site](https://monsieur-nico.github.io/textConvert/).
 
