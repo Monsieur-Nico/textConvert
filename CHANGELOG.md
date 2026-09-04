@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [1.10.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.9.0...v1.10.0) (2026-09-04)
+
+
+### Features
+
+* add extractEmails function ([70e156e](https://github.com/Monsieur-Nico/textConvert/commit/70e156ea43c1ca5757b5fe2f1fd5359874f2120f))
+* add extractEmails function ([e477ef4](https://github.com/Monsieur-Nico/textConvert/commit/e477ef48a6732eb521f9503a615173dd04a912ff))
+
+
+### Bug Fixes
+
+* avoid ReDoS in extractEmails candidate matching ([b513e88](https://github.com/Monsieur-Nico/textConvert/commit/b513e881586f5f094890ae096b4a6895aea1b9e3))
+
 ## [1.9.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.8.0...v1.9.0) (2026-09-04)
 
 
