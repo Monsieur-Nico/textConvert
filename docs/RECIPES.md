@@ -45,6 +45,15 @@ isUrl('ftp://fileserver'); // false
 isUrl('not a url'); // false
 ```
 
+### Extract URLs from a Block of Text
+
+```js
+import { extractUrls } from 'textconvert';
+
+const notes = 'Docs at https://example.com/docs, repo at https://example.com/repo.';
+extractUrls(notes); // ['https://example.com/docs', 'https://example.com/repo']
+```
+
 ### Validate a Phone Number
 
 ```js
