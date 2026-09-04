@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [1.15.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.14.0...v1.15.0) (2026-09-04)
+
+
+### Features
+
+* add capitalize function ([9abf53b](https://github.com/Monsieur-Nico/textConvert/commit/9abf53bb528e878d09bdc895742c43be53f7e8ad))
+* add capitalize function ([b3e8921](https://github.com/Monsieur-Nico/textConvert/commit/b3e8921d40d1dddc16f37f868943927a40754023)), closes [#290](https://github.com/Monsieur-Nico/textConvert/issues/290)
+
 ## [1.14.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.13.0...v1.14.0) (2026-09-04)
 
 
