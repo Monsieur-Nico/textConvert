@@ -1,4 +1,4 @@
-import { camelCase, kebabCase, pascalCase, snakeCase } from './text/conventions';
+import { camelCase, capitalize, kebabCase, pascalCase, snakeCase } from './text/conventions';
 
 import { detectLanguage, Language, LanguageDetectionResult } from './text/analysis/language';
 import { getTextStats, TextStatistics } from './text/analysis/statistics';
@@ -18,6 +18,7 @@ import { truncate } from './text/truncate';
 
 export {
   camelCase,
+  capitalize,
   clear,
   count,
   countSentences,

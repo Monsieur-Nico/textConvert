@@ -91,6 +91,18 @@ function buildPostUrl(title) {
 buildPostUrl('10 Tips for Better Résumés!'); // '/blog/10-tips-for-better-resumes'
 ```
 
+### Capitalize the First Letter of a Sentence
+
+```js
+import { capitalize } from 'textconvert';
+
+function formatUserComment(comment) {
+  return capitalize(comment.trim());
+}
+
+formatUserComment('great point, thanks for sharing!'); // 'Great point, thanks for sharing!'
+```
+
 ---
 
 ## Text Analysis
