@@ -18,7 +18,7 @@
 
 ## camelCase
 
-Converts a string to camelCase.
+Converts a string to camelCase. Words are split on any run of non-letter characters (spaces, punctuation, digits), so `camelCase` and `pascalCase` treat digits as word boundaries rather than part of a word — see `snakeCase`/`kebabCase` below for the (different) splitting rule those two use.
 
 **Parameters:**
 
@@ -34,17 +34,20 @@ Converts a string to camelCase.
 import { camelCase } from 'textconvert';
 
 camelCase('hello world'); // 'helloWorld'
+camelCase('hello2world'); // 'helloWorld' (digits split words, they aren't kept)
 ```
 
 **Edge Cases:**
 
 - Returns an error message for empty input.
+- Consecutive delimiters (`'hello--world'`) and leading/trailing delimiters don't produce empty or malformed words — empty segments from the split are filtered out before casing is applied.
+- A non-letter inside a word — including an apostrophe — starts a new word on the other side of it: `camelCase("it's a test")` → `'itSATest'`, not `'itSTest'` or similar. This isn't a case where apostrophes are special-cased; they're simply not letters, same as any other separator.
 
 ---
 
 ## pascalCase
 
-Converts a string to PascalCase.
+Converts a string to PascalCase. Same word-splitting rule as `camelCase` (see above), but every word — including the first — is capitalized, and there's no lowercase first word to prepend.
 
 **Parameters:**
 
@@ -65,12 +68,14 @@ pascalCase('hello world'); // 'HelloWorld'
 **Edge Cases:**
 
 - Returns an error message for empty input.
+- Consecutive/leading/trailing delimiters are handled the same way as `camelCase` — no empty words leak into the output.
+- Apostrophes and other non-letters split words the same way `camelCase` does: `pascalCase("it's a test")` → `'ItSATest'`.
 
 ---
 
 ## snakeCase
 
-Converts a string to snake_case.
+Converts a string to snake_case. Uses a different word-splitting strategy than `camelCase`/`pascalCase`: if the input contains any non-letter character, it splits on runs of non-letters (same rule as above); if the input is purely letters (e.g. already `camelCase` or `PascalCase`), it instead splits before each uppercase letter, so word boundaries can be recovered from casing alone.
 
 **Parameters:**
 
@@ -86,17 +91,20 @@ Converts a string to snake_case.
 import { snakeCase } from 'textconvert';
 
 snakeCase('hello world'); // 'hello_world'
+snakeCase('helloWorld'); // 'hello_world' (splits on casing, no separators present)
 ```
 
 **Edge Cases:**
 
 - Returns an error message for empty input.
+- Consecutive/leading/trailing delimiters don't produce empty segments in the output (`'hello .World'` → `'hello_world'`).
+- Shares its delimiter-joining logic with `kebabCase` — the two differ only in the joining character (`_` vs `-`), so anything true of one's word-splitting behavior is true of the other.
 
 ---
 
 ## kebabCase
 
-Converts a string to kebab-case.
+Converts a string to kebab-case. Same word-splitting rule as `snakeCase` (see above) — the two functions are identical apart from the joining character.
 
 **Parameters:**
 
@@ -112,11 +120,13 @@ Converts a string to kebab-case.
 import { kebabCase } from 'textconvert';
 
 kebabCase('hello world'); // 'hello-world'
+kebabCase('HelloWorld'); // 'hello-world'
 ```
 
 **Edge Cases:**
 
 - Returns an error message for empty input.
+- Same consecutive/leading/trailing-delimiter and casing-split behavior as `snakeCase`.
 
 ---
 
@@ -151,10 +161,13 @@ function buildPostUrl(title) {
 buildPostUrl('10 Tips for Better Résumés!'); // '/blog/10-tips-for-better-resumes'
 ```
 
+**How accent-stripping works:** `slugify` Unicode-normalizes to NFD form (decomposing an accented character like `é` into a plain `e` plus a separate combining accent mark), then strips the combining marks — leaving the plain-ASCII base letter. This only works for scripts that have an ASCII decomposition.
+
 **Edge Cases:**
 
 - Returns an error message for empty input.
 - Numbers are preserved (not treated as separators).
+- Non-Latin scripts (Chinese, Japanese, Korean, Arabic, Cyrillic, ...) have no ASCII decomposition, so they're treated as separator characters and stripped entirely — not transliterated, not preserved. `slugify('你好世界')` returns `''` (empty string), and `slugify('Café 你好 World')` returns `'cafe-world'`, silently dropping the CJK portion. If you need slugs for non-Latin content, `slugify` isn't the right tool as-is.
 
 ---
 
