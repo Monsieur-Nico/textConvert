@@ -6,8 +6,7 @@
  * reverse('Hello, world!'); // '!dlrow ,olleH'
  */
 
-export function reverse(text: string) {
-  // return type is inferred
+export function reverse(text: string): string {
   // Make sure input is valid
   if (!text) return 'Please provide a valid input text';
   // Split string into characters, reverse all of them and join them back together

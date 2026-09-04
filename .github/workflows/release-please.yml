@@ -72,5 +72,5 @@ jobs:
         # Best-effort mirror alongside npm (the primary registry) -- a JSR
         # hiccup shouldn't fail the whole release workflow after npm has
         # already published successfully.
-        run: npx jsr publish --allow-slow-types
+        run: npx jsr publish
         continue-on-error: true
