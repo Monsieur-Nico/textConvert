@@ -1,4 +1,11 @@
-import { camelCase, capitalize, kebabCase, pascalCase, snakeCase } from './text/conventions';
+import {
+  camelCase,
+  capitalize,
+  kebabCase,
+  pascalCase,
+  snakeCase,
+  titleCase,
+} from './text/conventions';
 
 import { detectLanguage, Language, LanguageDetectionResult } from './text/analysis/language';
 import { getTextStats, TextStatistics } from './text/analysis/statistics';
@@ -42,5 +49,6 @@ export {
   snakeCase,
   spread,
   TextStatistics,
+  titleCase,
   truncate,
 };

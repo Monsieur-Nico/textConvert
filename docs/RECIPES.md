@@ -103,6 +103,14 @@ function formatUserComment(comment) {
 formatUserComment('great point, thanks for sharing!'); // 'Great point, thanks for sharing!'
 ```
 
+### Title-Case a Page Heading
+
+```js
+import { titleCase } from 'textconvert';
+
+titleCase('the quick brown fox'); // 'The Quick Brown Fox'
+```
+
 ---
 
 ## Text Analysis

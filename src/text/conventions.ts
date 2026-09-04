@@ -122,3 +122,24 @@ export function capitalize(text: string): string {
 
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
+
+/**
+ * Capitalizes the first letter of every word, keeping spaces and separators
+ * intact (distinct from {@link pascalCase}, which removes them).
+ *
+ * Uses simple every-word capitalization rather than the "small words stay
+ * lowercase" (a, an, the, of, ...) style convention some style guides use —
+ * simpler, more predictable, and easier to test, at the cost of not being
+ * "typographically correct" by those style guides' rules.
+ * @param text A string to convert to Title Case.
+ * @returns The string with the first letter of every word capitalized.
+ * @example
+ * titleCase('the lord of the rings'); // 'The Lord Of The Rings'
+ * titleCase('hello-world_example'); // 'Hello-World_Example'
+ */
+export function titleCase(text: string): string {
+  // Make sure there's an input
+  if (!text) return 'Please provide a valid input text';
+
+  return text.replace(/[A-Za-z]+/g, (word) => capitalize(word));
+}

@@ -80,7 +80,7 @@ const convert = require('textconvert');
 ## ✨ Features
 
 - **PII redaction:** mask emails, phone numbers, credit card numbers, and (opt-in) API keys/tokens embedded in free-form text, or partially mask a known value for display
-- Case conversion: camelCase, PascalCase, snake_case, kebab-case, slugify, capitalize
+- Case conversion: camelCase, PascalCase, snake_case, kebab-case, slugify, capitalize, Title Case
 - Validation: email addresses, URLs, and phone numbers
 - Extraction: pull email addresses and URLs out of a block of text
 - Text analysis: word/letter/sentence/paragraph counting, reading time, etc.
@@ -112,6 +112,7 @@ const convert = require('textconvert');
 | `kebabCase(text)`                            | Convert to kebab-case                                 |
 | `slugify(text)`                              | Convert to a URL-safe slug                            |
 | `capitalize(text)`                           | Capitalize only the first letter                      |
+| `titleCase(text)`                            | Capitalize the first letter of every word             |
 | `clear(text)`                                | Remove punctuation from text                          |
 | `count(text, countNumbers?)`                 | Count letters (optionally including numbers)          |
 | `countWords(text)`                           | Count words                                           |

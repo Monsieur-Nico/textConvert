@@ -21,6 +21,7 @@ This document provides detailed documentation for all public functions exported 
 - [kebabCase](#kebabcase)
 - [slugify](#slugify)
 - [capitalize](#capitalize)
+- [titleCase](#titlecase)
 - [getTextStats](#gettextstats)
 - [detectLanguage](#detectlanguage)
 - [numbersToWords](#numberstowords)
@@ -356,6 +357,35 @@ capitalize('HELLO WORLD'); // 'HELLO WORLD'
 
 - Returns an error message for empty input.
 - Only the first character is touched — the rest of the string, including existing casing, is left as-is.
+
+---
+
+## titleCase
+
+Capitalizes the first letter of every word, keeping spaces and separators intact — distinct from `pascalCase`, which removes them.
+
+Uses simple every-word capitalization rather than the "small words stay lowercase" (a, an, the, of, ...) style-guide convention — simpler, more predictable, and easier to test, at the cost of not being "typographically correct" by those style guides' rules.
+
+**Parameters:**
+
+- `text: string` — The input string.
+
+**Returns:**
+
+- `string` — The string with the first letter of every word capitalized.
+
+**Example:**
+
+```js
+titleCase('the lord of the rings'); // 'The Lord Of The Rings'
+titleCase('hello-world_example'); // 'Hello-World_Example'
+```
+
+**Edge Cases:**
+
+- Returns an error message for empty input.
+- Digits and separators (spaces, dashes, underscores, etc.) are left untouched — only letter runs are capitalized.
+- A word is any maximal run of letters, so a character like an apostrophe inside a word (`it's`) starts a new "word" on the other side of it (`It'S`), since apostrophes aren't letters.
 
 ---
 
