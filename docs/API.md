@@ -14,15 +14,8 @@ Detailed documentation for every function has moved into per-category files unde
 
 ## Table of Contents
 
-- [clear](#clear)
-- [count](#count)
-- [countWords](#countwords)
-- [countSentences](#countsentences)
-- [reverse](#reverse)
-- [spread](#spread)
-- [truncate](#truncate)
-- [maskText](#masktext)
-- [redact](#redact)
+**Case Conversion**
+
 - [camelCase](#camelcase)
 - [pascalCase](#pascalcase)
 - [snakeCase](#snakecase)
@@ -30,155 +23,162 @@ Detailed documentation for every function has moved into per-category files unde
 - [slugify](#slugify)
 - [capitalize](#capitalize)
 - [titleCase](#titlecase)
-- [getTextStats](#gettextstats)
-- [detectLanguage](#detectlanguage)
-- [numbersToWords](#numberstowords)
+
+**Validation**
+
 - [isEmail](#isemail)
 - [isUrl](#isurl)
 - [isPhoneNumber](#isphonenumber)
+
+**Extraction**
+
 - [extractEmails](#extractemails)
 - [extractUrls](#extracturls)
 
----
+**Security**
 
-## clear
+- [redact](#redact)
+- [maskText](#masktext)
 
-Full docs: [docs/api/text-analysis.md#clear](api/text-analysis.md#clear)
+**Text Analysis**
 
----
+- [clear](#clear)
+- [count](#count)
+- [countWords](#countwords)
+- [countSentences](#countsentences)
+- [getTextStats](#gettextstats)
+- [reverse](#reverse)
+- [spread](#spread)
+- [truncate](#truncate)
 
-## count
+**Language**
 
-Full docs: [docs/api/text-analysis.md#count](api/text-analysis.md#count)
+- [detectLanguage](#detectlanguage)
 
----
+**Numbers**
 
-## countWords
-
-Full docs: [docs/api/text-analysis.md#countwords](api/text-analysis.md#countwords)
-
----
-
-## countSentences
-
-Full docs: [docs/api/text-analysis.md#countsentences](api/text-analysis.md#countsentences)
-
----
-
-## reverse
-
-Full docs: [docs/api/text-analysis.md#reverse](api/text-analysis.md#reverse)
+- [numbersToWords](#numberstowords)
 
 ---
 
-## spread
+## Case Conversion
 
-Full docs: [docs/api/text-analysis.md#spread](api/text-analysis.md#spread)
-
----
-
-## truncate
-
-Full docs: [docs/api/text-analysis.md#truncate](api/text-analysis.md#truncate)
-
----
-
-## maskText
-
-Full docs: [docs/api/security.md#masktext](api/security.md#masktext)
-
----
-
-## redact
-
-Full docs: [docs/api/security.md#redact](api/security.md#redact)
-
----
-
-## camelCase
+### camelCase
 
 Full docs: [docs/api/case-conversion.md#camelcase](api/case-conversion.md#camelcase)
 
----
-
-## pascalCase
+### pascalCase
 
 Full docs: [docs/api/case-conversion.md#pascalcase](api/case-conversion.md#pascalcase)
 
----
-
-## snakeCase
+### snakeCase
 
 Full docs: [docs/api/case-conversion.md#snakecase](api/case-conversion.md#snakecase)
 
----
-
-## kebabCase
+### kebabCase
 
 Full docs: [docs/api/case-conversion.md#kebabcase](api/case-conversion.md#kebabcase)
 
----
-
-## slugify
+### slugify
 
 Full docs: [docs/api/case-conversion.md#slugify](api/case-conversion.md#slugify)
 
----
-
-## capitalize
+### capitalize
 
 Full docs: [docs/api/case-conversion.md#capitalize](api/case-conversion.md#capitalize)
 
----
-
-## titleCase
+### titleCase
 
 Full docs: [docs/api/case-conversion.md#titlecase](api/case-conversion.md#titlecase)
 
 ---
 
-## getTextStats
+## Validation
 
-Full docs: [docs/api/text-analysis.md#gettextstats](api/text-analysis.md#gettextstats)
-
----
-
-## detectLanguage
-
-Full docs: [docs/api/language.md#detectlanguage](api/language.md#detectlanguage)
-
----
-
-## numbersToWords
-
-Full docs: [docs/api/numbers.md#numberstowords](api/numbers.md#numberstowords)
-
----
-
-## isEmail
+### isEmail
 
 Full docs: [docs/api/validation.md#isemail](api/validation.md#isemail)
 
----
-
-## isUrl
+### isUrl
 
 Full docs: [docs/api/validation.md#isurl](api/validation.md#isurl)
 
----
-
-## isPhoneNumber
+### isPhoneNumber
 
 Full docs: [docs/api/validation.md#isphonenumber](api/validation.md#isphonenumber)
 
 ---
 
-## extractEmails
+## Extraction
+
+### extractEmails
 
 Full docs: [docs/api/extraction.md#extractemails](api/extraction.md#extractemails)
 
----
-
-## extractUrls
+### extractUrls
 
 Full docs: [docs/api/extraction.md#extracturls](api/extraction.md#extracturls)
+
+---
+
+## Security
+
+### redact
+
+Full docs: [docs/api/security.md#redact](api/security.md#redact)
+
+### maskText
+
+Full docs: [docs/api/security.md#masktext](api/security.md#masktext)
+
+---
+
+## Text Analysis
+
+### clear
+
+Full docs: [docs/api/text-analysis.md#clear](api/text-analysis.md#clear)
+
+### count
+
+Full docs: [docs/api/text-analysis.md#count](api/text-analysis.md#count)
+
+### countWords
+
+Full docs: [docs/api/text-analysis.md#countwords](api/text-analysis.md#countwords)
+
+### countSentences
+
+Full docs: [docs/api/text-analysis.md#countsentences](api/text-analysis.md#countsentences)
+
+### getTextStats
+
+Full docs: [docs/api/text-analysis.md#gettextstats](api/text-analysis.md#gettextstats)
+
+### reverse
+
+Full docs: [docs/api/text-analysis.md#reverse](api/text-analysis.md#reverse)
+
+### spread
+
+Full docs: [docs/api/text-analysis.md#spread](api/text-analysis.md#spread)
+
+### truncate
+
+Full docs: [docs/api/text-analysis.md#truncate](api/text-analysis.md#truncate)
+
+---
+
+## Language
+
+### detectLanguage
+
+Full docs: [docs/api/language.md#detectlanguage](api/language.md#detectlanguage)
+
+---
+
+## Numbers
+
+### numbersToWords
+
+Full docs: [docs/api/numbers.md#numberstowords](api/numbers.md#numberstowords)
