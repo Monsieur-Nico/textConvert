@@ -36,6 +36,12 @@ describe('#camelCase', () => {
   it("should return 'Please provide a valid input text' for empty input", () => {
     expect(camelCase('')).toBe('Please provide a valid input text');
   });
+  it('should not leak an error message for consecutive delimiters', () => {
+    expect(camelCase('hello--world')).toBe('helloWorld');
+  });
+  it('should not leak an error message for leading delimiters', () => {
+    expect(camelCase(',hello world')).toBe('HelloWorld');
+  });
 });
 
 describe('#PascalCase', () => {
@@ -65,6 +71,9 @@ describe('#PascalCase', () => {
   });
   it("should return 'Please provide a valid input text' for empty input", () => {
     expect(pascalCase('')).toBe('Please provide a valid input text');
+  });
+  it('should not leak an error message for consecutive delimiters', () => {
+    expect(pascalCase('hello--world')).toBe('HelloWorld');
   });
 });
 
