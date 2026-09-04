@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [1.7.1](https://github.com/Monsieur-Nico/textConvert/compare/v1.7.0...v1.7.1) (2026-09-04)
+
+
+### Bug Fixes
+
+* **ci:** force IPv4-first DNS resolution to stop Node 24 npm ci hangs ([01612b7](https://github.com/Monsieur-Nico/textConvert/commit/01612b7f82fb8382aa545d25b69abbb196bd6f92))
+* **ci:** force IPv4-first DNS resolution to stop Node 24 npm ci hangs ([50c2b24](https://github.com/Monsieur-Nico/textConvert/commit/50c2b240686b2f5979d3ef6cf7076a422bfa83cd))
+
+
+### Reverts
+
+* force IPv4-first DNS resolution workaround ([52992a9](https://github.com/Monsieur-Nico/textConvert/commit/52992a9b190128ee77f8c2b7290a7bc5ae7d5508))
+
 ## [1.7.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.6.0...v1.7.0) (2026-09-03)
 
 
