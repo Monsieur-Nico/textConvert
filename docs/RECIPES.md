@@ -60,6 +60,18 @@ snakeCase('hello world'); // 'hello_world'
 kebabCase('hello world'); // 'hello-world'
 ```
 
+### Generate a URL Slug for a Blog Post Title
+
+```js
+import { slugify } from 'textconvert';
+
+function buildPostUrl(title) {
+  return `/blog/${slugify(title)}`;
+}
+
+buildPostUrl('10 Tips for Better Résumés!'); // '/blog/10-tips-for-better-resumes'
+```
+
 ---
 
 ## Text Analysis

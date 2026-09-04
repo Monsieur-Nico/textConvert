@@ -73,7 +73,7 @@ const convert = require('textconvert');
 
 ## ✨ Features
 
-- Case conversion: camelCase, PascalCase, snake_case, kebab-case
+- Case conversion: camelCase, PascalCase, snake_case, kebab-case, slugify
 - Text analysis: word/letter/sentence/paragraph counting, reading time, etc.
 - Validation: email addresses, URLs, and phone numbers
 - Language detection: English, French, Spanish, German, Italian, Portuguese, Dutch
@@ -90,6 +90,7 @@ const convert = require('textconvert');
 | `pascalCase(text)`                           | Convert to PascalCase                                 |
 | `snakeCase(text)`                            | Convert to snake_case                                 |
 | `kebabCase(text)`                            | Convert to kebab-case                                 |
+| `slugify(text)`                              | Convert to a URL-safe slug                            |
 | `clear(text)`                                | Remove punctuation from text                          |
 | `count(text, countNumbers?)`                 | Count letters (optionally including numbers)          |
 | `countWords(text)`                           | Count words                                           |
