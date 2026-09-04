@@ -1,3 +1,4 @@
+import { scanMaximalRuns, stripTrailing } from './internal/scan';
 import { extractEmails } from './extract';
 import { maskText } from './mask';
 import { isPhoneNumber } from './validation/phoneNumber';
@@ -8,36 +9,16 @@ import { isPhoneNumber } from './validation/phoneNumber';
 const phoneChars = new Set([...'+0123456789 ().-']);
 
 /**
- * Finds phone-number-shaped candidate substrings via a single linear pass:
- * maximal runs of phone-safe characters, trimmed of surrounding whitespace.
- * Letters and any other character end a run, so ordinary prose naturally
- * breaks candidates apart.
+ * Finds phone-number-shaped candidate substrings: maximal runs of
+ * phone-safe characters, trimmed of surrounding whitespace. Letters and
+ * any other character end a run, so ordinary prose naturally breaks
+ * candidates apart.
  */
 function findPhoneCandidates(text: string): string[] {
-  const candidates: string[] = [];
-  let i = 0;
-
-  while (i < text.length) {
-    if (!phoneChars.has(text[i])) {
-      i++;
-      continue;
-    }
-
-    let end = i;
-    while (end < text.length && phoneChars.has(text[end])) end++;
-
-    let start = i;
-    while (start < end && text[start] === ' ') start++;
-    let trimmedEnd = end;
-    while (trimmedEnd > start && text[trimmedEnd - 1] === ' ') trimmedEnd--;
-
-    if (trimmedEnd > start) candidates.push(text.slice(start, trimmedEnd));
-
-    i = end;
-  }
-
-  return candidates;
+  return scanMaximalRuns(text, phoneChars);
 }
+
+const dotChars = new Set(['.']);
 
 // A trailing '.' is ambiguous: it's a valid mid-number separator (as in
 // '555.123.4567') but also commonly a sentence-ending period, which
@@ -45,9 +26,7 @@ function findPhoneCandidates(text: string): string[] {
 // never legitimately ends the match on a '.', it's always stripped before
 // validating.
 function stripTrailingDots(value: string): string {
-  let end = value.length;
-  while (end > 0 && value[end - 1] === '.') end--;
-  return value.slice(0, end);
+  return stripTrailing(value, dotChars);
 }
 
 /** Phone numbers found in text, validated with {@link isPhoneNumber}. */
@@ -61,33 +40,11 @@ function findPhoneNumbers(text: string): string[] {
 const creditCardChars = new Set([...'0123456789 -']);
 
 /**
- * Finds credit-card-shaped candidate substrings via a single linear pass,
- * the same maximal-run approach as {@link findPhoneCandidates}.
+ * Finds credit-card-shaped candidate substrings, the same maximal-run
+ * approach as {@link findPhoneCandidates}.
  */
 function findCreditCardCandidates(text: string): string[] {
-  const candidates: string[] = [];
-  let i = 0;
-
-  while (i < text.length) {
-    if (!creditCardChars.has(text[i])) {
-      i++;
-      continue;
-    }
-
-    let end = i;
-    while (end < text.length && creditCardChars.has(text[end])) end++;
-
-    let start = i;
-    while (start < end && text[start] === ' ') start++;
-    let trimmedEnd = end;
-    while (trimmedEnd > start && text[trimmedEnd - 1] === ' ') trimmedEnd--;
-
-    if (trimmedEnd > start) candidates.push(text.slice(start, trimmedEnd));
-
-    i = end;
-  }
-
-  return candidates;
+  return scanMaximalRuns(text, creditCardChars);
 }
 
 // Luhn checksum, used to tell an actual card number apart from an arbitrary
