@@ -17,6 +17,7 @@ This document provides detailed documentation for all public functions exported 
 - [pascalCase](#pascalcase)
 - [snakeCase](#snakecase)
 - [kebabCase](#kebabcase)
+- [slugify](#slugify)
 - [getTextStats](#gettextstats)
 - [detectLanguage](#detectlanguage)
 - [numbersToWords](#numberstowords)
@@ -298,6 +299,32 @@ kebabCase('hello world'); // 'hello-world'
 **Edge Cases:**
 
 - Returns an error message for empty input.
+
+---
+
+## slugify
+
+Converts a string into a URL-safe slug: lowercase, punctuation stripped, separators collapsed to a single `-`, and accented characters normalized to their plain-ASCII equivalents.
+
+**Parameters:**
+
+- `text: string` — The input string.
+
+**Returns:**
+
+- `string` — The slugified string.
+
+**Example:**
+
+```js
+slugify('Hello, World! 100% Awesome'); // 'hello-world-100-awesome'
+slugify('Café Résumé Review'); // 'cafe-resume-review'
+```
+
+**Edge Cases:**
+
+- Returns an error message for empty input.
+- Numbers are preserved (not treated as separators).
 
 ---
 

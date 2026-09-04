@@ -13,6 +13,7 @@ const regex = {
     nonAlphabetic: /[^A-Za-z]/g,
     nonAlphaTest: /[^A-Za-z]/,
     punctuation: /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g,
+    nonAlphaNumeric: /[^A-Za-z0-9]+/g,
   },
 };
 

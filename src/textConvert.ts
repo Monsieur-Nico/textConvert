@@ -10,6 +10,7 @@ import { isEmail } from './text/validation/email';
 import { isPhoneNumber } from './text/validation/phoneNumber';
 import { isUrl } from './text/validation/url';
 import { numbersToWords } from './numbers/numbersToWords';
+import { slugify } from './text/slugify';
 import { truncate } from './text/truncate';
 
 export {
@@ -29,6 +30,7 @@ export {
   numbersToWords,
   pascalCase,
   reverse,
+  slugify,
   snakeCase,
   spread,
   TextStatistics,
