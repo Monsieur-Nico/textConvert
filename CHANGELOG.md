@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.0.1](https://github.com/Monsieur-Nico/textConvert/compare/v2.0.0...v2.0.1) (2026-09-04)
+
+
+### Bug Fixes
+
+* commit jsr.json version sync before publishing to JSR ([061c76f](https://github.com/Monsieur-Nico/textConvert/commit/061c76f1a27db5f3f2b82d1e090096961dc26814))
+* commit jsr.json version sync before publishing to JSR ([dc781ea](https://github.com/Monsieur-Nico/textConvert/commit/dc781ea72190a54a5ae60cdb3d3194c7ea2dff2b))
+
 ## [2.0.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.16.0...v2.0.0) (2026-09-04)
 
 
