@@ -6,16 +6,19 @@ const numbers: string[] =
 const tens: string[] = 'twenty thirty forty fifty sixty seventy eighty ninety'.split(' ');
 
 /**
- * Get any number below 100 million converted to words.
+ * Get any non-negative integer below 100 million converted to words.
  * @param number Integer input to turn into text.
- * @returns A string of numbers converted to words.
+ * @returns A string of numbers converted to words, or an error message for invalid input.
  * @example
  * numbersToWords(12345); // 'twelve thousand three hundred and forty-five'
+ * numbersToWords(-5); // 'Please provide a valid number under 100 million'
  */
 export function numbersToWords(number: number): string {
-  // Check if the number is less than 100 million
-  if (number >= 100000000) {
-    throw new Error('Please enter a number under 100 million!');
+  // Reject anything that isn't a non-negative integer under 100 million,
+  // matching the sentinel-return convention every other function in this
+  // library follows rather than throwing.
+  if (!Number.isInteger(number) || number < 0 || number >= 100000000) {
+    return 'Please provide a valid number under 100 million';
   }
 
   // Check if the input is between 0-19

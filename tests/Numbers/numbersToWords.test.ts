@@ -22,8 +22,14 @@ describe('#numbersToWords', () => {
   it("should return 'ninety-two million' for 92000000", () => {
     expect(numbersToWords(92000000)).toBe('ninety-two million');
   });
-  it('should return Error for 100,000,000', () => {
-    expect(() => numbersToWords(100000000)).toThrow('Please enter a number under 100 million!');
+  it('should return an error message for 100,000,000 instead of throwing', () => {
+    expect(numbersToWords(100000000)).toBe('Please provide a valid number under 100 million');
+  });
+  it('should return an error message for a negative number', () => {
+    expect(numbersToWords(-5)).toBe('Please provide a valid number under 100 million');
+  });
+  it('should return an error message for a non-integer number', () => {
+    expect(numbersToWords(12.5)).toBe('Please provide a valid number under 100 million');
   });
 
   // Adding more test cases to improve coverage
