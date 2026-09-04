@@ -19,4 +19,15 @@ export default [
     plugins: [resolve(), typescript({ tsconfig: './tsconfig.json' })],
     external: [],
   },
+  {
+    input: 'src/bin/textconvert.ts',
+    output: {
+      file: 'dist/cli.js',
+      format: 'esm',
+      banner: '#!/usr/bin/env node',
+      sourcemap: true,
+    },
+    plugins: [resolve(), typescript({ tsconfig: './tsconfig.json' })],
+    external: ['node:fs'],
+  },
 ];

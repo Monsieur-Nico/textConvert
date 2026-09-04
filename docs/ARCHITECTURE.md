@@ -32,6 +32,9 @@ textConvert/
     numbers/
       numbersToWords.ts # Number to words conversion
     assets/             # Shared regex and constants
+    bin/
+      textconvert.ts    # CLI entry point (thin wiring, built as dist/cli.js)
+    cli.ts              # CLI argument parsing and command logic (testable, no direct IO side effects on import)
     textConvert.ts      # Main entry point (exports all public functions)
   tests/                # Unit and integration tests
   docs/                 # Documentation
@@ -57,6 +60,7 @@ textConvert/
 - **text/extract.ts**: Find every email/URL embedded in a block of text.
 - **numbers/numbersToWords.ts**: Convert numbers to English words.
 - **assets/regex.ts**: Centralized regex patterns for reuse.
+- **bin/textconvert.ts** and **cli.ts**: The `npx textconvert` CLI (currently just `redact`) — `cli.ts` holds the testable argument-parsing/dispatch logic, `bin/textconvert.ts` is the thin entry point that wires it to real `process`/stdio and gets built into `dist/cli.js`. This is the one part of `src/` that legitimately depends on Node built-ins; everything else stays runtime-agnostic by design.
 - **textConvert.ts**: Aggregates and exports all public functions for library consumers.
 
 ---
@@ -95,7 +99,7 @@ textConvert/
 
 - Expanding `detectLanguage`'s supported language set beyond the current seven.
 - More advanced text analytics (e.g. readability scoring).
-- A CLI wrapper for scripting/automation use.
+- More CLI commands beyond `redact`, if there's demand.
 
 ---
 
