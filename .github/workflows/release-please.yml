@@ -55,6 +55,19 @@ jobs:
             jsr.version = pkg.version;
             fs.writeFileSync('./jsr.json', JSON.stringify(jsr, null, 2) + '\n');
           "
+          # jsr publish refuses to run with uncommitted changes (a genuinely
+          # useful check -- it guarantees what's published matches what's in
+          # version control). Commit the version bump locally, in this
+          # throwaway CI checkout, to satisfy that check honestly instead of
+          # bypassing it with --allow-dirty. Nothing here is pushed back to
+          # the repo -- jsr.json's version is resynced the same way on every
+          # release, so there's nothing to keep.
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          VERSION=$(node -p "require('./package.json').version")
+          if ! git diff --quiet -- jsr.json; then
+            git commit -am "chore: sync jsr.json version to $VERSION" --quiet
+          fi
       - name: Publish to JSR
         # Best-effort mirror alongside npm (the primary registry) -- a JSR
         # hiccup shouldn't fail the whole release workflow after npm has
