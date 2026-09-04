@@ -61,4 +61,56 @@ describe('#redact', () => {
   it("should return 'Please provide a valid input text' for empty input", () => {
     expect(redact('')).toBe('Please provide a valid input text');
   });
+
+  it('should mask a Luhn-valid credit card number, keeping the last 4 visible', () => {
+    expect(redact('Card: 4111 1111 1111 1111', { types: ['creditCard'] })).toBe(
+      'Card: ***************1111',
+    );
+    expect(redact('Card: 4111111111111111', { types: ['creditCard'] })).toBe(
+      'Card: ************1111',
+    );
+    expect(redact('Card: 4111-1111-1111-1111', { types: ['creditCard'] })).toBe(
+      'Card: ***************1111',
+    );
+  });
+
+  it('should not redact a digit sequence that fails the Luhn checksum', () => {
+    expect(redact('Order: 1234 5678 9012 3456', { types: ['creditCard'] })).toBe(
+      'Order: 1234 5678 9012 3456',
+    );
+  });
+
+  it('should include creditCard in the default types', () => {
+    expect(redact('Card: 4111 1111 1111 1111')).toBe('Card: ***************1111');
+  });
+
+  it('should mask known API key/token formats when apiKey is requested', () => {
+    // Built by concatenation, not as string literals: GitHub's push
+    // protection flags any string matching these providers' key *format*
+    // (prefix + length), real or not, so a literal fixture here would
+    // itself get blocked as a "leaked secret" on push.
+    const fakeAwsKey = 'AKIA' + 'IOSFODNN7EXAMPLE';
+    const fakeGithubToken = 'ghp_' + 'X'.repeat(36);
+    const fakeStripeKey = 'sk_live_' + 'X'.repeat(24);
+
+    expect(redact(`Key: ${fakeAwsKey} leaked`, { types: ['apiKey'] })).toBe(
+      'Key: ******************** leaked',
+    );
+    expect(redact(`Token: ${fakeGithubToken} leaked`, { types: ['apiKey'] })).toBe(
+      'Token: **************************************** leaked',
+    );
+    expect(redact(`Stripe: ${fakeStripeKey} leaked`, { types: ['apiKey'] })).toBe(
+      'Stripe: ******************************** leaked',
+    );
+  });
+
+  it('should not match a bare/too-short prefix as an API key', () => {
+    expect(redact('AKIA is short', { types: ['apiKey'] })).toBe('AKIA is short');
+  });
+
+  it('should not include apiKey in the default types (opt-in only)', () => {
+    expect(redact('Key: AKIAIOSFODNN7EXAMPLE and card 4111 1111 1111 1111')).toBe(
+      'Key: AKIAIOSFODNN7EXAMPLE and card ***************1111',
+    );
+  });
 });

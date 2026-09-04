@@ -149,6 +149,16 @@ safeLog('Contact me at jordan@example.com or 555-123-4567');
 // 'Contact me at jo**************** or 55**********'
 ```
 
+### Scan Pasted Text for a Leaked API Key
+
+```js
+import { redact } from 'textconvert';
+
+// apiKey is opt-in — it's not included by redact()'s default types
+redact('AWS_KEY=AKIAIOSFODNN7EXAMPLE', { types: ['apiKey'] });
+// 'AWS_KEY=********************'
+```
+
 ---
 
 ## Combining Functions
