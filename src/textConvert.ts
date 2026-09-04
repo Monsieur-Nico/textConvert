@@ -4,6 +4,7 @@ import { detectLanguage, Language, LanguageDetectionResult } from './text/analys
 import { getTextStats, TextStatistics } from './text/analysis/statistics';
 import { clear } from './text/clear';
 import { count, countSentences, countWords } from './text/count';
+import { extractEmails } from './text/extract';
 import { reverse } from './text/reverse';
 import { spread } from './text/spread';
 import { isEmail } from './text/validation/email';
@@ -20,6 +21,7 @@ export {
   countSentences,
   countWords,
   detectLanguage,
+  extractEmails,
   getTextStats,
   isEmail,
   isPhoneNumber,

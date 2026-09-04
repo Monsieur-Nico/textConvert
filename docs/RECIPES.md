@@ -26,6 +26,15 @@ isEmail('user@example.com'); // true
 isEmail('not-an-email'); // false
 ```
 
+### Extract Email Addresses from a Block of Text
+
+```js
+import { extractEmails } from 'textconvert';
+
+const message = 'Reach the team at hello@example.com or support@example.org.';
+extractEmails(message); // ['hello@example.com', 'support@example.org']
+```
+
 ### Validate a URL
 
 ```js
