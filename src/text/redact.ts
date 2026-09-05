@@ -150,8 +150,11 @@ function parseIpv4Octets(candidate: string): number[] | null {
   for (const part of parts) {
     if (part.length === 0 || part.length > 3) return null;
     if (part.length > 1 && part[0] === '0') return null;
-    if (!/^\d+$/.test(part)) return null;
 
+    // No separate "is this all digits" check needed: candidates only ever
+    // reach here from findIpv4Candidates, which already restricted the
+    // whole string to ipv4Chars (digits and '.') before this split -- so
+    // every part is guaranteed to be digits-only already.
     const value = Number(part);
     if (value > 255) return null;
 

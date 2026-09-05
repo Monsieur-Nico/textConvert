@@ -134,6 +134,16 @@ describe('#redact', () => {
     );
   });
 
+  it('should not match a dotted number with the wrong segment count as an IP', () => {
+    expect(redact('Version 1.2.3 released', { types: ['ip'] })).toBe('Version 1.2.3 released');
+    expect(redact('Odd 1.2.3.4.5 here', { types: ['ip'] })).toBe('Odd 1.2.3.4.5 here');
+  });
+
+  it('should not match an octet that is empty or longer than 3 digits as an IP', () => {
+    expect(redact('Bad 1..2.3 here', { types: ['ip'] })).toBe('Bad 1..2.3 here');
+    expect(redact('Bad 1234.1.1.1 here', { types: ['ip'] })).toBe('Bad 1234.1.1.1 here');
+  });
+
   it('should not include ip in the default types (opt-in only)', () => {
     expect(redact('Public 203.0.113.42')).toBe('Public 203.0.113.42');
   });
@@ -161,6 +171,15 @@ describe('#redact', () => {
 
   it('should not match a 3-segment string whose header is not valid JSON', () => {
     expect(redact('not.a.jwt', { types: ['jwt'] })).toBe('not.a.jwt');
+  });
+
+  it('should not crash and should reject a header segment that is not validly-padded base64', () => {
+    // A 1-character header pads to 3 '=' signs, which is structurally
+    // invalid base64 no matter how it's padded -- atob() throws on this
+    // rather than silently decoding garbage, so this exercises
+    // base64UrlDecode's own catch branch, not just JSON.parse's.
+    const text = 'token A.eyJhbGciOiJIUzI1NiJ9.sig here';
+    expect(redact(text, { types: ['jwt'] })).toBe(text);
   });
 
   it('should not include jwt in the default types (opt-in only)', () => {
