@@ -1,7 +1,7 @@
 {
   "name": "textconvert",
   "version": "2.3.0",
-  "description": "Public library to convert text into many conventions and formats.",
+  "description": "Lightweight, dependency-free text utilities for TypeScript -- redact PII (emails, phone numbers) from free-form text, plus case conversion, validation, and analysis.",
   "type": "module",
   "main": "dist/textConvert.js",
   "types": "dist/textConvert.d.ts",
@@ -69,6 +69,15 @@
     "url": "git+https://github.com/Monsieur-Nico/textConvert.git"
   },
   "keywords": [
+    "pii",
+    "redact",
+    "redaction",
+    "pii-redaction",
+    "mask",
+    "privacy",
+    "sanitize",
+    "log-sanitization",
+    "data-privacy",
     "text",
     "clear-text",
     "numbers-to-words",
@@ -89,9 +98,7 @@
     "phone-number",
     "language-detection",
     "typescript",
-    "cli",
-    "redact",
-    "pii"
+    "cli"
   ],
   "author": "Nicolas Alkhoury",
   "license": "MIT",
