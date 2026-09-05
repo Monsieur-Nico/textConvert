@@ -19,8 +19,9 @@ import { maskText } from './text/mask';
 import { normalizeLineEndings, normalizeWhitespace, removeDiacritics } from './text/normalize';
 import { pluralize } from './text/pluralize';
 import { randomString } from './text/randomString';
-import { redact } from './text/redact';
+import { redact, RedactOptions } from './text/redact';
 import { reverse } from './text/reverse';
+import { sanitize, SanitizeOptions } from './text/sanitize';
 import { spread } from './text/spread';
 import { isEmail } from './text/validation/email';
 import { isPhoneNumber } from './text/validation/phoneNumber';
@@ -58,8 +59,11 @@ export {
   pluralize,
   randomString,
   redact,
+  RedactOptions,
   removeDiacritics,
   reverse,
+  sanitize,
+  SanitizeOptions,
   slugify,
   snakeCase,
   spread,

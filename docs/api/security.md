@@ -1,6 +1,6 @@
 # Security
 
-`redact`, `maskText`, `escapeHtml`, `unescapeHtml`.
+`redact`, `maskText`, `escapeHtml`, `unescapeHtml`, `sanitize`.
 
 ---
 
@@ -10,6 +10,7 @@
 - [maskText](#masktext)
 - [escapeHtml](#escapehtml)
 - [unescapeHtml](#unescapehtml)
+- [sanitize](#sanitize)
 
 ---
 
@@ -155,3 +156,46 @@ unescapeHtml('Tom &amp; Jerry');
 - Returns an error message for empty input.
 - **Not a general-purpose HTML entity decoder.** Only the five entities `escapeHtml` produces are reversed — `&nbsp;`, `&copy;`, numeric character references like `&#65;`, and every other named or numeric entity are left untouched, by design.
 - Accepts both `&#x27;` (hex, what `escapeHtml` produces) and `&#39;` (decimal) as valid apostrophe input, plus the named `&apos;` form — even though `escapeHtml` only ever outputs `&#x27;`, so round-tripping output from other tools that use a different convention still works.
+
+---
+
+## sanitize
+
+Runs text through a configurable pipeline of `trim`, `normalizeWhitespace`, `redact`, and `escapeHtml` — composition, not new detection logic, for the common "clean this user input/log line before it's stored or displayed" case.
+
+**Parameters:**
+
+- `text: string` — The input string.
+- `options.trim?: boolean` — Trim leading/trailing whitespace.
+- `options.normalizeWhitespace?: boolean` — Collapse internal whitespace runs to a single space (also trims — see [normalization.md](normalization.md#normalizewhitespace)).
+- `options.redactPII?: boolean | RedactOptions` — Redact PII/secrets via `redact`. `true` uses `redact`'s own defaults; pass an options object (`{ types, maskChar }`, the same shape `redact` itself takes) for finer control.
+- `options.escapeHtml?: boolean` — Escape the five HTML special characters via `escapeHtml`.
+
+**Returns:**
+
+- `string` — The sanitized text.
+
+**Example:**
+
+```js
+import { sanitize } from 'textconvert';
+
+sanitize('  Contact jordan@example.com <b>now</b>  ', {
+  trim: true,
+  redactPII: true,
+  escapeHtml: true,
+});
+// 'Contact jo**************** &lt;b&gt;now&lt;/b&gt;'
+
+sanitize('Card 4111 1111 1111 1111 and jordan@example.com', {
+  redactPII: { types: ['creditCard'] },
+});
+// 'Card ***************1111 and jordan@example.com'
+```
+
+**Edge Cases:**
+
+- Returns an error message for empty input.
+- Steps run in a **fixed order** — `trim` → `normalizeWhitespace` → `redactPII` → `escapeHtml` — regardless of the order options are given in. Redaction runs on the raw, unescaped text (so pattern matching isn't affected by HTML-escaped characters), and escaping always runs last, so the final output is safe to render no matter which other steps ran.
+- If `trim` (or `normalizeWhitespace`, which also trims) reduces whitespace-only input to an empty string, `sanitize` returns `''` directly rather than passing that empty string on to `redact`/`escapeHtml` — both of which would otherwise report it as invalid input via their own shared sentinel message, which would be a confusing thing to see back from a call that started with valid (if all-whitespace) text.
+- Every option defaults to off — `sanitize(text)` with no options returns `text` completely unchanged (aside from the shared invalid-input check on `text` itself).
