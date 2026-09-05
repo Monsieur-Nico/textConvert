@@ -9,6 +9,7 @@ import {
 
 import { detectLanguage, Language, LanguageDetectionResult } from './text/analysis/language';
 import { getTextStats, TextStatistics } from './text/analysis/statistics';
+import { wordFrequency } from './text/analysis/wordFrequency';
 import { clear } from './text/clear';
 import { count, countSentences, countWords } from './text/count';
 import { extractEmails, extractHashtags, extractMentions, extractUrls } from './text/extract';
@@ -58,4 +59,5 @@ export {
   titleCase,
   truncate,
   unescapeHtml,
+  wordFrequency,
 };
