@@ -56,7 +56,7 @@ textConvert/
 - **text/spread.ts**: Convert strings to character arrays.
 - **text/truncate.ts**: Shorten text to a max length with an ellipsis.
 - **text/mask.ts**: Partially mask a string for display (the primitive `redact.ts` is built on).
-- **text/redact.ts**: Detect and mask PII (email, phone, credit card) and secrets (API keys) in free-form text.
+- **text/redact.ts**: Detect and mask PII (email, phone, credit card, public IPv4) and secrets (API keys, JWTs) in free-form text.
 - **text/extract.ts**: Find every email/URL embedded in a block of text.
 - **numbers/numbersToWords.ts**: Convert numbers to English words.
 - **assets/regex.ts**: Centralized regex patterns for reuse.
@@ -98,7 +98,7 @@ textConvert/
 ## Future Directions
 
 - Expanding `detectLanguage`'s supported language set beyond the current seven.
-- More advanced text analytics (e.g. readability scoring).
+- IPv6 support for `redact`'s `'ip'` type -- deferred from #363, since its textual representation (zero-compression, embedded IPv4-mapped forms, zone IDs) is a materially larger parsing problem than IPv4.
 - More CLI commands beyond `redact`, if there's demand.
 
 ---
