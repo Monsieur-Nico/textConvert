@@ -123,6 +123,13 @@ function findApiKeys(text: string): string[] {
   return candidates;
 }
 
+export interface RedactOptions {
+  /** Which types to redact. Default is 'email', 'phone', and 'creditCard'. 'apiKey' is opt-in only, given its higher false-positive risk. */
+  types?: Array<'email' | 'phone' | 'creditCard' | 'apiKey'>;
+  /** Character(s) to use for masked positions, passed through to maskText. Default is '*'. */
+  maskChar?: string;
+}
+
 /**
  * Scans free-form text for embedded PII (emails, phone numbers, credit
  * card numbers) and secrets (API keys/tokens) and masks each match in
@@ -147,10 +154,7 @@ function findApiKeys(text: string): string[] {
  * redact('Key: AKIAIOSFODNN7EXAMPLE leaked', { types: ['apiKey'] });
  * // 'Key: ******************** leaked'
  */
-export function redact(
-  text: string,
-  options: { types?: Array<'email' | 'phone' | 'creditCard' | 'apiKey'>; maskChar?: string } = {},
-): string {
+export function redact(text: string, options: RedactOptions = {}): string {
   if (!text) return 'Please provide a valid input text';
 
   const { types = ['email', 'phone', 'creditCard'], maskChar } = options;
