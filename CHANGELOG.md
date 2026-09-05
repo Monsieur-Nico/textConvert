@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.7.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.6.0...v2.7.0) (2026-09-05)
+
+
+### Features
+
+* add pluralize(word, count?) function ([34aac28](https://github.com/Monsieur-Nico/textConvert/commit/34aac28bc0be995e8d15b79858c12bca20d93827))
+* add pluralize(word, count?) function ([28b30a1](https://github.com/Monsieur-Nico/textConvert/commit/28b30a126a8b75e3acbef2a0f3009cc3a03b09fc))
+
 ## [2.6.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.5.0...v2.6.0) (2026-09-05)
 
 
