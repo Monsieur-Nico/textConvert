@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.4.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.3.0...v2.4.0) (2026-09-04)
+
+
+### Features
+
+* add escapeHtml and unescapeHtml functions ([ef52830](https://github.com/Monsieur-Nico/textConvert/commit/ef52830c6cc4c0336140658021b6afd5492b1dcb))
+* add escapeHtml and unescapeHtml functions ([1e68fca](https://github.com/Monsieur-Nico/textConvert/commit/1e68fca8995d976311421921a5e6dfe4e31aa327)), closes [#326](https://github.com/Monsieur-Nico/textConvert/issues/326)
+
 ## [2.3.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.2.1...v2.3.0) (2026-09-04)
 
 
