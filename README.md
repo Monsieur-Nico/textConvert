@@ -104,6 +104,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 - Number to words: Converts numbers < 100 million to English words
 - Generation: cryptographically secure random strings for IDs, tokens, or test fixtures
 - Grammar: pluralize English words for UI copy like "1 item" / "5 items"
+- Normalization: strip diacritics, collapse whitespace, and normalize line endings
 - Pure, dependency-free, and TypeScript-ready
 
 ---
@@ -146,6 +147,9 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 | `numbersToWords(number)`                     | Convert a number under 100 million to English words                |
 | `randomString(length, options?)`             | Generate a cryptographically secure random string                  |
 | `pluralize(word, count?)`                    | Return the plural form of an English word                          |
+| `removeDiacritics(text)`                     | Strip accents from accented characters                             |
+| `normalizeWhitespace(text)`                  | Collapse whitespace runs into a single space                       |
+| `normalizeLineEndings(text)`                 | Normalize CRLF/CR line endings to LF                               |
 | `isEmail(text)`                              | Validate an email address                                          |
 | `isUrl(text)`                                | Validate a URL                                                     |
 | `isPhoneNumber(text)`                        | Validate a phone number                                            |

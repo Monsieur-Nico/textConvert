@@ -11,6 +11,7 @@ Detailed documentation for every function has moved into per-category files unde
 - [**Numbers**](api/numbers.md) — [numbersToWords](#numberstowords)
 - [**Generation**](api/generation.md) — [randomString](#randomstring)
 - [**Grammar**](api/grammar.md) — [pluralize](#pluralize)
+- [**Normalization**](api/normalization.md) — [removeDiacritics](#removediacritics), [normalizeWhitespace](#normalizewhitespace), [normalizeLineEndings](#normalizelineendings)
 
 ---
 
@@ -175,3 +176,19 @@ Full docs: [docs/api/generation.md#randomstring](api/generation.md#randomstring)
 ### pluralize
 
 Full docs: [docs/api/grammar.md#pluralize](api/grammar.md#pluralize)
+
+---
+
+## Normalization
+
+### removeDiacritics
+
+Full docs: [docs/api/normalization.md#removediacritics](api/normalization.md#removediacritics)
+
+### normalizeWhitespace
+
+Full docs: [docs/api/normalization.md#normalizewhitespace](api/normalization.md#normalizewhitespace)
+
+### normalizeLineEndings
+
+Full docs: [docs/api/normalization.md#normalizelineendings](api/normalization.md#normalizelineendings)
