@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.6.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.5.0...v2.6.0) (2026-09-05)
+
+
+### Features
+
+* add randomString(length, options?) function ([d5e4d11](https://github.com/Monsieur-Nico/textConvert/commit/d5e4d111cd0b2f8a4d60bda32742989da8433440))
+* add randomString(length, options?) function ([317fa3d](https://github.com/Monsieur-Nico/textConvert/commit/317fa3d4df73821997bf80548dfde0aa7222192e))
+
 ## [2.5.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.4.0...v2.5.0) (2026-09-05)
 
 
