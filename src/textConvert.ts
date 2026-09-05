@@ -27,6 +27,7 @@ import { isEmail } from './text/validation/email';
 import { isPhoneNumber } from './text/validation/phoneNumber';
 import { isUrl } from './text/validation/url';
 import { numbersToWords } from './numbers/numbersToWords';
+import { ordinal } from './numbers/ordinal';
 import { slugify } from './text/slugify';
 import { truncate } from './text/truncate';
 
@@ -55,6 +56,7 @@ export {
   normalizeLineEndings,
   normalizeWhitespace,
   numbersToWords,
+  ordinal,
   pascalCase,
   pluralize,
   randomString,
