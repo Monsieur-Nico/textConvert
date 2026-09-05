@@ -16,6 +16,7 @@ import { extractEmails, extractHashtags, extractMentions, extractUrls } from './
 import { escapeHtml, unescapeHtml } from './text/html';
 import { isPalindrome } from './text/isPalindrome';
 import { maskText } from './text/mask';
+import { randomString } from './text/randomString';
 import { redact } from './text/redact';
 import { reverse } from './text/reverse';
 import { spread } from './text/spread';
@@ -50,6 +51,7 @@ export {
   maskText,
   numbersToWords,
   pascalCase,
+  randomString,
   redact,
   reverse,
   slugify,
