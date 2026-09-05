@@ -103,6 +103,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 - Language detection: English, French, Spanish, German, Italian, Portuguese, Dutch
 - Number to words: Converts numbers < 100 million to English words
 - Generation: cryptographically secure random strings for IDs, tokens, or test fixtures
+- Grammar: pluralize English words for UI copy like "1 item" / "5 items"
 - Pure, dependency-free, and TypeScript-ready
 
 ---
@@ -144,6 +145,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 | `detectLanguage(text, minLength?, options?)` | Detect the language of a piece of text                |
 | `numbersToWords(number)`                     | Convert a number under 100 million to English words   |
 | `randomString(length, options?)`             | Generate a cryptographically secure random string     |
+| `pluralize(word, count?)`                    | Return the plural form of an English word             |
 | `isEmail(text)`                              | Validate an email address                             |
 | `isUrl(text)`                                | Validate a URL                                        |
 | `isPhoneNumber(text)`                        | Validate a phone number                               |

@@ -10,6 +10,7 @@ Detailed documentation for every function has moved into per-category files unde
 - [**Language**](api/language.md) — [detectLanguage](#detectlanguage)
 - [**Numbers**](api/numbers.md) — [numbersToWords](#numberstowords)
 - [**Generation**](api/generation.md) — [randomString](#randomstring)
+- [**Grammar**](api/grammar.md) — [pluralize](#pluralize)
 
 ---
 
@@ -166,3 +167,11 @@ Full docs: [docs/api/numbers.md#numberstowords](api/numbers.md#numberstowords)
 ### randomString
 
 Full docs: [docs/api/generation.md#randomstring](api/generation.md#randomstring)
+
+---
+
+## Grammar
+
+### pluralize
+
+Full docs: [docs/api/grammar.md#pluralize](api/grammar.md#pluralize)
