@@ -1,6 +1,6 @@
 {
   "name": "textconvert",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "Lightweight, dependency-free text utilities for TypeScript -- redact PII (emails, phone numbers) from free-form text, plus case conversion, validation, and analysis.",
   "type": "module",
   "main": "dist/textConvert.js",

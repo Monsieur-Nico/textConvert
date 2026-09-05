@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.5.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.4.0...v2.5.0) (2026-09-05)
+
+
+### Features
+
+* add wordFrequency(text) function ([781be8f](https://github.com/Monsieur-Nico/textConvert/commit/781be8f16a63b5e7d1ecea82227fa55842260ed9))
+* add wordFrequency(text) function ([d29d070](https://github.com/Monsieur-Nico/textConvert/commit/d29d0706b1b8de3155232da220734dc11fc241dd))
+
 ## [2.4.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.3.0...v2.4.0) (2026-09-04)
 
 
