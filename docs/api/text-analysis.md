@@ -148,19 +148,21 @@ Analyzes text and returns comprehensive statistics.
 
 `TextStatistics` — an object with:
 
-| Field                    | Type     | Meaning                                                             |
-| ------------------------ | -------- | ------------------------------------------------------------------- |
-| `characterCount`         | `number` | Total characters, including whitespace and punctuation.             |
-| `characterCountNoSpaces` | `number` | Characters excluding whitespace.                                    |
-| `letterCount`            | `number` | Alphabetic characters only (same rule as `count`).                  |
-| `alphanumericCount`      | `number` | Letters and digits (same rule as `count(text, true)`).              |
-| `wordCount`              | `number` | Same rule as `countWords`.                                          |
-| `sentenceCount`          | `number` | Same rule as `countSentences`.                                      |
-| `paragraphCount`         | `number` | Blocks of text separated by 2 or more consecutive newlines.         |
-| `averageWordLength`      | `number` | Mean alphanumeric characters per word, rounded to 1 decimal.        |
-| `averageSentenceLength`  | `number` | Mean words per sentence, rounded to 1 decimal.                      |
-| `readingTimeSeconds`     | `number` | `wordCount / (wordsPerMinute / 60)`, rounded to the nearest second. |
-| `readingTimeFormatted`   | `string` | Human-readable reading time, e.g. `'2 min 30 sec'` or `'45 sec'`.   |
+| Field                    | Type     | Meaning                                                              |
+| ------------------------ | -------- | -------------------------------------------------------------------- |
+| `characterCount`         | `number` | Total characters, including whitespace and punctuation.              |
+| `characterCountNoSpaces` | `number` | Characters excluding whitespace.                                     |
+| `letterCount`            | `number` | Alphabetic characters only (same rule as `count`).                   |
+| `alphanumericCount`      | `number` | Letters and digits (same rule as `count(text, true)`).               |
+| `wordCount`              | `number` | Same rule as `countWords`.                                           |
+| `sentenceCount`          | `number` | Same rule as `countSentences`.                                       |
+| `paragraphCount`         | `number` | Blocks of text separated by 2 or more consecutive newlines.          |
+| `averageWordLength`      | `number` | Mean alphanumeric characters per word, rounded to 1 decimal.         |
+| `averageSentenceLength`  | `number` | Mean words per sentence, rounded to 1 decimal.                       |
+| `readingTimeSeconds`     | `number` | `wordCount / (wordsPerMinute / 60)`, rounded to the nearest second.  |
+| `readingTimeFormatted`   | `string` | Human-readable reading time, e.g. `'2 min 30 sec'` or `'45 sec'`.    |
+| `fleschReadingEase`      | `number` | Flesch Reading Ease score — higher is easier to read, roughly 0-100. |
+| `fleschKincaidGrade`     | `number` | Flesch-Kincaid Grade Level — approximate U.S. school grade needed.   |
 
 **Example:**
 
@@ -170,16 +172,18 @@ import { getTextStats } from 'textconvert';
 getTextStats('Hello world! This is a test.');
 // {
 //   characterCount: 28,
-//   characterCountNoSpaces: 24,
-//   letterCount: 20,
-//   alphanumericCount: 20,
+//   characterCountNoSpaces: 23,
+//   letterCount: 21,
+//   alphanumericCount: 21,
 //   wordCount: 6,
 //   sentenceCount: 2,
 //   paragraphCount: 1,
-//   averageWordLength: 3.3,
+//   averageWordLength: 3.5,
 //   averageSentenceLength: 3,
 //   readingTimeSeconds: 2,
-//   readingTimeFormatted: '2 sec'
+//   readingTimeFormatted: '2 sec',
+//   fleschReadingEase: 105.1,
+//   fleschKincaidGrade: -0.7
 // }
 ```
 
@@ -188,6 +192,7 @@ getTextStats('Hello world! This is a test.');
 - Returns all numeric fields as 0 and `readingTimeFormatted: '0 sec'` for empty (or whitespace-only) input.
 - `paragraphCount` is never less than 1 for non-empty input, even if there isn't a single blank-line-separated break.
 - Built from the other analysis functions internally (`count`, `countWords`, `countSentences`) rather than re-implementing their rules, so anything documented as an edge case for those applies here too.
+- `fleschReadingEase`/`fleschKincaidGrade` both depend on a syllable-count **heuristic** (vowel-group counting, not a dictionary lookup) — it gets common words right (`table` → 2, `beautiful` → 3) but is known to misestimate real irregulars (e.g. `rhythm`). Treat both scores as estimates, not precise measurements, especially on short or unusual text — the formulas can also produce values outside their "typical" 0-100 / grade-level ranges (e.g. a negative grade level on very short, simple text, as in the example above).
 
 ---
 
