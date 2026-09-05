@@ -126,6 +126,35 @@ For this project, that includes:
 - Changing the shared "invalid input" convention most functions follow (returning `'Please provide a valid input text'` instead of throwing) — since it's used across most of the library, changing it is breaking everywhere at once, not just for one function.
 - Raising the minimum Node version in `engines.node`, or changing the build output (e.g. dropping CJS support).
 
+## Deprecation Policy
+
+Before removing or renaming a public function, deprecate it first — give consumers a documented warning period rather than dropping something with zero notice in the next major release. Nothing in the library is deprecated yet; this section exists so there's a clear, agreed-on process ready for whenever that first happens.
+
+**How to mark something deprecated:**
+
+Add a `@deprecated` JSDoc tag noting the version it was deprecated in and what to use instead. The function's implementation doesn't change — it keeps working exactly as before, this is purely an annotation:
+
+```ts
+/**
+ * @deprecated Since v3.2.0 — use {@link newFunction} instead. Will be removed in the next major version.
+ */
+export function oldFunction(text: string): string {
+  // unchanged
+}
+```
+
+This is enough on its own — TypeScript-aware editors render a strikethrough with the deprecation note on hover, and TypeDoc surfaces `@deprecated` distinctly on the generated docs site. There's deliberately no runtime `console.warn`: a per-call warning is a real cost for perf-sensitive callers, and isn't justified while the library has this few real, known consumers to protect — revisit only if that changes.
+
+**Commit type:** `docs:` for the deprecation itself, since only documentation changes, not behavior. This won't trigger a version bump on its own, but shows up in the next release's CHANGELOG under Documentation regardless.
+
+**Timing:** a deprecated function must keep working, unchanged, for at least one full minor-version release cycle before it can actually be removed. Removal itself is unchanged from the [breaking-change policy above](#how-commit-messages-drive-the-version-bump) (`feat!:`/`BREAKING CHANGE:`, major version bump) — deprecation doesn't replace that, it just guarantees advance notice happens first.
+
+**Also update when deprecating something:**
+
+- Its entry in the README's API Reference table and Features section — note that it's deprecated and point to the replacement.
+- Its entry in the matching `docs/api/<category>.md` file — same note, at the top of its section.
+- Leave both in place until the function is actually removed in a later major version — don't delete the docs entry just because it's deprecated.
+
 ## Pre-commit & Pre-push Hooks
 
 - **Pre-commit:** Only staged files are linted and formatted automatically.
@@ -148,6 +177,7 @@ When adding or changing any **public function**:
 - Add a detailed entry (description, parameters, return type, example, edge cases) to the matching category file under [docs/api/](docs/api/) — e.g. a new validation function goes in `docs/api/validation.md`. If it doesn't fit an existing category, add a new `docs/api/<category>.md` file and link it from `docs/API.md`'s index. Do **not** add a separate example to a second file — the category file's own example is the only one, by design (see #340).
 - Add or update `@example` tags in JSDoc comments for all public functions to ensure TypeDoc generates accurate usage examples.
 - Ensure all documentation is clear, accurate, and up to date.
+- Deprecating rather than removing a function? See the [Deprecation Policy](#deprecation-policy) instead — different process, different commit type.
 
 ## Recognizing Contributors
 
