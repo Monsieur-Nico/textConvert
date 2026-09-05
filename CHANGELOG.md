@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.12.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.11.0...v2.12.0) (2026-09-05)
+
+
+### Features
+
+* add ordinal function for number suffix form ([a086db6](https://github.com/Monsieur-Nico/textConvert/commit/a086db6797e0ffbf02603e7d03148d151fc05b07))
+* add ordinal function for number suffix form ([e5bff8b](https://github.com/Monsieur-Nico/textConvert/commit/e5bff8b580ac1e7749b73c35f438cea1e5a71345))
+
 ## [2.11.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.10.0...v2.11.0) (2026-09-05)
 
 
