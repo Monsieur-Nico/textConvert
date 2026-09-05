@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.9.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.8.0...v2.9.0) (2026-09-05)
+
+
+### Features
+
+* add standalone Unicode/whitespace normalization functions ([7f0717b](https://github.com/Monsieur-Nico/textConvert/commit/7f0717bea1c42e16e9c82f61e3d2d2d2e01533e8))
+* add standalone Unicode/whitespace normalization functions ([3e13413](https://github.com/Monsieur-Nico/textConvert/commit/3e1341367d4d1353fe5c8dd61c59a96ac6ffe7bf))
+
 ## [2.8.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.7.0...v2.8.0) (2026-09-05)
 
 
