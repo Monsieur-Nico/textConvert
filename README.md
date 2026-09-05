@@ -98,7 +98,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 - Case conversion: camelCase, PascalCase, snake_case, kebab-case, slugify, capitalize, Title Case
 - Validation: email addresses, URLs, and phone numbers
 - Extraction: pull email addresses, URLs, @mentions, and #hashtags out of a block of text
-- Text analysis: word/letter/sentence/paragraph counting, reading time, palindrome checking, etc.
+- Text analysis: word/letter/sentence/paragraph counting, reading time, palindrome checking, word frequency, etc.
 - Text utilities: truncate with word-boundary awareness
 - Language detection: English, French, Spanish, German, Italian, Portuguese, Dutch
 - Number to words: Converts numbers < 100 million to English words
@@ -139,6 +139,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 | `redact(text, options?)`                     | Mask PII/secrets embedded in text                     |
 | `getTextStats(text, wordsPerMinute?)`        | Full text statistics (counts, averages, reading time) |
 | `isPalindrome(text)`                         | Check if text is a palindrome                         |
+| `wordFrequency(text)`                        | Count how many times each word appears                |
 | `detectLanguage(text, minLength?, options?)` | Detect the language of a piece of text                |
 | `numbersToWords(number)`                     | Convert a number under 100 million to English words   |
 | `isEmail(text)`                              | Validate an email address                             |

@@ -1,6 +1,6 @@
 # Text Analysis
 
-`clear`, `count`, `countWords`, `countSentences`, `getTextStats`, `isPalindrome`, `reverse`, `spread`, `truncate`.
+`clear`, `count`, `countWords`, `countSentences`, `getTextStats`, `isPalindrome`, `reverse`, `spread`, `truncate`, `wordFrequency`.
 
 ---
 
@@ -15,6 +15,7 @@
 - [reverse](#reverse)
 - [spread](#spread)
 - [truncate](#truncate)
+- [wordFrequency](#wordfrequency)
 
 ---
 
@@ -307,3 +308,31 @@ truncate('Short text', 20); // 'Short text'
 - Returns an error message for empty input.
 - If `maxLength` is smaller than or equal to the ellipsis length, returns as much of the ellipsis as fits (not the ellipsis in full, and not any of the original text).
 - With `byWords`, falls back to a hard mid-word cut if there's no word boundary before the cut point (e.g. one very long word longer than `maxLength`).
+
+---
+
+## wordFrequency
+
+Counts how many times each word appears in a piece of text. Case-insensitive by default — reuses `clear`'s existing lowercasing/punctuation-stripping split rather than a separate tokenizer, so "The" and "the" count together, and a trailing apostrophe (`don't`) splits into two words the same way `clear`/`count` already treat it.
+
+**Parameters:**
+
+- `text: string` — The input string to count word frequency in.
+
+**Returns:**
+
+- `Record<string, number>` — A map of each distinct word to how many times it appears, in first-appearance order.
+
+**Example:**
+
+```js
+import { wordFrequency } from 'textconvert';
+
+wordFrequency('the cat sat on the mat');
+// { the: 2, cat: 1, sat: 1, on: 1, mat: 1 }
+```
+
+**Edge Cases:**
+
+- Returns an empty object (`{}`) for empty, whitespace-only, or punctuation-only input — not the shared `'Please provide a valid input text'` error string, since an empty frequency map is itself a valid, useful answer here.
+- Contractions split on the apostrophe (`don't` → `don` and `t` counted separately), matching `clear`'s existing punctuation-stripping behavior rather than introducing special-case handling.
