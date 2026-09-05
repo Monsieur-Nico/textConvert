@@ -98,7 +98,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 - Case conversion: camelCase, PascalCase, snake_case, kebab-case, slugify, capitalize, Title Case
 - Validation: email addresses, URLs, and phone numbers
 - Extraction: pull email addresses, URLs, @mentions, and #hashtags out of a block of text
-- Text analysis: word/letter/sentence/paragraph counting, reading time, palindrome checking, word frequency, etc.
+- Text analysis: word/letter/sentence/paragraph counting, reading time, readability scoring, palindrome checking, word frequency, etc.
 - Text utilities: truncate with word-boundary awareness
 - Language detection: English, French, Spanish, German, Italian, Portuguese, Dutch
 - Number to words: Converts numbers < 100 million to English words
@@ -121,40 +121,40 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 
 ## 📋 API Reference
 
-| Function                                     | Description                                           |
-| -------------------------------------------- | ----------------------------------------------------- |
-| `camelCase(text)`                            | Convert to camelCase                                  |
-| `pascalCase(text)`                           | Convert to PascalCase                                 |
-| `snakeCase(text)`                            | Convert to snake_case                                 |
-| `kebabCase(text)`                            | Convert to kebab-case                                 |
-| `slugify(text)`                              | Convert to a URL-safe slug                            |
-| `capitalize(text)`                           | Capitalize only the first letter                      |
-| `titleCase(text)`                            | Capitalize the first letter of every word             |
-| `clear(text)`                                | Remove punctuation from text                          |
-| `count(text, countNumbers?)`                 | Count letters (optionally including numbers)          |
-| `countWords(text)`                           | Count words                                           |
-| `countSentences(text)`                       | Count sentences                                       |
-| `reverse(text)`                              | Reverse a string                                      |
-| `spread(text, clear?)`                       | Split a string into an array of characters            |
-| `truncate(text, maxLength, options?)`        | Shorten text to a max length, with an ellipsis        |
-| `maskText(text, options?)`                   | Partially mask a string for display                   |
-| `redact(text, options?)`                     | Mask PII/secrets embedded in text                     |
-| `getTextStats(text, wordsPerMinute?)`        | Full text statistics (counts, averages, reading time) |
-| `isPalindrome(text)`                         | Check if text is a palindrome                         |
-| `wordFrequency(text)`                        | Count how many times each word appears                |
-| `detectLanguage(text, minLength?, options?)` | Detect the language of a piece of text                |
-| `numbersToWords(number)`                     | Convert a number under 100 million to English words   |
-| `randomString(length, options?)`             | Generate a cryptographically secure random string     |
-| `pluralize(word, count?)`                    | Return the plural form of an English word             |
-| `isEmail(text)`                              | Validate an email address                             |
-| `isUrl(text)`                                | Validate a URL                                        |
-| `isPhoneNumber(text)`                        | Validate a phone number                               |
-| `extractEmails(text)`                        | Extract all email addresses found in a block of text  |
-| `extractUrls(text)`                          | Extract all URLs found in a block of text             |
-| `extractMentions(text)`                      | Extract all @mentions found in a block of text        |
-| `extractHashtags(text)`                      | Extract all #hashtags found in a block of text        |
-| `escapeHtml(text)`                           | Escape the five HTML special characters               |
-| `unescapeHtml(text)`                         | Reverse `escapeHtml`'s escaping                       |
+| Function                                     | Description                                                        |
+| -------------------------------------------- | ------------------------------------------------------------------ |
+| `camelCase(text)`                            | Convert to camelCase                                               |
+| `pascalCase(text)`                           | Convert to PascalCase                                              |
+| `snakeCase(text)`                            | Convert to snake_case                                              |
+| `kebabCase(text)`                            | Convert to kebab-case                                              |
+| `slugify(text)`                              | Convert to a URL-safe slug                                         |
+| `capitalize(text)`                           | Capitalize only the first letter                                   |
+| `titleCase(text)`                            | Capitalize the first letter of every word                          |
+| `clear(text)`                                | Remove punctuation from text                                       |
+| `count(text, countNumbers?)`                 | Count letters (optionally including numbers)                       |
+| `countWords(text)`                           | Count words                                                        |
+| `countSentences(text)`                       | Count sentences                                                    |
+| `reverse(text)`                              | Reverse a string                                                   |
+| `spread(text, clear?)`                       | Split a string into an array of characters                         |
+| `truncate(text, maxLength, options?)`        | Shorten text to a max length, with an ellipsis                     |
+| `maskText(text, options?)`                   | Partially mask a string for display                                |
+| `redact(text, options?)`                     | Mask PII/secrets embedded in text                                  |
+| `getTextStats(text, wordsPerMinute?)`        | Full text statistics (counts, averages, reading time, readability) |
+| `isPalindrome(text)`                         | Check if text is a palindrome                                      |
+| `wordFrequency(text)`                        | Count how many times each word appears                             |
+| `detectLanguage(text, minLength?, options?)` | Detect the language of a piece of text                             |
+| `numbersToWords(number)`                     | Convert a number under 100 million to English words                |
+| `randomString(length, options?)`             | Generate a cryptographically secure random string                  |
+| `pluralize(word, count?)`                    | Return the plural form of an English word                          |
+| `isEmail(text)`                              | Validate an email address                                          |
+| `isUrl(text)`                                | Validate a URL                                                     |
+| `isPhoneNumber(text)`                        | Validate a phone number                                            |
+| `extractEmails(text)`                        | Extract all email addresses found in a block of text               |
+| `extractUrls(text)`                          | Extract all URLs found in a block of text                          |
+| `extractMentions(text)`                      | Extract all @mentions found in a block of text                     |
+| `extractHashtags(text)`                      | Extract all #hashtags found in a block of text                     |
+| `escapeHtml(text)`                           | Escape the five HTML special characters                            |
+| `unescapeHtml(text)`                         | Reverse `escapeHtml`'s escaping                                    |
 
 See [docs/API.md](docs/API.md) for full parameter, return type, and edge-case details on every function, or browse the auto-generated [API reference site](https://monsieur-nico.github.io/textConvert/).
 

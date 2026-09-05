@@ -103,4 +103,33 @@ describe('#getTextStats', () => {
     const stats = getTextStats('Hello123 world!');
     expect(stats.alphanumericCount).toBe(13);
   });
+
+  it('should calculate readability scores for simple text', () => {
+    const stats = getTextStats('The cat sat on the mat. It was a sunny day.');
+    expect(stats.fleschReadingEase).toBe(109);
+    expect(stats.fleschKincaidGrade).toBe(-0.6);
+  });
+
+  it('should return 0 for both readability scores on empty input', () => {
+    const stats = getTextStats('');
+    expect(stats.fleschReadingEase).toBe(0);
+    expect(stats.fleschKincaidGrade).toBe(0);
+  });
+
+  it('should return 0 for both readability scores when there are no words', () => {
+    const stats = getTextStats('!!!...???');
+    expect(stats.fleschReadingEase).toBe(0);
+    expect(stats.fleschKincaidGrade).toBe(0);
+  });
+
+  it('should allow readability scores outside their typical ranges for unusual text', () => {
+    // Long, multi-syllable words with few sentences push the formulas well
+    // past their "typical" 0-100 / grade-level ranges -- this is expected
+    // behavior (see the docs' honesty caveat), not a bug to clamp away.
+    const stats = getTextStats(
+      'Extraordinary international communication requires substantial vocabulary comprehension.',
+    );
+    expect(stats.fleschReadingEase).toBeLessThan(0);
+    expect(stats.fleschKincaidGrade).toBeGreaterThan(12);
+  });
 });
