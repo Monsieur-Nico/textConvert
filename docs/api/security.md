@@ -16,14 +16,17 @@
 
 ## redact
 
-Scans free-form text for embedded PII (emails, phone numbers, credit card numbers) and secrets (API keys/tokens) and masks each match in place, using `extractEmails` to locate emails and `maskText` to mask every match — for sanitizing logs, support tickets, or user-generated content before storage or display.
+Scans free-form text for embedded PII (emails, phone numbers, credit card numbers, public IPv4 addresses) and secrets (API keys/tokens, JWTs) and masks each match in place, using `extractEmails` to locate emails and `maskText` to mask every match — for sanitizing logs, support tickets, or user-generated content before storage or display.
 
-`redact` is best-effort pattern matching, not a complete PII/secret detector. False negatives are possible — pair it with review for anything where a missed match matters, rather than relying on it as the only safeguard.
+`redact` is best-effort pattern matching, not a complete PII/secret detector. False negatives are possible — pair it with review for anything where a missed match matters, rather than relying on it as the only safeguard. Two gaps worth knowing about specifically, not just as a buried edge case:
+
+- **`'ip'` never matches private/loopback/link-local addresses**, with no option to include them (see Edge Cases) — `types: ['ip']` does not mean "every IP."
+- **`'jwt'` requires the token fully intact as one unbroken run** of base64url characters and dots — a line-wrapped, truncated, or whitespace-injected token won't match, and a truncated header+payload with the signature cut off can still leak real claims data.
 
 **Parameters:**
 
 - `text: string` — The text to redact.
-- `options.types?: Array<'email' | 'phone' | 'creditCard' | 'apiKey'>` — Which types to redact. Default is `'email'`, `'phone'`, and `'creditCard'`. `'apiKey'` is opt-in only — see Edge Cases.
+- `options.types?: Array<'email' | 'phone' | 'creditCard' | 'apiKey' | 'ip' | 'jwt'>` — Which types to redact. Default is `'email'`, `'phone'`, and `'creditCard'`. `'apiKey'`, `'ip'`, and `'jwt'` are opt-in only — see Edge Cases.
 - `options.maskChar?: string` — Character(s) to use for masked positions, passed through to `maskText`. Default is `'*'`.
 
 **Returns:**
@@ -43,6 +46,8 @@ redact('Card: 4111 1111 1111 1111', { types: ['creditCard'] });
 // 'Card: ***************1111'
 redact('Key: AKIAIOSFODNN7EXAMPLE leaked', { types: ['apiKey'] });
 // 'Key: ******************** leaked'
+redact('Server 10.0.0.5 hit by 203.0.113.42', { types: ['ip'] });
+// 'Server 10.0.0.5 hit by ************'
 ```
 
 **Edge Cases:**
@@ -52,8 +57,14 @@ redact('Key: AKIAIOSFODNN7EXAMPLE leaked', { types: ['apiKey'] });
 - Phone detection reuses `isPhoneNumber`'s scope (see [validation.md](validation.md)), so the same limits apply — e.g. a bare 7-digit local number without an area code is not detected, matching `isPhoneNumber('5550173') // false`.
 - Credit card numbers are validated with a Luhn checksum, so an arbitrary 13-19 digit sequence (an order ID, an invoice number) that fails the checksum is not matched. The last 4 digits stay visible in the mask, matching the standard "card ending in 1234" convention.
 - API key/token detection is prefix-based only (AWS `AKIA...`, GitHub `ghp_...`/`github_pat_...`/`sk_live_...`) — deliberately not entropy-based ("looks like a random string"), which produces heavy false positives on hashes, UUIDs, and ordinary identifiers. Because even prefix-based detection carries more false-positive risk than email/phone/card, `'apiKey'` must be explicitly requested via `types` — it's never included by default.
+- **IPv4 only** — IPv6 addresses are not detected (a much larger parsing problem, tracked separately). A dot-decimal 4-part number that happens to look like a version string (e.g. `10.4.2.1`) will match — this is an inherent ambiguity, not a bug.
+- **Private, loopback, and link-local IPv4 addresses are never matched by `'ip'`**, with no way to opt into redacting them: `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`, `127.0.0.0/8` (loopback), `169.254.0.0/16` (link-local). Masking a private IP in a debug log destroys its usefulness (e.g. "which internal server made this request") with no corresponding privacy benefit, unlike a public IP — this is deliberate, not a gap to be filled later.
+- An IPv4 candidate with an out-of-range octet (`999.1.1.1`) or a leading zero on any octet (`192.168.001.1`, ambiguous with octal in some parsers) is not matched.
+- JWT detection requires the real three-segment structure (`header.payload.signature`), not just an `eyJ` prefix — the header segment must base64url-decode to JSON containing a string `alg` field. This is deliberately stronger than a prefix check, which would also match any base64-encoded JSON (a JWT-shaped `eyJ...` string that fails this check is not matched, e.g. `'not.a.jwt'`).
+- JWTs with an empty signature segment (unsigned, `alg: "none"` tokens) are not matched — a real but rare JWT variant, out of scope for now.
+- JWTs are always masked in full (no visible portion), the same convention as `apiKey` — there's no equivalent to a credit card's "last 4 visible" for a bearer token.
 - Every occurrence of a repeated match is masked, not just the first.
-- Phone number and credit card candidates are both found by scanning for maximal runs of an allowed-character set (digits plus separators like spaces/dashes/dots/parens), which is shared internal logic — the two differ only in which characters are allowed and the minimum/maximum digit count applied afterward.
+- Phone number, credit card, IPv4, and JWT candidates are all found by scanning for maximal runs of an allowed-character set, which is shared internal logic — they differ only in which characters are allowed and the validation applied afterward.
 
 ---
 
