@@ -103,6 +103,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 - Text utilities: truncate with word-boundary awareness
 - Language detection: English, French, Spanish, German, Italian, Portuguese, Dutch
 - Number to words: Converts numbers < 100 million to English words
+- Ordinal suffixes: turns `21` into `'21st'`
 - Generation: cryptographically secure random strings for IDs, tokens, or test fixtures
 - Grammar: pluralize English words for UI copy like "1 item" / "5 items"
 - Normalization: strip diacritics, collapse whitespace, and normalize line endings
@@ -146,6 +147,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 | `wordFrequency(text)`                        | Count how many times each word appears                             |
 | `detectLanguage(text, minLength?, options?)` | Detect the language of a piece of text                             |
 | `numbersToWords(number)`                     | Convert a number under 100 million to English words                |
+| `ordinal(number)`                            | Get a number's ordinal suffix form (`21` -> `'21st'`)              |
 | `randomString(length, options?)`             | Generate a cryptographically secure random string                  |
 | `pluralize(word, count?)`                    | Return the plural form of an English word                          |
 | `removeDiacritics(text)`                     | Strip accents from accented characters                             |
