@@ -16,6 +16,7 @@ import { extractEmails, extractHashtags, extractMentions, extractUrls } from './
 import { escapeHtml, unescapeHtml } from './text/html';
 import { isPalindrome } from './text/isPalindrome';
 import { maskText } from './text/mask';
+import { normalizeLineEndings, normalizeWhitespace, removeDiacritics } from './text/normalize';
 import { pluralize } from './text/pluralize';
 import { randomString } from './text/randomString';
 import { redact } from './text/redact';
@@ -50,11 +51,14 @@ export {
   Language,
   LanguageDetectionResult,
   maskText,
+  normalizeLineEndings,
+  normalizeWhitespace,
   numbersToWords,
   pascalCase,
   pluralize,
   randomString,
   redact,
+  removeDiacritics,
   reverse,
   slugify,
   snakeCase,

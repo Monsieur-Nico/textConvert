@@ -1,14 +1,7 @@
 import { regex } from '../assets/regex';
+import { removeDiacritics } from './normalize';
 
 const { values } = regex;
-
-// Matches Unicode combining diacritical marks (code points 0x0300-0x036F),
-// the marks left behind after NFD-decomposing an accented character (e.g.
-// an accented "e" decomposes into a plain "e" plus a combining mark).
-const combiningMarks = new RegExp(
-  `[${String.fromCharCode(0x0300)}-${String.fromCharCode(0x036f)}]`,
-  'g',
-);
 
 /**
  * Convert text into a URL-safe slug: lowercase, punctuation stripped,
@@ -27,7 +20,7 @@ export function slugify(text: string): string {
 
   // Decompose accented characters (NFD) and strip the combining marks,
   // leaving plain-ASCII equivalents.
-  const normalized = text.normalize('NFD').replace(combiningMarks, '');
+  const normalized = removeDiacritics(text);
 
   // Split on runs of non-alphanumeric characters and join with "-"
   const words = normalized.toLowerCase().split(values.nonAlphaNumeric);
