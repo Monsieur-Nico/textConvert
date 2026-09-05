@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.8.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.7.0...v2.8.0) (2026-09-05)
+
+
+### Features
+
+* add readability scoring (Flesch-Kincaid) to getTextStats ([8e2b987](https://github.com/Monsieur-Nico/textConvert/commit/8e2b987f5589048f1063b46d5feb2bec7253f93a))
+* add readability scoring to getTextStats ([0b014e8](https://github.com/Monsieur-Nico/textConvert/commit/0b014e8c8928e202b72bf536ad163250f6691f00))
+
 ## [2.7.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.6.0...v2.7.0) (2026-09-05)
 
 
