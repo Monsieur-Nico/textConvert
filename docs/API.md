@@ -9,6 +9,7 @@ Detailed documentation for every function has moved into per-category files unde
 - [**Text Analysis**](api/text-analysis.md) — [clear](#clear), [count](#count), [countWords](#countwords), [countSentences](#countsentences), [getTextStats](#gettextstats), [isPalindrome](#ispalindrome), [reverse](#reverse), [spread](#spread), [truncate](#truncate)
 - [**Language**](api/language.md) — [detectLanguage](#detectlanguage)
 - [**Numbers**](api/numbers.md) — [numbersToWords](#numberstowords)
+- [**Generation**](api/generation.md) — [randomString](#randomstring)
 
 ---
 
@@ -153,3 +154,11 @@ Full docs: [docs/api/language.md#detectlanguage](api/language.md#detectlanguage)
 ### numbersToWords
 
 Full docs: [docs/api/numbers.md#numberstowords](api/numbers.md#numberstowords)
+
+---
+
+## Generation
+
+### randomString
+
+Full docs: [docs/api/generation.md#randomstring](api/generation.md#randomstring)

@@ -102,6 +102,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 - Text utilities: truncate with word-boundary awareness
 - Language detection: English, French, Spanish, German, Italian, Portuguese, Dutch
 - Number to words: Converts numbers < 100 million to English words
+- Generation: cryptographically secure random strings for IDs, tokens, or test fixtures
 - Pure, dependency-free, and TypeScript-ready
 
 ---
@@ -141,6 +142,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 | `isPalindrome(text)`                         | Check if text is a palindrome                         |
 | `detectLanguage(text, minLength?, options?)` | Detect the language of a piece of text                |
 | `numbersToWords(number)`                     | Convert a number under 100 million to English words   |
+| `randomString(length, options?)`             | Generate a cryptographically secure random string     |
 | `isEmail(text)`                              | Validate an email address                             |
 | `isUrl(text)`                                | Validate a URL                                        |
 | `isPhoneNumber(text)`                        | Validate a phone number                               |
