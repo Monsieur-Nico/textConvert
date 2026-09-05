@@ -1,0 +1,20 @@
+name: Reference Check
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  refcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Monsieur-Nico/textconvert-refcheck@v1
+        with:
+          fail-on-violation: false
