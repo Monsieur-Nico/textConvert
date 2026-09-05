@@ -6,7 +6,7 @@ Detailed documentation for every function has moved into per-category files unde
 - [**Validation**](api/validation.md) — [isEmail](#isemail), [isUrl](#isurl), [isPhoneNumber](#isphonenumber)
 - [**Extraction**](api/extraction.md) — [extractEmails](#extractemails), [extractUrls](#extracturls), [extractMentions](#extractmentions), [extractHashtags](#extracthashtags)
 - [**Security**](api/security.md) — [redact](#redact), [maskText](#masktext), [escapeHtml](#escapehtml), [unescapeHtml](#unescapehtml)
-- [**Text Analysis**](api/text-analysis.md) — [clear](#clear), [count](#count), [countWords](#countwords), [countSentences](#countsentences), [getTextStats](#gettextstats), [isPalindrome](#ispalindrome), [reverse](#reverse), [spread](#spread), [truncate](#truncate)
+- [**Text Analysis**](api/text-analysis.md) — [clear](#clear), [count](#count), [countWords](#countwords), [countSentences](#countsentences), [getTextStats](#gettextstats), [isPalindrome](#ispalindrome), [reverse](#reverse), [spread](#spread), [truncate](#truncate), [wordFrequency](#wordfrequency)
 - [**Language**](api/language.md) — [detectLanguage](#detectlanguage)
 - [**Numbers**](api/numbers.md) — [numbersToWords](#numberstowords)
 
@@ -137,6 +137,10 @@ Full docs: [docs/api/text-analysis.md#spread](api/text-analysis.md#spread)
 ### truncate
 
 Full docs: [docs/api/text-analysis.md#truncate](api/text-analysis.md#truncate)
+
+### wordFrequency
+
+Full docs: [docs/api/text-analysis.md#wordfrequency](api/text-analysis.md#wordfrequency)
 
 ---
 
