@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.10.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.9.0...v2.10.0) (2026-09-05)
+
+
+### Features
+
+* add a sanitize() pipeline composing existing text functions ([abb0402](https://github.com/Monsieur-Nico/textConvert/commit/abb04024f5facb636b4a76b205830f6269f283ef))
+* add a sanitize() pipeline composing existing text functions ([67eb896](https://github.com/Monsieur-Nico/textConvert/commit/67eb89657c9936d094b7600d5ffb33dd9a94890c))
+
 ## [2.9.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.8.0...v2.9.0) (2026-09-05)
 
 
