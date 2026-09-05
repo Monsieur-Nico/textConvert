@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.11.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.10.0...v2.11.0) (2026-09-05)
+
+
+### Features
+
+* extend redact() to public IPv4 addresses and structurally-validated JWTs ([103a5eb](https://github.com/Monsieur-Nico/textConvert/commit/103a5eb68408b0323291ca9e3d4f65abe7457e1b))
+* extend redact() to public IPv4 addresses and structurally-validated JWTs ([5095000](https://github.com/Monsieur-Nico/textConvert/commit/5095000b5d62dac644894e340aab0e473170eb1f))
+
 ## [2.10.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.9.0...v2.10.0) (2026-09-05)
 
 
