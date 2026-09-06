@@ -1,6 +1,6 @@
 # Numbers
 
-`numbersToWords`, `ordinal`.
+`numbersToWords`, `ordinal`, `ordinalToWords`.
 
 ---
 
@@ -63,4 +63,36 @@ ordinal(112); // '112th' -- not '112nd'
 
 - English ordinals go by the last **two** digits, not just the last one — `11`, `12`, and `13` are always `'th'`, even though their last digit alone (`1`, `2`, `3`) would otherwise map to `'st'`/`'nd'`/`'rd'`. This repeats every hundred (`111`, `112`, `113` are `'th'` too, but `121` is back to `'st'`).
 - Returns `'Please provide a valid input text'` — rather than throwing — for negative numbers, non-integers, and `NaN`.
+- English only — there's no locale/language parameter.
+
+---
+
+## ordinalToWords
+
+Gets a non-negative integer's ordinal word form, building on `numbersToWords`.
+
+**Parameters:**
+
+- `number: number` — The number to convert.
+
+**Returns:**
+
+- `string` — The number's ordinal words, or an error message for invalid input.
+
+**Example:**
+
+```js
+import { ordinalToWords } from 'textconvert';
+
+ordinalToWords(1); // 'first'
+ordinalToWords(3); // 'third'
+ordinalToWords(21); // 'twenty-first'
+ordinalToWords(100); // 'one hundredth'
+```
+
+**Edge Cases:**
+
+- Only the **last word** of `numbersToWords`'s cardinal output changes to its ordinal form — the rest of a compound number stays exactly as `numbersToWords` produced it (`145` -> `'one hundred and forty-fifth'`, not `'one hundred and forty-threeth'` or similar).
+- Irregular endings: `one` -> `first`, `two` -> `second`, `three` -> `third`, `five` -> `fifth`, `eight` -> `eighth`, `nine` -> `ninth`, `twelve` -> `twelfth`. Tens ending in `-y` (`twenty`, `thirty`, ...) become `-ieth` (`twentieth`, `thirtieth`). Everything else just appends `-th` (`four` -> `fourth`, `thousand` -> `thousandth`).
+- Returns `'Please provide a valid number under 100 million'` — rather than throwing — for numbers `>= 100,000,000`, negative numbers, and non-integers, matching `numbersToWords`'s own convention.
 - English only — there's no locale/language parameter.
