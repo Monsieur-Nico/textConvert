@@ -8,7 +8,7 @@ Detailed documentation for every function has moved into per-category files unde
 - [**Security**](api/security.md) — [redact](#redact), [scan](#scan), [maskText](#masktext), [escapeHtml](#escapehtml), [unescapeHtml](#unescapehtml), [sanitize](#sanitize)
 - [**Text Analysis**](api/text-analysis.md) — [clear](#clear), [count](#count), [countWords](#countwords), [countSentences](#countsentences), [getTextStats](#gettextstats), [isPalindrome](#ispalindrome), [reverse](#reverse), [spread](#spread), [truncate](#truncate), [wordFrequency](#wordfrequency)
 - [**Language**](api/language.md) — [detectLanguage](#detectlanguage)
-- [**Numbers**](api/numbers.md) — [numbersToWords](#numberstowords), [ordinal](#ordinal), [ordinalToWords](#ordinaltowords)
+- [**Numbers**](api/numbers.md) — [numbersToWords](#numberstowords), [ordinal](#ordinal), [ordinalToWords](#ordinaltowords), [formatNumber](#formatnumber)
 - [**Generation**](api/generation.md) — [randomString](#randomstring)
 - [**Grammar**](api/grammar.md) — [pluralize](#pluralize)
 - [**Normalization**](api/normalization.md) — [removeDiacritics](#removediacritics), [normalizeWhitespace](#normalizewhitespace), [normalizeLineEndings](#normalizelineendings)
@@ -176,6 +176,10 @@ Full docs: [docs/api/numbers.md#ordinal](api/numbers.md#ordinal)
 ### ordinalToWords
 
 Full docs: [docs/api/numbers.md#ordinaltowords](api/numbers.md#ordinaltowords)
+
+### formatNumber
+
+Full docs: [docs/api/numbers.md#formatnumber](api/numbers.md#formatnumber)
 
 ---
 

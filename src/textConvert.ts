@@ -27,6 +27,7 @@ import { spread } from './text/spread';
 import { isEmail } from './text/validation/email';
 import { isPhoneNumber } from './text/validation/phoneNumber';
 import { isUrl } from './text/validation/url';
+import { formatNumber, FormatNumberOptions } from './numbers/formatNumber';
 import { numbersToWords } from './numbers/numbersToWords';
 import { ordinal } from './numbers/ordinal';
 import { ordinalToWords } from './numbers/ordinalToWords';
@@ -46,6 +47,8 @@ export {
   extractHashtags,
   extractMentions,
   extractUrls,
+  formatNumber,
+  FormatNumberOptions,
   getTextStats,
   isEmail,
   isPalindrome,
