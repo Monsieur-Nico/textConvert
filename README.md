@@ -54,6 +54,7 @@ redact('Contact me at jordan@example.com or 555-123-4567');
 - [Advanced Examples](#advanced-examples)
 - [Contributing](#contributing)
 - [Changelog](#changelog)
+- [Migration Guide](#migration-guide)
 - [License](#license)
 - [Contributors ✨](#contributors-)
 
@@ -228,6 +229,12 @@ If you are adding a new function, follow the step-by-step instructions in [docs/
 ## Changelog
 
 See [CHANGELOG.md](./CHANGELOG.md) for release history and updates.
+
+---
+
+## Migration Guide
+
+Upgrading across a major version? See [MIGRATION.md](./MIGRATION.md) for concrete before/after guidance on every breaking change.
 
 ---
 
