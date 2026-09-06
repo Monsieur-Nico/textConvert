@@ -1,6 +1,6 @@
 # Numbers
 
-`numbersToWords`, `ordinal`, `ordinalToWords`, `formatNumber`.
+`numbersToWords`, `ordinal`, `ordinalToWords`, `formatNumber`, `parseNumber`.
 
 ---
 
@@ -133,3 +133,36 @@ formatNumber(-1234.5); // '-1,234.5'
 - Very small magnitudes whose natural JS string form uses scientific notation (below roughly `1e-6`, e.g. `0.0000001` -> `'1e-7'`) are **not** expanded — out of scope for v1, unlike the large-number case above.
 - Returns `'Please provide a valid input text'` — rather than throwing — for `NaN`, `Infinity`/`-Infinity`, and a negative or non-integer `decimals` option.
 - English only — there's no locale/language parameter.
+
+---
+
+## parseNumber
+
+Parses a formatted number string back into a numeric value — the reverse of `formatNumber`.
+
+**Parameters:**
+
+- `text: string` — The text to parse.
+
+**Returns:**
+
+- `number` — The parsed number, or `NaN` for anything that isn't `formatNumber`-shaped. `NaN`, not the shared string sentinel, since this returns a `number`.
+
+**Example:**
+
+```js
+import { parseNumber } from 'textconvert';
+
+parseNumber('1,234,567'); // 1234567
+parseNumber('1,234.56'); // 1234.56
+parseNumber('-1,234.5'); // -1234.5
+```
+
+**Edge Cases:**
+
+- Guarantees `parseNumber(formatNumber(n)) === n` for every `n` `formatNumber` can produce (including its `1e21`-and-beyond digit-expansion case).
+- Accepts input `formatNumber` itself wouldn't produce, but that's still unambiguous: surrounding whitespace is trimmed, and a plain number with no thousands separators at all is accepted even for values `formatNumber` would always group (e.g. `'1234567'` parses the same as `'1,234,567'`).
+- Rejects incorrectly-grouped thousands separators (`'1,23,456'`, `'12,3456'`) rather than silently stripping commas and parsing whatever digits are left — a malformed grouping fails to parse at all.
+- Rejects a leading currency symbol (`'$1,234.56'`) — out of scope, the same reasoning that keeps `formatNumber` from being locale-aware.
+- Returns `NaN` for anything that isn't a string, is empty/whitespace-only, or doesn't match one of the accepted shapes above (e.g. `'1.'`, `'1,234.56.78'`, `'not a number'`).
+- English/US number format only — there's no locale/language parameter.

@@ -107,6 +107,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 - Ordinal suffixes: turns `21` into `'21st'`
 - Ordinal words: turns `21` into `'twenty-first'`
 - Number formatting: adds thousands separators, e.g. `1234567.89` -> `'1,234,567.89'`
+- Number parsing: turns `'1,234,567.89'` back into `1234567.89`
 - Generation: cryptographically secure random strings for IDs, tokens, or test fixtures
 - Grammar: pluralize English words for UI copy like "1 item" / "5 items"
 - Normalization: strip diacritics, collapse whitespace, and normalize line endings
@@ -154,6 +155,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 | `ordinal(number)`                            | Get a number's ordinal suffix form (`21` -> `'21st'`)              |
 | `ordinalToWords(number)`                     | Get a number's ordinal word form (`21` -> `'twenty-first'`)        |
 | `formatNumber(number, options?)`             | Add thousands separators to a number                               |
+| `parseNumber(text)`                          | Parse a formatted number string back into a number                 |
 | `randomString(length, options?)`             | Generate a cryptographically secure random string                  |
 | `pluralize(word, count?)`                    | Return the plural form of an English word                          |
 | `removeDiacritics(text)`                     | Strip accents from accented characters                             |
