@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.13.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.12.0...v2.13.0) (2026-09-06)
+
+
+### Features
+
+* add ordinalToWords function for ordinal word form ([b1a4c62](https://github.com/Monsieur-Nico/textConvert/commit/b1a4c6272855d844a74b9c788fef6acf90273ba2))
+* add ordinalToWords function for ordinal word form ([ed8c73b](https://github.com/Monsieur-Nico/textConvert/commit/ed8c73b3b7fa9929d05a7fbb76d78147b73e556b))
+
 ## [2.12.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.11.0...v2.12.0) (2026-09-05)
 
 
