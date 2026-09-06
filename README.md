@@ -17,7 +17,7 @@
   <img src="https://img.shields.io/npm/v/textconvert?style=flat-square" alt="npm version" />
   <img src="https://img.shields.io/npm/dm/textconvert?style=flat-square" alt="npm downloads" />
   <a href="https://codecov.io/gh/Monsieur-Nico/textConvert" target="_blank">
-    <img src="https://codecov.io/gh/Monsieur-Nico/textConvert/graph/badge.svg?token=yourtoken" alt="Coverage Status" />
+    <img src="https://codecov.io/gh/Monsieur-Nico/textConvert/graph/badge.svg?token=SFVPAVH176" alt="Coverage Status" />
   </a>
   <img src="https://github.com/Monsieur-Nico/textConvert/actions/workflows/ci.yml/badge.svg" alt="CI Status" />
   <a href="https://monsieur-nico.github.io/textConvert/" target="_blank">
