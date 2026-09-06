@@ -177,6 +177,7 @@ When adding or changing any **public function**:
 - Follow the step-by-step instructions in [docs/ADDING_FUNCTION.md](docs/ADDING_FUNCTION.md).
 - Update [README.md](README.md) (Features section and API Reference table).
 - Add a detailed entry (description, parameters, return type, example, edge cases) to the matching category file under [docs/api/](docs/api/) — e.g. a new validation function goes in `docs/api/validation.md`. If it doesn't fit an existing category, add a new `docs/api/<category>.md` file and link it from `docs/API.md`'s index. Do **not** add a separate example to a second file — the category file's own example is the only one, by design (see #340).
+- Add the new file to [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)'s "Project Structure" tree and "Main Modules & Responsibilities" list — easy to forget since nothing else enforces it, but it's the "read this first" doc and drifts fast if skipped.
 - Add or update `@example` tags in JSDoc comments for all public functions to ensure TypeDoc generates accurate usage examples.
 - Ensure all documentation is clear, accurate, and up to date.
 - Deprecating rather than removing a function? See the [Deprecation Policy](#deprecation-policy) instead — different process, different commit type.
