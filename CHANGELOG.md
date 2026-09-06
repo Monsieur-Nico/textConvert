@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.14.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.13.0...v2.14.0) (2026-09-06)
+
+
+### Features
+
+* add scan() to expose redact()'s detection as structured matches ([b80e746](https://github.com/Monsieur-Nico/textConvert/commit/b80e7466ab34f195129d35628aac4de4ea620d5f))
+* add scan() to expose redact()'s detection as structured matches ([e4ef968](https://github.com/Monsieur-Nico/textConvert/commit/e4ef968aaabec1e7cfa207432612630e5a349900))
+
+
+### Bug Fixes
+
+* mask redact() matches by position, not by substring value ([ebd1a8c](https://github.com/Monsieur-Nico/textConvert/commit/ebd1a8c0c535facda3635d670bd2097c74fd1ee2))
+
 ## [2.13.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.12.0...v2.13.0) (2026-09-06)
 
 
