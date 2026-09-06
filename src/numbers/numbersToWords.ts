@@ -5,6 +5,16 @@ const numbers: string[] =
   );
 const tens: string[] = 'twenty thirty forty fifty sixty seventy eighty ninety'.split(' ');
 
+// Shared with ordinalToWords, which builds on numbersToWords's cardinal
+// output and needs to reject the same inputs the same way.
+const MAX_WORDABLE_NUMBER = 100000000;
+
+export function isValidWordableNumber(number: number): boolean {
+  return Number.isInteger(number) && number >= 0 && number < MAX_WORDABLE_NUMBER;
+}
+
+export const INVALID_NUMBER_MESSAGE = 'Please provide a valid number under 100 million';
+
 /**
  * Get any non-negative integer below 100 million converted to words.
  * @param number Integer input to turn into text.
@@ -17,8 +27,8 @@ export function numbersToWords(number: number): string {
   // Reject anything that isn't a non-negative integer under 100 million,
   // matching the sentinel-return convention every other function in this
   // library follows rather than throwing.
-  if (!Number.isInteger(number) || number < 0 || number >= 100000000) {
-    return 'Please provide a valid number under 100 million';
+  if (!isValidWordableNumber(number)) {
+    return INVALID_NUMBER_MESSAGE;
   }
 
   // Check if the input is between 0-19

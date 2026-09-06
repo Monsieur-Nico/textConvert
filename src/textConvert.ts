@@ -28,6 +28,7 @@ import { isPhoneNumber } from './text/validation/phoneNumber';
 import { isUrl } from './text/validation/url';
 import { numbersToWords } from './numbers/numbersToWords';
 import { ordinal } from './numbers/ordinal';
+import { ordinalToWords } from './numbers/ordinalToWords';
 import { slugify } from './text/slugify';
 import { truncate } from './text/truncate';
 
@@ -57,6 +58,7 @@ export {
   normalizeWhitespace,
   numbersToWords,
   ordinal,
+  ordinalToWords,
   pascalCase,
   pluralize,
   randomString,
