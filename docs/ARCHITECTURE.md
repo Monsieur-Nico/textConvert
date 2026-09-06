@@ -13,6 +13,7 @@ textConvert/
       analysis/
         statistics.ts    # Text statistics (word/char/sentence counts, reading time)
         language.ts      # Language detection
+        wordFrequency.ts # Word-frequency counting
       validation/
         email.ts         # Email validation
         url.ts           # URL validation
@@ -27,12 +28,22 @@ textConvert/
       reverse.ts         # String reversal
       spread.ts          # Character array conversion
       truncate.ts        # Length-limited text truncation with ellipsis
+      isPalindrome.ts    # Palindrome checking (built on clear.ts and reverse.ts)
+      html.ts            # HTML escaping/unescaping (escapeHtml, unescapeHtml)
+      normalize.ts       # Whitespace/line-ending normalization, diacritic stripping
+      pluralize.ts       # English pluralization
+      randomString.ts    # Cryptographically secure random string generation
       mask.ts            # Partial string masking for display
       redact.ts          # PII/secret detection and masking (built on mask.ts)
       scan.ts            # PII/secret detection as structured matches (same detection logic as redact.ts, non-destructive)
+      sanitize.ts        # Configurable trim/normalize/redact/escape pipeline (composition, not new logic)
       extract.ts          # Email/URL extraction from free-form text
     numbers/
       numbersToWords.ts # Number to words conversion
+      ordinal.ts        # Ordinal suffix form (21 -> '21st')
+      ordinalToWords.ts # Ordinal word form (21 -> 'twenty-first'), built on numbersToWords.ts
+      formatNumber.ts   # Thousands-separator number formatting
+      parseNumber.ts    # Reverse of formatNumber.ts
     assets/             # Shared regex and constants
     bin/
       textconvert.ts    # CLI entry point (thin wiring, built as dist/cli.js)
@@ -47,7 +58,7 @@ textConvert/
 
 ## Main Modules & Responsibilities
 
-- **text/analysis/**: Text statistics, language detection, and related analysis tools.
+- **text/analysis/**: Text statistics, language detection, word-frequency counting, and related analysis tools.
 - **text/validation/**: Validation functions (email, URL, phone number).
 - **text/internal/**: Shared logic used by more than one public function but not exported from the package itself — the linear-scan helpers (`scan.ts`) and the position-aware PII/secret detection logic (`detectors.ts`) behind `extract.ts`, `redact.ts`, and `scan.ts` (the public one).
 - **text/conventions.ts**: Case conversion (camelCase, PascalCase, snake_case, kebab-case, capitalize, titleCase).
@@ -57,11 +68,21 @@ textConvert/
 - **text/reverse.ts**: Reverse strings.
 - **text/spread.ts**: Convert strings to character arrays.
 - **text/truncate.ts**: Shorten text to a max length with an ellipsis.
+- **text/isPalindrome.ts**: Check whether text reads the same forwards and backwards, built on `clear.ts` and `reverse.ts`.
+- **text/html.ts**: Escape/unescape the five HTML special characters per OWASP's XSS Prevention Cheat Sheet Rule #1.
+- **text/normalize.ts**: Strip diacritics, collapse whitespace runs, and normalize CRLF/CR line endings to LF.
+- **text/pluralize.ts**: Return the plural form of an English word (regular suffix rules plus a maintained irregulars/uncountables list).
+- **text/randomString.ts**: Generate a cryptographically secure random string via `globalThis.crypto`, for IDs, tokens, or test fixtures.
 - **text/mask.ts**: Partially mask a string for display (the primitive `redact.ts` is built on).
 - **text/redact.ts**: Detect and mask PII (email, phone, credit card, public IPv4) and secrets (API keys, JWTs) in free-form text.
 - **text/scan.ts**: Same PII/secret detection as `redact.ts` (built on the same shared `text/internal/detectors.ts` logic), returning structured `{ type, value, start, end }` matches instead of masking them.
+- **text/sanitize.ts**: A configurable `trim`/`normalizeWhitespace`/`redactPII`/`escapeHtml` pipeline in a fixed step order — composition of the functions above, not new detection logic.
 - **text/extract.ts**: Find every email/URL embedded in a block of text.
 - **numbers/numbersToWords.ts**: Convert numbers to English words.
+- **numbers/ordinal.ts**: Get a non-negative integer's ordinal suffix form (`21` -> `'21st'`).
+- **numbers/ordinalToWords.ts**: Get a non-negative integer's ordinal word form (`21` -> `'twenty-first'`), built on `numbersToWords.ts`'s cardinal output.
+- **numbers/formatNumber.ts**: Add thousands separators to a number, English/US style.
+- **numbers/parseNumber.ts**: Parse a formatted number string back into a number — the reverse of `formatNumber.ts`.
 - **assets/regex.ts**: Centralized regex patterns for reuse.
 - **bin/textconvert.ts** and **cli.ts**: The `npx textconvert` CLI (currently just `redact`) — `cli.ts` holds the testable argument-parsing/dispatch logic, `bin/textconvert.ts` is the thin entry point that wires it to real `process`/stdio and gets built into `dist/cli.js`. This is the one part of `src/` that legitimately depends on Node built-ins; everything else stays runtime-agnostic by design.
 - **textConvert.ts**: Aggregates and exports all public functions for library consumers.
