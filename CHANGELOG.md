@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.15.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.14.0...v2.15.0) (2026-09-06)
+
+
+### Features
+
+* add formatNumber function for thousands-separator formatting ([93b780f](https://github.com/Monsieur-Nico/textConvert/commit/93b780f1f6de0db22d2775346ff7628676ae9658))
+* add formatNumber function for thousands-separator formatting ([8e9fc25](https://github.com/Monsieur-Nico/textConvert/commit/8e9fc259c16283b6c6b71c360d896a23844823d4))
+
 ## [2.14.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.13.0...v2.14.0) (2026-09-06)
 
 
