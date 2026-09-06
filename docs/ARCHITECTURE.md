@@ -19,6 +19,7 @@ textConvert/
         phoneNumber.ts   # Phone number validation
       internal/
         scan.ts          # Shared linear-scan helpers (not publicly exported) used by extract.ts and redact.ts
+        detectors.ts     # Shared, position-aware PII/secret detection logic (not publicly exported) used by redact.ts, extract.ts, and scan.ts
       conventions.ts    # Case conversion functions (camelCase, snakeCase, capitalize, titleCase, ...)
       slugify.ts        # URL-safe slug generation
       clear.ts          # Punctuation removal
@@ -28,6 +29,7 @@ textConvert/
       truncate.ts        # Length-limited text truncation with ellipsis
       mask.ts            # Partial string masking for display
       redact.ts          # PII/secret detection and masking (built on mask.ts)
+      scan.ts            # PII/secret detection as structured matches (same detection logic as redact.ts, non-destructive)
       extract.ts          # Email/URL extraction from free-form text
     numbers/
       numbersToWords.ts # Number to words conversion
@@ -47,7 +49,7 @@ textConvert/
 
 - **text/analysis/**: Text statistics, language detection, and related analysis tools.
 - **text/validation/**: Validation functions (email, URL, phone number).
-- **text/internal/**: Shared logic used by more than one public function but not exported from the package itself — currently the linear-scan helpers behind `extract.ts` and `redact.ts`.
+- **text/internal/**: Shared logic used by more than one public function but not exported from the package itself — the linear-scan helpers (`scan.ts`) and the position-aware PII/secret detection logic (`detectors.ts`) behind `extract.ts`, `redact.ts`, and `scan.ts` (the public one).
 - **text/conventions.ts**: Case conversion (camelCase, PascalCase, snake_case, kebab-case, capitalize, titleCase).
 - **text/slugify.ts**: URL-safe slug generation with Unicode accent normalization.
 - **text/clear.ts**: Remove punctuation and clean text.
@@ -57,6 +59,7 @@ textConvert/
 - **text/truncate.ts**: Shorten text to a max length with an ellipsis.
 - **text/mask.ts**: Partially mask a string for display (the primitive `redact.ts` is built on).
 - **text/redact.ts**: Detect and mask PII (email, phone, credit card, public IPv4) and secrets (API keys, JWTs) in free-form text.
+- **text/scan.ts**: Same PII/secret detection as `redact.ts` (built on the same shared `text/internal/detectors.ts` logic), returning structured `{ type, value, start, end }` matches instead of masking them.
 - **text/extract.ts**: Find every email/URL embedded in a block of text.
 - **numbers/numbersToWords.ts**: Convert numbers to English words.
 - **assets/regex.ts**: Centralized regex patterns for reuse.
@@ -82,7 +85,7 @@ textConvert/
 - **Adding New Functions**: Follow the guide in `docs/ADDING_FUNCTION.md`.
 - **Adding New Validators**: Place in `text/validation/`, export via `textConvert.ts`, and document.
 - **Adding New Analysis Tools**: Place in `text/analysis/`, export and document as above.
-- **Adding New Text Scanners**: If it scans free-form text for candidate substrings (like `extract.ts`/`redact.ts` do), check `text/internal/scan.ts` first — reuse its helpers instead of writing another backtracking regex.
+- **Adding New Text Scanners**: If it scans free-form text for candidate substrings (like `extract.ts`/`redact.ts` do), check `text/internal/scan.ts` first — reuse its helpers instead of writing another backtracking regex. If it's a new PII/secret type specifically, add it to `text/internal/detectors.ts` so both `redact.ts` and `scan.ts` pick it up from one place.
 
 ---
 

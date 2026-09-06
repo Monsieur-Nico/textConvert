@@ -5,7 +5,7 @@ Detailed documentation for every function has moved into per-category files unde
 - [**Case Conversion**](api/case-conversion.md) — [camelCase](#camelcase), [pascalCase](#pascalcase), [snakeCase](#snakecase), [kebabCase](#kebabcase), [slugify](#slugify), [capitalize](#capitalize), [titleCase](#titlecase)
 - [**Validation**](api/validation.md) — [isEmail](#isemail), [isUrl](#isurl), [isPhoneNumber](#isphonenumber)
 - [**Extraction**](api/extraction.md) — [extractEmails](#extractemails), [extractUrls](#extracturls), [extractMentions](#extractmentions), [extractHashtags](#extracthashtags)
-- [**Security**](api/security.md) — [redact](#redact), [maskText](#masktext), [escapeHtml](#escapehtml), [unescapeHtml](#unescapehtml), [sanitize](#sanitize)
+- [**Security**](api/security.md) — [redact](#redact), [scan](#scan), [maskText](#masktext), [escapeHtml](#escapehtml), [unescapeHtml](#unescapehtml), [sanitize](#sanitize)
 - [**Text Analysis**](api/text-analysis.md) — [clear](#clear), [count](#count), [countWords](#countwords), [countSentences](#countsentences), [getTextStats](#gettextstats), [isPalindrome](#ispalindrome), [reverse](#reverse), [spread](#spread), [truncate](#truncate), [wordFrequency](#wordfrequency)
 - [**Language**](api/language.md) — [detectLanguage](#detectlanguage)
 - [**Numbers**](api/numbers.md) — [numbersToWords](#numberstowords), [ordinal](#ordinal), [ordinalToWords](#ordinaltowords)
@@ -88,6 +88,10 @@ Full docs: [docs/api/extraction.md#extracthashtags](api/extraction.md#extracthas
 ### redact
 
 Full docs: [docs/api/security.md#redact](api/security.md#redact)
+
+### scan
+
+Full docs: [docs/api/security.md#scan](api/security.md#scan)
 
 ### maskText
 
