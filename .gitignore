@@ -49,3 +49,6 @@ Thumbs.db
 tasks.md
 *.private.md
 *.todo.md
+
+.vexp/
+.claude
