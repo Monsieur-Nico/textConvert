@@ -28,7 +28,7 @@ _Provide an overview..._
 
 - [ ] Created failing tests before adding any code.
 - [ ] All existing and new tests passed after adding code.
-- [ ] Extended [README.md](/README.md) file if necessary.
+- [ ] Extended [README.md](README.md) file if necessary.
 - [ ] Followed style rules.
 - [ ] Linted code before pushing.
 
