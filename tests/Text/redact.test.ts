@@ -84,6 +84,16 @@ describe('#redact', () => {
     expect(redact('Card: 4111 1111 1111 1111')).toBe('Card: ***************1111');
   });
 
+  it('should mask a digit run that is shaped like both a phone number and a credit card only once, preferring phone', () => {
+    // A real (test-only) Amex number: 15 digits, Luhn-valid, and also
+    // within isPhoneNumber's 10-15 digit range for a bare number.
+    const text = 'Amex 378282246310005 on file';
+
+    expect(redact(text, { types: ['phone', 'creditCard'] })).toBe('Amex 37************* on file');
+    // Priority follows detector order, not the order types are listed in.
+    expect(redact(text, { types: ['creditCard', 'phone'] })).toBe('Amex 37************* on file');
+  });
+
   it('should mask known API key/token formats when apiKey is requested', () => {
     // Built by concatenation, not as string literals: GitHub's push
     // protection flags any string matching these providers' key *format*

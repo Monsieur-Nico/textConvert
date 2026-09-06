@@ -15,6 +15,11 @@ import { isPhoneNumber } from '../validation/phoneNumber';
 /** The PII/secret shapes both redact() and scan() know how to detect. */
 export type DetectionType = 'email' | 'phone' | 'creditCard' | 'apiKey' | 'ip' | 'jwt';
 
+/** A {@link PositionedMatch} tagged with which detector found it. */
+export interface TypedMatch extends PositionedMatch {
+  type: DetectionType;
+}
+
 // ---- Email --------------------------------------------------------------
 
 // Characters allowed in an email's local-part / domain, checked one
@@ -297,4 +302,35 @@ function isValidJwt(candidate: string): boolean {
  */
 export function findJwtMatches(text: string): PositionedMatch[] {
   return scanMaximalRunsWithPositions(text, jwtChars).filter((match) => isValidJwt(match.value));
+}
+
+// ---- Shared dispatch, used by both redact() and scan() ---------------------
+
+// Also the priority order for resolving overlapping matches of different
+// types (e.g. a digit run shaped like both a phone number and a credit
+// card): whichever type appears first here wins, see findMatchesByType.
+const findersByType: Record<DetectionType, (text: string) => PositionedMatch[]> = {
+  email: findEmailMatches,
+  phone: findPhoneNumberMatches,
+  creditCard: findCreditCardMatches,
+  apiKey: findApiKeyMatches,
+  ip: findPublicIpv4Matches,
+  jwt: findJwtMatches,
+};
+
+/**
+ * Runs every detector in `types` over `text` and returns all their matches
+ * together, each tagged with the type that found it, in detector-priority
+ * order (not yet sorted by position) -- shared by `redact` and `scan` so
+ * they can't drift out of sync on which detector backs which type.
+ */
+export function findMatchesByType(text: string, types: DetectionType[]): TypedMatch[] {
+  const matches: TypedMatch[] = [];
+
+  for (const type of Object.keys(findersByType) as DetectionType[]) {
+    if (!types.includes(type)) continue;
+    for (const match of findersByType[type](text)) matches.push({ type, ...match });
+  }
+
+  return matches;
 }

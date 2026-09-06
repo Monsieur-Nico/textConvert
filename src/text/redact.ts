@@ -1,13 +1,40 @@
-import {
-  DetectionType,
-  findApiKeyMatches,
-  findCreditCardMatches,
-  findJwtMatches,
-  findPhoneNumberMatches,
-  findPublicIpv4Matches,
-} from './internal/detectors';
-import { extractEmails } from './extract';
+import { DetectionType, findMatchesByType, TypedMatch } from './internal/detectors';
 import { maskText } from './mask';
+
+// Mask presentation per type -- how much of the match stays visible.
+// Email and phone fall through to maskText's own default (first 2 chars
+// visible); the rest hide everything, except creditCard which keeps the
+// last 4 visible to match the standard "card ending in 1234" convention.
+function maskOptionsFor(
+  type: DetectionType,
+  maskChar: string | undefined,
+): { visibleStart?: number; visibleEnd?: number; maskChar?: string } {
+  if (type === 'creditCard') return { visibleStart: 0, visibleEnd: 4, maskChar };
+  if (type === 'apiKey' || type === 'ip' || type === 'jwt') {
+    return { visibleStart: 0, visibleEnd: 0, maskChar };
+  }
+  return { maskChar };
+}
+
+// Drops any match that overlaps one already kept, in the order matches are
+// given -- so passing them in detector-priority order (as findMatchesByType
+// does) means the higher-priority type wins a same-span overlap (e.g. a
+// digit run that's shaped like both a phone number and a credit card),
+// while purely position-based overlaps elsewhere just resolve to whichever
+// comes first in the text.
+function dropOverlapping(matches: TypedMatch[]): TypedMatch[] {
+  const sorted = [...matches].sort((a, b) => a.start - b.start);
+  const kept: TypedMatch[] = [];
+  let lastEnd = -1;
+
+  for (const match of sorted) {
+    if (match.start < lastEnd) continue;
+    kept.push(match);
+    lastEnd = match.end;
+  }
+
+  return kept;
+}
 
 export interface RedactOptions {
   /** Which types to redact. Default is 'email', 'phone', and 'creditCard'. 'apiKey', 'ip', and 'jwt' are opt-in only, given their higher false-positive risk (or, for 'jwt', simply being a bearer secret rather than classic PII). */
@@ -19,9 +46,9 @@ export interface RedactOptions {
 /**
  * Scans free-form text for embedded PII (emails, phone numbers, credit
  * card numbers, public IPv4 addresses) and secrets (API keys/tokens, JWTs)
- * and masks each match in place, using {@link extractEmails} to locate
- * emails and {@link maskText} to mask every match — for sanitizing logs,
- * support tickets, or user-generated content before storage or display.
+ * and masks each match in place with {@link maskText} — for sanitizing
+ * logs, support tickets, or user-generated content before storage or
+ * display.
  *
  * `redact` is best-effort pattern matching, not a complete PII/secret
  * detector — false negatives are possible, and it shouldn't be relied on
@@ -59,47 +86,16 @@ export function redact(text: string, options: RedactOptions = {}): string {
 
   const { types = ['email', 'phone', 'creditCard'], maskChar } = options;
 
-  let result = text;
+  const matches = dropOverlapping(findMatchesByType(text, types));
 
-  if (types.includes('email')) {
-    for (const email of new Set(extractEmails(text))) {
-      result = result.split(email).join(maskText(email, { maskChar }));
-    }
+  let result = '';
+  let cursor = 0;
+
+  for (const match of matches) {
+    result += text.slice(cursor, match.start);
+    result += maskText(match.value, maskOptionsFor(match.type, maskChar));
+    cursor = match.end;
   }
 
-  if (types.includes('phone')) {
-    for (const phone of new Set(findPhoneNumberMatches(text).map((match) => match.value))) {
-      result = result.split(phone).join(maskText(phone, { maskChar }));
-    }
-  }
-
-  if (types.includes('creditCard')) {
-    for (const card of new Set(findCreditCardMatches(text).map((match) => match.value))) {
-      // Last 4 digits visible matches the standard "card ending in 1234"
-      // convention, rather than full masking.
-      result = result
-        .split(card)
-        .join(maskText(card, { visibleStart: 0, visibleEnd: 4, maskChar }));
-    }
-  }
-
-  if (types.includes('apiKey')) {
-    for (const key of new Set(findApiKeyMatches(text).map((match) => match.value))) {
-      result = result.split(key).join(maskText(key, { visibleStart: 0, visibleEnd: 0, maskChar }));
-    }
-  }
-
-  if (types.includes('ip')) {
-    for (const ip of new Set(findPublicIpv4Matches(text).map((match) => match.value))) {
-      result = result.split(ip).join(maskText(ip, { visibleStart: 0, visibleEnd: 0, maskChar }));
-    }
-  }
-
-  if (types.includes('jwt')) {
-    for (const jwt of new Set(findJwtMatches(text).map((match) => match.value))) {
-      result = result.split(jwt).join(maskText(jwt, { visibleStart: 0, visibleEnd: 0, maskChar }));
-    }
-  }
-
-  return result;
+  return result + text.slice(cursor);
 }

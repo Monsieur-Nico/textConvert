@@ -1,12 +1,4 @@
-import {
-  DetectionType,
-  findApiKeyMatches,
-  findCreditCardMatches,
-  findEmailMatches,
-  findJwtMatches,
-  findPhoneNumberMatches,
-  findPublicIpv4Matches,
-} from './internal/detectors';
+import { DetectionType, findMatchesByType } from './internal/detectors';
 
 export interface ScanMatch {
   /** Which kind of match this is. */
@@ -53,31 +45,5 @@ export function scan(text: string, options: ScanOptions = {}): ScanMatch[] {
 
   const { types = ['email', 'phone', 'creditCard'] } = options;
 
-  const matches: ScanMatch[] = [];
-
-  if (types.includes('email')) {
-    for (const match of findEmailMatches(text)) matches.push({ type: 'email', ...match });
-  }
-
-  if (types.includes('phone')) {
-    for (const match of findPhoneNumberMatches(text)) matches.push({ type: 'phone', ...match });
-  }
-
-  if (types.includes('creditCard')) {
-    for (const match of findCreditCardMatches(text)) matches.push({ type: 'creditCard', ...match });
-  }
-
-  if (types.includes('apiKey')) {
-    for (const match of findApiKeyMatches(text)) matches.push({ type: 'apiKey', ...match });
-  }
-
-  if (types.includes('ip')) {
-    for (const match of findPublicIpv4Matches(text)) matches.push({ type: 'ip', ...match });
-  }
-
-  if (types.includes('jwt')) {
-    for (const match of findJwtMatches(text)) matches.push({ type: 'jwt', ...match });
-  }
-
-  return matches.sort((a, b) => a.start - b.start);
+  return findMatchesByType(text, types).sort((a, b) => a.start - b.start);
 }
