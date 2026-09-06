@@ -28,6 +28,10 @@ describe('#extractEmails', () => {
     expect(extractEmails('Bad ones: @example.com, plainaddress, user@')).toEqual([]);
   });
 
+  it('should reject a domain with no dot even though it is character-class valid', () => {
+    expect(extractEmails('Contact user@localhost for help.')).toEqual([]);
+  });
+
   it('should return an empty array when there are no emails', () => {
     expect(extractEmails('No emails here.')).toEqual([]);
   });

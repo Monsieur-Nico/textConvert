@@ -22,6 +22,7 @@ import { randomString } from './text/randomString';
 import { redact, RedactOptions } from './text/redact';
 import { reverse } from './text/reverse';
 import { sanitize, SanitizeOptions } from './text/sanitize';
+import { scan, ScanMatch, ScanOptions } from './text/scan';
 import { spread } from './text/spread';
 import { isEmail } from './text/validation/email';
 import { isPhoneNumber } from './text/validation/phoneNumber';
@@ -68,6 +69,9 @@ export {
   reverse,
   sanitize,
   SanitizeOptions,
+  scan,
+  ScanMatch,
+  ScanOptions,
   slugify,
   snakeCase,
   spread,

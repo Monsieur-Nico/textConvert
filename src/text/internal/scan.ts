@@ -1,11 +1,27 @@
+export interface PositionedMatch {
+  value: string;
+  start: number;
+  end: number;
+}
+
+// Trailing punctuation that's almost always part of the surrounding
+// sentence, not the match itself (e.g. a sentence-ending period right
+// after an email address or URL). Shared by extractEmails, extractUrls,
+// and scan's email matching.
+export const trailingPunctuationChars = new Set([...'.,;:!?)]}\'"']);
+
 /**
  * Finds maximal runs of characters from `allowedChars` in `text`, trimming
- * leading/trailing spaces from each run before returning it. A single
- * linear pass, no regex backtracking risk — shared by any scanner that
- * just needs "runs of these characters" (phone numbers, credit cards).
+ * leading/trailing spaces from each run before returning it, along with
+ * each run's position in `text`. A single linear pass, no regex
+ * backtracking risk — shared by any scanner that just needs "runs of
+ * these characters" (phone numbers, credit cards, IPv4 addresses, JWTs).
  */
-export function scanMaximalRuns(text: string, allowedChars: Set<string>): string[] {
-  const candidates: string[] = [];
+export function scanMaximalRunsWithPositions(
+  text: string,
+  allowedChars: Set<string>,
+): PositionedMatch[] {
+  const matches: PositionedMatch[] = [];
   let i = 0;
 
   while (i < text.length) {
@@ -22,12 +38,14 @@ export function scanMaximalRuns(text: string, allowedChars: Set<string>): string
     let trimmedEnd = end;
     while (trimmedEnd > start && text[trimmedEnd - 1] === ' ') trimmedEnd--;
 
-    if (trimmedEnd > start) candidates.push(text.slice(start, trimmedEnd));
+    if (trimmedEnd > start) {
+      matches.push({ value: text.slice(start, trimmedEnd), start, end: trimmedEnd });
+    }
 
     i = end;
   }
 
-  return candidates;
+  return matches;
 }
 
 /**
