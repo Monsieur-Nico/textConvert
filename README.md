@@ -93,6 +93,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 ## ✨ Features
 
 - **PII redaction:** mask emails, phone numbers, credit card numbers, and (opt-in) public IPv4 addresses, API keys/tokens, and JWTs embedded in free-form text, or partially mask a known value for display
+- **`scan()`:** the same PII/secret detection as `redact()`, returned as structured `{ type, value, start, end }` matches instead of masked in place
 - **`sanitize()` pipeline:** trim, normalize whitespace, redact PII, and escape HTML in one configurable call, composed from the functions above
 - **XSS-safe HTML escaping:** escape/unescape the five HTML special characters per OWASP's XSS Prevention Cheat Sheet, without a dedicated escaping library
 - **CLI:** `npx textconvert redact <file>` sanitizes a file (or stdin) from the command line, no JS required
@@ -143,6 +144,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 | `truncate(text, maxLength, options?)`        | Shorten text to a max length, with an ellipsis                     |
 | `maskText(text, options?)`                   | Partially mask a string for display                                |
 | `redact(text, options?)`                     | Mask PII/secrets embedded in text                                  |
+| `scan(text, options?)`                       | Find PII/secrets embedded in text as structured matches            |
 | `getTextStats(text, wordsPerMinute?)`        | Full text statistics (counts, averages, reading time, readability) |
 | `isPalindrome(text)`                         | Check if text is a palindrome                                      |
 | `wordFrequency(text)`                        | Count how many times each word appears                             |

@@ -1,12 +1,13 @@
 # Security
 
-`redact`, `maskText`, `escapeHtml`, `unescapeHtml`, `sanitize`.
+`redact`, `scan`, `maskText`, `escapeHtml`, `unescapeHtml`, `sanitize`.
 
 ---
 
 ## Table of Contents
 
 - [redact](#redact)
+- [scan](#scan)
 - [maskText](#masktext)
 - [escapeHtml](#escapehtml)
 - [unescapeHtml](#unescapehtml)
@@ -16,7 +17,7 @@
 
 ## redact
 
-Scans free-form text for embedded PII (emails, phone numbers, credit card numbers, public IPv4 addresses) and secrets (API keys/tokens, JWTs) and masks each match in place, using `extractEmails` to locate emails and `maskText` to mask every match — for sanitizing logs, support tickets, or user-generated content before storage or display.
+Scans free-form text for embedded PII (emails, phone numbers, credit card numbers, public IPv4 addresses) and secrets (API keys/tokens, JWTs) and masks each match in place with `maskText` — for sanitizing logs, support tickets, or user-generated content before storage or display.
 
 `redact` is best-effort pattern matching, not a complete PII/secret detector. False negatives are possible — pair it with review for anything where a missed match matters, rather than relying on it as the only safeguard. Two gaps worth knowing about specifically, not just as a buried edge case:
 
@@ -63,8 +64,45 @@ redact('Server 10.0.0.5 hit by 203.0.113.42', { types: ['ip'] });
 - JWT detection requires the real three-segment structure (`header.payload.signature`), not just an `eyJ` prefix — the header segment must base64url-decode to JSON containing a string `alg` field. This is deliberately stronger than a prefix check, which would also match any base64-encoded JSON (a JWT-shaped `eyJ...` string that fails this check is not matched, e.g. `'not.a.jwt'`).
 - JWTs with an empty signature segment (unsigned, `alg: "none"` tokens) are not matched — a real but rare JWT variant, out of scope for now.
 - JWTs are always masked in full (no visible portion), the same convention as `apiKey` — there's no equivalent to a credit card's "last 4 visible" for a bearer token.
-- Every occurrence of a repeated match is masked, not just the first.
+- Every occurrence of a repeated match is masked, not just the first — each occurrence is masked at its own position, not by a whole-text find-and-replace on the matched value, so masking one occurrence can never affect unrelated text elsewhere that merely contains the same substring (e.g. a matched phone number that's also a substring of a longer, unrelated digit string like an order number).
 - Phone number, credit card, IPv4, and JWT candidates are all found by scanning for maximal runs of an allowed-character set, which is shared internal logic — they differ only in which characters are allowed and the validation applied afterward.
+- When two different types' matches overlap the same span (e.g. a digit run that's shaped like both a phone number and a credit card), only one is masked — priority follows detector order: `email`, `phone`, `creditCard`, `apiKey`, `ip`, `jwt`.
+
+---
+
+## scan
+
+Scans free-form text for the same embedded PII (emails, phone numbers, credit card numbers, public IPv4 addresses) and secrets (API keys/tokens, JWTs) that `redact` detects, but returns each match as structured data instead of masking it in place — for callers that want to inspect, log, or make their own decision about what was found, rather than have it masked automatically.
+
+`scan` reuses exactly the same detection logic `redact` does (they share one internal implementation), so it carries the same known gaps and false-positive/negative characteristics documented above for `redact` — the `'ip'` and `'jwt'` caveats apply here too. `scan` is best-effort pattern matching, not a complete PII/secret detector.
+
+**Parameters:**
+
+- `text: string` — The text to scan.
+- `options.types?: Array<'email' | 'phone' | 'creditCard' | 'apiKey' | 'ip' | 'jwt'>` — Which types to look for. Default is `'email'`, `'phone'`, and `'creditCard'`. `'apiKey'`, `'ip'`, and `'jwt'` are opt-in only — same reasoning as `redact`.
+
+**Returns:**
+
+- `ScanMatch[]` — Every match found, in the order it appears in the text. Each match is `{ type, value, start, end }`, where `type` is which kind of match it is, `value` is the matched substring, and `start`/`end` are its position in the input text (`end` exclusive, like `String.slice`).
+
+**Example:**
+
+```js
+import { scan } from 'textconvert';
+
+scan('Contact jordan@example.com, card 4111 1111 1111 1111');
+// [
+//   { type: 'email', value: 'jordan@example.com', start: 8, end: 26 },
+//   { type: 'creditCard', value: '4111 1111 1111 1111', start: 33, end: 52 },
+// ]
+```
+
+**Edge Cases:**
+
+- Returns `[]` for empty input or when nothing matches, rather than an error message — `scan` returns an array, not a string, so the shared string sentinel doesn't apply here (matching how `extractEmails`/`extractUrls` handle empty/no-match input).
+- Every occurrence of a repeated value gets its own entry with its own position — scanning the same email twice returns two separate matches.
+- Results are sorted by `start` across all requested types, not grouped by type — so matches come back in the order they actually appear in the text.
+- `'apiKey'`, `'ip'`, and `'jwt'` are opt-in only, not included by default — same false-positive-risk reasoning as `redact`.
 
 ---
 
