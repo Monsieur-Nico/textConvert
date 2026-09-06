@@ -31,6 +31,7 @@ import { formatNumber, FormatNumberOptions } from './numbers/formatNumber';
 import { numbersToWords } from './numbers/numbersToWords';
 import { ordinal } from './numbers/ordinal';
 import { ordinalToWords } from './numbers/ordinalToWords';
+import { parseNumber } from './numbers/parseNumber';
 import { slugify } from './text/slugify';
 import { truncate } from './text/truncate';
 
@@ -63,6 +64,7 @@ export {
   numbersToWords,
   ordinal,
   ordinalToWords,
+  parseNumber,
   pascalCase,
   pluralize,
   randomString,
