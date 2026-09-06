@@ -1,0 +1,48 @@
+name: publish-next
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish-next:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          registry-url: 'https://registry.npmjs.org/'
+      - name: Install dependencies
+        run: npm ci || npm install
+      - name: Update npm for OIDC trusted publishing support
+        run: npm install -g npm@latest
+      - name: Compute a throwaway prerelease version
+        id: version
+        run: |
+          CURRENT_MAJOR=$(node -p "require('./package.json').version.split('.')[0]")
+          NEXT_MAJOR=$((CURRENT_MAJOR + 1))
+          VERSION="${NEXT_MAJOR}.0.0-next.${{ github.run_number }}"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+      - name: Set the throwaway version
+        # Local to this checkout only -- never committed or pushed, so it
+        # can't interfere with release-please's own version manifest on
+        # main. Whatever's currently on main (however much of the v3.0.0
+        # batch has landed at the time this is triggered) gets published
+        # under this one-off version instead.
+        run: npm version "${{ steps.version.outputs.version }}" --no-git-tag-version
+      - name: Build
+        run: npm run build
+      - name: Publish to npm under the next tag
+        run: npm publish --tag next --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Summary
+        run: |
+          echo "Published \`textconvert@${{ steps.version.outputs.version }}\` under the \`next\` tag." >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Try it with: \`npm install textconvert@next\`" >> "$GITHUB_STEP_SUMMARY"
