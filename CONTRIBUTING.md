@@ -126,6 +126,8 @@ For this project, that includes:
 - Changing the shared "invalid input" convention most functions follow (returning `'Please provide a valid input text'` instead of throwing) — since it's used across most of the library, changing it is breaking everywhere at once, not just for one function.
 - Raising the minimum Node version in `engines.node`, or changing the build output (e.g. dropping CJS support).
 
+**Also update when shipping a breaking change:** add or update its entry in [MIGRATION.md](MIGRATION.md), with concrete before/after guidance — the `BREAKING CHANGE:` footer feeds CHANGELOG.md automatically, but a terse one-paragraph footer isn't the same as an upgrade guide, especially when several breaking changes land in the same major version.
+
 ## Deprecation Policy
 
 Before removing or renaming a public function, deprecate it first — give consumers a documented warning period rather than dropping something with zero notice in the next major release. Nothing in the library is deprecated yet; this section exists so there's a clear, agreed-on process ready for whenever that first happens.
