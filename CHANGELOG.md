@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.16.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.15.0...v2.16.0) (2026-09-06)
+
+
+### Features
+
+* add parseNumber function to parse formatted numbers back to values ([327b5fb](https://github.com/Monsieur-Nico/textConvert/commit/327b5fbc3871e0a744b439cb88709fc6bcd09593))
+* add parseNumber function to parse formatted numbers back to values ([137318a](https://github.com/Monsieur-Nico/textConvert/commit/137318a281f872ff4951f3a25a228b2cb23108c9))
+
+
+### Bug Fixes
+
+* use a relative README.md link in the PR template ([b539b88](https://github.com/Monsieur-Nico/textConvert/commit/b539b881dba8413f497570d312784cf69c38d124))
+* use the full README.md URL in the PR template ([094deb0](https://github.com/Monsieur-Nico/textConvert/commit/094deb040fc91f14c3aea617d947da74df5bc2ae))
+
 ## [2.15.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.14.0...v2.15.0) (2026-09-06)
 
 
