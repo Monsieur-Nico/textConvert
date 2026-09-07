@@ -6,8 +6,8 @@ import { reverse } from './reverse';
  * case, spaces, and punctuation.
  *
  * Composes {@link clear} (lowercases, strips punctuation) and
- * {@link reverse} internally, so it shares reverse's astral-Unicode
- * limitation on emoji/surrogate-pair characters -- see reverse's own docs.
+ * {@link reverse} internally; reversal is grapheme-cluster aware, so
+ * emoji and combining-mark sequences are handled correctly.
  *
  * @param text Text to check.
  * @returns `true` if text is a palindrome under those rules, `false` otherwise.

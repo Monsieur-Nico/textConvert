@@ -41,4 +41,9 @@ describe('#isPalindrome', () => {
   it('should be case-insensitive', () => {
     expect(isPalindrome('RaceCar')).toBe(true);
   });
+  it('should handle emoji grapheme clusters', () => {
+    // reversing '👍🏽👍🏽' cluster-wise returns the same string; code-unit
+    // reversal tears the surrogate pairs and skin-tone modifiers apart
+    expect(isPalindrome('👍🏽👍🏽')).toBe(true);
+  });
 });

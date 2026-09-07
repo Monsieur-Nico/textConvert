@@ -19,4 +19,17 @@ describe('#reverse', () => {
   it("should return 'Please provide a valid input text' for empty input", () => {
     expect(reverse('')).toBe('Please provide a valid input text');
   });
+  it('should reverse grapheme clusters without corrupting emoji', () => {
+    // '👍🤓' is two astral-plane characters; reversing by UTF-16 code unit
+    // tears both surrogate pairs apart and produces lone surrogates
+    expect(reverse('👍🤓')).toBe('🤓👍');
+  });
+  it('should keep emoji with skin-tone modifiers intact', () => {
+    // '👍🏽' is a thumbs-up followed by a skin-tone modifier -- one grapheme cluster
+    expect(reverse('👍🏽')).toBe('👍🏽');
+  });
+  it('should keep combining-mark sequences intact', () => {
+    // 'e' + combining acute accent is one grapheme cluster
+    expect(reverse('e\u0301x')).toBe('xe\u0301');
+  });
 });

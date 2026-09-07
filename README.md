@@ -142,9 +142,9 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 | `count(text, countNumbers?)`                 | Count letters (optionally including numbers)                       |
 | `countWords(text)`                           | Count words                                                        |
 | `countSentences(text)`                       | Count sentences                                                    |
-| `reverse(text)`                              | Reverse a string                                                   |
+| `reverse(text)`                              | Reverse a string (grapheme-cluster aware)                          |
 | `spread(text, clear?)`                       | Split a string into an array of characters                         |
-| `truncate(text, maxLength, options?)`        | Shorten text to a max length, with an ellipsis                     |
+| `truncate(text, maxLength, options?)`        | Shorten text to a max length, with an ellipsis (grapheme-safe cut) |
 | `maskText(text, options?)`                   | Partially mask a string for display                                |
 | `redact(text, options?)`                     | Mask PII/secrets embedded in text                                  |
 | `scan(text, options?)`                       | Find PII/secrets embedded in text as structured matches            |

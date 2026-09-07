@@ -36,4 +36,16 @@ describe('#truncate', () => {
   it("should return 'Please provide a valid input text' for empty input", () => {
     expect(truncate('', 10)).toBe('Please provide a valid input text');
   });
+  it('should not cut a grapheme cluster at the truncation boundary', () => {
+    // budget for 'ab👍🏽xyz' with maxLength 6 / ellipsis '...' is 3 code units,
+    // which lands inside the '👍🏽' surrogate pair -- snap back to the last
+    // grapheme boundary instead of emitting a lone surrogate
+    expect(truncate('ab👍🏽xyz', 6)).toBe('ab...');
+  });
+  it('should keep combining-mark sequences intact when truncating', () => {
+    // 'e' + combining acute accent is one grapheme cluster (2 code units);
+    // a code-unit cut at budget 2 would keep the bare 'e' and strip the accent,
+    // so the cluster does not fit and truncation snaps back to 'a'
+    expect(truncate('ae\u0301b', 3, { ellipsis: 'x' })).toBe('ax');
+  });
 });
