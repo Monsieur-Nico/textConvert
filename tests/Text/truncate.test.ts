@@ -48,4 +48,16 @@ describe('#truncate', () => {
     // so the cluster does not fit and truncation snaps back to 'a'
     expect(truncate('ae\u0301b', 3, { ellipsis: 'x' })).toBe('ax');
   });
+  it('should not cut a ZWJ-joined emoji sequence at the truncation boundary', () => {
+    // the family emoji is four people joined by U+200D into a single
+    // 11-code-unit grapheme cluster; a boundary landing inside it must snap
+    // back to before the whole cluster, not just before a surrogate pair
+    expect(truncate('ab👨‍👩‍👧‍👦xyz', 12)).toBe('ab...');
+  });
+  it('should include a multi-code-unit cluster that exactly fills the remaining budget', () => {
+    // the family emoji is 11 code units; with ellipsis '...' (3) and
+    // maxLength 14, the budget is exactly 11 -- the cluster fits precisely
+    // and should be kept, not dropped for being right at the boundary
+    expect(truncate('👨‍👩‍👧‍👦extra', 14)).toBe('👨‍👩‍👧‍👦...');
+  });
 });

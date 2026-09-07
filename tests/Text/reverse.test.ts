@@ -32,4 +32,17 @@ describe('#reverse', () => {
     // 'e' + combining acute accent is one grapheme cluster
     expect(reverse('e\u0301x')).toBe('xe\u0301');
   });
+  it('should reverse flag emoji as whole clusters instead of swapping their regional-indicator pairs', () => {
+    // each flag is two regional-indicator code points grouped into one
+    // cluster; a reversal that's only code-point-safe (not cluster-aware)
+    // would still cross-swap indicators and produce different countries'
+    // flags instead of reordering the flags themselves
+    expect(reverse('🇺🇸🇯🇵')).toBe('🇯🇵🇺🇸');
+  });
+  it('should keep a ZWJ-joined emoji sequence intact', () => {
+    // the family emoji is four people joined by U+200D into a single
+    // grapheme cluster -- a different joining mechanism than a surrogate
+    // pair or a base+modifier pair
+    expect(reverse('a👨‍👩‍👧‍👦b')).toBe('b👨‍👩‍👧‍👦a');
+  });
 });
