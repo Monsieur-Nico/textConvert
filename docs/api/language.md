@@ -29,10 +29,10 @@ Detects the most likely language of a given text, using a mix of exact-phrase ma
 ```js
 import { detectLanguage } from 'textconvert';
 
-detectLanguage('Bonjour le monde'); // { language: 'french', confidence: 0.95, scores: {...} }
+detectLanguage('Bonjour le monde'); // { language: 'fr', confidence: 0.95, scores: {...} }
 ```
 
-**Supported languages:** English, French, Spanish, German, Italian, Portuguese, Dutch — that's the entire list. Text in any other language (Japanese, Arabic, Russian, Chinese, ...) can never be correctly identified; it either falls back to `Language.Unknown` or, in unlucky cases, gets misattributed to whichever supported language's character/stopword profile happens to overlap most.
+**Supported languages:** English (`'en'`), French (`'fr'`), Spanish (`'es'`), German (`'de'`), Italian (`'it'`), Portuguese (`'pt'`), Dutch (`'nl'`) — that's the entire list, identified by their ISO 639-1 code rather than an English name. Text in any other language (Japanese, Arabic, Russian, Chinese, ...) can never be correctly identified; it either falls back to `Language.Unknown` (`'und'`, the same "undetermined" token `franc`/BCP-47 use) or, in unlucky cases, gets misattributed to whichever supported language's character/stopword profile happens to overlap most.
 
 **Edge Cases:**
 

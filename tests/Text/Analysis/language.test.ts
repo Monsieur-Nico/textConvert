@@ -16,6 +16,22 @@ function expectDominantLanguage(result: LanguageDetectionResult, expected: Langu
   }
 }
 
+describe('Language enum', () => {
+  it('should use ISO 639-1 codes rather than English names', () => {
+    expect(Language.English).toBe('en');
+    expect(Language.French).toBe('fr');
+    expect(Language.Spanish).toBe('es');
+    expect(Language.German).toBe('de');
+    expect(Language.Italian).toBe('it');
+    expect(Language.Portuguese).toBe('pt');
+    expect(Language.Dutch).toBe('nl');
+  });
+
+  it("should use 'und' for Unknown, matching franc/BCP-47's undetermined-language convention", () => {
+    expect(Language.Unknown).toBe('und');
+  });
+});
+
 describe('#detectLanguage', () => {
   it('should return unknown for empty input', () => {
     const result = detectLanguage('');

@@ -1,15 +1,18 @@
 /**
- * Supported languages for detection
+ * Supported languages for detection, keyed by their ISO 639-1 code.
+ * `Unknown` uses `'und'` ("undetermined"), the same token `franc`,
+ * `Intl`, and BCP-47 tooling use when a language can't be determined --
+ * not itself an ISO 639-1 code, since ISO 639-1 only covers real languages.
  */
 export enum Language {
-  English = 'english',
-  French = 'french',
-  Spanish = 'spanish',
-  German = 'german',
-  Italian = 'italian',
-  Portuguese = 'portuguese',
-  Dutch = 'dutch',
-  Unknown = 'unknown',
+  English = 'en',
+  French = 'fr',
+  Spanish = 'es',
+  German = 'de',
+  Italian = 'it',
+  Portuguese = 'pt',
+  Dutch = 'nl',
+  Unknown = 'und',
 }
 
 /**
@@ -1040,7 +1043,7 @@ const uniqueChars: Partial<Record<Language, string[]>> = {
  * @param options Additional options for detection
  * @returns Language detection result with confidence score
  * @example
- * detectLanguage('Bonjour le monde'); // { language: 'French', ... }
+ * detectLanguage('Bonjour le monde'); // { language: 'fr', ... }
  */
 export function detectLanguage(
   text: string,
