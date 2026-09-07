@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.16.1](https://github.com/Monsieur-Nico/textConvert/compare/v2.16.0...v2.16.1) (2026-09-07)
+
+
+### Bug Fixes
+
+* make reverse/truncate/isPalindrome grapheme-cluster aware ([9855020](https://github.com/Monsieur-Nico/textConvert/commit/9855020fd036589cc387f05fa6940f465eec24f1))
+* make reverse/truncate/isPalindrome grapheme-cluster aware ([#412](https://github.com/Monsieur-Nico/textConvert/issues/412)) ([56d4664](https://github.com/Monsieur-Nico/textConvert/commit/56d46649a64a48f8238fc686adb0d2758c90421b))
+
 ## [2.16.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.15.0...v2.16.0) (2026-09-06)
 
 
