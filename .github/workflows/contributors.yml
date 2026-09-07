@@ -14,7 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # Fails on repos with 300+ recent events: the underlying
+      # all-contributors-for-repository lib over-paginates GitHub's events
+      # endpoint. Fix is up but still a draft:
+      # https://github.com/JoshuaKGoldberg/all-contributors-for-repository/pull/1292
       - uses: JoshuaKGoldberg/all-contributors-auto-action@v0.6.1
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
