@@ -41,4 +41,18 @@ describe('#isPalindrome', () => {
   it('should be case-insensitive', () => {
     expect(isPalindrome('RaceCar')).toBe(true);
   });
+  it('should handle emoji grapheme clusters', () => {
+    // reversing '👍🏽👍🏽' cluster-wise returns the same string; code-unit
+    // reversal tears the surrogate pairs and skin-tone modifiers apart
+    expect(isPalindrome('👍🏽👍🏽')).toBe(true);
+  });
+  it('should treat flag emoji as whole clusters when checking for symmetry', () => {
+    // outer flags match and the middle one is its own mirror, so this reads
+    // the same forwards and backwards only if each flag's regional-indicator
+    // pair stays grouped as one unit during the reversal
+    expect(isPalindrome('🇺🇸🇯🇵🇺🇸')).toBe(true);
+  });
+  it('should return false for two different flag emoji, not a false match from scrambled indicators', () => {
+    expect(isPalindrome('🇺🇸🇯🇵')).toBe(false);
+  });
 });

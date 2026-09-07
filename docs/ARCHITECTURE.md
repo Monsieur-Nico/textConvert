@@ -21,13 +21,14 @@ textConvert/
       internal/
         scan.ts          # Shared linear-scan helpers (not publicly exported) used by extract.ts and redact.ts
         detectors.ts     # Shared, position-aware PII/secret detection logic (not publicly exported) used by redact.ts, extract.ts, and scan.ts
+        graphemes.ts     # Shared grapheme-cluster splitting via Intl.Segmenter (not publicly exported) used by reverse.ts and truncate.ts
       conventions.ts    # Case conversion functions (camelCase, snakeCase, capitalize, titleCase, ...)
       slugify.ts        # URL-safe slug generation
       clear.ts          # Punctuation removal
       count.ts          # Counting utilities (words, sentences, letters)
-      reverse.ts         # String reversal
+      reverse.ts         # String reversal, grapheme-cluster aware
       spread.ts          # Character array conversion
-      truncate.ts        # Length-limited text truncation with ellipsis
+      truncate.ts        # Length-limited text truncation with ellipsis, grapheme-safe cut
       isPalindrome.ts    # Palindrome checking (built on clear.ts and reverse.ts)
       html.ts            # HTML escaping/unescaping (escapeHtml, unescapeHtml)
       normalize.ts       # Whitespace/line-ending normalization, diacritic stripping
@@ -60,14 +61,14 @@ textConvert/
 
 - **text/analysis/**: Text statistics, language detection, word-frequency counting, and related analysis tools.
 - **text/validation/**: Validation functions (email, URL, phone number).
-- **text/internal/**: Shared logic used by more than one public function but not exported from the package itself — the linear-scan helpers (`scan.ts`) and the position-aware PII/secret detection logic (`detectors.ts`) behind `extract.ts`, `redact.ts`, and `scan.ts` (the public one).
+- **text/internal/**: Shared logic used by more than one public function but not exported from the package itself — the linear-scan helpers (`scan.ts`), the position-aware PII/secret detection logic (`detectors.ts`) behind `extract.ts`, `redact.ts`, and `scan.ts` (the public one), and the grapheme-cluster splitting (`graphemes.ts`) behind `reverse.ts` and `truncate.ts`.
 - **text/conventions.ts**: Case conversion (camelCase, PascalCase, snake_case, kebab-case, capitalize, titleCase).
 - **text/slugify.ts**: URL-safe slug generation with Unicode accent normalization.
 - **text/clear.ts**: Remove punctuation and clean text.
 - **text/count.ts**: Count words, sentences, and letters.
-- **text/reverse.ts**: Reverse strings.
+- **text/reverse.ts**: Reverse strings, grapheme-cluster aware (emoji, combining marks) via `text/internal/graphemes.ts`.
 - **text/spread.ts**: Convert strings to character arrays.
-- **text/truncate.ts**: Shorten text to a max length with an ellipsis.
+- **text/truncate.ts**: Shorten text to a max length with an ellipsis, cutting on grapheme-cluster boundaries via `text/internal/graphemes.ts`.
 - **text/isPalindrome.ts**: Check whether text reads the same forwards and backwards, built on `clear.ts` and `reverse.ts`.
 - **text/html.ts**: Escape/unescape the five HTML special characters per OWASP's XSS Prevention Cheat Sheet Rule #1.
 - **text/normalize.ts**: Strip diacritics, collapse whitespace runs, and normalize CRLF/CR line endings to LF.

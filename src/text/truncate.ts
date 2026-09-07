@@ -1,6 +1,12 @@
+import { iterateGraphemes } from './internal/graphemes';
+
 /**
  * Shortens text to a maximum length, appending an ellipsis when truncation
  * happens. `maxLength` includes the ellipsis itself.
+ *
+ * Truncation never splits a grapheme cluster (surrogate pairs, combining
+ * marks, ZWJ emoji sequences) in half: the cut snaps back to the last
+ * cluster boundary that fits the length budget.
  *
  * @param text Text to truncate.
  * @param maxLength Maximum length of the returned string, including the ellipsis.
@@ -29,7 +35,18 @@ export function truncate(
   // the ellipsis as fits.
   if (maxLength <= ellipsis.length) return ellipsis.slice(0, Math.max(maxLength, 0));
 
-  let cut = text.slice(0, maxLength - ellipsis.length);
+  const budget = maxLength - ellipsis.length;
+
+  // Build the cut from grapheme clusters so the boundary never splits a
+  // multi-code-unit cluster (surrogate pairs, combining marks) in half.
+  let cut = '';
+  let width = 0;
+
+  for (const segment of iterateGraphemes(text)) {
+    if (width + segment.length > budget) break;
+    cut += segment;
+    width += segment.length;
+  }
 
   if (byWords) {
     const lastSpace = cut.lastIndexOf(' ');

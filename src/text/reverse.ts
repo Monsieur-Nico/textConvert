@@ -1,14 +1,17 @@
+import { graphemes } from './internal/graphemes';
+
 /**
- * Reverses all characters in a string.
+ * Reverses all grapheme clusters (user-perceived characters) in a string.
  * @param text A string to reverse.
  * @returns Reversed string.
  * @example
  * reverse('Hello, world!'); // '!dlrow ,olleH'
+ * reverse('👍🏽a'); // 'a👍🏽' -- emoji clusters stay intact
  */
 
 export function reverse(text: string): string {
   // Make sure input is valid
   if (!text) return 'Please provide a valid input text';
-  // Split string into characters, reverse all of them and join them back together
-  return text.split('').reverse().join('');
+  // Split string into grapheme clusters, reverse all of them and join them back together
+  return graphemes(text).reverse().join('');
 }
