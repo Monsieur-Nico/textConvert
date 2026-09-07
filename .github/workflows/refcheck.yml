@@ -1,7 +1,11 @@
 name: Reference Check
 
+# pull_request_target (not pull_request) so fork PRs get a write-capable
+# GITHUB_TOKEN and the action can post its comment -- see #429. Safe here
+# because this job never checks out or runs the fork's code, it only reads
+# the PR/issue body via the API and comments back.
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, edited, synchronize]
   issues:
     types: [opened, edited]
