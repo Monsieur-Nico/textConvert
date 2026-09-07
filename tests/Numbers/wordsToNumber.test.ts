@@ -79,6 +79,9 @@ describe('#wordsToNumber', () => {
   it('should return NaN for whitespace-only input', () => {
     expect(wordsToNumber('   ')).toBeNaN();
   });
+  it('should return NaN for input that is only filler words', () => {
+    expect(wordsToNumber('and')).toBeNaN();
+  });
   it('should return NaN for a non-string input', () => {
     // @ts-expect-error -- intentionally passing an invalid type to test runtime behavior
     expect(wordsToNumber(105)).toBeNaN();

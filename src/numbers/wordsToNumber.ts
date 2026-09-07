@@ -43,7 +43,6 @@ export function wordsToNumber(text: string): number {
 
   let total = 0;
   let group = 0;
-  let matchedAnything = false;
 
   for (const token of tokens) {
     const ones = ONES_AND_TEENS.indexOf(token);
@@ -52,22 +51,18 @@ export function wordsToNumber(text: string): number {
 
     if (ones !== -1) {
       group += ones;
-      matchedAnything = true;
     } else if (tensIndex !== -1) {
       group += (tensIndex + 2) * 10;
-      matchedAnything = true;
     } else if (scale === 100) {
       group = (group || 1) * scale;
-      matchedAnything = true;
     } else if (scale !== undefined) {
       total += (group || 1) * scale;
       group = 0;
-      matchedAnything = true;
     } else {
       // Unrecognized word -- not a number this function knows how to parse.
       return NaN;
     }
   }
 
-  return matchedAnything ? total + group : NaN;
+  return total + group;
 }
