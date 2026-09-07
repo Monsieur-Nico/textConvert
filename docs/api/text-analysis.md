@@ -256,7 +256,7 @@ reverse('Hello, world!'); // '!dlrow ,olleH'
 
 ## spread
 
-Returns an array of characters from the provided string (optionally removing punctuation first).
+Splits a string into an array of its exact characters, in order (optionally removing punctuation first).
 
 **Parameters:**
 
@@ -265,21 +265,21 @@ Returns an array of characters from the provided string (optionally removing pun
 
 **Returns:**
 
-- `string[] | string` — Array of characters, or an error message string for invalid input.
+- `string[]` — Array of characters, or `[]` for invalid input. `[]`, not the shared string sentinel, since this returns `string[]`.
 
 **Example:**
 
 ```js
 import { spread } from 'textconvert';
 
-spread('Hello, world!'); // ['H', 'e', 'l', 'l', 'o', ',', 'w', 'o', 'r', 'l', 'd', '!'] (no space — see Edge Cases)
-spread('hello world'); // ['H', 'e', 'l', 'l', 'o', 'w', 'o', 'r', 'l', 'd'] (see Edge Cases)
+spread('Hello, world!'); // ['H', 'e', 'l', 'l', 'o', ',', ' ', 'w', 'o', 'r', 'l', 'd', '!']
+spread('hello world'); // ['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']
 ```
 
 **Edge Cases:**
 
-- Returns an error message for invalid input type or empty string.
-- Two behaviors here aren't controlled by the `clear` parameter and apply unconditionally: the **first character is always uppercased** regardless of the input's original casing (`spread('hello')` starts with `'H'`, not `'h'`), and **all whitespace is always stripped** from the output, whether or not `clear` is `true`. The `clear` parameter only controls punctuation removal beyond that.
+- Returns `[]` for invalid input type, or empty/whitespace-only string.
+- Every character of the input is preserved verbatim, including case and whitespace — `spread(text).join('')` round-trips the original text (when `clear` is `false`). `clear: true` only removes punctuation; it also lowercases the text and can leave a trailing space, since that's `clear`'s own documented behavior, not something `spread` adds on top.
 - Character splitting uses the spread operator (`[...text]`), which is surrogate-pair-aware — unlike `reverse` (see above), `spread` handles astral Unicode characters (most emoji) as single array entries correctly.
 
 ---
