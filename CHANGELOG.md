@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2.16.2](https://github.com/Monsieur-Nico/textConvert/compare/v2.16.1...v2.16.2) (2026-09-07)
+
+
+### Bug Fixes
+
+* pass GITHUB_TOKEN to all-contributors-auto-action ([64a8a6d](https://github.com/Monsieur-Nico/textConvert/commit/64a8a6dba404b72e6aa91b7a2946c8469615cdc3))
+* pass GITHUB_TOKEN to all-contributors-auto-action ([419bed8](https://github.com/Monsieur-Nico/textConvert/commit/419bed80550403eced4256b7ad88fb1b1da5510b))
+
 ## [2.16.1](https://github.com/Monsieur-Nico/textConvert/compare/v2.16.0...v2.16.1) (2026-09-07)
 
 
