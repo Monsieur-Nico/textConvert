@@ -1,4 +1,4 @@
-import { graphemes } from './graphemes';
+import { iterateGraphemes } from './graphemes';
 
 /**
  * Shortens text to a maximum length, appending an ellipsis when truncation
@@ -42,7 +42,7 @@ export function truncate(
   let cut = '';
   let width = 0;
 
-  for (const segment of graphemes(text)) {
+  for (const segment of iterateGraphemes(text)) {
     if (width + segment.length > budget) break;
     cut += segment;
     width += segment.length;
