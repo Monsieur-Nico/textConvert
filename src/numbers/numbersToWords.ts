@@ -1,9 +1,14 @@
 // Create digits in words
-const numbers: string[] =
+//
+// Exported so wordsToNumber can parse against the exact same vocabulary
+// numbersToWords produces, rather than a second, independently-maintained list.
+export const ONES_AND_TEENS: string[] =
   'zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen'.split(
     ' ',
   );
-const tens: string[] = 'twenty thirty forty fifty sixty seventy eighty ninety'.split(' ');
+export const TENS_WORDS: string[] = 'twenty thirty forty fifty sixty seventy eighty ninety'.split(
+  ' ',
+);
 
 // Shared with ordinalToWords, which builds on numbersToWords's cardinal
 // output and needs to reject the same inputs the same way.
@@ -32,18 +37,19 @@ export function numbersToWords(number: number): string {
   }
 
   // Check if the input is between 0-19
-  if (number < 20) return numbers[number];
+  if (number < 20) return ONES_AND_TEENS[number];
 
   // Create a digit variable
   const digit: number = number % 10;
 
   // Check if the input is between 20-99
-  if (number < 100) return tens[~~(number / 10) - 2] + (digit ? '-' + numbers[digit] : '');
+  if (number < 100)
+    return TENS_WORDS[~~(number / 10) - 2] + (digit ? '-' + ONES_AND_TEENS[digit] : '');
 
   // Check if the input is between 100 and 999
   if (number < 1000)
     return (
-      numbers[~~(number / 100)] +
+      ONES_AND_TEENS[~~(number / 100)] +
       ' hundred' +
       (number % 100 == 0 ? '' : ' and ' + numbersToWords(number % 100))
     );
@@ -56,7 +62,7 @@ export function numbersToWords(number: number): string {
     return (
       numbersToWords(thousands) +
       ' thousand' +
-      (remainder != 0 ? ' ' + numbersToWords(remainder) : '')
+      (remainder != 0 ? (remainder < 100 ? ' and ' : ' ') + numbersToWords(remainder) : '')
     );
   }
 
@@ -65,6 +71,8 @@ export function numbersToWords(number: number): string {
   const remainder = number % 1000000;
 
   return (
-    numbersToWords(millions) + ' million' + (remainder != 0 ? ' ' + numbersToWords(remainder) : '')
+    numbersToWords(millions) +
+    ' million' +
+    (remainder != 0 ? (remainder < 100 ? ' and ' : ' ') + numbersToWords(remainder) : '')
   );
 }

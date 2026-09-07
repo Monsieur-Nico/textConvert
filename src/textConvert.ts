@@ -32,6 +32,7 @@ import { numbersToWords } from './numbers/numbersToWords';
 import { ordinal } from './numbers/ordinal';
 import { ordinalToWords } from './numbers/ordinalToWords';
 import { parseNumber } from './numbers/parseNumber';
+import { wordsToNumber } from './numbers/wordsToNumber';
 import { slugify } from './text/slugify';
 import { truncate } from './text/truncate';
 
@@ -85,4 +86,5 @@ export {
   truncate,
   unescapeHtml,
   wordFrequency,
+  wordsToNumber,
 };

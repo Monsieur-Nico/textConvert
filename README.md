@@ -105,6 +105,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 - Text utilities: truncate with word-boundary awareness
 - Language detection: English, French, Spanish, German, Italian, Portuguese, Dutch
 - Number to words: Converts numbers < 100 million to English words
+- Words to number: Parses English number-words back into a number, e.g. `'twelve thousand three hundred and forty-five'` -> `12345`
 - Ordinal suffixes: turns `21` into `'21st'`
 - Ordinal words: turns `21` into `'twenty-first'`
 - Number formatting: adds thousands separators, e.g. `1234567.89` -> `'1,234,567.89'`
@@ -153,6 +154,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 | `wordFrequency(text)`                        | Count how many times each word appears                             |
 | `detectLanguage(text, minLength?, options?)` | Detect the language of a piece of text                             |
 | `numbersToWords(number)`                     | Convert a number under 100 million to English words                |
+| `wordsToNumber(text)`                        | Parse English number-words back into a number                      |
 | `ordinal(number)`                            | Get a number's ordinal suffix form (`21` -> `'21st'`)              |
 | `ordinalToWords(number)`                     | Get a number's ordinal word form (`21` -> `'twenty-first'`)        |
 | `formatNumber(number, options?)`             | Add thousands separators to a number                               |
