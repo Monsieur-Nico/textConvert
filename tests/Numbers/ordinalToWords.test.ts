@@ -43,7 +43,7 @@ describe('#ordinalToWords', () => {
     expect(ordinalToWords(101)).toBe('one hundred and first');
     expect(ordinalToWords(145)).toBe('one hundred and forty-fifth');
     expect(ordinalToWords(1000)).toBe('one thousandth');
-    expect(ordinalToWords(1001)).toBe('one thousand first');
+    expect(ordinalToWords(1001)).toBe('one thousand and first');
     expect(ordinalToWords(12345)).toBe('twelve thousand three hundred and forty-fifth');
     expect(ordinalToWords(100000)).toBe('one hundred thousandth');
     expect(ordinalToWords(1000000)).toBe('one millionth');

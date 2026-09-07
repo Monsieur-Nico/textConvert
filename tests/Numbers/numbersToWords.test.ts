@@ -57,4 +57,27 @@ describe('#numbersToWords', () => {
   it("should return 'ninety-nine thousand nine hundred and ninety-nine' for 99999", () => {
     expect(numbersToWords(99999)).toBe('ninety-nine thousand nine hundred and ninety-nine');
   });
+
+  // A sub-100 remainder in the thousand/million branches now gets the same
+  // 'and' the hundred-branch has always inserted (#393).
+  it("should return 'one thousand and five' for 1005", () => {
+    expect(numbersToWords(1005)).toBe('one thousand and five');
+  });
+  it("should return 'five thousand and five' for 5005", () => {
+    expect(numbersToWords(5005)).toBe('five thousand and five');
+  });
+  it("should return 'one thousand and ninety-nine' for 1099", () => {
+    expect(numbersToWords(1099)).toBe('one thousand and ninety-nine');
+  });
+  it("should return 'one hundred thousand and five' for 100005", () => {
+    expect(numbersToWords(100005)).toBe('one hundred thousand and five');
+  });
+  it("should return 'one million and five' for 1000005", () => {
+    expect(numbersToWords(1000005)).toBe('one million and five');
+  });
+  it("should not insert 'and' when the remainder is 100 or over", () => {
+    // Already correct via the nested hundred-branch call, not the
+    // thousand/million branch itself -- must not become a double 'and'.
+    expect(numbersToWords(1105)).toBe('one thousand one hundred and five');
+  });
 });
