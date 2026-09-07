@@ -41,6 +41,7 @@ textConvert/
       extract.ts          # Email/URL extraction from free-form text
     numbers/
       numbersToWords.ts # Number to words conversion
+      wordsToNumber.ts  # Reverse of numbersToWords.ts
       ordinal.ts        # Ordinal suffix form (21 -> '21st')
       ordinalToWords.ts # Ordinal word form (21 -> 'twenty-first'), built on numbersToWords.ts
       formatNumber.ts   # Thousands-separator number formatting
@@ -80,6 +81,7 @@ textConvert/
 - **text/sanitize.ts**: A configurable `trim`/`normalizeWhitespace`/`redactPII`/`escapeHtml` pipeline in a fixed step order — composition of the functions above, not new detection logic.
 - **text/extract.ts**: Find every email/URL embedded in a block of text.
 - **numbers/numbersToWords.ts**: Convert numbers to English words.
+- **numbers/wordsToNumber.ts**: Parse English number-words back into a number — the reverse of `numbersToWords.ts`, reusing its word lists.
 - **numbers/ordinal.ts**: Get a non-negative integer's ordinal suffix form (`21` -> `'21st'`).
 - **numbers/ordinalToWords.ts**: Get a non-negative integer's ordinal word form (`21` -> `'twenty-first'`), built on `numbersToWords.ts`'s cardinal output.
 - **numbers/formatNumber.ts**: Add thousands separators to a number, English/US style.

@@ -1,6 +1,6 @@
 # Numbers
 
-`numbersToWords`, `ordinal`, `ordinalToWords`, `formatNumber`, `parseNumber`.
+`numbersToWords`, `wordsToNumber`, `ordinal`, `ordinalToWords`, `formatNumber`, `parseNumber`.
 
 ---
 
@@ -29,6 +29,38 @@ numbersToWords(-5); // 'Please provide a valid number under 100 million'
 **Edge Cases:**
 
 - Returns `'Please provide a valid number under 100 million'` — rather than throwing — for numbers `>= 100,000,000`, negative numbers, and non-integers, matching the sentinel-return convention every other function in this library follows.
+- English only — there's no locale/language parameter.
+
+---
+
+## wordsToNumber
+
+Parses English number-words back into a number — the reverse of `numbersToWords`.
+
+**Parameters:**
+
+- `text: string` — Number-words to parse, e.g. `'twelve thousand three hundred and forty-five'`.
+
+**Returns:**
+
+- `number` — The parsed number, or `NaN` for unparseable input. `NaN`, not the shared string sentinel, since this returns a `number` — matching `parseNumber`'s own convention.
+
+**Example:**
+
+```js
+import { wordsToNumber } from 'textconvert';
+
+wordsToNumber('twenty-three'); // 23
+wordsToNumber('one hundred and five'); // 105
+wordsToNumber('twelve thousand three hundred and forty-five'); // 12345
+wordsToNumber('not a number'); // NaN
+```
+
+**Edge Cases:**
+
+- Guarantees `wordsToNumber(numbersToWords(n)) === n` for every `n` `numbersToWords` can produce.
+- Tolerates variations `numbersToWords` itself never produces: case-insensitive (`'Twenty-Three'`), `'and'` is optional (`'one hundred five'` parses the same as `'one hundred and five'`), and hyphens/spaces are interchangeable (`'twenty three'` parses the same as `'twenty-three'`).
+- Returns `NaN` for anything that isn't a string, is empty/whitespace-only, or contains a word outside `numbersToWords`'s own vocabulary (e.g. `'billion'`, which `numbersToWords` never produces since it tops out under 100 million).
 - English only — there's no locale/language parameter.
 
 ---
