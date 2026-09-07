@@ -1,4 +1,4 @@
-import { graphemes } from './graphemes';
+import { graphemes } from './internal/graphemes';
 
 /**
  * Reverses all grapheme clusters (user-perceived characters) in a string.

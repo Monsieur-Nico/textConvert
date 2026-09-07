@@ -1,4 +1,4 @@
-import { iterateGraphemes } from './graphemes';
+import { iterateGraphemes } from './internal/graphemes';
 
 /**
  * Shortens text to a maximum length, appending an ellipsis when truncation
