@@ -71,10 +71,7 @@ npm install textconvert
 ### Usage
 
 ```js
-// ES Module
 import * as convert from 'textconvert';
-// or CommonJS
-const convert = require('textconvert');
 ```
 
 ### CLI
