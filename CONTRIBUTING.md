@@ -197,6 +197,25 @@ This project follows the [all-contributors](https://allcontributors.org/) specif
 - When that release is published, the package is automatically published to npm via GitHub Actions.
 - The package is also mirrored to [JSR](https://jsr.io/@monsieur-nico/textconvert) as a fallback registry, published from the same workflow right after npm. `jsr.json`'s `version` field is synced from `package.json` automatically in CI — it doesn't need to be updated by hand. The JSR publish step is best-effort (`continue-on-error`), so a JSR-side hiccup doesn't fail the whole release after npm has already succeeded.
 
+## Maintaining a Prior Major Version
+
+`main` is always the trunk — all new work lands there, including a breaking-change bundle accumulating toward the next major (see the versioning guide above). That means once any breaking commit has merged to `main`, every subsequent commit — even an unrelated one-line bugfix — rides along in that same unreleased bundle and can't ship as a patch to the _currently published_ major until the whole bundle is ready.
+
+To fix that: each major version, once released, gets its own maintenance branch named `N.x` (e.g. `3.x`), cut from that version's release tag. That branch tracks and publishes its own patch releases completely independently of whatever's in progress on `main`.
+
+**If you need to ship an urgent fix for the currently published major while a breaking-change bundle is accumulating on `main` for the next one:**
+
+1. Open your PR against the current major's `N.x` branch, not `main`.
+2. Once merged, release-please cuts a normal patch release from that branch on its own schedule, independent of `main`.
+3. If the bug also affects `main`'s in-progress next-major work, cherry-pick the same fix commit onto `main` too — a fix landing on `N.x` doesn't automatically appear on `main`, since they're independent branches from that point on.
+
+**For maintainers setting up a new `N.x` branch after a major release ships:**
+
+- Cut the branch from the release tag (e.g. `git checkout -b 4.x v4.0.0`), and apply the same branch protection rules as `main`.
+- Add an `N.x`-specific release-please workflow (copy the pattern from `.github/workflows/release-please-3.x.yml`): trigger on push to that branch, pass `target-branch: <N.x>` to the release-please action, and publish under an `npm publish --tag vN` dist-tag rather than the implicit `latest` — npm always points `latest` at whatever was most recently published regardless of version number, so an untagged publish from an old major's branch would incorrectly overwrite what `npm install textconvert` resolves to.
+- No new manifest file is needed — `.release-please-manifest.json` is already correctly seeded with that major's version, inherited from the tag the branch was cut from.
+- `ci.yml`'s branch triggers already include the generic `'*.x'` pattern, so PRs into any `N.x` branch get tested automatically with no further changes needed there.
+
 ## Code of Conduct
 
 Please be respectful and follow our [Code of Conduct](CODE_OF_CONDUCT.md).
