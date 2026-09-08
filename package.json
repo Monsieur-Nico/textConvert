@@ -3,7 +3,7 @@
   "version": "2.16.2",
   "description": "Lightweight, dependency-free text utilities for TypeScript -- redact PII (emails, phone numbers) from free-form text, plus case conversion, validation, and analysis.",
   "type": "module",
-  "main": "dist/textConvert.js",
+  "main": "dist/textConvert.mjs",
   "types": "dist/textConvert.d.ts",
   "bin": {
     "textconvert": "./dist/cli.js"
@@ -11,8 +11,7 @@
   "exports": {
     ".": {
       "types": "./dist/textConvert.d.ts",
-      "import": "./dist/textConvert.mjs",
-      "require": "./dist/textConvert.js"
+      "import": "./dist/textConvert.mjs"
     }
   },
   "files": [
