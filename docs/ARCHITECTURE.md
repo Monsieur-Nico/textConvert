@@ -115,8 +115,8 @@ textConvert/
 
 ## Build & Distribution
 
-- **Bundling**: Uses Rollup to bundle for CommonJS and ESM.
-- **Type Declarations**: TypeScript generates `.d.ts` files for consumers.
+- **Bundling**: Uses Rollup to produce a single ESM bundle (`dist/textConvert.mjs`); ESM-only since v3.0.0, no CJS output.
+- **Type Declarations**: `tsc` (with `emitDeclarationOnly`) generates the `.d.ts` tree consumers and Rollup's TypeScript plugin both rely on; Rollup itself produces the actual JS output.
 - **Testing**: Uses Vitest for fast, modern testing.
 - **Registries**: Published to npm, with a mirror publish to [JSR](https://jsr.io) on the same release.
 

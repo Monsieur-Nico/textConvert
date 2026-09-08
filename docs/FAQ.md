@@ -20,12 +20,10 @@ A: textConvert is maintained by Nicolas Alkhoury and open-source contributors.
 A: Run `npm install textconvert` in your project directory.
 
 **Q: How do I import functions?**
-A: Use ES Modules or CommonJS:
+A: textConvert is ESM-only (as of v3.0.0):
 
 ```js
 import { camelCase, isEmail } from 'textconvert';
-// or
-const { camelCase, isEmail } = require('textconvert');
 ```
 
 **Q: Does it work in the browser?**
