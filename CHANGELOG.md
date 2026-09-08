@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [3.0.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.16.2...v3.0.0) (2026-09-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* require('textconvert') no longer works; use import instead. package.json's exports/main now point only at the ESM bundle (dist/textConvert.mjs) -- the require condition and the CJS build target are both gone.
+* spread() now always returns string[]. Invalid input (non-string, or empty/whitespace-only) returns [] instead of a string error message -- 'Input text should be a string!' and 'Please provide a valid text input' are both gone -- matching extractEmails/extractUrls/etc.'s existing convention for array-returning functions, since a string sentinel doesn't fit a string[] return type.
+* Language's enum values changed from English names to ISO 639-1 codes: English 'english' -> 'en', French 'french' -> 'fr', Spanish 'spanish' -> 'es', German 'german' -> 'de', Italian 'italian' -> 'it', Portuguese 'portuguese' -> 'pt', Dutch 'dutch' -> 'nl'. Unknown changed from 'unknown' to 'und' -- the same "undetermined" token franc and BCP-47 tooling use, matching the ecosystem consistency this change is meant to provide, rather than a fabricated ISO-looking code (ISO 639-1 itself has no "unknown" entry). Code doing result.language === 'french' (a string literal, bypassing the enum) breaks; code comparing against Language.French etc. is unaffected.
+* numbersToWords now inserts 'and' before a thousands/millions remainder under 100, mirroring the 'and' the hundred-branch has always inserted (e.g. 105 -> 'one hundred and five'). Previously only the hundred-branch did this: numbersToWords(100005) was 'one hundred thousand five', now 'one hundred thousand and five'. Also affects ordinalToWords, which ordinalizes the last word of numbersToWords's cardinal output: ordinalToWords(1001) was 'one thousand first', now 'one thousand and first'. Code doing string-equality checks against either function's output for affected numbers needs updating.
+
+### Features
+
+* drop CJS output, ship ESM-only ([2dc0c33](https://github.com/Monsieur-Nico/textConvert/commit/2dc0c33b73a096f0dd944973f71795b8dbf89d32))
+* use ISO 639-1 codes for the Language enum instead of English names ([b357aca](https://github.com/Monsieur-Nico/textConvert/commit/b357aca575f18b4993bc6ab284ed7c405b2f713e))
+
+
+### Bug Fixes
+
+* correct maintainer contact email ([3d88fd5](https://github.com/Monsieur-Nico/textConvert/commit/3d88fd560b3778608da2025b9d65ce9cb1a112db))
+* numbersToWords inserts 'and' before a sub-100 thousands/millions remainder ([a95a595](https://github.com/Monsieur-Nico/textConvert/commit/a95a595eafedaefb1f8d491f8fa40e295542aadc))
+* spread returns string[] consistently and drops undocumented quirks ([c5c9ad2](https://github.com/Monsieur-Nico/textConvert/commit/c5c9ad241e9c4d171643b41b4f452dd2fb66ccb9))
+
 ## [2.16.2](https://github.com/Monsieur-Nico/textConvert/compare/v2.16.1...v2.16.2) (2026-09-07)
 
 
