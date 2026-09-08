@@ -1,7 +1,12 @@
 import { clear } from './clear';
+import { iterateGraphemes } from './internal/graphemes';
 
 /**
- * Return a boolean value number of the letters in a string.
+ * Return a number count of the letters in a string.
+ *
+ * Letters are counted per grapheme cluster (user-perceived character), so a
+ * letter with combining marks (e.g. an unnormalized `é`) counts once, not once
+ * per code point.
  *
  * @param text String input to get letters count from.
  * @param countNumbers boolean value to determine if numbers should be counted as letters.
@@ -10,6 +15,7 @@ import { clear } from './clear';
  * @example
  * count('Hello, world!'); // 10
  * count('Hello0 world', true); // 11
+ * count('cafe\u0301'); // 4 -- the e+combining-acute cluster counts once
  */
 
 export function count(text: string, countNumbers = false): number {
@@ -17,23 +23,18 @@ export function count(text: string, countNumbers = false): number {
   if (!text.length) return 0;
   // Create a temp number.
   let temp = 0;
-  // Clear the string and split the letters into an array.
-  const cleared = clear(text).split('');
-  // Loop through the letters array.
-  cleared.forEach((letter) => {
-    // Check if countNumbers is included
-    if (!countNumbers) {
-      // Count letters only
-      if (!(/[a-z]/g.test(letter) || /[A-Z]/g.test(letter))) {
-        return;
-      }
+  // Clear the string, then walk it grapheme cluster by grapheme cluster so
+  // multi-code-point characters (combining marks, emoji) count once.
+  const cleared = clear(text);
+  for (const cluster of iterateGraphemes(cleared)) {
+    // A cluster's base character is its first code point -- classify by it so
+    // combining marks and modifiers attached to the base don't change how the
+    // cluster is counted. The ASCII-only classes match the historical
+    // behavior of this function; this change only regroups the iteration.
+    if (countNumbers ? /^[a-z0-9]/i.test(cluster) : /^[a-z]/i.test(cluster)) {
       temp++;
-      return;
     }
-    // Count letters with numbers.
-    if (!(/[a-z]/g.test(letter) || /[A-Z]/g.test(letter) || /[0-9]/g.test(letter))) return;
-    temp++;
-  });
+  }
 
   // Return the number of letters.
   return temp;

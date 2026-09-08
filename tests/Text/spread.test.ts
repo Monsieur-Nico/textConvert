@@ -43,6 +43,21 @@ describe('#spread', () => {
     ]);
   });
 
+  it('should keep multi-code-point emoji as single elements', () => {
+    expect(spread('👍🏽')).toEqual(['👍🏽']);
+    expect(spread('👨‍👩‍👧‍👦')).toEqual(['👨‍👩‍👧‍👦']);
+  });
+
+  it('should keep flags and keycap sequences intact', () => {
+    expect(spread('🇯🇵')).toEqual(['🇯🇵']);
+    expect(spread('1️⃣')).toEqual(['1️⃣']);
+  });
+
+  it('should keep unnormalized combining marks attached to their base letter', () => {
+    // 'cafe\u0301' is NFD: the final cluster is 'e' + U+0301 (combining acute)
+    expect(spread('cafe\u0301')).toEqual(['c', 'a', 'f', 'e\u0301']);
+  });
+
   it('should return [] for invalid input type', () => {
     // @ts-expect-error Testing runtime behavior with incorrect types
     expect(spread(123)).toEqual([]);

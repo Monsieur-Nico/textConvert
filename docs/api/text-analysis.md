@@ -73,6 +73,7 @@ count('Hello0 world', true); // 11
 
 - Returns 0 for empty input.
 - Runs the string through `clear` first (see above), so punctuation and spaces are already excluded before counting begins — you're counting letters (and optionally digits) only, never symbols or whitespace.
+- Letters are counted per grapheme cluster (user-perceived character), so a letter written as base + combining marks (unnormalized input like `cafe\u0301`) counts once, not once per code point. Multi-code-point emoji count as 0 (they're not letters). The letter/digit classification itself is unchanged and ASCII-only, exactly as before — this only regroups the iteration unit.
 
 ---
 
@@ -274,13 +275,14 @@ import { spread } from 'textconvert';
 
 spread('Hello, world!'); // ['H', 'e', 'l', 'l', 'o', ',', ' ', 'w', 'o', 'r', 'l', 'd', '!']
 spread('hello world'); // ['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']
+spread('👍🏽'); // ['👍🏽'] -- one element, not three code points
 ```
 
 **Edge Cases:**
 
 - Returns `[]` for invalid input type, or empty/whitespace-only string.
 - Every character of the input is preserved verbatim, including case and whitespace — `spread(text).join('')` round-trips the original text (when `clear` is `false`). `clear: true` only removes punctuation; it also lowercases the text and can leave a trailing space, since that's `clear`'s own documented behavior, not something `spread` adds on top.
-- Character splitting uses the spread operator (`[...text]`), which is surrogate-pair-aware — unlike `reverse` (see above), `spread` handles astral Unicode characters (most emoji) as single array entries correctly.
+- Character splitting uses grapheme clusters (via `Intl.Segmenter`, the same segmentation `reverse` and `truncate` use), so multi-code-point characters stay intact as single array entries: astral-plane emoji, ZWJ sequences (like 👨‍👩‍👧‍👦), flags, skin-tone modifiers, keycaps, and unnormalized combining marks (like `e` + U+0301) each come out as one element rather than being split into separate code points.
 
 ---
 

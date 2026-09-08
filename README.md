@@ -127,50 +127,50 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 
 ## 📋 API Reference
 
-| Function                                     | Description                                                        |
-| -------------------------------------------- | ------------------------------------------------------------------ |
-| `camelCase(text)`                            | Convert to camelCase                                               |
-| `pascalCase(text)`                           | Convert to PascalCase                                              |
-| `snakeCase(text)`                            | Convert to snake_case                                              |
-| `kebabCase(text)`                            | Convert to kebab-case                                              |
-| `slugify(text)`                              | Convert to a URL-safe slug                                         |
-| `capitalize(text)`                           | Capitalize only the first letter                                   |
-| `titleCase(text)`                            | Capitalize the first letter of every word                          |
-| `clear(text)`                                | Remove punctuation from text                                       |
-| `count(text, countNumbers?)`                 | Count letters (optionally including numbers)                       |
-| `countWords(text)`                           | Count words                                                        |
-| `countSentences(text)`                       | Count sentences                                                    |
-| `reverse(text)`                              | Reverse a string (grapheme-cluster aware)                          |
-| `spread(text, clear?)`                       | Split a string into an array of characters                         |
-| `truncate(text, maxLength, options?)`        | Shorten text to a max length, with an ellipsis (grapheme-safe cut) |
-| `maskText(text, options?)`                   | Partially mask a string for display                                |
-| `redact(text, options?)`                     | Mask PII/secrets embedded in text                                  |
-| `scan(text, options?)`                       | Find PII/secrets embedded in text as structured matches            |
-| `getTextStats(text, wordsPerMinute?)`        | Full text statistics (counts, averages, reading time, readability) |
-| `isPalindrome(text)`                         | Check if text is a palindrome                                      |
-| `wordFrequency(text)`                        | Count how many times each word appears                             |
-| `detectLanguage(text, minLength?, options?)` | Detect the language of a piece of text                             |
-| `numbersToWords(number)`                     | Convert a number under 100 million to English words                |
-| `wordsToNumber(text)`                        | Parse English number-words back into a number                      |
-| `ordinal(number)`                            | Get a number's ordinal suffix form (`21` -> `'21st'`)              |
-| `ordinalToWords(number)`                     | Get a number's ordinal word form (`21` -> `'twenty-first'`)        |
-| `formatNumber(number, options?)`             | Add thousands separators to a number                               |
-| `parseNumber(text)`                          | Parse a formatted number string back into a number                 |
-| `randomString(length, options?)`             | Generate a cryptographically secure random string                  |
-| `pluralize(word, count?)`                    | Return the plural form of an English word                          |
-| `removeDiacritics(text)`                     | Strip accents from accented characters                             |
-| `normalizeWhitespace(text)`                  | Collapse whitespace runs into a single space                       |
-| `normalizeLineEndings(text)`                 | Normalize CRLF/CR line endings to LF                               |
-| `isEmail(text)`                              | Validate an email address                                          |
-| `isUrl(text)`                                | Validate a URL                                                     |
-| `isPhoneNumber(text)`                        | Validate a phone number                                            |
-| `extractEmails(text)`                        | Extract all email addresses found in a block of text               |
-| `extractUrls(text)`                          | Extract all URLs found in a block of text                          |
-| `extractMentions(text)`                      | Extract all @mentions found in a block of text                     |
-| `extractHashtags(text)`                      | Extract all #hashtags found in a block of text                     |
-| `escapeHtml(text)`                           | Escape the five HTML special characters                            |
-| `unescapeHtml(text)`                         | Reverse `escapeHtml`'s escaping                                    |
-| `sanitize(text, options?)`                   | Trim, normalize, redact, and escape in one configurable pipeline   |
+| Function                                     | Description                                                         |
+| -------------------------------------------- | ------------------------------------------------------------------- |
+| `camelCase(text)`                            | Convert to camelCase                                                |
+| `pascalCase(text)`                           | Convert to PascalCase                                               |
+| `snakeCase(text)`                            | Convert to snake_case                                               |
+| `kebabCase(text)`                            | Convert to kebab-case                                               |
+| `slugify(text)`                              | Convert to a URL-safe slug                                          |
+| `capitalize(text)`                           | Capitalize only the first letter                                    |
+| `titleCase(text)`                            | Capitalize the first letter of every word                           |
+| `clear(text)`                                | Remove punctuation from text                                        |
+| `count(text, countNumbers?)`                 | Count letters (optionally including numbers), grapheme-aware        |
+| `countWords(text)`                           | Count words                                                         |
+| `countSentences(text)`                       | Count sentences                                                     |
+| `reverse(text)`                              | Reverse a string (grapheme-cluster aware)                           |
+| `spread(text, clear?)`                       | Split a string into an array of characters (grapheme-cluster aware) |
+| `truncate(text, maxLength, options?)`        | Shorten text to a max length, with an ellipsis (grapheme-safe cut)  |
+| `maskText(text, options?)`                   | Partially mask a string for display                                 |
+| `redact(text, options?)`                     | Mask PII/secrets embedded in text                                   |
+| `scan(text, options?)`                       | Find PII/secrets embedded in text as structured matches             |
+| `getTextStats(text, wordsPerMinute?)`        | Full text statistics (counts, averages, reading time, readability)  |
+| `isPalindrome(text)`                         | Check if text is a palindrome                                       |
+| `wordFrequency(text)`                        | Count how many times each word appears                              |
+| `detectLanguage(text, minLength?, options?)` | Detect the language of a piece of text                              |
+| `numbersToWords(number)`                     | Convert a number under 100 million to English words                 |
+| `wordsToNumber(text)`                        | Parse English number-words back into a number                       |
+| `ordinal(number)`                            | Get a number's ordinal suffix form (`21` -> `'21st'`)               |
+| `ordinalToWords(number)`                     | Get a number's ordinal word form (`21` -> `'twenty-first'`)         |
+| `formatNumber(number, options?)`             | Add thousands separators to a number                                |
+| `parseNumber(text)`                          | Parse a formatted number string back into a number                  |
+| `randomString(length, options?)`             | Generate a cryptographically secure random string                   |
+| `pluralize(word, count?)`                    | Return the plural form of an English word                           |
+| `removeDiacritics(text)`                     | Strip accents from accented characters                              |
+| `normalizeWhitespace(text)`                  | Collapse whitespace runs into a single space                        |
+| `normalizeLineEndings(text)`                 | Normalize CRLF/CR line endings to LF                                |
+| `isEmail(text)`                              | Validate an email address                                           |
+| `isUrl(text)`                                | Validate a URL                                                      |
+| `isPhoneNumber(text)`                        | Validate a phone number                                             |
+| `extractEmails(text)`                        | Extract all email addresses found in a block of text                |
+| `extractUrls(text)`                          | Extract all URLs found in a block of text                           |
+| `extractMentions(text)`                      | Extract all @mentions found in a block of text                      |
+| `extractHashtags(text)`                      | Extract all #hashtags found in a block of text                      |
+| `escapeHtml(text)`                           | Escape the five HTML special characters                             |
+| `unescapeHtml(text)`                         | Reverse `escapeHtml`'s escaping                                     |
+| `sanitize(text, options?)`                   | Trim, normalize, redact, and escape in one configurable pipeline    |
 
 See [docs/API.md](docs/API.md) for full parameter, return type, and edge-case details on every function, or browse the auto-generated [API reference site](https://monsieur-nico.github.io/textConvert/).
 
