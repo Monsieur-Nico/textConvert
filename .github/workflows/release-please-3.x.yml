@@ -1,8 +1,12 @@
-name: release-please
+name: release-please-3.x
 
+# Maintenance line for the v3.x major: publishes patch/minor releases off
+# this branch, completely independent of whatever's accumulating on `main`
+# for the next major. See CONTRIBUTING.md's "Maintaining a Prior Major
+# Version" section.
 on:
   push:
-    branches: [main]
+    branches: [3.x]
 
 permissions:
   contents: write
@@ -21,6 +25,7 @@ jobs:
           release-type: node
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+          target-branch: 3.x
 
   publish:
     needs: release-please
@@ -42,8 +47,13 @@ jobs:
         run: npm install -g npm@latest
       - name: Build
         run: npm run build
-      - name: Publish to npm
-        run: npm publish --provenance --access public
+      - name: Publish to npm under the v3 dist-tag
+        # Never publish this line under the implicit `latest` tag -- npm
+        # always points `latest` at whatever was most recently published,
+        # regardless of version number, so an untagged publish here would
+        # incorrectly make a v3.x patch what `npm install textconvert`
+        # resolves to even after v4 exists.
+        run: npm publish --tag v3 --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Sync jsr.json version with package.json
