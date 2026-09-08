@@ -137,7 +137,7 @@
   },
   "sideEffects": false,
   "contributors": [
-    "Nicolas Alkhoury <nicolas@alkhoury.com> (https://github.com/Monsieur-Nico)"
+    "Nicolas Alkhoury <nicolas@nicoscript.com> (https://github.com/Monsieur-Nico)"
   ],
   "lint-staged": {
     "*.{ts,js,json,md}": [
