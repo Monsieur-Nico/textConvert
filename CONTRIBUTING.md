@@ -199,7 +199,7 @@ This project follows the [all-contributors](https://allcontributors.org/) specif
 
 ## Code of Conduct
 
-Please be respectful and follow the [Contributor Covenant Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/).
+Please be respectful and follow our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ---
 

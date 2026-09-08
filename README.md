@@ -217,7 +217,7 @@ console.log(convert.numbersToWords(987654));
 
 ## Contributing
 
-Contributions are welcome! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines and workflow.
+Contributions are welcome! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines and workflow, and our [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 New to the codebase? [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) covers the project structure and design principles.
 
