@@ -16,7 +16,7 @@ jobs:
   contributors:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       # Fails on repos with 300+ recent events: the underlying
       # all-contributors-for-repository lib over-paginates GitHub's events
       # endpoint. Fix is up but still a draft:
