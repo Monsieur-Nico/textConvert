@@ -192,8 +192,6 @@ isUrl('https://example.com/path?query=123'); // true
 isPhoneNumber('+1-202-555-0173'); // true
 ```
 
-`count` returns 0 for empty or non-string input, including `null` and `undefined` from JavaScript callers.
-
 See [docs/API.md](docs/API.md) for a usage example, parameters, and edge cases for every function.
 
 ---
