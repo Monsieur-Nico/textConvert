@@ -1,0 +1,3 @@
+# Check out text files with LF on every platform, matching Prettier's
+# default endOfLine, so local format checks agree with CI on Windows too.
+* text=auto eol=lf
