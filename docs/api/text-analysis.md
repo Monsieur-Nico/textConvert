@@ -71,7 +71,7 @@ count('Hello0 world', true); // 11
 
 **Edge Cases:**
 
-- Returns 0 for empty input.
+- Returns 0 for empty or non-string input (including `null` and `undefined` from JavaScript callers).
 - Runs the string through `clear` first (see above), so punctuation and spaces are already excluded before counting begins — you're counting letters (and optionally digits) only, never symbols or whitespace.
 - Only ASCII letters (`a`–`z`, `A`–`Z`) count, plus ASCII digits with `countNumbers`. Accented letters typed the usual way are single code points and don't count: `count('café')` is 3.
 - The text is walked per grapheme cluster (user-perceived character), and each cluster is classified by its first code point. Combining marks never add to the count, so the decomposed form `cafe\u0301` counts 4: its last cluster is a plain `e` plus an accent. Emoji count as 0, with one exception: a digit keycap like `1️⃣` counts as a digit when `countNumbers` is `true`, because its first code point is `1`.
