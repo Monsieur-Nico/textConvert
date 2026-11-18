@@ -6,54 +6,67 @@ on:
   pull_request:
     branches: [main, '*.x']
 
+# A new push to a PR cancels that PR's run still in progress. Pushes to main
+# and N.x branches always run to completion.
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
 jobs:
-  test:
+  # Checks whose result doesn't depend on the Node version: run them once.
+  checks:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-
-    strategy:
-      matrix:
-        node-version: [22.x, 24.x, 26.x]
-
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 24.x
         uses: actions/setup-node@v7
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: Get npm cache directory
-        id: npm-cache-dir
-        run: echo "path=$(npm config get cache)" >> "$GITHUB_OUTPUT"
-      - name: Cache npm dependencies
-        uses: actions/cache@v6
-        with:
-          path: ${{ steps.npm-cache-dir.outputs.path }}
-          key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            npm-${{ runner.os }}-
+          node-version: 24.x
+          cache: npm
       - name: Install dependencies
-        run: npm ci || npm install
+        run: npm ci
       - name: Lint
         run: npm run lint
       - name: Check formatting
         run: npm run format:check
       - name: Type check
         run: npm run typecheck
-      - run: npm run build --if-present
-      - run: npm test
+      - name: Build
+        run: npm run build
       # Audit only what ships: the package has no runtime dependencies, so dev
       # tooling advisories (often with no patched release yet) would otherwise
       # fail every PR regardless of its changes. Dev dependencies stay covered
       # by Dependabot.
       - name: Security audit
         run: npm audit --omit=dev --audit-level=moderate
-      - name: Run coverage
-        run: npm run coverage
 
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        node-version: [22.x, 24.x, 26.x]
+    steps:
+      - uses: actions/checkout@v7
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      # Runs the full test suite once, with coverage and its thresholds.
+      - name: Test with coverage
+        run: npm run coverage
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v7
-        if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+        # Once per run (the reports are the same on every Node version), and
+        # only where the token is available: pushes and same-repo PRs.
+        if: matrix.node-version == '24.x' && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository)
+        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: ./coverage/

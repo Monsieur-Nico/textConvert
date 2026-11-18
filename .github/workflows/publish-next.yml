@@ -10,6 +10,7 @@ permissions:
 jobs:
   publish-next:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
       # Node 24's bundled npm (>= 11.5.1) supports OIDC trusted publishing, so
@@ -20,7 +21,7 @@ jobs:
           node-version: 24.x
           registry-url: 'https://registry.npmjs.org/'
       - name: Install dependencies
-        run: npm ci || npm install
+        run: npm ci
       - name: Compute a throwaway prerelease version
         id: version
         run: |
@@ -35,8 +36,8 @@ jobs:
         # batch has landed at the time this is triggered) gets published
         # under this one-off version instead.
         run: npm version "${{ steps.version.outputs.version }}" --no-git-tag-version
-      - name: Build
-        run: npm run build
+      # npm publish runs prepublishOnly (tests, then build) and prepack (build),
+      # so there's no separate build step.
       - name: Publish to npm under the next tag
         run: npm publish --tag next --provenance --access public
         env:
