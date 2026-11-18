@@ -46,24 +46,6 @@
     "node": ">=22",
     "npm": ">=10"
   },
-  "vitest": {
-    "coverage": {
-      "provider": "v8",
-      "reporter": [
-        "text",
-        "json",
-        "html"
-      ],
-      "include": [
-        "src/**/*.ts"
-      ],
-      "exclude": [
-        "**/*.d.ts",
-        "**/*.test.ts",
-        "src/bin/**"
-      ]
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Monsieur-Nico/textConvert.git"
