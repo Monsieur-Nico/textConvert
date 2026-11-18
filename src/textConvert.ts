@@ -7,8 +7,8 @@ import {
   titleCase,
 } from './text/conventions';
 
-import { detectLanguage, Language, LanguageDetectionResult } from './text/analysis/language';
-import { getTextStats, TextStatistics } from './text/analysis/statistics';
+import { detectLanguage, Language, type LanguageDetectionResult } from './text/analysis/language';
+import { getTextStats, type TextStatistics } from './text/analysis/statistics';
 import { wordFrequency } from './text/analysis/wordFrequency';
 import { clear } from './text/clear';
 import { count, countSentences, countWords } from './text/count';
@@ -19,15 +19,15 @@ import { maskText } from './text/mask';
 import { normalizeLineEndings, normalizeWhitespace, removeDiacritics } from './text/normalize';
 import { pluralize } from './text/pluralize';
 import { randomString } from './text/randomString';
-import { redact, RedactOptions } from './text/redact';
+import { redact, type RedactOptions } from './text/redact';
 import { reverse } from './text/reverse';
-import { sanitize, SanitizeOptions } from './text/sanitize';
-import { scan, ScanMatch, ScanOptions } from './text/scan';
+import { sanitize, type SanitizeOptions } from './text/sanitize';
+import { scan, type ScanMatch, type ScanOptions } from './text/scan';
 import { spread } from './text/spread';
 import { isEmail } from './text/validation/email';
 import { isPhoneNumber } from './text/validation/phoneNumber';
 import { isUrl } from './text/validation/url';
-import { formatNumber, FormatNumberOptions } from './numbers/formatNumber';
+import { formatNumber, type FormatNumberOptions } from './numbers/formatNumber';
 import { numbersToWords } from './numbers/numbersToWords';
 import { ordinal } from './numbers/ordinal';
 import { ordinalToWords } from './numbers/ordinalToWords';
@@ -50,7 +50,7 @@ export {
   extractMentions,
   extractUrls,
   formatNumber,
-  FormatNumberOptions,
+  type FormatNumberOptions,
   getTextStats,
   isEmail,
   isPalindrome,
@@ -58,7 +58,7 @@ export {
   isUrl,
   kebabCase,
   Language,
-  LanguageDetectionResult,
+  type LanguageDetectionResult,
   maskText,
   normalizeLineEndings,
   normalizeWhitespace,
@@ -70,18 +70,18 @@ export {
   pluralize,
   randomString,
   redact,
-  RedactOptions,
+  type RedactOptions,
   removeDiacritics,
   reverse,
   sanitize,
-  SanitizeOptions,
+  type SanitizeOptions,
   scan,
-  ScanMatch,
-  ScanOptions,
+  type ScanMatch,
+  type ScanOptions,
   slugify,
   snakeCase,
   spread,
-  TextStatistics,
+  type TextStatistics,
   titleCase,
   truncate,
   unescapeHtml,
