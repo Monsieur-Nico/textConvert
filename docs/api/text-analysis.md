@@ -230,7 +230,7 @@ isPalindrome('hello world'); // false
 
 ## reverse
 
-Reverses all characters in a string.
+Reverses all characters (grapheme clusters) in a string.
 
 **Parameters:**
 
@@ -246,12 +246,13 @@ Reverses all characters in a string.
 import { reverse } from 'textconvert';
 
 reverse('Hello, world!'); // '!dlrow ,olleH'
+reverse('👍🏽a'); // 'a👍🏽' -- emoji clusters stay intact
 ```
 
 **Edge Cases:**
 
 - Returns an error message for empty input.
-- **Not safe for astral Unicode characters** (most emoji, some rare CJK characters): reversal operates per UTF-16 code unit, not per grapheme. A character represented as a surrogate pair gets its two halves reversed independently, producing corrupted/invalid output — `reverse('Hi 😀!')` does not return a string containing 😀 reversed correctly, it returns a string with the surrogate pair split apart. Avoid `reverse` on text that may contain emoji or other astral-plane characters.
+- Reversal works on grapheme clusters (via `Intl.Segmenter`, the same segmentation `truncate` uses), so multi-code-point characters keep their internal order: astral-plane emoji, ZWJ sequences (like 👨‍👩‍👧‍👦), flags, skin-tone modifiers and combining marks (like `e` + U+0301) are each moved as one unit, not split apart and reversed piece by piece.
 
 ---
 

@@ -4,7 +4,7 @@ Upgrade notes for each major version, with concrete before/after guidance for ev
 
 ---
 
-## Upgrading to v3.0.0 (unreleased)
+## Upgrading to v3.0.0
 
 Tracked in [#328](https://github.com/Monsieur-Nico/textConvert/issues/328). Each item below is filled in with real before/after details in the PR that implements it, and checked off alongside its matching checkbox in #328 — check back here, not just the CHANGELOG, before upgrading past v2.x.
 

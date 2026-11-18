@@ -126,5 +126,8 @@
       "prettier --write",
       "eslint --fix"
     ]
+  },
+  "allowScripts": {
+    "esbuild": false
   }
 }
