@@ -2,3 +2,5 @@ dist
 coverage
 package-lock.json
 CHANGELOG.md
+# Written by the all-contributors bot in its own JSON style.
+.all-contributorsrc
