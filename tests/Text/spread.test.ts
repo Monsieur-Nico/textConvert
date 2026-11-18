@@ -58,6 +58,11 @@ describe('#spread', () => {
     expect(spread('cafe\u0301')).toEqual(['c', 'a', 'f', 'e\u0301']);
   });
 
+  it('should keep emoji intact when clearing punctuation', () => {
+    // clear lowercases and replaces the '!' with a trailing space; the emoji survives as one element.
+    expect(spread('Hi 👋🏽!', true)).toEqual(['h', 'i', ' ', '👋🏽', ' ']);
+  });
+
   it('should return [] for invalid input type', () => {
     // @ts-expect-error Testing runtime behavior with incorrect types
     expect(spread(123)).toEqual([]);

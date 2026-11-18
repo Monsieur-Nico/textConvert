@@ -47,6 +47,24 @@ describe('#count', () => {
     // cluster-based iteration yields the same total through a different path.
     expect(count('a\u200Db')).toBe(2);
   });
+
+  it('should count a ZWJ emoji sequence as no letters', () => {
+    // The family emoji from #445: one cluster, not a letter.
+    expect(count('👨‍👩‍👧‍👦')).toBe(0);
+    expect(count('a👨‍👩‍👧‍👦b')).toBe(2);
+  });
+
+  it('should count a digit keycap only when counting numbers', () => {
+    // '1️⃣' is '1' + U+FE0F + U+20E3; its base is the digit 1.
+    expect(count('1️⃣')).toBe(0);
+    expect(count('1️⃣', true)).toBe(1);
+  });
+
+  it('should count only ASCII letters, so a precomposed letter like é is not counted', () => {
+    // 'caf\u00e9' is NFC (é is one code point), unlike the NFD 'cafe\u0301' above.
+    // Counting accented letters is tracked separately in #481.
+    expect(count('caf\u00e9')).toBe(3);
+  });
 });
 
 describe('#countWords', () => {
