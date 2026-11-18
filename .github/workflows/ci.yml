@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [22.x, 24.x]
+        node-version: [22.x, 24.x, 26.x]
 
     steps:
       - uses: actions/checkout@v4
@@ -26,7 +26,7 @@ jobs:
         id: npm-cache-dir
         run: echo "path=$(npm config get cache)" >> "$GITHUB_OUTPUT"
       - name: Cache npm dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ${{ steps.npm-cache-dir.outputs.path }}
           key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
@@ -42,13 +42,17 @@ jobs:
         run: npm run typecheck
       - run: npm run build --if-present
       - run: npm test
+      # Audit only what ships: the package has no runtime dependencies, so dev
+      # tooling advisories (often with no patched release yet) would otherwise
+      # fail every PR regardless of its changes. Dev dependencies stay covered
+      # by Dependabot.
       - name: Security audit
-        run: npm audit --audit-level=moderate
+        run: npm audit --omit=dev --audit-level=moderate
       - name: Run coverage
         run: npm run coverage
 
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v7
         if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
         with:
           token: ${{ secrets.CODECOV_TOKEN }}

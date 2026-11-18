@@ -27,7 +27,7 @@ jobs:
         id: npm-cache-dir
         run: echo "path=$(npm config get cache)" >> "$GITHUB_OUTPUT"
       - name: Cache npm dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ${{ steps.npm-cache-dir.outputs.path }}
           key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
@@ -42,7 +42,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: typedoc-site
 
