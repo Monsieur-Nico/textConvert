@@ -73,7 +73,8 @@ count('Hello0 world', true); // 11
 
 - Returns 0 for empty input.
 - Runs the string through `clear` first (see above), so punctuation and spaces are already excluded before counting begins — you're counting letters (and optionally digits) only, never symbols or whitespace.
-- Letters are counted per grapheme cluster (user-perceived character), so a letter written as base + combining marks (unnormalized input like `cafe\u0301`) counts once, not once per code point. Multi-code-point emoji count as 0 (they're not letters). The letter/digit classification itself is unchanged and ASCII-only, exactly as before — this only regroups the iteration unit.
+- Only ASCII letters (`a`–`z`, `A`–`Z`) count, plus ASCII digits with `countNumbers`. Accented letters typed the usual way are single code points and don't count: `count('café')` is 3.
+- The text is walked per grapheme cluster (user-perceived character), and each cluster is classified by its first code point. Combining marks never add to the count, so the decomposed form `cafe\u0301` counts 4: its last cluster is a plain `e` plus an accent. Emoji count as 0, with one exception: a digit keycap like `1️⃣` counts as a digit when `countNumbers` is `true`, because its first code point is `1`.
 
 ---
 

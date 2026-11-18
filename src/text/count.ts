@@ -4,9 +4,11 @@ import { iterateGraphemes } from './internal/graphemes';
 /**
  * Return a number count of the letters in a string.
  *
- * Letters are counted per grapheme cluster (user-perceived character), so a
- * letter with combining marks (e.g. an unnormalized `é`) counts once, not once
- * per code point.
+ * Only ASCII letters (and ASCII digits, with `countNumbers`) are counted. The
+ * text is walked per grapheme cluster (user-perceived character), and each
+ * cluster is classified by its first code point, so combining marks never
+ * add to the count. As a result, a precomposed `é` (U+00E9) is not counted,
+ * while the decomposed `e` + U+0301 counts once, as its base `e`.
  *
  * @param text String input to get letters count from.
  * @param countNumbers boolean value to determine if numbers should be counted as letters.
@@ -15,7 +17,8 @@ import { iterateGraphemes } from './internal/graphemes';
  * @example
  * count('Hello, world!'); // 10
  * count('Hello0 world', true); // 11
- * count('cafe\u0301'); // 4 -- the e+combining-acute cluster counts once
+ * count('caf\u00e9'); // 3 -- precomposed é is not an ASCII letter
+ * count('cafe\u0301'); // 4 -- decomposed: counted once, by its base e
  */
 
 export function count(text: string, countNumbers = false): number {
