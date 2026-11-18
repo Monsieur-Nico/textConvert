@@ -4,3 +4,27 @@ updates:
     directory: '/'
     schedule:
       interval: 'weekly'
+    # Wait before proposing a freshly published release, so a compromised or
+    # broken version has time to be caught and pulled. Security updates are
+    # never delayed by this.
+    cooldown:
+      semver-major-days: 30
+      semver-minor-days: 7
+      semver-patch-days: 3
+    # One PR for all minor/patch dev-dependency bumps instead of one each:
+    # separate PRs touching the same lockfile entries conflict with each other.
+    groups:
+      dev-dependencies:
+        dependency-type: 'development'
+        update-types: ['minor', 'patch']
+    ignore:
+      # Typed against the oldest supported Node (engines.node), not the newest.
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
+
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    cooldown:
+      default-days: 7
