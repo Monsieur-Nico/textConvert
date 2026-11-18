@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [3.0.2](https://github.com/Monsieur-Nico/textConvert/compare/v3.0.1...v3.0.2) (2026-11-18)
+
+
+### Bug Fixes
+
+* mark type-only re-exports so the JSR package loads ([4f7e760](https://github.com/Monsieur-Nico/textConvert/commit/4f7e760688b072525c66d024042a82cb0146ea16))
+* mark type-only re-exports so the JSR package loads ([a210c37](https://github.com/Monsieur-Nico/textConvert/commit/a210c3794bf7225f699027f3c065b5c1a951f854)), closes [#465](https://github.com/Monsieur-Nico/textConvert/issues/465)
+
 ## [3.0.1](https://github.com/Monsieur-Nico/textConvert/compare/v3.0.0...v3.0.1) (2026-11-18)
 
 
