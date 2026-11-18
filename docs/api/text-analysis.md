@@ -73,6 +73,8 @@ count('Hello0 world', true); // 11
 
 - Returns 0 for empty input.
 - Runs the string through `clear` first (see above), so punctuation and spaces are already excluded before counting begins — you're counting letters (and optionally digits) only, never symbols or whitespace.
+- Only ASCII letters (`a`–`z`, `A`–`Z`) count, plus ASCII digits with `countNumbers`. Accented letters typed the usual way are single code points and don't count: `count('café')` is 3.
+- The text is walked per grapheme cluster (user-perceived character), and each cluster is classified by its first code point. Combining marks never add to the count, so the decomposed form `cafe\u0301` counts 4: its last cluster is a plain `e` plus an accent. Emoji count as 0, with one exception: a digit keycap like `1️⃣` counts as a digit when `countNumbers` is `true`, because its first code point is `1`.
 
 ---
 
@@ -275,13 +277,14 @@ import { spread } from 'textconvert';
 
 spread('Hello, world!'); // ['H', 'e', 'l', 'l', 'o', ',', ' ', 'w', 'o', 'r', 'l', 'd', '!']
 spread('hello world'); // ['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']
+spread('👍🏽'); // ['👍🏽'] -- one element, not three code points
 ```
 
 **Edge Cases:**
 
 - Returns `[]` for invalid input type, or empty/whitespace-only string.
 - Every character of the input is preserved verbatim, including case and whitespace — `spread(text).join('')` round-trips the original text (when `clear` is `false`). `clear: true` only removes punctuation; it also lowercases the text and can leave a trailing space, since that's `clear`'s own documented behavior, not something `spread` adds on top.
-- Character splitting uses the spread operator (`[...text]`), which is surrogate-pair-aware — unlike `reverse` (see above), `spread` handles astral Unicode characters (most emoji) as single array entries correctly.
+- Character splitting uses grapheme clusters (via `Intl.Segmenter`, the same segmentation `reverse` and `truncate` use), so multi-code-point characters stay intact as single array entries: astral-plane emoji, ZWJ sequences (like 👨‍👩‍👧‍👦), flags, skin-tone modifiers, keycaps, and unnormalized combining marks (like `e` + U+0301) each come out as one element rather than being split into separate code points.
 
 ---
 

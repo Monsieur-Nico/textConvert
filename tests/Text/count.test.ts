@@ -28,6 +28,43 @@ describe('#count', () => {
   it('should return 5 for a string with only numbers and counting numbers', () => {
     expect(count('12345', true)).toBe(5);
   });
+
+  it('should count a letter with combining marks once (NFD input)', () => {
+    // 'cafe\u0301' is NFD: 'e' + combining acute. The e counts once, not per code point.
+    expect(count('cafe\u0301')).toBe(4);
+    // countNumbers variant: digits followed by a marked letter
+    expect(count('ab1e\u0301', true)).toBe(4);
+  });
+
+  it('should not split or miscount multi-code-point emoji', () => {
+    // One grapheme cluster with a non-letter base: counts as 0, not per code point
+    expect(count('👍🏽')).toBe(0);
+    expect(count('👍🏽', true)).toBe(0);
+  });
+
+  it('should count ZWJ-joined letters as one letter each', () => {
+    // The historic behavior split 'a\u200Db' into a, ZWJ(no), b => 2;
+    // cluster-based iteration yields the same total through a different path.
+    expect(count('a\u200Db')).toBe(2);
+  });
+
+  it('should count a ZWJ emoji sequence as no letters', () => {
+    // The family emoji from #445: one cluster, not a letter.
+    expect(count('👨‍👩‍👧‍👦')).toBe(0);
+    expect(count('a👨‍👩‍👧‍👦b')).toBe(2);
+  });
+
+  it('should count a digit keycap only when counting numbers', () => {
+    // '1️⃣' is '1' + U+FE0F + U+20E3; its base is the digit 1.
+    expect(count('1️⃣')).toBe(0);
+    expect(count('1️⃣', true)).toBe(1);
+  });
+
+  it('should count only ASCII letters, so a precomposed letter like é is not counted', () => {
+    // 'caf\u00e9' is NFC (é is one code point), unlike the NFD 'cafe\u0301' above.
+    // Counting accented letters is tracked separately in #481.
+    expect(count('caf\u00e9')).toBe(3);
+  });
 });
 
 describe('#countWords', () => {
