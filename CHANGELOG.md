@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [3.0.1](https://github.com/Monsieur-Nico/textConvert/compare/v3.0.0...v3.0.1) (2026-11-18)
+
+
+### Bug Fixes
+
+* grapheme-cluster awareness for spread() and count() ([b185439](https://github.com/Monsieur-Nico/textConvert/commit/b18543967ced01b75f2c58d63d6ada46359f04d3))
+* grapheme-cluster awareness for spread() and count() ([ef2e763](https://github.com/Monsieur-Nico/textConvert/commit/ef2e763a0ab61ea8947a4118a27e208a14f45f38))
+
 ## [3.0.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.16.2...v3.0.0) (2026-09-08)
 
 
