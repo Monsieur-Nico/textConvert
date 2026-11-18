@@ -137,7 +137,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 | `capitalize(text)`                           | Capitalize only the first letter                                    |
 | `titleCase(text)`                            | Capitalize the first letter of every word                           |
 | `clear(text)`                                | Remove punctuation from text                                        |
-| `count(text, countNumbers?)`                 | Count letters (optionally including numbers), grapheme-aware        |
+| `count(text, countNumbers?)`                 | Count letters (optionally including numbers), grapheme-aware; non-string input returns 0 |
 | `countWords(text)`                           | Count words                                                         |
 | `countSentences(text)`                       | Count sentences                                                     |
 | `reverse(text)`                              | Reverse a string (grapheme-cluster aware)                           |
