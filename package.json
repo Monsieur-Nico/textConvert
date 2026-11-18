@@ -6,7 +6,7 @@
   "main": "dist/textConvert.mjs",
   "types": "dist/textConvert.d.ts",
   "bin": {
-    "textconvert": "./dist/cli.js"
+    "textconvert": "dist/cli.js"
   },
   "exports": {
     ".": {
