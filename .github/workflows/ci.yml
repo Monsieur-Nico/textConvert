@@ -52,7 +52,7 @@ jobs:
         run: npm run coverage
 
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v7
         if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
