@@ -5,6 +5,9 @@ on:
     branches: [main]
 
 permissions:
+  # Lets the action find this workflow's previous successful run, which its
+  # default `since: auto` scans from (all-contributors-auto-action >= 0.7.0).
+  actions: read
   contents: read
   issues: write
   pull-requests: write
