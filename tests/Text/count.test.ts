@@ -12,6 +12,15 @@ describe('#count', () => {
     expect(count('')).toBe(0);
   });
 
+  it.each([undefined, null, 123, true, {}, ['abc']].map((input) => ({ input })))(
+    'should return 0 for non-string input $input',
+    ({ input }) => {
+      // JavaScript callers can pass values outside the TypeScript signature.
+      expect(count(input as unknown as string)).toBe(0);
+      expect(count(input as unknown as string, true)).toBe(0);
+    },
+  );
+
   // Adding more test cases to improve coverage
   it("should return 11 when counting numbers for 'Hello123'", () => {
     expect(count('Hello123', true)).toBe(8);
