@@ -4,7 +4,7 @@ import tsparser from '@typescript-eslint/parser';
 import prettier from 'eslint-config-prettier';
 
 const commonRules = {
-  ...tseslint.configs['eslint-recommended'].rules,
+  ...tseslint.configs['flat/eslint-recommended'].rules,
   ...tseslint.configs.recommended.rules,
   ...prettier.rules,
   'no-duplicate-imports': 2,
@@ -40,7 +40,7 @@ export default [
       '@typescript-eslint': tseslint,
     },
     rules: {
-      ...tseslint.configs['eslint-recommended'].rules,
+      ...tseslint.configs['flat/eslint-recommended'].rules,
       ...tseslint.configs.recommended.rules,
       ...prettier.rules,
       'no-duplicate-imports': 2,

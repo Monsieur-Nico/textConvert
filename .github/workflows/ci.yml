@@ -42,8 +42,12 @@ jobs:
         run: npm run typecheck
       - run: npm run build --if-present
       - run: npm test
+      # Audit only what ships: the package has no runtime dependencies, so dev
+      # tooling advisories (often with no patched release yet) would otherwise
+      # fail every PR regardless of its changes. Dev dependencies stay covered
+      # by Dependabot.
       - name: Security audit
-        run: npm audit --audit-level=moderate
+        run: npm audit --omit=dev --audit-level=moderate
       - name: Run coverage
         run: npm run coverage
 
