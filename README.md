@@ -137,7 +137,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 | `capitalize(text)`                           | Capitalize only the first letter                                    |
 | `titleCase(text)`                            | Capitalize the first letter of every word                           |
 | `clear(text)`                                | Remove punctuation from text                                        |
-| `count(text, countNumbers?)`                 | Count letters (optionally including numbers), grapheme-aware; non-string input returns 0 |
+| `count(text, countNumbers?)`                 | Count letters (optionally including numbers), grapheme-aware        |
 | `countWords(text)`                           | Count words                                                         |
 | `countSentences(text)`                       | Count sentences                                                     |
 | `reverse(text)`                              | Reverse a string (grapheme-cluster aware)                           |
@@ -172,6 +172,8 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 | `unescapeHtml(text)`                         | Reverse `escapeHtml`'s escaping                                     |
 | `sanitize(text, options?)`                   | Trim, normalize, redact, and escape in one configurable pipeline    |
 
+`count` returns 0 for empty or non-string input, including `null` and `undefined` from JavaScript callers.
+
 See [docs/API.md](docs/API.md) for full parameter, return type, and edge-case details on every function, or browse the auto-generated [API reference site](https://monsieur-nico.github.io/textConvert/).
 
 ---
@@ -189,6 +191,8 @@ isEmail('user@example.com'); // true
 isUrl('https://example.com/path?query=123'); // true
 isPhoneNumber('+1-202-555-0173'); // true
 ```
+
+`count` returns 0 for empty or non-string input, including `null` and `undefined` from JavaScript callers.
 
 See [docs/API.md](docs/API.md) for a usage example, parameters, and edge cases for every function.
 
