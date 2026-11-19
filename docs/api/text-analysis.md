@@ -44,6 +44,7 @@ clear('Hello, world!'); // 'hello world'
 - Returns an error message for empty or non-string input.
 - Lowercases the entire string, not just strips punctuation — this isn't optional or configurable.
 - Punctuation is replaced with a space, so if the input starts or ends with punctuation, the result can carry a leading or trailing space: `clear('Hi!')` → `'hi '` (trailing space), not `'hi'`. Trim the result yourself if that matters for your use case.
+- Keycap emoji (`#️⃣`, `*️⃣`, `1️⃣`) are kept intact, while a bare `#` or `*` is still stripped: `clear('#️⃣ a#b')` → `'#️⃣ a b'`.
 
 ---
 

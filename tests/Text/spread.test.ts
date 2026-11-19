@@ -53,6 +53,11 @@ describe('#spread', () => {
     expect(spread('1️⃣')).toEqual(['1️⃣']);
   });
 
+  it('should keep # and * keycaps intact when clearing punctuation', () => {
+    expect(spread('#\uFE0F\u20E3x', true)).toEqual(['#\uFE0F\u20E3', 'x']);
+    expect(spread('*\uFE0F\u20E3x', true)).toEqual(['*\uFE0F\u20E3', 'x']);
+  });
+
   it('should keep unnormalized combining marks attached to their base letter', () => {
     // 'cafe\u0301' is NFD: the final cluster is 'e' + U+0301 (combining acute)
     expect(spread('cafe\u0301')).toEqual(['c', 'a', 'f', 'e\u0301']);

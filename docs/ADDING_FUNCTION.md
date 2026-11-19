@@ -75,6 +75,12 @@ This guide explains the steps to add a new function to the textConvert library, 
   npm test
   ```
 
+- Before opening a pull request, run every CI check at once:
+
+  ```sh
+  npm run verify
+  ```
+
 ## 7. Commit and Document Changes
 
 - Use a Conventional Commit message (e.g., `feat: add yourFunction for ...`).

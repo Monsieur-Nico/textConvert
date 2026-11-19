@@ -46,4 +46,8 @@ describe('#wordFrequency', () => {
       'cherry',
     ]);
   });
+
+  it('keeps a keycap emoji as its own word', () => {
+    expect(wordFrequency('#\uFE0F\u20E3 hi')).toEqual({ '#\uFE0F\u20E3': 1, hi: 1 });
+  });
 });
