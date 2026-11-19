@@ -3,6 +3,7 @@
   "release-type": "node",
   "packages": {
     ".": {
+      "extra-files": [{ "type": "json", "path": "jsr.json", "jsonpath": "$.version" }],
       "changelog-sections": [
         { "type": "feat", "section": "✨ Features" },
         { "type": "fix", "section": "🐛 Fixes" },

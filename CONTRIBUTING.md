@@ -202,7 +202,7 @@ This project follows the [all-contributors](https://allcontributors.org/) specif
   npm dist-tag add textconvert@<version> next
   ```
 
-- The package is also mirrored to [JSR](https://jsr.io/@monsieur-nico/textconvert) as a fallback registry, published from the same workflow right after npm. `jsr.json`'s `version` field is synced from `package.json` automatically in CI — it doesn't need to be updated by hand. The JSR publish step is best-effort (`continue-on-error`), so a JSR-side hiccup doesn't fail the whole release after npm has already succeeded.
+- The package is also mirrored to [JSR](https://jsr.io/@monsieur-nico/textconvert) as a fallback registry, published from the same workflow right after npm. release-please bumps `jsr.json`'s `version` in the release PR alongside `package.json` (`extra-files` in `release-please-config.json`), so it never needs updating by hand. The JSR publish step is best-effort (`continue-on-error`), so a JSR-side hiccup doesn't fail the whole release after npm has already succeeded.
 
 ## Maintaining a Prior Major Version
 
