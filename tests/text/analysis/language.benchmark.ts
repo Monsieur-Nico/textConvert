@@ -2,7 +2,7 @@
  * Language detection benchmark tests
  *
  * Run this file separately with:
- * npx ts-node Tests/Text/Analysis/language.benchmark.ts
+ * npx ts-node tests/text/analysis/language.benchmark.ts
  */
 
 import { detectLanguage } from '../../../src/text/analysis/language';

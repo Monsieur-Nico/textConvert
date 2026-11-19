@@ -55,7 +55,7 @@ This guide explains the steps to add a new function to the textConvert library, 
 
 - Create a test file in the appropriate directory under `tests/` (e.g., `tests/text/validation/yourFunction.test.ts`).
 - Use the `vitest` framework for writing tests.
-- Cover normal, edge, and invalid input cases, including non-string input such as `null`, `undefined`, numbers, and objects. Text functions also belong in the table in `tests/Text/nonStringInput.test.ts`.
+- Cover normal, edge, and invalid input cases, including non-string input such as `null`, `undefined`, numbers, and objects. Text functions also belong in the table in `tests/text/nonStringInput.test.ts`.
 
 ## 5. Lint and Format
 
