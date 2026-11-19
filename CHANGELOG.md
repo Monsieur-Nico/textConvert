@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [3.0.4](https://github.com/Monsieur-Nico/textConvert/compare/v3.0.3...v3.0.4) (2026-11-19)
+
+
+### Bug Fixes
+
+* keep # and * keycap emoji intact in clear() ([dd9daf4](https://github.com/Monsieur-Nico/textConvert/commit/dd9daf47ea1fb6f69dbf3fe500be70d83e2a0b04))
+* keep # and * keycap emoji intact in clear() ([f07cf2b](https://github.com/Monsieur-Nico/textConvert/commit/f07cf2b9a33413797591379c75debc4ee3fd6814)), closes [#480](https://github.com/Monsieur-Nico/textConvert/issues/480)
+
 ## [3.0.3](https://github.com/Monsieur-Nico/textConvert/compare/v3.0.2...v3.0.3) (2026-11-19)
 
 
