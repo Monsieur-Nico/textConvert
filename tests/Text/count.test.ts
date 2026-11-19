@@ -22,7 +22,7 @@ describe('#count', () => {
   );
 
   // Adding more test cases to improve coverage
-  it("should return 11 when counting numbers for 'Hello123'", () => {
+  it("should return 8 when counting numbers for 'Hello123'", () => {
     expect(count('Hello123', true)).toBe(8);
   });
   it("should return 5 when not counting numbers for 'Hello123'", () => {
