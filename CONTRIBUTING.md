@@ -83,16 +83,8 @@ We use [Conventional Commits](https://www.conventionalcommits.org/) for all comm
 
 **Allowed types:**
 
-- feat: ✨ Features
-- fix: 🐛 Fixes
-- perf: ⚡ Performance
-- refactor: 🧼 Refactors
-- docs: 📚 Documentation
-- test: ✅ Tests
-- chore: 🔧 Chores
-- revert: ⏪ Reverts
-
-`build:`, `ci:` and `style:` are also accepted, but they're left out of the changelog.
+- In the changelog: `feat` (✨ Features), `fix` (🐛 Fixes), `perf` (⚡ Performance), `revert` (⏪ Reverts)
+- Accepted but left out of the changelog: `refactor`, `docs`, `test`, `chore`, `build`, `ci`, `style`
 
 **Example:**
 
@@ -104,12 +96,12 @@ feat: add support for Dutch language detection
 
 [release-please](https://github.com/googleapis/release-please) reads commit types on `main` to decide the next version — this is mechanical (it just parses your commit message), so getting the type right is what actually determines the release:
 
-| Commit type                                       | Version bump                                |
-| ------------------------------------------------- | ------------------------------------------- |
-| `fix:`                                            | Patch (`1.10.0` → `1.10.1`)                 |
-| `feat:`                                           | Minor (`1.10.0` → `1.11.0`)                 |
-| `feat!:` / `fix!:` or a `BREAKING CHANGE:` footer | Major (`1.10.0` → `2.0.0`)                  |
-| `docs:`, `chore:`, `test:`, `refactor:`           | None — doesn't trigger a release on its own |
+| Commit type                                                        | Version bump                                |
+| ------------------------------------------------------------------ | ------------------------------------------- |
+| `fix:`, `perf:`, `revert:`                                         | Patch (`1.10.0` → `1.10.1`)                 |
+| `feat:`                                                            | Minor (`1.10.0` → `1.11.0`)                 |
+| `feat!:` / `fix!:` or a `BREAKING CHANGE:` footer                  | Major (`1.10.0` → `2.0.0`)                  |
+| `refactor:`, `docs:`, `test:`, `chore:`, `build:`, `ci:`, `style:` | None — doesn't trigger a release on its own |
 
 This is entirely up to whoever writes the commit — nothing checks whether a change is _actually_ breaking, it only trusts what the message says. Mark something `feat:` when it should've been `feat!:` and it ships as a minor bump with no warning.
 

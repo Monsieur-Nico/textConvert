@@ -18,8 +18,10 @@ jobs:
     steps:
       - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
         id: release
+        # No `release-type` input here: when it's set, the action builds its
+        # config from that input alone and ignores release-please-config.json.
+        # The release type lives in the config file instead.
         with:
-          release-type: node
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 

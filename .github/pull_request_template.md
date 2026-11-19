@@ -6,16 +6,8 @@ Please use the Conventional Commits format for your commits:
 
 **Allowed types:**
 
-- feat: ✨ Features
-- fix: 🐛 Fixes
-- perf: ⚡ Performance
-- refactor: 🧼 Refactors
-- docs: 📚 Documentation
-- test: ✅ Tests
-- chore: 🔧 Chores
-- revert: ⏪ Reverts
-
-`build:`, `ci:` and `style:` are also accepted, but they're left out of the changelog.
+- In the changelog: `feat` (✨ Features), `fix` (🐛 Fixes), `perf` (⚡ Performance), `revert` (⏪ Reverts)
+- Accepted but left out of the changelog: `refactor`, `docs`, `test`, `chore`, `build`, `ci`, `style`
 
 **Example:**
 `feat: add support for Dutch language detection`
