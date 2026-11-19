@@ -195,6 +195,13 @@ This project follows the [all-contributors](https://allcontributors.org/) specif
 - Every push to `main` that contains releasable commits (`feat`, `fix`, etc.) opens or updates a release PR with the version bump and CHANGELOG.md entry. Merging that PR creates the GitHub Release and tag.
 - See [How Commit Messages Drive the Version Bump](#how-commit-messages-drive-the-version-bump) above for exactly which commit type produces which bump, and what counts as a breaking change for this project.
 - When that release is published, the package is automatically published to npm via GitHub Actions.
+- npm publishing uses [trusted publishing](https://docs.npmjs.com/trusted-publishers) (OIDC), with no npm token stored in the repository. `release-please.yml` and `publish-next.yml` are each registered as a trusted publisher in the package's settings on npmjs.com, and a workflow file that isn't registered there can't publish.
+- Trusted publishing can't change dist-tags, so `next` doesn't follow a stable release on its own. After a stable release, a maintainer moves it by hand (npm asks for a 2FA code), unless `next` already points at a newer prerelease line such as `4.0.0-next.N`:
+
+  ```sh
+  npm dist-tag add textconvert@<version> next
+  ```
+
 - The package is also mirrored to [JSR](https://jsr.io/@monsieur-nico/textconvert) as a fallback registry, published from the same workflow right after npm. `jsr.json`'s `version` field is synced from `package.json` automatically in CI — it doesn't need to be updated by hand. The JSR publish step is best-effort (`continue-on-error`), so a JSR-side hiccup doesn't fail the whole release after npm has already succeeded.
 
 ## Maintaining a Prior Major Version
@@ -206,7 +213,8 @@ A maintenance branch is only needed once a breaking change is about to merge to 
 **Before the first breaking change merges to `main`,** a maintainer cuts `N.x` (the current major, e.g. `3.x`) from that major's latest release tag:
 
 - Run `git switch -c 3.x v3.0.7` (substituting the real latest tag), then push the branch and give it the same branch protection as `main`.
-- On the new branch, replace `release-please.yml` with an `N.x` release workflow. Commit [`68909c4`](https://github.com/Monsieur-Nico/textConvert/commit/68909c4) shows the pattern for v3. Compared with `release-please.yml`, it triggers on pushes to `N.x`, passes `target-branch: N.x` to the release-please action, publishes with `npm publish --tag vN`, and drops the step that moves the `next` dist-tag. npm points `latest` at whatever was published most recently, so an untagged publish from an old major's branch would take over `npm install textconvert`.
+- On the new branch, replace `release-please.yml` with an `N.x` release workflow. Commit [`68909c4`](https://github.com/Monsieur-Nico/textConvert/commit/68909c4) shows the pattern for v3. Compared with `release-please.yml`, it triggers on pushes to `N.x`, passes `target-branch: N.x` to the release-please action, and publishes with `npm publish --tag vN`. npm points `latest` at whatever was published most recently, so an untagged publish from an old major's branch would take over `npm install textconvert`.
+- Register the new workflow file (`release-please-N.x.yml` in that pattern) as a trusted publisher in the package's settings on npmjs.com before the branch's first release, and don't give it an npm token. Without that registration, its publish step fails.
 - The branch inherits `.release-please-manifest.json` already set to that major's last version, so no manifest change is needed.
 - `ci.yml` already runs on `'*.x'` branches, so PRs into any `N.x` branch get tested with no further changes there.
 
