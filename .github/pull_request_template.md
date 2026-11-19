@@ -8,10 +8,14 @@ Please use the Conventional Commits format for your commits:
 
 - feat: ✨ Features
 - fix: 🐛 Fixes
+- perf: ⚡ Performance
 - refactor: 🧼 Refactors
 - docs: 📚 Documentation
 - test: ✅ Tests
 - chore: 🔧 Chores
+- revert: ⏪ Reverts
+
+`build:`, `ci:` and `style:` are also accepted, but they're left out of the changelog.
 
 **Example:**
 `feat: add support for Dutch language detection`

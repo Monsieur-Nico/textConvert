@@ -85,10 +85,14 @@ We use [Conventional Commits](https://www.conventionalcommits.org/) for all comm
 
 - feat: ✨ Features
 - fix: 🐛 Fixes
+- perf: ⚡ Performance
 - refactor: 🧼 Refactors
 - docs: 📚 Documentation
 - test: ✅ Tests
 - chore: 🔧 Chores
+- revert: ⏪ Reverts
+
+`build:`, `ci:` and `style:` are also accepted, but they're left out of the changelog.
 
 **Example:**
 
