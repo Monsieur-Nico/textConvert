@@ -10,7 +10,6 @@ export default [
       'dist',
       'coverage',
       'typedoc-site',
-      'media/favicons',
       '**/temp.js',
       '**/temp.ts',
       'config/**',
@@ -46,16 +45,6 @@ export default [
     files: ['tests/**/*.ts'],
     rules: {
       'no-undef': 'off',
-    },
-  },
-  // Node globals for standalone build/tooling scripts
-  {
-    files: ['scripts/**/*.mjs'],
-    languageOptions: {
-      globals: {
-        console: 'readonly',
-        process: 'readonly',
-      },
     },
   },
   // Node globals for the CLI entry point -- the one legitimate exception to

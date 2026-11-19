@@ -1,0 +1,35 @@
+name: Feature request
+description: Suggest a new function, or a new option for an existing one.
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: textConvert stays dependency-free and small, so a clear use case helps decide what belongs in the library.
+  - type: input
+    id: function
+    attributes:
+      label: Function or option
+      description: The new function's name, or the existing function the option belongs to.
+      placeholder: truncateWords
+    validations:
+      required: true
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: What are you trying to do, and why is it hard today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed signature and examples
+      description: The signature you have in mind, with example inputs and outputs.
+      render: ts
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other libraries, existing textConvert functions or workarounds you tried.
