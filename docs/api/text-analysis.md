@@ -41,7 +41,7 @@ clear('Hello, world!'); // 'hello world'
 
 **Edge Cases:**
 
-- Returns an error message if input is empty.
+- Returns an error message for empty or non-string input.
 - Lowercases the entire string, not just strips punctuation — this isn't optional or configurable.
 - Punctuation is replaced with a space, so if the input starts or ends with punctuation, the result can carry a leading or trailing space: `clear('Hi!')` → `'hi '` (trailing space), not `'hi'`. Trim the result yourself if that matters for your use case.
 
@@ -101,7 +101,7 @@ countWords('!!! ...'); // 0 (no letters or digits anywhere)
 
 **Edge Cases:**
 
-- Returns 0 for empty or punctuation-only input.
+- Returns 0 for empty, non-string, or punctuation-only input.
 - Splits on whitespace only, not punctuation — `"it's"` and `"well-known"` each count as a single word, unlike `count`/`clear`, which treat punctuation as a separator.
 
 ---
@@ -129,7 +129,7 @@ countSentences('Wait... really?! Yes.'); // 2
 
 **Edge Cases:**
 
-- Returns 0 for empty input.
+- Returns 0 for empty or non-string input.
 - Returns 1 if there is text but no sentence-ending punctuation.
 - A run of consecutive sentence-ending punctuation (`...`, `?!`) is treated as ending exactly one sentence, not one per punctuation mark.
 - A `.`/`!`/`?` **not** followed by whitespace or end-of-string (e.g. a decimal like `3.14`, or an abbreviation glued to the next word) doesn't count as a sentence boundary at all.
@@ -191,7 +191,7 @@ getTextStats('Hello world! This is a test.');
 
 **Edge Cases:**
 
-- Returns all numeric fields as 0 and `readingTimeFormatted: '0 sec'` for empty (or whitespace-only) input.
+- Returns all numeric fields as 0 and `readingTimeFormatted: '0 sec'` for empty, whitespace-only, or non-string input.
 - `paragraphCount` is never less than 1 for non-empty input, even if there isn't a single blank-line-separated break.
 - Built from the other analysis functions internally (`count`, `countWords`, `countSentences`) rather than re-implementing their rules, so anything documented as an edge case for those applies here too.
 - `fleschReadingEase`/`fleschKincaidGrade` both depend on a syllable-count **heuristic** (vowel-group counting, not a dictionary lookup) — it gets common words right (`table` → 2, `beautiful` → 3) but is known to misestimate real irregulars (e.g. `rhythm`). Treat both scores as estimates, not precise measurements, especially on short or unusual text — the formulas can also produce values outside their "typical" 0-100 / grade-level ranges (e.g. a negative grade level on very short, simple text, as in the example above).
@@ -222,7 +222,7 @@ isPalindrome('hello world'); // false
 
 **Edge Cases:**
 
-- Returns `false` for empty input, matching the boolean-sentinel convention `isEmail`/`isUrl`/`isPhoneNumber` already use.
+- Returns `false` for empty or non-string input, matching the boolean-sentinel convention `isEmail`/`isUrl`/`isPhoneNumber` already use.
 - Punctuation/whitespace-only _non-empty_ input (e.g. `'!!!'`) normalizes down to an empty string once case/spaces/punctuation are stripped — treated as `true` (an empty string trivially equals its own reverse), not `false`.
 - Digits are preserved (not stripped as punctuation), so numeric palindromes work too: `isPalindrome('12321')` is `true`.
 - Composes `clear` (lowercases, strips punctuation) and `reverse` internally, so it shares `reverse`'s astral-Unicode limitation — a palindrome check on text containing emoji or other surrogate-pair characters isn't reliable.
@@ -252,7 +252,7 @@ reverse('👍🏽a'); // 'a👍🏽' -- emoji clusters stay intact
 
 **Edge Cases:**
 
-- Returns an error message for empty input.
+- Returns an error message for empty or non-string input.
 - Reversal works on grapheme clusters (via `Intl.Segmenter`, the same segmentation `truncate` uses), so multi-code-point characters keep their internal order: astral-plane emoji, ZWJ sequences (like 👨‍👩‍👧‍👦), flags, skin-tone modifiers and combining marks (like `e` + U+0301) are each moved as one unit, not split apart and reversed piece by piece.
 
 ---
@@ -314,7 +314,7 @@ truncate('Short text', 20); // 'Short text'
 
 **Edge Cases:**
 
-- Returns an error message for empty input.
+- Returns an error message for empty or non-string input.
 - If `maxLength` is smaller than or equal to the ellipsis length, returns as much of the ellipsis as fits (not the ellipsis in full, and not any of the original text).
 - With `byWords`, falls back to a hard mid-word cut if there's no word boundary before the cut point (e.g. one very long word longer than `maxLength`).
 
@@ -343,5 +343,5 @@ wordFrequency('the cat sat on the mat');
 
 **Edge Cases:**
 
-- Returns an empty object (`{}`) for empty, whitespace-only, or punctuation-only input — not the shared `'Please provide a valid input text'` error string, since an empty frequency map is itself a valid, useful answer here.
+- Returns an empty object (`{}`) for empty, whitespace-only, punctuation-only, or non-string input — not the shared `'Please provide a valid input text'` error string, since an empty frequency map is itself a valid, useful answer here.
 - Contractions split on the apostrophe (`don't` → `don` and `t` counted separately), matching `clear`'s existing punctuation-stripping behavior rather than introducing special-case handling.

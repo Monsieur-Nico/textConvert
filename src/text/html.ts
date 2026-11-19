@@ -52,7 +52,7 @@ const unescapeRegex = /&amp;|&lt;|&gt;|&quot;|&#x27;|&#39;|&apos;/g;
  * // '&lt;script&gt;alert(&quot;hi&quot;)&lt;/script&gt;'
  */
 export function escapeHtml(text: string): string {
-  if (!text) return 'Please provide a valid input text';
+  if (typeof text !== 'string' || !text) return 'Please provide a valid input text';
 
   return text.replace(escapeRegex, (char) => htmlEscapes[char]);
 }
@@ -70,7 +70,7 @@ export function escapeHtml(text: string): string {
  * // 'Tom & Jerry'
  */
 export function unescapeHtml(text: string): string {
-  if (!text) return 'Please provide a valid input text';
+  if (typeof text !== 'string' || !text) return 'Please provide a valid input text';
 
   return text.replace(unescapeRegex, (entity) => htmlUnescapes[entity]);
 }

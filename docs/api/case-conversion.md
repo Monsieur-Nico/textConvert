@@ -39,7 +39,7 @@ camelCase('hello2world'); // 'helloWorld' (digits split words, they aren't kept)
 
 **Edge Cases:**
 
-- Returns an error message for empty input.
+- Returns an error message for empty or non-string input.
 - Consecutive delimiters (`'hello--world'`) and leading/trailing delimiters don't produce empty or malformed words — empty segments from the split are filtered out before casing is applied.
 - A non-letter inside a word — including an apostrophe — starts a new word on the other side of it: `camelCase("it's a test")` → `'itSATest'`, not `'itSTest'` or similar. This isn't a case where apostrophes are special-cased; they're simply not letters, same as any other separator.
 
@@ -67,7 +67,7 @@ pascalCase('hello world'); // 'HelloWorld'
 
 **Edge Cases:**
 
-- Returns an error message for empty input.
+- Returns an error message for empty or non-string input.
 - Consecutive/leading/trailing delimiters are handled the same way as `camelCase` — no empty words leak into the output.
 - Apostrophes and other non-letters split words the same way `camelCase` does: `pascalCase("it's a test")` → `'ItSATest'`.
 
@@ -96,7 +96,7 @@ snakeCase('helloWorld'); // 'hello_world' (splits on casing, no separators prese
 
 **Edge Cases:**
 
-- Returns an error message for empty input.
+- Returns an error message for empty or non-string input.
 - Consecutive/leading/trailing delimiters don't produce empty segments in the output (`'hello .World'` → `'hello_world'`).
 - Shares its delimiter-joining logic with `kebabCase` — the two differ only in the joining character (`_` vs `-`), so anything true of one's word-splitting behavior is true of the other.
 
@@ -125,7 +125,7 @@ kebabCase('HelloWorld'); // 'hello-world'
 
 **Edge Cases:**
 
-- Returns an error message for empty input.
+- Returns an error message for empty or non-string input.
 - Same consecutive/leading/trailing-delimiter and casing-split behavior as `snakeCase`.
 
 ---
@@ -165,7 +165,7 @@ buildPostUrl('10 Tips for Better Résumés!'); // '/blog/10-tips-for-better-resu
 
 **Edge Cases:**
 
-- Returns an error message for empty input.
+- Returns an error message for empty or non-string input.
 - Numbers are preserved (not treated as separators).
 - Non-Latin scripts (Chinese, Japanese, Korean, Arabic, Cyrillic, ...) have no ASCII decomposition, so they're treated as separator characters and stripped entirely — not transliterated, not preserved. `slugify('你好世界')` returns `''` (empty string), and `slugify('Café 你好 World')` returns `'cafe-world'`, silently dropping the CJK portion. If you need slugs for non-Latin content, `slugify` isn't the right tool as-is.
 
@@ -194,7 +194,7 @@ capitalize('HELLO WORLD'); // 'HELLO WORLD'
 
 **Edge Cases:**
 
-- Returns an error message for empty input.
+- Returns an error message for empty or non-string input.
 - Only the first character is touched — the rest of the string, including existing casing, is left as-is.
 
 ---
@@ -224,6 +224,6 @@ titleCase('hello-world_example'); // 'Hello-World_Example'
 
 **Edge Cases:**
 
-- Returns an error message for empty input.
+- Returns an error message for empty or non-string input.
 - Digits and separators (spaces, dashes, underscores, etc.) are left untouched — only letter runs are capitalized.
 - A word is any maximal run of letters, so a character like an apostrophe inside a word (`it's`) starts a new "word" on the other side of it (`It'S`), since apostrophes aren't letters.

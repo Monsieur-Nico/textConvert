@@ -14,7 +14,7 @@ import { clear } from '../clear';
  * // { the: 2, cat: 1, sat: 1, on: 1, mat: 1 }
  */
 export function wordFrequency(text: string): Record<string, number> {
-  if (!text?.trim()) return {};
+  if (typeof text !== 'string' || !text.trim()) return {};
 
   const frequency: Record<string, number> = {};
 

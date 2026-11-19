@@ -17,7 +17,7 @@ import { reverse } from './reverse';
  * isPalindrome('hello world'); // false
  */
 export function isPalindrome(text: string): boolean {
-  if (!text) return false;
+  if (typeof text !== 'string' || !text) return false;
 
   const normalized = clear(text).replace(/\s+/g, '');
 

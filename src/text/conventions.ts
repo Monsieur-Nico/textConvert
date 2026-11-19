@@ -12,7 +12,7 @@ const { values } = regex;
  */
 export function capitalize(text: string): string {
   // Make sure there's an input
-  if (!text) return 'Please provide a valid input text';
+  if (typeof text !== 'string' || !text) return 'Please provide a valid input text';
 
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
@@ -45,7 +45,7 @@ function toDelimiterCase(text: string, delimiter: string): string {
  */
 export function camelCase(text: string): string {
   // Make sure there's an input
-  if (!text) return 'Please provide a valid input text';
+  if (typeof text !== 'string' || !text) return 'Please provide a valid input text';
 
   // Make an array of words after splitting them
   const wordsArray: string[] = text.split(values.nonAlphabetic);
@@ -74,7 +74,7 @@ export function camelCase(text: string): string {
  */
 export function pascalCase(text: string): string {
   // Make sure there's an input
-  if (!text) return 'Please provide a valid input text';
+  if (typeof text !== 'string' || !text) return 'Please provide a valid input text';
 
   // Make an array of words after splitting them
   const wordsArray: string[] = text.split(values.nonAlphabetic);
@@ -98,7 +98,7 @@ export function pascalCase(text: string): string {
  */
 export function snakeCase(text: string): string {
   // Make sure there's an input
-  if (!text) return 'Please provide a valid input text';
+  if (typeof text !== 'string' || !text) return 'Please provide a valid input text';
 
   return toDelimiterCase(text, '_');
 }
@@ -112,7 +112,7 @@ export function snakeCase(text: string): string {
  */
 export function kebabCase(text: string): string {
   // Make sure there's an input
-  if (!text) return 'Please provide a valid input text';
+  if (typeof text !== 'string' || !text) return 'Please provide a valid input text';
 
   return toDelimiterCase(text, '-');
 }
@@ -133,7 +133,7 @@ export function kebabCase(text: string): string {
  */
 export function titleCase(text: string): string {
   // Make sure there's an input
-  if (!text) return 'Please provide a valid input text';
+  if (typeof text !== 'string' || !text) return 'Please provide a valid input text';
 
   return text.replace(/[A-Za-z]+/g, (word) => capitalize(word));
 }

@@ -16,7 +16,7 @@ const { values } = regex;
  */
 export function slugify(text: string): string {
   // Make sure there's an input
-  if (!text) return 'Please provide a valid input text';
+  if (typeof text !== 'string' || !text) return 'Please provide a valid input text';
 
   // Decompose accented characters (NFD) and strip the combining marks,
   // leaving plain-ASCII equivalents.
