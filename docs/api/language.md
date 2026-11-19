@@ -36,7 +36,7 @@ detectLanguage('Bonjour le monde'); // { language: 'fr', confidence: 0.95, score
 
 **Edge Cases:**
 
-- Returns `Language.Unknown` with confidence 0 for empty or whitespace-only input.
+- Returns `Language.Unknown` with confidence 0 for empty, whitespace-only, or non-string input.
 - `minLength` does **not** cause short text to be rejected as `Unknown` — text shorter than `minLength` is still analyzed normally, it just has its final confidence multiplied by 0.8. The only things that force an `Unknown` result are: empty input, fewer than ~2 recognized alphabetic characters found in the analyzed text (numbers/symbols-only input), or — for text longer than 2 words — no stopword or language-keyword match from any supported language at all (treated as "not one of the languages we know," including genuinely gibberish input).
 - A small set of common short greetings/phrases (`'hello'`, `'bonjour'`, `'hola'`, `'ciao'`, `'hallo'`, `'olá'`, and a few others, matched case-insensitively as exact full-string matches) short-circuits straight to a 0.95-confidence result without running the character-frequency scoring at all — this is why very short greeting-only input can still resolve confidently despite being well under `minLength`.
 - Detection only looks at the first `maxCharsToAnalyze` characters (default 500) of the text — content past that point has no effect on the result, regardless of text length.

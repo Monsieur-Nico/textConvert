@@ -53,7 +53,7 @@ redact('Server 10.0.0.5 hit by 203.0.113.42', { types: ['ip'] });
 
 **Edge Cases:**
 
-- Returns an error message for empty input.
+- Returns an error message for empty or non-string input.
 - Returns the text unchanged when no PII of the requested type(s) is found, or when `types` is an empty array.
 - Phone detection reuses `isPhoneNumber`'s scope (see [validation.md](validation.md)), so the same limits apply — e.g. a bare 7-digit local number without an area code is not detected, matching `isPhoneNumber('5550173') // false`.
 - Credit card numbers are validated with a Luhn checksum, so an arbitrary 13-19 digit sequence (an order ID, an invoice number) that fails the checksum is not matched. The last 4 digits stay visible in the mask, matching the standard "card ending in 1234" convention.
@@ -140,7 +140,7 @@ function maskEmail(email) {
 
 **Edge Cases:**
 
-- Returns an error message for empty input.
+- Returns an error message for empty or non-string input.
 - If the requested visible portions (start + end) cover the whole string, returns the string unchanged rather than over-masking.
 - `visibleStart`/`visibleEnd` are clamped to the string's length, and clamped further so the two visible portions never overlap.
 - `maskChar` isn't restricted to a single character — passing a multi-character string (e.g. `'#*'`) repeats the whole string per masked position, so the masked region's length can differ from the number of masked characters. Pass a single character if you need a 1:1 length match.
@@ -172,7 +172,7 @@ escapeHtml('<script>alert("hi")</script>');
 
 **Edge Cases:**
 
-- Returns an error message for empty input.
+- Returns an error message for empty or non-string input.
 - The five escaped characters are `&` → `&amp;`, `<` → `&lt;`, `>` → `&gt;`, `"` → `&quot;`, `'` → `&#x27;` — the hex numeric form for apostrophe, matching OWASP's own convention (some other escaping libraries, e.g. lodash, use the decimal `&#39;` instead — both decode identically in every HTML parser, this just documents which one `escapeHtml` itself produces).
 - Backtick is deliberately **not** escaped — it's not part of OWASP's Rule #1 for HTML element content, despite sometimes being confused for one (it shows up in separate, unrelated advice about never using backtick as an HTML attribute delimiter).
 - Implemented as a single pass over the string with one combined regex, not chained sequential replacements — chaining would corrupt its own output (escaping `<` before `&` would turn the resulting `&lt;` into `&amp;lt;` on a second pass).
@@ -202,7 +202,7 @@ unescapeHtml('Tom &amp; Jerry');
 
 **Edge Cases:**
 
-- Returns an error message for empty input.
+- Returns an error message for empty or non-string input.
 - **Not a general-purpose HTML entity decoder.** Only the five entities `escapeHtml` produces are reversed — `&nbsp;`, `&copy;`, numeric character references like `&#65;`, and every other named or numeric entity are left untouched, by design.
 - Accepts both `&#x27;` (hex, what `escapeHtml` produces) and `&#39;` (decimal) as valid apostrophe input, plus the named `&apos;` form — even though `escapeHtml` only ever outputs `&#x27;`, so round-tripping output from other tools that use a different convention still works.
 
@@ -244,7 +244,7 @@ sanitize('Card 4111 1111 1111 1111 and jordan@example.com', {
 
 **Edge Cases:**
 
-- Returns an error message for empty input.
+- Returns an error message for empty or non-string input.
 - Steps run in a **fixed order** — `trim` → `normalizeWhitespace` → `redactPII` → `escapeHtml` — regardless of the order options are given in. Redaction runs on the raw, unescaped text (so pattern matching isn't affected by HTML-escaped characters), and escaping always runs last, so the final output is safe to render no matter which other steps ran.
 - If `trim` (or `normalizeWhitespace`, which also trims) reduces whitespace-only input to an empty string, `sanitize` returns `''` directly rather than passing that empty string on to `redact`/`escapeHtml` — both of which would otherwise report it as invalid input via their own shared sentinel message, which would be a confusing thing to see back from a call that started with valid (if all-whitespace) text.
 - Every option defaults to off — `sanitize(text)` with no options returns `text` completely unchanged (aside from the shared invalid-input check on `text` itself).

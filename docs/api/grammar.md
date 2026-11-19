@@ -33,7 +33,7 @@ pluralize('box'); // 'boxes'
 
 **Edge Cases:**
 
-- Returns `'Please provide a valid input text'` for empty input, matching the sentinel-return convention every other string-returning function in this library follows.
+- Returns `'Please provide a valid input text'` for empty or non-string input, matching the sentinel-return convention every other string-returning function in this library follows.
 - Uncountable nouns (`sheep`, `fish`, `species`, etc.) are returned unchanged regardless of `count`.
 - Does not cover every irregular — notably, Greek-derived `-ch` words pronounced /k/ (`stomach` → `stomachs`, not `stomaches`) and consonant-doubling irregulars (`quiz` → `quizzes`, not `quizes`) fall through to the regular suffix rules and produce an incorrect result. Only the maintained irregulars list in `src/text/pluralize.ts` is handled correctly.
 - Preserves the input's leading capitalization (`Child` → `Children`), but does not attempt to preserve casing beyond the first letter (e.g. all-caps input isn't specially handled).

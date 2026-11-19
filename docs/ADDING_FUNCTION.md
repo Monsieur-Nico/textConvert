@@ -16,6 +16,11 @@ This guide explains the steps to add a new function to the textConvert library, 
   ```
 
 - Follow the project's code style and add a JSDoc comment explaining the function, parameters, return value, and examples.
+- Check the input's type before using it. JavaScript callers can pass values outside the TypeScript signature, and invalid input returns a sentinel matching the return type instead of throwing (`'Please provide a valid input text'` for strings, `0` for numbers, `false` for booleans, `[]` for arrays):
+
+  ```ts
+  if (typeof text !== 'string' || !text) return 'Please provide a valid input text';
+  ```
 
 ## 2. Export the Function in textConvert.ts
 
@@ -50,7 +55,7 @@ This guide explains the steps to add a new function to the textConvert library, 
 
 - Create a test file in the appropriate directory under `tests/` (e.g., `tests/text/validation/yourFunction.test.ts`).
 - Use the `vitest` framework for writing tests.
-- Cover normal, edge, and invalid input cases.
+- Cover normal, edge, and invalid input cases, including non-string input such as `null`, `undefined`, numbers, and objects. Text functions also belong in the table in `tests/Text/nonStringInput.test.ts`.
 
 ## 5. Lint and Format
 
