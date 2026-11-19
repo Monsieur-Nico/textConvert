@@ -3,7 +3,7 @@
   "entryPoints": ["src/textConvert.ts"],
   "out": "typedoc-site",
   "name": "textConvert",
-  "favicon": "media/favicons/favicon.ico",
+  "favicon": "media/favicon.ico",
   "excludePrivate": true,
   "excludeInternal": true,
   "cleanOutputDir": true
