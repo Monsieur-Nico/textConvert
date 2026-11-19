@@ -1055,13 +1055,9 @@ export function detectLanguage(
 ): LanguageDetectionResult {
   const { maxCharsToAnalyze = 500, useCache = true } = options;
 
-  // Caching shortcut
-  if (useCache && resultCache.has(text)) {
-    return resultCache.get(text)!;
-  }
-
-  // Empty string case
-  if (!text || text.trim().length === 0) {
+  // Empty or non-string input. Checked before the cache so a non-string value
+  // never reaches the string-keyed result cache.
+  if (typeof text !== 'string' || text.trim().length === 0) {
     return {
       language: Language.Unknown,
       confidence: 0,
@@ -1069,6 +1065,11 @@ export function detectLanguage(
         Object.values(Language).map((l) => [l, l === Language.Unknown ? 1 : 0]),
       ) as Record<Language, number>,
     };
+  }
+
+  // Caching shortcut
+  if (useCache && resultCache.has(text)) {
+    return resultCache.get(text)!;
   }
 
   const lowerText = text.toLowerCase().trim();

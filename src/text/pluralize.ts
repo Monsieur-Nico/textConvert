@@ -100,7 +100,7 @@ function pluralizeRegular(word: string): string {
  * pluralize('box'); // 'boxes'
  */
 export function pluralize(word: string, count?: number): string {
-  if (!word) return 'Please provide a valid input text';
+  if (typeof word !== 'string' || !word) return 'Please provide a valid input text';
   if (count === 1) return word;
 
   const lower = word.toLowerCase();

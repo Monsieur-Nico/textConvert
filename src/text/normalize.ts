@@ -18,7 +18,7 @@ const combiningMarks = new RegExp(
  * removeDiacritics('Café — résumé'); // 'Cafe — resume'
  */
 export function removeDiacritics(text: string): string {
-  if (!text) return 'Please provide a valid input text';
+  if (typeof text !== 'string' || !text) return 'Please provide a valid input text';
   return text.normalize('NFD').replace(combiningMarks, '');
 }
 
@@ -33,7 +33,7 @@ export function removeDiacritics(text: string): string {
  * normalizeWhitespace('  Hello   World  \n\n'); // 'Hello World'
  */
 export function normalizeWhitespace(text: string): string {
-  if (!text) return 'Please provide a valid input text';
+  if (typeof text !== 'string' || !text) return 'Please provide a valid input text';
   return text.replace(/\s+/g, ' ').trim();
 }
 
@@ -48,6 +48,6 @@ export function normalizeWhitespace(text: string): string {
  * normalizeLineEndings('line1\r\nline2\rline3'); // 'line1\nline2\nline3'
  */
 export function normalizeLineEndings(text: string): string {
-  if (!text) return 'Please provide a valid input text';
+  if (typeof text !== 'string' || !text) return 'Please provide a valid input text';
   return text.replace(/\r\n|\r/g, '\n');
 }

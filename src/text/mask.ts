@@ -23,7 +23,7 @@ export function maskText(
   text: string,
   options: { visibleStart?: number; visibleEnd?: number; maskChar?: string } = {},
 ): string {
-  if (!text) return 'Please provide a valid input text';
+  if (typeof text !== 'string' || !text) return 'Please provide a valid input text';
 
   const { visibleStart, visibleEnd, maskChar = '*' } = options;
   const visibilitySpecified = visibleStart !== undefined || visibleEnd !== undefined;

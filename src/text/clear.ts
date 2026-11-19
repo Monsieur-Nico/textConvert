@@ -13,7 +13,7 @@ const { values } = regex;
 
 export function clear(text: string): string {
   // Make sure there's an input
-  if (!text) return 'Please provide a valid input text';
+  if (typeof text !== 'string' || !text) return 'Please provide a valid input text';
 
   // Create an array of words
   const wordsArray: string[] = text.split(values.punctuation);

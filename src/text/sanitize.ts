@@ -44,7 +44,7 @@ export interface SanitizeOptions {
  * // 'Contact jo**************** &lt;b&gt;now&lt;/b&gt;'
  */
 export function sanitize(text: string, options: SanitizeOptions = {}): string {
-  if (!text) return 'Please provide a valid input text';
+  if (typeof text !== 'string' || !text) return 'Please provide a valid input text';
 
   let result = text;
 

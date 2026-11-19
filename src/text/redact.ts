@@ -82,7 +82,7 @@ export interface RedactOptions {
  * // 'Server 10.0.0.5 hit by ************'
  */
 export function redact(text: string, options: RedactOptions = {}): string {
-  if (!text) return 'Please provide a valid input text';
+  if (typeof text !== 'string' || !text) return 'Please provide a valid input text';
 
   const { types = ['email', 'phone', 'creditCard'], maskChar } = options;
 

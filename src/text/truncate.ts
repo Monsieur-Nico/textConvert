@@ -24,7 +24,7 @@ export function truncate(
   options: { ellipsis?: string; byWords?: boolean } = {},
 ): string {
   // Make sure there's an input
-  if (!text) return 'Please provide a valid input text';
+  if (typeof text !== 'string' || !text) return 'Please provide a valid input text';
 
   // No truncation needed
   if (text.length <= maxLength) return text;

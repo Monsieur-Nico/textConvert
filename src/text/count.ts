@@ -53,7 +53,7 @@ export function count(text: string, countNumbers = false): number {
  * countWords('Hello, world!'); // 2
  */
 export function countWords(text: string): number {
-  if (!text?.trim()) return 0;
+  if (typeof text !== 'string' || !text.trim()) return 0;
 
   // If the text contains only punctuation, return 0
   if (!/[a-zA-Z0-9]/.test(text)) return 0;
@@ -75,7 +75,7 @@ export function countWords(text: string): number {
  * countSentences('Hello world! How are you?'); // 2
  */
 export function countSentences(text: string): number {
-  const trimmed = text?.trim();
+  const trimmed = typeof text === 'string' ? text.trim() : '';
   if (!trimmed) return 0;
 
   // If there's no sentence-ending punctuation but there is text, it's considered one sentence

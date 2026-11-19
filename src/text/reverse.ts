@@ -11,7 +11,7 @@ import { graphemes } from './internal/graphemes';
 
 export function reverse(text: string): string {
   // Make sure input is valid
-  if (!text) return 'Please provide a valid input text';
+  if (typeof text !== 'string' || !text) return 'Please provide a valid input text';
   // Split string into grapheme clusters, reverse all of them and join them back together
   return graphemes(text).reverse().join('');
 }

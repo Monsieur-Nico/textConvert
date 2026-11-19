@@ -127,7 +127,7 @@ function estimateSyllables(word: string): number {
  */
 export function getTextStats(text: string, wordsPerMinute: number = 200): TextStatistics {
   // Handle empty input
-  if (!text || !text.trim()) {
+  if (typeof text !== 'string' || !text.trim()) {
     return {
       characterCount: 0,
       characterCountNoSpaces: 0,
