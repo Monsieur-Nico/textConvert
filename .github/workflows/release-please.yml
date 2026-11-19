@@ -46,39 +46,13 @@ jobs:
         run: npm ci
       # npm publish runs prepublishOnly (tests, then build) and prepack (build),
       # so there's no separate build step.
+      # Authenticates through npm trusted publishing (OIDC): this workflow file
+      # is registered as a trusted publisher for the package on npmjs.com, so
+      # no token is passed in, and a misconfigured publisher fails here instead
+      # of falling back to one. Trusted publishing can't change dist-tags, so
+      # `next` is moved by hand after a stable release (see CONTRIBUTING.md).
       - name: Publish to npm
         run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      # npm never moves dist-tags on its own, so after a stable release `next`
-      # would keep pointing at an older prerelease and `npm i <pkg>@next` would
-      # install something behind `latest`. Point `next` at this release, unless
-      # it already points at a newer prerelease line (say 4.0.0-next.N while
-      # this release is 3.x), which publish-next.yml owns.
-      - name: Keep the next tag at or ahead of latest
-        # Best-effort like the JSR mirror below: the release itself has
-        # already published, so a tag hiccup shouldn't fail the workflow.
-        continue-on-error: true
-        run: |
-          NAME=$(node -p "require('./package.json').name")
-          VERSION=$(node -p "require('./package.json').version")
-          NEXT=$(npm view "$NAME" dist-tags.next 2>/dev/null || true)
-          # Exits 1 only when next's major.minor.patch is higher than this
-          # release. A prerelease of the same core version sorts below the
-          # release itself, so it gets moved too.
-          if node -e '
-            const core = (v) => (v || "0.0.0").split("-")[0].split(".").map(Number);
-            const release = core(process.argv[1]);
-            const next = core(process.argv[2]);
-            const i = release.findIndex((n, k) => n !== next[k]);
-            process.exit(i !== -1 && next[i] > release[i] ? 1 : 0);
-          ' "$VERSION" "$NEXT"; then
-            npm dist-tag add "$NAME@$VERSION" next
-          else
-            echo "next is $NEXT, ahead of $VERSION; leaving it."
-          fi
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Sync jsr.json version with package.json
         run: |
           node -e "
