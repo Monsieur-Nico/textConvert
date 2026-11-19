@@ -20,6 +20,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: Monsieur-Nico/textconvert-refcheck@v1
+      - uses: Monsieur-Nico/textconvert-refcheck@01c6031817d7454ab7b0912f43e449fd093f2f97 # v1.6.2
         with:
           fail-on-violation: false

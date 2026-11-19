@@ -12,11 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       # Node 24's bundled npm (>= 11.5.1) supports OIDC trusted publishing, so
       # the publish uses a known npm rather than whatever npm@latest is that day.
       - name: Use Node.js 24.x
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24.x
           registry-url: 'https://registry.npmjs.org/'
@@ -32,9 +32,8 @@ jobs:
       - name: Set the throwaway version
         # Local to this checkout only -- never committed or pushed, so it
         # can't interfere with release-please's own version manifest on
-        # main. Whatever's currently on main (however much of the v3.0.0
-        # batch has landed at the time this is triggered) gets published
-        # under this one-off version instead.
+        # main. Whatever's currently on main when this is triggered gets
+        # published under this one-off version instead.
         run: npm version "${{ steps.version.outputs.version }}" --no-git-tag-version
       # npm publish runs prepublishOnly (tests, then build) and prepack (build),
       # so there's no separate build step.

@@ -21,9 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Use Node.js 24.x
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24.x
           cache: npm
@@ -51,9 +51,9 @@ jobs:
       matrix:
         node-version: [22.x, 24.x, 26.x]
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
@@ -71,5 +71,7 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: ./coverage/
           flags: unittests
-          fail_ci_if_error: true
+          # A Codecov outage shouldn't fail CI: the coverage thresholds in
+          # vitest.config.ts already gate the build.
+          fail_ci_if_error: false
           verbose: true
