@@ -10,11 +10,13 @@ export default defineConfig({
       reporter: ['text', 'json', 'html'],
       include: ['src/**/*.ts'],
       exclude: ['**/*.d.ts'],
+      // Just under actual coverage (99% lines, 97% branches, 100% functions
+      // as of v3.0.3), so a real drop fails CI. Raise them as coverage grows.
       thresholds: {
-        lines: 80,
-        functions: 80,
-        branches: 70,
-        statements: 80,
+        lines: 98,
+        functions: 100,
+        branches: 95,
+        statements: 97,
       },
     },
   },
