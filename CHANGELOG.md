@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. Releases are generated automatically by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [3.0.3](https://github.com/Monsieur-Nico/textConvert/compare/v3.0.2...v3.0.3) (2026-11-19)
+
+
+### Bug Fixes
+
+* guard count against non-string runtime input ([643f6bc](https://github.com/Monsieur-Nico/textConvert/commit/643f6bcbacbd0555e6cb6790846324255a14df9a))
+* return the sentinel for non-string input in text functions ([c81da9d](https://github.com/Monsieur-Nico/textConvert/commit/c81da9d2aaf15ffb3052fc8bcb6007a6c4170d2f))
+* return the sentinel for non-string input in text functions ([ec5ee71](https://github.com/Monsieur-Nico/textConvert/commit/ec5ee71a0a40444492ccdbaa6c65d7b016b39124))
+* return zero for non-string count input ([5488649](https://github.com/Monsieur-Nico/textConvert/commit/5488649f2044a713a66b2422e1f265af150c0c5a))
+
 ## [3.0.2](https://github.com/Monsieur-Nico/textConvert/compare/v3.0.1...v3.0.2) (2026-11-18)
 
 
