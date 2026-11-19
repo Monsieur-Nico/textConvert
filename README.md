@@ -172,6 +172,8 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 | `unescapeHtml(text)`                         | Reverse `escapeHtml`'s escaping                                     |
 | `sanitize(text, options?)`                   | Trim, normalize, redact, and escape in one configurable pipeline    |
 
+`count` returns 0 for empty or non-string input, including `null` and `undefined` from JavaScript callers.
+
 See [docs/API.md](docs/API.md) for full parameter, return type, and edge-case details on every function, or browse the auto-generated [API reference site](https://monsieur-nico.github.io/textConvert/).
 
 ---

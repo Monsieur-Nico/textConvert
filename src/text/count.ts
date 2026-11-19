@@ -13,7 +13,7 @@ import { iterateGraphemes } from './internal/graphemes';
  * @param text String input to get letters count from.
  * @param countNumbers boolean value to determine if numbers should be counted as letters.
  *
- * @returns Number of letters and numbers (if requested) in a string.
+ * @returns Number of letters and numbers (if requested) in a string, or 0 for empty or non-string input.
  * @example
  * count('Hello, world!'); // 10
  * count('Hello0 world', true); // 11
@@ -22,8 +22,8 @@ import { iterateGraphemes } from './internal/graphemes';
  */
 
 export function count(text: string, countNumbers = false): number {
-  // Check string length
-  if (!text.length) return 0;
+  // Reject invalid runtime inputs before reading their length.
+  if (typeof text !== 'string' || !text.length) return 0;
   // Create a temp number.
   let temp = 0;
   // Clear the string, then walk it grapheme cluster by grapheme cluster so
