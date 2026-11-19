@@ -15,12 +15,6 @@ Thank you for your interest in contributing! 🎉
 
 ## Development Workflow
 
-- **Start development:**
-
-  ```sh
-  npm run dev
-  ```
-
 - **Build the project:**
 
   ```sh
