@@ -38,10 +38,11 @@ jobs:
         run: npm version "${{ steps.version.outputs.version }}" --no-git-tag-version
       # npm publish runs prepublishOnly (tests, then build) and prepack (build),
       # so there's no separate build step.
+      # Authenticates through npm trusted publishing (OIDC), like
+      # release-please.yml: this workflow file is registered as a trusted
+      # publisher on npmjs.com, so no token is passed in.
       - name: Publish to npm under the next tag
         run: npm publish --tag next --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Summary
         run: |
           echo "Published \`textconvert@${{ steps.version.outputs.version }}\` under the \`next\` tag." >> "$GITHUB_STEP_SUMMARY"
