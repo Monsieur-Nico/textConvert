@@ -63,6 +63,12 @@ Thank you for your interest in contributing! 🎉
   npm run format
   ```
 
+- **Run every CI check at once (lint, formatting, type check, tests with coverage, build):**
+
+  ```sh
+  npm run verify
+  ```
+
 - **Build the API reference site locally:**
 
   ```sh
@@ -167,7 +173,7 @@ This is enough on its own — TypeScript-aware editors render a strikethrough wi
 
 - Open an [issue](https://github.com/Monsieur-Nico/textConvert/issues) for bugs or feature requests.
 - Fork and create a feature branch for your changes.
-- Ensure all tests pass and code is linted/formatted before opening a pull request.
+- Run `npm run verify` before opening a pull request. It runs the same checks as CI.
 - Use the provided PR template and follow the commit message guidelines.
 
 ## Documentation Requirements
