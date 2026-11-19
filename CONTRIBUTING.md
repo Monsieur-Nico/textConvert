@@ -199,22 +199,22 @@ This project follows the [all-contributors](https://allcontributors.org/) specif
 
 ## Maintaining a Prior Major Version
 
-`main` is always the trunk — all new work lands there, including a breaking-change bundle accumulating toward the next major (see the versioning guide above). That means once any breaking commit has merged to `main`, every subsequent commit — even an unrelated one-line bugfix — rides along in that same unreleased bundle and can't ship as a patch to the _currently published_ major until the whole bundle is ready.
+`main` is always the trunk, and while it only holds changes for the current major, it is also the maintenance line: fixes go to `main` and ship as normal patch releases (see the versioning guide above).
 
-To fix that: each major version, once released, gets its own maintenance branch named `N.x` (e.g. `3.x`), cut from that version's release tag. That branch tracks and publishes its own patch releases completely independently of whatever's in progress on `main`.
+A maintenance branch is only needed once a breaking change is about to merge to `main`. From then on, every later commit, even an unrelated one-line bugfix, rides along in the unreleased next-major bundle and can't ship as a patch to the _currently published_ major until the bundle is ready.
 
-**If you need to ship an urgent fix for the currently published major while a breaking-change bundle is accumulating on `main` for the next one:**
+**Before the first breaking change merges to `main`,** a maintainer cuts `N.x` (the current major, e.g. `3.x`) from that major's latest release tag:
 
-1. Open your PR against the current major's `N.x` branch, not `main`.
+- Run `git switch -c 3.x v3.0.7` (substituting the real latest tag), then push the branch and give it the same branch protection as `main`.
+- On the new branch, replace `release-please.yml` with an `N.x` release workflow. Commit [`68909c4`](https://github.com/Monsieur-Nico/textConvert/commit/68909c4) shows the pattern for v3. Compared with `release-please.yml`, it triggers on pushes to `N.x`, passes `target-branch: N.x` to the release-please action, publishes with `npm publish --tag vN`, and drops the step that moves the `next` dist-tag. npm points `latest` at whatever was published most recently, so an untagged publish from an old major's branch would take over `npm install textconvert`.
+- The branch inherits `.release-please-manifest.json` already set to that major's last version, so no manifest change is needed.
+- `ci.yml` already runs on `'*.x'` branches, so PRs into any `N.x` branch get tested with no further changes there.
+
+**Once `N.x` exists,** urgent fixes for the published major go there:
+
+1. Open your PR against `N.x`, not `main`.
 2. Once merged, release-please cuts a normal patch release from that branch on its own schedule, independent of `main`.
-3. If the bug also affects `main`'s in-progress next-major work, cherry-pick the same fix commit onto `main` too — a fix landing on `N.x` doesn't automatically appear on `main`, since they're independent branches from that point on.
-
-**For maintainers setting up a new `N.x` branch after a major release ships:**
-
-- Cut the branch from the release tag (e.g. `git checkout -b 4.x v4.0.0`), and apply the same branch protection rules as `main`.
-- Add an `N.x`-specific release-please workflow (copy the pattern from `.github/workflows/release-please-3.x.yml`): trigger on push to that branch, pass `target-branch: <N.x>` to the release-please action, and publish under an `npm publish --tag vN` dist-tag rather than the implicit `latest` — npm always points `latest` at whatever was most recently published regardless of version number, so an untagged publish from an old major's branch would incorrectly overwrite what `npm install textconvert` resolves to.
-- No new manifest file is needed — `.release-please-manifest.json` is already correctly seeded with that major's version, inherited from the tag the branch was cut from.
-- `ci.yml`'s branch triggers already include the generic `'*.x'` pattern, so PRs into any `N.x` branch get tested automatically with no further changes needed there.
+3. If the bug also affects `main`, cherry-pick the same fix commit onto `main` too. A fix landing on `N.x` doesn't automatically appear on `main`, since they're independent branches from that point on.
 
 ## Code of Conduct
 
