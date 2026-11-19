@@ -27,7 +27,7 @@
   "scripts": {
     "build": "npm run clean && tsc -p . && rollup -c",
     "clean": "rimraf dist",
-    "lint": "eslint . --ext .ts",
+    "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
@@ -39,7 +39,7 @@
     "favicons:build": "node scripts/generate-favicons.mjs",
     "prepack": "npm run build",
     "prepublishOnly": "npm test && npm run build",
-    "lint:fix": "eslint . --ext .ts --fix",
+    "lint:fix": "eslint . --fix",
     "prepare": "husky"
   },
   "engines": {
@@ -121,10 +121,11 @@
     "Nicolas Alkhoury <nicolas@nicoscript.com> (https://github.com/Monsieur-Nico)"
   ],
   "lint-staged": {
-    "*.{ts,js,json,md}": [
+    "*.{ts,js,mjs}": [
       "prettier --write",
       "eslint --fix"
-    ]
+    ],
+    "*.{json,md,yml}": "prettier --write"
   },
   "allowScripts": {
     "esbuild": false
