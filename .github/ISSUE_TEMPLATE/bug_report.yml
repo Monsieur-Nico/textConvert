@@ -1,0 +1,56 @@
+name: Bug report
+description: A function returns the wrong result, throws, or behaves unexpectedly.
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for reporting a bug. A small, self-contained example is the fastest way to a fix.
+  - type: input
+    id: version
+    attributes:
+      label: textConvert version
+      placeholder: 3.0.4
+    validations:
+      required: true
+  - type: input
+    id: runtime
+    attributes:
+      label: Runtime and version
+      description: Node.js, Deno, Bun or a browser, with its version.
+      placeholder: Node.js 22.11.0
+    validations:
+      required: true
+  - type: input
+    id: function
+    attributes:
+      label: Function
+      description: Which function, or the CLI command, shows the problem?
+      placeholder: slugify
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: The smallest code that shows the problem.
+      render: ts
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+      description: The output you got, or the full error message.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Anything else that helps, such as the input's language or encoding.

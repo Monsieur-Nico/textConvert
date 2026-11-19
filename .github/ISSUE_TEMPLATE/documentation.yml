@@ -1,0 +1,23 @@
+name: Documentation issue
+description: Something in the README, the API reference or a guide is wrong, unclear or missing.
+labels: ['documentation']
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Page or function
+      description: The page URL, file name or function the problem is in.
+      placeholder: API reference for pluralize
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong or missing?
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested wording
+      description: Optional. How you would rewrite it.
