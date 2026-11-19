@@ -5,6 +5,8 @@ const { values } = regex;
 /**
  * Clear punctuations from a string and replaces it with a whitespace character or returns an array of strings.
  *
+ * Keycap emoji (`#️⃣`, `*️⃣`, `1️⃣`) are kept intact; a bare `#` or `*` is still stripped.
+ *
  * @param text String input to clear from punctuation.
  * @returns Either a string or an array of strings cleared from punctuations based on the arguments passed.
  * @example

@@ -55,4 +55,7 @@ describe('#isPalindrome', () => {
   it('should return false for two different flag emoji, not a false match from scrambled indicators', () => {
     expect(isPalindrome('🇺🇸🇯🇵')).toBe(false);
   });
+  it('should return true for a lone keycap emoji', () => {
+    expect(isPalindrome('#\uFE0F\u20E3')).toBe(true);
+  });
 });

@@ -12,7 +12,9 @@ const regex = {
     lowerUpperCase: /[A-Za-z]/g,
     nonAlphabetic: /[^A-Za-z]/g,
     nonAlphaTest: /[^A-Za-z]/,
-    punctuation: /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g,
+    // '#' and '*' are only punctuation when they don't start a keycap emoji
+    // (#️⃣ / *️⃣ = base + optional U+FE0F + U+20E3).
+    punctuation: /[#*](?!\uFE0F?\u20E3)|[!"$%&'()+,\-./:;<=>?@[\]^_`{|}~]/g,
     nonAlphaNumeric: /[^A-Za-z0-9]+/g,
   },
 };
