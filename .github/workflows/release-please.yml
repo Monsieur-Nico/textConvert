@@ -32,13 +32,13 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       # Node 24's bundled npm (>= 11.5.1) supports OIDC trusted publishing, so
       # the release uses a known npm rather than whatever npm@latest is that day.
       # No dependency cache here on purpose: a release job shouldn't restore
       # anything another workflow could have written.
       - name: Use Node.js 24.x
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24.x
           registry-url: 'https://registry.npmjs.org/'
@@ -53,31 +53,11 @@ jobs:
       # `next` is moved by hand after a stable release (see CONTRIBUTING.md).
       - name: Publish to npm
         run: npm publish --provenance --access public
-      - name: Sync jsr.json version with package.json
-        run: |
-          node -e "
-            const fs = require('fs');
-            const pkg = require('./package.json');
-            const jsr = JSON.parse(fs.readFileSync('./jsr.json', 'utf8'));
-            jsr.version = pkg.version;
-            fs.writeFileSync('./jsr.json', JSON.stringify(jsr, null, 2) + '\n');
-          "
-          # jsr publish refuses to run with uncommitted changes (a genuinely
-          # useful check -- it guarantees what's published matches what's in
-          # version control). Commit the version bump locally, in this
-          # throwaway CI checkout, to satisfy that check honestly instead of
-          # bypassing it with --allow-dirty. Nothing here is pushed back to
-          # the repo -- jsr.json's version is resynced the same way on every
-          # release, so there's nothing to keep.
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          VERSION=$(node -p "require('./package.json').version")
-          if ! git diff --quiet -- jsr.json; then
-            git commit -am "chore: sync jsr.json version to $VERSION" --quiet
-          fi
       - name: Publish to JSR
         # Best-effort mirror alongside npm (the primary registry) -- a JSR
         # hiccup shouldn't fail the whole release workflow after npm has
-        # already published successfully.
-        run: npx jsr publish
+        # already published successfully. release-please bumps jsr.json's
+        # version in the release PR (extra-files in release-please-config.json),
+        # and `npx` runs the jsr CLI pinned in package-lock.json.
+        run: npx --no-install jsr publish
         continue-on-error: true

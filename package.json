@@ -25,10 +25,9 @@
     "access": "public"
   },
   "scripts": {
-    "dev": "tsx watch src/index.ts",
     "build": "npm run clean && tsc -p . && rollup -c",
     "clean": "rimraf dist",
-    "lint": "eslint . --ext .ts",
+    "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
@@ -40,7 +39,7 @@
     "favicons:build": "node scripts/generate-favicons.mjs",
     "prepack": "npm run build",
     "prepublishOnly": "npm test && npm run build",
-    "lint:fix": "eslint . --ext .ts --fix",
+    "lint:fix": "eslint . --fix",
     "prepare": "husky"
   },
   "engines": {
@@ -103,13 +102,13 @@
     "eslint-config-prettier": "^10.1.8",
     "favicons": "^7.3.1",
     "husky": "^9.1.7",
+    "jsr": "^0.14.3",
     "lint-staged": "^17.4.1",
     "prettier": "^3.9.6",
     "rimraf": "^6.1.3",
     "rollup": "^4.63.1",
     "sharp": "^0.35.4",
     "tslib": "^2.8.1",
-    "tsx": "^4.23.13",
     "typedoc": "^0.28.20",
     "typescript": "~6.0.3",
     "vitest": "^5.0.0"
@@ -123,10 +122,11 @@
     "Nicolas Alkhoury <nicolas@nicoscript.com> (https://github.com/Monsieur-Nico)"
   ],
   "lint-staged": {
-    "*.{ts,js,json,md}": [
+    "*.{ts,js,mjs}": [
       "prettier --write",
       "eslint --fix"
-    ]
+    ],
+    "*.{json,md,yml}": "prettier --write"
   },
   "allowScripts": {
     "esbuild": false
