@@ -24,6 +24,7 @@ import { reverse } from './text/reverse';
 import { sanitize, type SanitizeOptions } from './text/sanitize';
 import { scan, type ScanMatch, type ScanOptions } from './text/scan';
 import { spread } from './text/spread';
+import { isValidJson } from './text/validation/json';
 import { isEmail } from './text/validation/email';
 import { isPhoneNumber } from './text/validation/phoneNumber';
 import { isUrl } from './text/validation/url';
@@ -56,6 +57,7 @@ export {
   isPalindrome,
   isPhoneNumber,
   isUrl,
+  isValidJson,
   kebabCase,
   Language,
   type LanguageDetectionResult,
