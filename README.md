@@ -96,7 +96,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 - **XSS-safe HTML escaping:** escape/unescape the five HTML special characters per OWASP's XSS Prevention Cheat Sheet, without a dedicated escaping library
 - **CLI:** `npx textconvert redact <file>` sanitizes a file (or stdin) from the command line, no JS required
 - Case conversion: camelCase, PascalCase, snake_case, kebab-case, slugify, capitalize, Title Case
-- Validation: email addresses, URLs, and phone numbers
+- Validation: email addresses, URLs, phone numbers, and JSON syntax
 - Extraction: pull email addresses, URLs, @mentions, and #hashtags out of a block of text
 - Text analysis: word/letter/sentence/paragraph counting, reading time, readability scoring, palindrome checking, word frequency, etc.
 - Text utilities: truncate with word-boundary awareness
@@ -161,6 +161,7 @@ Reads from the given file, or from stdin if no file is given; always writes to s
 | `removeDiacritics(text)`                     | Strip accents from accented characters                              |
 | `normalizeWhitespace(text)`                  | Collapse whitespace runs into a single space                        |
 | `normalizeLineEndings(text)`                 | Normalize CRLF/CR line endings to LF                                |
+| `isValidJson(text)`                          | Validate JSON syntax                                                |
 | `isEmail(text)`                              | Validate an email address                                           |
 | `isUrl(text)`                                | Validate a URL                                                      |
 | `isPhoneNumber(text)`                        | Validate a phone number                                             |

@@ -15,6 +15,7 @@ textConvert/
         language.ts      # Language detection
         wordFrequency.ts # Word-frequency counting
       validation/
+        json.ts          # JSON syntax validation
         email.ts         # Email validation
         url.ts           # URL validation
         phoneNumber.ts   # Phone number validation
@@ -61,7 +62,8 @@ textConvert/
 ## Main Modules & Responsibilities
 
 - **text/analysis/**: Text statistics, language detection, word-frequency counting, and related analysis tools.
-- **text/validation/**: Validation functions (email, URL, phone number).
+- **text/validation/**: Validation functions (email, URL, phone number, JSON).
+- **text/validation/json.ts**: Validate JSON syntax using `JSON.parse`, without coercing non-string input.
 - **text/internal/**: Shared logic used by more than one public function but not exported from the package itself — the linear-scan helpers (`scan.ts`), the position-aware PII/secret detection logic (`detectors.ts`) behind `extract.ts`, `redact.ts`, and `scan.ts` (the public one), and the grapheme-cluster splitting (`graphemes.ts`) behind `reverse.ts` and `truncate.ts`.
 - **text/conventions.ts**: Case conversion (camelCase, PascalCase, snake_case, kebab-case, capitalize, titleCase).
 - **text/slugify.ts**: URL-safe slug generation with Unicode accent normalization.

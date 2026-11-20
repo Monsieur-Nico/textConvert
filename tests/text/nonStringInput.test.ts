@@ -9,6 +9,7 @@ import {
   escapeHtml,
   getTextStats,
   isPalindrome,
+  isValidJson,
   kebabCase,
   maskText,
   normalizeLineEndings,
@@ -59,6 +60,7 @@ const cases: [string, TextFn, unknown][] = [
   ['countWords', countWords, 0],
   ['countSentences', countSentences, 0],
   ['isPalindrome', isPalindrome, false],
+  ['isValidJson', isValidJson, false],
   ['wordFrequency', wordFrequency, {}],
   // Compared against each function's own empty-input result, so the zeroed
   // shape isn't duplicated here.

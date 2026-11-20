@@ -1,6 +1,6 @@
 # Validation
 
-`isEmail`, `isUrl`, `isPhoneNumber`.
+`isEmail`, `isUrl`, `isPhoneNumber`, `isValidJson`.
 
 ---
 
@@ -9,6 +9,7 @@
 - [isEmail](#isemail)
 - [isUrl](#isurl)
 - [isPhoneNumber](#isphonenumber)
+- [isValidJson](#isvalidjson)
 
 ---
 
@@ -112,3 +113,34 @@ isPhoneNumber('5550173'); // false (too short, no area code)
 - Does not verify the country calling code or the number's real-world validity.
 - Only digits, spaces, dashes, dots, parentheses, and a single leading `+` are accepted as characters at all — any letter (`1-800-FLOWERS`) or other symbol fails immediately, before the digit-count check even runs.
 - Related: `redact`'s `'phone'` type (in [security.md](security.md)) reuses this exact validation to decide what counts as a phone number when scanning free-form text, so the same 7/10-digit floors apply there too.
+
+---
+
+## isValidJson
+
+Checks whether a string is syntactically valid JSON using `JSON.parse`.
+
+**Parameters:**
+
+- `text: string` - The JSON text to validate.
+
+**Returns:**
+
+- `boolean` - `true` for valid JSON text, otherwise `false`.
+
+**Example:**
+
+```js
+import { isValidJson } from 'textconvert';
+
+isValidJson('{"a":1}'); // true
+isValidJson('null'); // true
+isValidJson('{a:1}'); // false
+```
+
+**Edge Cases:**
+
+- All JSON values are valid, not only objects: arrays, strings, numbers, booleans, and `null` are accepted.
+- Returns `false` for empty, whitespace-only, or non-string input; does not coerce values.
+- Follows `JSON.parse` syntax exactly: surrounding JSON whitespace and duplicate object keys are accepted; comments, trailing commas, and a leading byte-order mark are rejected.
+- Validates syntax only, not a schema, numeric precision, or whether parsed data is safe to use.
