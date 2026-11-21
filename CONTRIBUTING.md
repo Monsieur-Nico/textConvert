@@ -165,6 +165,7 @@ This is enough on its own — TypeScript-aware editors render a strikethrough wi
 - Fork and create a feature branch for your changes.
 - Run `npm run verify` before opening a pull request. It runs the same checks as CI.
 - Use the provided PR template and follow the commit message guidelines.
+- PRs are rebase-merged, so every commit on your branch lands on `main` as written. Give each one a conventional message, since each becomes its own changelog entry.
 
 ## Documentation Requirements
 
@@ -190,6 +191,7 @@ This project follows the [all-contributors](https://allcontributors.org/) specif
 - Releases are managed automatically by [release-please](https://github.com/googleapis/release-please), driven by Conventional Commits on `main`. There's nothing to run manually.
 - Every push to `main` that contains releasable commits (`feat`, `fix`, etc.) opens or updates a release PR with the version bump and CHANGELOG.md entry. Merging that PR creates the GitHub Release and tag.
 - See [How Commit Messages Drive the Version Bump](#how-commit-messages-drive-the-version-bump) above for exactly which commit type produces which bump, and what counts as a breaking change for this project.
+- PRs are merged with **Rebase and merge** only; merge commits and squash merging are turned off in the repository settings. A merge commit carries the PR title, which release-please reads as a second changelog entry for the same change, and squash merging would collapse a PR's per-concern commits into one.
 - When that release is published, the package is automatically published to npm via GitHub Actions.
 - npm publishing uses [trusted publishing](https://docs.npmjs.com/trusted-publishers) (OIDC), with no npm token stored in the repository. `release-please.yml` and `publish-next.yml` are each registered as a trusted publisher in the package's settings on npmjs.com, and a workflow file that isn't registered there can't publish.
 - Trusted publishing can't change dist-tags, so `next` doesn't follow a stable release on its own. After a stable release, a maintainer moves it by hand (npm asks for a 2FA code), unless `next` already points at a newer prerelease line such as `4.0.0-next.N`:
