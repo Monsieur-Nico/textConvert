@@ -7,7 +7,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Bug Fixes
 
-* keep # and * keycap emoji intact in clear() ([dd9daf4](https://github.com/Monsieur-Nico/textConvert/commit/dd9daf47ea1fb6f69dbf3fe500be70d83e2a0b04))
 * keep # and * keycap emoji intact in clear() ([f07cf2b](https://github.com/Monsieur-Nico/textConvert/commit/f07cf2b9a33413797591379c75debc4ee3fd6814)), closes [#480](https://github.com/Monsieur-Nico/textConvert/issues/480)
 
 ## [3.0.3](https://github.com/Monsieur-Nico/textConvert/compare/v3.0.2...v3.0.3) (2026-11-19)
@@ -16,16 +15,13 @@ All notable changes to this project will be documented in this file. Releases ar
 ### Bug Fixes
 
 * guard count against non-string runtime input ([643f6bc](https://github.com/Monsieur-Nico/textConvert/commit/643f6bcbacbd0555e6cb6790846324255a14df9a))
-* return the sentinel for non-string input in text functions ([c81da9d](https://github.com/Monsieur-Nico/textConvert/commit/c81da9d2aaf15ffb3052fc8bcb6007a6c4170d2f))
 * return the sentinel for non-string input in text functions ([ec5ee71](https://github.com/Monsieur-Nico/textConvert/commit/ec5ee71a0a40444492ccdbaa6c65d7b016b39124))
-* return zero for non-string count input ([5488649](https://github.com/Monsieur-Nico/textConvert/commit/5488649f2044a713a66b2422e1f265af150c0c5a))
 
 ## [3.0.2](https://github.com/Monsieur-Nico/textConvert/compare/v3.0.1...v3.0.2) (2026-11-18)
 
 
 ### Bug Fixes
 
-* mark type-only re-exports so the JSR package loads ([4f7e760](https://github.com/Monsieur-Nico/textConvert/commit/4f7e760688b072525c66d024042a82cb0146ea16))
 * mark type-only re-exports so the JSR package loads ([a210c37](https://github.com/Monsieur-Nico/textConvert/commit/a210c3794bf7225f699027f3c065b5c1a951f854)), closes [#465](https://github.com/Monsieur-Nico/textConvert/issues/465)
 
 ## [3.0.1](https://github.com/Monsieur-Nico/textConvert/compare/v3.0.0...v3.0.1) (2026-11-18)
@@ -33,7 +29,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Bug Fixes
 
-* grapheme-cluster awareness for spread() and count() ([b185439](https://github.com/Monsieur-Nico/textConvert/commit/b18543967ced01b75f2c58d63d6ada46359f04d3))
 * grapheme-cluster awareness for spread() and count() ([ef2e763](https://github.com/Monsieur-Nico/textConvert/commit/ef2e763a0ab61ea8947a4118a27e208a14f45f38))
 
 ## [3.0.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.16.2...v3.0.0) (2026-09-08)
@@ -63,7 +58,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Bug Fixes
 
-* pass GITHUB_TOKEN to all-contributors-auto-action ([64a8a6d](https://github.com/Monsieur-Nico/textConvert/commit/64a8a6dba404b72e6aa91b7a2946c8469615cdc3))
 * pass GITHUB_TOKEN to all-contributors-auto-action ([419bed8](https://github.com/Monsieur-Nico/textConvert/commit/419bed80550403eced4256b7ad88fb1b1da5510b))
 
 ## [2.16.1](https://github.com/Monsieur-Nico/textConvert/compare/v2.16.0...v2.16.1) (2026-09-07)
@@ -71,7 +65,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Bug Fixes
 
-* make reverse/truncate/isPalindrome grapheme-cluster aware ([9855020](https://github.com/Monsieur-Nico/textConvert/commit/9855020fd036589cc387f05fa6940f465eec24f1))
 * make reverse/truncate/isPalindrome grapheme-cluster aware ([#412](https://github.com/Monsieur-Nico/textConvert/issues/412)) ([56d4664](https://github.com/Monsieur-Nico/textConvert/commit/56d46649a64a48f8238fc686adb0d2758c90421b))
 
 ## [2.16.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.15.0...v2.16.0) (2026-09-06)
@@ -79,7 +72,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add parseNumber function to parse formatted numbers back to values ([327b5fb](https://github.com/Monsieur-Nico/textConvert/commit/327b5fbc3871e0a744b439cb88709fc6bcd09593))
 * add parseNumber function to parse formatted numbers back to values ([137318a](https://github.com/Monsieur-Nico/textConvert/commit/137318a281f872ff4951f3a25a228b2cb23108c9))
 
 
@@ -93,7 +85,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add formatNumber function for thousands-separator formatting ([93b780f](https://github.com/Monsieur-Nico/textConvert/commit/93b780f1f6de0db22d2775346ff7628676ae9658))
 * add formatNumber function for thousands-separator formatting ([8e9fc25](https://github.com/Monsieur-Nico/textConvert/commit/8e9fc259c16283b6c6b71c360d896a23844823d4))
 
 ## [2.14.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.13.0...v2.14.0) (2026-09-06)
@@ -101,7 +92,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add scan() to expose redact()'s detection as structured matches ([b80e746](https://github.com/Monsieur-Nico/textConvert/commit/b80e7466ab34f195129d35628aac4de4ea620d5f))
 * add scan() to expose redact()'s detection as structured matches ([e4ef968](https://github.com/Monsieur-Nico/textConvert/commit/e4ef968aaabec1e7cfa207432612630e5a349900))
 
 
@@ -114,7 +104,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add ordinalToWords function for ordinal word form ([b1a4c62](https://github.com/Monsieur-Nico/textConvert/commit/b1a4c6272855d844a74b9c788fef6acf90273ba2))
 * add ordinalToWords function for ordinal word form ([ed8c73b](https://github.com/Monsieur-Nico/textConvert/commit/ed8c73b3b7fa9929d05a7fbb76d78147b73e556b))
 
 ## [2.12.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.11.0...v2.12.0) (2026-09-05)
@@ -122,7 +111,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add ordinal function for number suffix form ([a086db6](https://github.com/Monsieur-Nico/textConvert/commit/a086db6797e0ffbf02603e7d03148d151fc05b07))
 * add ordinal function for number suffix form ([e5bff8b](https://github.com/Monsieur-Nico/textConvert/commit/e5bff8b580ac1e7749b73c35f438cea1e5a71345))
 
 ## [2.11.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.10.0...v2.11.0) (2026-09-05)
@@ -130,7 +118,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* extend redact() to public IPv4 addresses and structurally-validated JWTs ([103a5eb](https://github.com/Monsieur-Nico/textConvert/commit/103a5eb68408b0323291ca9e3d4f65abe7457e1b))
 * extend redact() to public IPv4 addresses and structurally-validated JWTs ([5095000](https://github.com/Monsieur-Nico/textConvert/commit/5095000b5d62dac644894e340aab0e473170eb1f))
 
 ## [2.10.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.9.0...v2.10.0) (2026-09-05)
@@ -138,7 +125,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add a sanitize() pipeline composing existing text functions ([abb0402](https://github.com/Monsieur-Nico/textConvert/commit/abb04024f5facb636b4a76b205830f6269f283ef))
 * add a sanitize() pipeline composing existing text functions ([67eb896](https://github.com/Monsieur-Nico/textConvert/commit/67eb89657c9936d094b7600d5ffb33dd9a94890c))
 
 ## [2.9.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.8.0...v2.9.0) (2026-09-05)
@@ -146,7 +132,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add standalone Unicode/whitespace normalization functions ([7f0717b](https://github.com/Monsieur-Nico/textConvert/commit/7f0717bea1c42e16e9c82f61e3d2d2d2e01533e8))
 * add standalone Unicode/whitespace normalization functions ([3e13413](https://github.com/Monsieur-Nico/textConvert/commit/3e1341367d4d1353fe5c8dd61c59a96ac6ffe7bf))
 
 ## [2.8.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.7.0...v2.8.0) (2026-09-05)
@@ -155,14 +140,12 @@ All notable changes to this project will be documented in this file. Releases ar
 ### Features
 
 * add readability scoring (Flesch-Kincaid) to getTextStats ([8e2b987](https://github.com/Monsieur-Nico/textConvert/commit/8e2b987f5589048f1063b46d5feb2bec7253f93a))
-* add readability scoring to getTextStats ([0b014e8](https://github.com/Monsieur-Nico/textConvert/commit/0b014e8c8928e202b72bf536ad163250f6691f00))
 
 ## [2.7.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.6.0...v2.7.0) (2026-09-05)
 
 
 ### Features
 
-* add pluralize(word, count?) function ([34aac28](https://github.com/Monsieur-Nico/textConvert/commit/34aac28bc0be995e8d15b79858c12bca20d93827))
 * add pluralize(word, count?) function ([28b30a1](https://github.com/Monsieur-Nico/textConvert/commit/28b30a126a8b75e3acbef2a0f3009cc3a03b09fc))
 
 ## [2.6.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.5.0...v2.6.0) (2026-09-05)
@@ -170,7 +153,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add randomString(length, options?) function ([d5e4d11](https://github.com/Monsieur-Nico/textConvert/commit/d5e4d111cd0b2f8a4d60bda32742989da8433440))
 * add randomString(length, options?) function ([317fa3d](https://github.com/Monsieur-Nico/textConvert/commit/317fa3d4df73821997bf80548dfde0aa7222192e))
 
 ## [2.5.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.4.0...v2.5.0) (2026-09-05)
@@ -178,7 +160,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add wordFrequency(text) function ([781be8f](https://github.com/Monsieur-Nico/textConvert/commit/781be8f16a63b5e7d1ecea82227fa55842260ed9))
 * add wordFrequency(text) function ([d29d070](https://github.com/Monsieur-Nico/textConvert/commit/d29d0706b1b8de3155232da220734dc11fc241dd))
 
 ## [2.4.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.3.0...v2.4.0) (2026-09-04)
@@ -186,7 +167,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add escapeHtml and unescapeHtml functions ([ef52830](https://github.com/Monsieur-Nico/textConvert/commit/ef52830c6cc4c0336140658021b6afd5492b1dcb))
 * add escapeHtml and unescapeHtml functions ([1e68fca](https://github.com/Monsieur-Nico/textConvert/commit/1e68fca8995d976311421921a5e6dfe4e31aa327)), closes [#326](https://github.com/Monsieur-Nico/textConvert/issues/326)
 
 ## [2.3.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.2.1...v2.3.0) (2026-09-04)
@@ -194,7 +174,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add extractMentions and extractHashtags functions ([8a3481e](https://github.com/Monsieur-Nico/textConvert/commit/8a3481e7c659f06a867a45bb4db216847b3a8ae7))
 * add extractMentions and extractHashtags functions ([ce60d77](https://github.com/Monsieur-Nico/textConvert/commit/ce60d77e90bc78c4bc036de84c4185472ee64311)), closes [#325](https://github.com/Monsieur-Nico/textConvert/issues/325)
 
 ## [2.2.1](https://github.com/Monsieur-Nico/textConvert/compare/v2.2.0...v2.2.1) (2026-09-04)
@@ -202,7 +181,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Bug Fixes
 
-* add explicit return type to reverse, drop --allow-slow-types ([05d6bc3](https://github.com/Monsieur-Nico/textConvert/commit/05d6bc31fef7389a6479446ef937b9a9df1cf74b))
 * add explicit return type to reverse, drop --allow-slow-types ([816c697](https://github.com/Monsieur-Nico/textConvert/commit/816c697a434a4cc5cd016bc367ad5ef05b3879d3))
 
 ## [2.2.0](https://github.com/Monsieur-Nico/textConvert/compare/v2.1.0...v2.2.0) (2026-09-04)
@@ -210,7 +188,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add isPalindrome(text) function ([358494e](https://github.com/Monsieur-Nico/textConvert/commit/358494e35e096538e95a1c50754b3eb5feb6ac96))
 * add isPalindrome(text) function ([034521f](https://github.com/Monsieur-Nico/textConvert/commit/034521f3641ad7cb37a3b6f06cfb64cb1ac2e998)), closes [#293](https://github.com/Monsieur-Nico/textConvert/issues/293)
 
 
@@ -223,7 +200,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add a redact CLI (npx textconvert redact &lt;file&gt;) ([0584930](https://github.com/Monsieur-Nico/textConvert/commit/05849303e43a64443b53723e75d1987a3c7d951c))
 * add a redact CLI (npx textconvert redact &lt;file&gt;) ([120cbb6](https://github.com/Monsieur-Nico/textConvert/commit/120cbb690abf6f5e5d8163adb0c75f7bb3eb9901)), closes [#322](https://github.com/Monsieur-Nico/textConvert/issues/322)
 
 ## [2.0.1](https://github.com/Monsieur-Nico/textConvert/compare/v2.0.0...v2.0.1) (2026-09-04)
@@ -231,7 +207,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Bug Fixes
 
-* commit jsr.json version sync before publishing to JSR ([061c76f](https://github.com/Monsieur-Nico/textConvert/commit/061c76f1a27db5f3f2b82d1e090096961dc26814))
 * commit jsr.json version sync before publishing to JSR ([dc781ea](https://github.com/Monsieur-Nico/textConvert/commit/dc781ea72190a54a5ae60cdb3d3194c7ea2dff2b))
 
 ## [2.0.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.16.0...v2.0.0) (2026-09-04)
@@ -250,7 +225,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add titleCase function ([0db8afb](https://github.com/Monsieur-Nico/textConvert/commit/0db8afb27c85119ea038612efb3bdfc92c083f28))
 * add titleCase function ([fbae2ae](https://github.com/Monsieur-Nico/textConvert/commit/fbae2ae1dc3e12b6da1e498788718de9a8fba01a)), closes [#289](https://github.com/Monsieur-Nico/textConvert/issues/289)
 
 ## [1.15.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.14.0...v1.15.0) (2026-09-04)
@@ -258,7 +232,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add capitalize function ([9abf53b](https://github.com/Monsieur-Nico/textConvert/commit/9abf53bb528e878d09bdc895742c43be53f7e8ad))
 * add capitalize function ([b3e8921](https://github.com/Monsieur-Nico/textConvert/commit/b3e8921d40d1dddc16f37f868943927a40754023)), closes [#290](https://github.com/Monsieur-Nico/textConvert/issues/290)
 
 ## [1.14.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.13.0...v1.14.0) (2026-09-04)
@@ -266,7 +239,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* extend redact with credit card and API key detection ([7017210](https://github.com/Monsieur-Nico/textConvert/commit/701721016ebb5c831b2a5c5e6a1ab7ea6b845b91))
 * extend redact with credit card and API key detection ([d60fe11](https://github.com/Monsieur-Nico/textConvert/commit/d60fe117283716a6be1686dd6a2c41f3d8d62110)), closes [#320](https://github.com/Monsieur-Nico/textConvert/issues/320)
 
 ## [1.13.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.12.0...v1.13.0) (2026-09-04)
@@ -274,7 +246,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add redact function ([c6a9308](https://github.com/Monsieur-Nico/textConvert/commit/c6a9308c0e066da7ba4bc9643b5758876eeed789))
 * add redact function ([862196e](https://github.com/Monsieur-Nico/textConvert/commit/862196e17ab29b0702d2432b82998c41c6c820d8)), closes [#311](https://github.com/Monsieur-Nico/textConvert/issues/311)
 
 ## [1.12.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.11.0...v1.12.0) (2026-09-04)
@@ -289,7 +260,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add extractUrls function ([13d1c01](https://github.com/Monsieur-Nico/textConvert/commit/13d1c012ca4f2b157559773df34ed30e11d7a9ce))
 * add extractUrls function ([ee04251](https://github.com/Monsieur-Nico/textConvert/commit/ee0425135f36672242d5912d9102017d03f4ee42)), closes [#294](https://github.com/Monsieur-Nico/textConvert/issues/294)
 
 ## [1.10.0](https://github.com/Monsieur-Nico/textConvert/compare/v1.9.0...v1.10.0) (2026-09-04)
@@ -297,7 +267,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add extractEmails function ([70e156e](https://github.com/Monsieur-Nico/textConvert/commit/70e156ea43c1ca5757b5fe2f1fd5359874f2120f))
 * add extractEmails function ([e477ef4](https://github.com/Monsieur-Nico/textConvert/commit/e477ef48a6732eb521f9503a615173dd04a912ff))
 
 
@@ -317,21 +286,18 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add truncate function ([25ab9c2](https://github.com/Monsieur-Nico/textConvert/commit/25ab9c2b86597e2242345f2f14bca8c1535c55a5))
 * add truncate function ([5b1d1f4](https://github.com/Monsieur-Nico/textConvert/commit/5b1d1f4160595308f275efcc07604f0c70ee4bc2)), closes [#291](https://github.com/Monsieur-Nico/textConvert/issues/291)
 
 
 ### Bug Fixes
 
 * avoid ReDoS in countSentences sentence-splitting regex ([debc2b3](https://github.com/Monsieur-Nico/textConvert/commit/debc2b33f7a07ab41c55b550ca3460875f2b08b1))
-* ReDoS in countSentences and missing CI workflow permissions ([0feeddc](https://github.com/Monsieur-Nico/textConvert/commit/0feeddc10bcd30d87e7943c36d68b4d4deea18af))
 
 ## [1.7.1](https://github.com/Monsieur-Nico/textConvert/compare/v1.7.0...v1.7.1) (2026-09-04)
 
 
 ### Bug Fixes
 
-* **ci:** force IPv4-first DNS resolution to stop Node 24 npm ci hangs ([01612b7](https://github.com/Monsieur-Nico/textConvert/commit/01612b7f82fb8382aa545d25b69abbb196bd6f92))
 * **ci:** force IPv4-first DNS resolution to stop Node 24 npm ci hangs ([50c2b24](https://github.com/Monsieur-Nico/textConvert/commit/50c2b240686b2f5979d3ef6cf7076a422bfa83cd))
 
 
@@ -345,7 +311,6 @@ All notable changes to this project will be documented in this file. Releases ar
 ### Features
 
 * add real logo artwork and generate proper favicons ([6d03909](https://github.com/Monsieur-Nico/textConvert/commit/6d03909c60fddb21847334b65b66980ccbc5b0e0))
-* publish a TypeDoc API reference via GitHub Pages ([e095810](https://github.com/Monsieur-Nico/textConvert/commit/e0958109e58f0176ff0f27d7b4846c3e3b39324b))
 * publish a TypeDoc API reference via GitHub Pages ([5ea29f7](https://github.com/Monsieur-Nico/textConvert/commit/5ea29f7443b9f6ee641bb22600ac6cc76b03062e))
 
 
@@ -358,7 +323,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Features
 
-* add isPhoneNumber(text) function ([44eb568](https://github.com/Monsieur-Nico/textConvert/commit/44eb568bf9d8538597e578722c6e3177277a4ef3))
 * add isPhoneNumber(text) function ([5a8bfa9](https://github.com/Monsieur-Nico/textConvert/commit/5a8bfa9f0a80d25e17754d9dd9f12e3bc74bac35)), closes [#243](https://github.com/Monsieur-Nico/textConvert/issues/243)
 
 ## [1.5.7](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.6...v1.5.7) (2026-09-03)
@@ -367,14 +331,12 @@ All notable changes to this project will be documented in this file. Releases ar
 ### Bug Fixes
 
 * **ci:** upgrade npm before publish for trusted publishing OIDC support ([753241f](https://github.com/Monsieur-Nico/textConvert/commit/753241f33400ce7701ed4da3cf592ce1f7715206))
-* **ci:** upgrade npm for trusted publishing before npm publish ([79f6275](https://github.com/Monsieur-Nico/textConvert/commit/79f6275e90b7683fb48edde7e64a2a7f89f6c541))
 
 ## [1.5.6](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.5...v1.5.6) (2026-09-03)
 
 
 ### Bug Fixes
 
-* **ci:** grant id-token: write for npm provenance publishing ([230ebfd](https://github.com/Monsieur-Nico/textConvert/commit/230ebfded155bf5119e23552aefcebdff8215630))
 * **ci:** grant id-token: write to the publish job for npm provenance ([db732ee](https://github.com/Monsieur-Nico/textConvert/commit/db732ee02ca706e664f5d52a418684d2dbc6307c))
 
 ## [1.5.5](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.4...v1.5.5) (2026-09-03)
@@ -382,7 +344,6 @@ All notable changes to this project will be documented in this file. Releases ar
 
 ### Bug Fixes
 
-* **ci:** move npm publish into release-please's own workflow ([79a0abf](https://github.com/Monsieur-Nico/textConvert/commit/79a0abf6f0fc1b87f5b00683300913e1027112b4))
 * **ci:** move npm publish into release-please's own workflow ([4ab8929](https://github.com/Monsieur-Nico/textConvert/commit/4ab8929db31bce01bf50fb8db9fad6cbc4af2a82))
 
 ## [1.5.4](https://github.com/Monsieur-Nico/textConvert/compare/v1.5.3...v1.5.4) (2026-09-03)
